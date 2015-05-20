@@ -1,0 +1,16 @@
+
+digraph g {
+  rankdir=LR;
+  node[shape="circle"];
+  Input -> scheduledIRNode[label=special0];
+  scheduledIRNode -> calcBlc_3[label=cropSpecial0Node];
+  calcBlc_3 -> dpc_3[label=calcBlc_78];
+  dpc_3 -> calcXtk_3[label=dpc_103];
+  calcXtk_3 -> calcWbg_3[label=calcXtk_116];
+  calcWbg_3 -> calcDem_3[label=calcWbg_46];
+  calcDem_3 -> srp_3[label=calcDem_324];
+  srp_3 -> ccf_3[label=srp_385];
+  ccf_3 -> cnr_3[label=ccf_57];
+  cnr_3 -> ct8_3[label=srp_427];
+  ct8_3 -> Output [label=ct8_243];
+}

@@ -1,0 +1,759 @@
+lambda_line100_3_reduce: 
+    -   - ufix_8_0 cropSpecial0Node_pp[2:0][2:0][5:0]
+        - ufix_8_0 lambda_line100_82
+        - mv lambda_line100_82 cropSpecial0Node_pp[1][1][0] #index
+        - ufix_8_0 lambda_line100_84
+        - mv lambda_line100_84 cropSpecial0Node_pp[1][1][1] #index
+        - ufix_8_0 lambda_line100_86
+        - mv lambda_line100_86 cropSpecial0Node_pp[1][1][2] #index
+        - ufix_8_0 lambda_line80_3[2:0]
+        - mv lambda_line80_3[0] lambda_line100_82 # repack for array
+        - mv lambda_line80_3[1] lambda_line100_84 # repack for array
+        - mv lambda_line80_3[2] lambda_line100_86 # repack for array
+        - ufix_32_0 lambda_line85_3[2:0]
+        - mv lambda_line85_3 lambda_line80_3 #cast uint8[3] to uint32[3]
+        - ufix_8_0 relative_blur
+        - mv relative_blur 12 #value
+        - ufix_32_0 relative_blur_2[2:0]
+        - #broadcast
+        - mv relative_blur_2[0] relative_blur #cast uint8 to uint32[3]
+        - mv relative_blur_2[1] relative_blur #cast uint8 to uint32[3]
+        - mv relative_blur_2[2] relative_blur #cast uint8 to uint32[3]
+        - ufix_32_0 relative_blur_15[2:0]
+        - lshift relative_blur_15 lambda_line85_3 relative_blur_2
+        - ufix_8_0 lambda_line100_94
+        - mv lambda_line100_94 cropSpecial0Node_pp[2][0][3] #index
+        - ufix_8_0 lambda_line100_95
+        - mv lambda_line100_95 cropSpecial0Node_pp[2][0][4] #index
+        - ufix_8_0 lambda_line100_96
+        - mv lambda_line100_96 cropSpecial0Node_pp[2][0][5] #index
+        - ufix_8_0 lambda_line81_20[2:0]
+        - mv lambda_line81_20[0] lambda_line100_94 # repack for array
+        - mv lambda_line81_20[1] lambda_line100_95 # repack for array
+        - mv lambda_line81_20[2] lambda_line100_96 # repack for array
+        - ufix_16_0 lambda_line40_59[2:0]
+        - mv lambda_line40_59 lambda_line81_20 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF3
+        - ufix_16_0 lambda_line40_2
+        - mv lambda_line40_2 tap_PSF3 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_3[2:0]
+        - #broadcast
+        - mv lambda_line40_3[0] lambda_line40_2 #cast uint16 to uint16[3]
+        - mv lambda_line40_3[1] lambda_line40_2 #cast uint16 to uint16[3]
+        - mv lambda_line40_3[2] lambda_line40_2 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_60[2:0]
+        - mult lambda_line40_60 lambda_line40_59 lambda_line40_3
+        - ufix_8_0 lambda_line100_97
+        - mv lambda_line100_97 cropSpecial0Node_pp[0][1][3] #index
+        - ufix_8_0 lambda_line100_98
+        - mv lambda_line100_98 cropSpecial0Node_pp[0][1][4] #index
+        - ufix_8_0 lambda_line100_99
+        - mv lambda_line100_99 cropSpecial0Node_pp[0][1][5] #index
+        - ufix_8_0 lambda_line81_21[2:0]
+        - mv lambda_line81_21[0] lambda_line100_97 # repack for array
+        - mv lambda_line81_21[1] lambda_line100_98 # repack for array
+        - mv lambda_line81_21[2] lambda_line100_99 # repack for array
+        - ufix_16_0 lambda_line40_61[2:0]
+        - mv lambda_line40_61 lambda_line81_21 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF4
+        - ufix_16_0 lambda_line40_22
+        - mv lambda_line40_22 tap_PSF4 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_23[2:0]
+        - #broadcast
+        - mv lambda_line40_23[0] lambda_line40_22 #cast uint16 to uint16[3]
+        - mv lambda_line40_23[1] lambda_line40_22 #cast uint16 to uint16[3]
+        - mv lambda_line40_23[2] lambda_line40_22 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_62[2:0]
+        - mult lambda_line40_62 lambda_line40_61 lambda_line40_23
+        - ufix_8_0 lambda_line100_100
+        - mv lambda_line100_100 cropSpecial0Node_pp[0][0][3] #index
+        - ufix_8_0 lambda_line100_101
+        - mv lambda_line100_101 cropSpecial0Node_pp[0][0][4] #index
+        - ufix_8_0 lambda_line100_102
+        - mv lambda_line100_102 cropSpecial0Node_pp[0][0][5] #index
+        - ufix_8_0 lambda_line81_22[2:0]
+        - mv lambda_line81_22[0] lambda_line100_100 # repack for array
+        - mv lambda_line81_22[1] lambda_line100_101 # repack for array
+        - mv lambda_line81_22[2] lambda_line100_102 # repack for array
+        - ufix_16_0 lambda_line40_63[2:0]
+        - mv lambda_line40_63 lambda_line81_22 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF1
+        - ufix_16_0 lambda_line40_10
+        - mv lambda_line40_10 tap_PSF1 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_11[2:0]
+        - #broadcast
+        - mv lambda_line40_11[0] lambda_line40_10 #cast uint16 to uint16[3]
+        - mv lambda_line40_11[1] lambda_line40_10 #cast uint16 to uint16[3]
+        - mv lambda_line40_11[2] lambda_line40_10 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_64[2:0]
+        - mult lambda_line40_64 lambda_line40_63 lambda_line40_11
+        - ufix_8_0 lambda_line100_103
+        - mv lambda_line100_103 cropSpecial0Node_pp[1][2][3] #index
+        - ufix_8_0 lambda_line100_104
+        - mv lambda_line100_104 cropSpecial0Node_pp[1][2][4] #index
+        - ufix_8_0 lambda_line100_105
+        - mv lambda_line100_105 cropSpecial0Node_pp[1][2][5] #index
+        - ufix_8_0 lambda_line81_23[2:0]
+        - mv lambda_line81_23[0] lambda_line100_103 # repack for array
+        - mv lambda_line81_23[1] lambda_line100_104 # repack for array
+        - mv lambda_line81_23[2] lambda_line100_105 # repack for array
+        - ufix_16_0 lambda_line40_65[2:0]
+        - mv lambda_line40_65 lambda_line81_23 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF8
+        - ufix_16_0 lambda_line40_14
+        - mv lambda_line40_14 tap_PSF8 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_15[2:0]
+        - #broadcast
+        - mv lambda_line40_15[0] lambda_line40_14 #cast uint16 to uint16[3]
+        - mv lambda_line40_15[1] lambda_line40_14 #cast uint16 to uint16[3]
+        - mv lambda_line40_15[2] lambda_line40_14 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_66[2:0]
+        - mult lambda_line40_66 lambda_line40_65 lambda_line40_15
+        - ufix_8_0 lambda_line100_88
+        - mv lambda_line100_88 cropSpecial0Node_pp[1][1][3] #index
+        - ufix_8_0 lambda_line100_90
+        - mv lambda_line100_90 cropSpecial0Node_pp[1][1][4] #index
+        - ufix_8_0 lambda_line100_92
+        - mv lambda_line100_92 cropSpecial0Node_pp[1][1][5] #index
+        - ufix_8_0 lambda_line81_19[2:0]
+        - mv lambda_line81_19[0] lambda_line100_88 # repack for array
+        - mv lambda_line81_19[1] lambda_line100_90 # repack for array
+        - mv lambda_line81_19[2] lambda_line100_92 # repack for array
+        - ufix_16_0 lambda_line40_57[2:0]
+        - mv lambda_line40_57 lambda_line81_19 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF5
+        - ufix_16_0 lambda_line40_18
+        - mv lambda_line40_18 tap_PSF5 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_19[2:0]
+        - #broadcast
+        - mv lambda_line40_19[0] lambda_line40_18 #cast uint16 to uint16[3]
+        - mv lambda_line40_19[1] lambda_line40_18 #cast uint16 to uint16[3]
+        - mv lambda_line40_19[2] lambda_line40_18 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_58[2:0]
+        - mult lambda_line40_58 lambda_line40_57 lambda_line40_19
+        - ufix_8_0 lambda_line100_109
+        - mv lambda_line100_109 cropSpecial0Node_pp[1][0][3] #index
+        - ufix_8_0 lambda_line100_110
+        - mv lambda_line100_110 cropSpecial0Node_pp[1][0][4] #index
+        - ufix_8_0 lambda_line100_111
+        - mv lambda_line100_111 cropSpecial0Node_pp[1][0][5] #index
+        - ufix_8_0 lambda_line81_25[2:0]
+        - mv lambda_line81_25[0] lambda_line100_109 # repack for array
+        - mv lambda_line81_25[1] lambda_line100_110 # repack for array
+        - mv lambda_line81_25[2] lambda_line100_111 # repack for array
+        - ufix_16_0 lambda_line40_69[2:0]
+        - mv lambda_line40_69 lambda_line81_25 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF2
+        - ufix_16_0 lambda_line40_6
+        - mv lambda_line40_6 tap_PSF2 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_7[2:0]
+        - #broadcast
+        - mv lambda_line40_7[0] lambda_line40_6 #cast uint16 to uint16[3]
+        - mv lambda_line40_7[1] lambda_line40_6 #cast uint16 to uint16[3]
+        - mv lambda_line40_7[2] lambda_line40_6 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_70[2:0]
+        - mult lambda_line40_70 lambda_line40_69 lambda_line40_7
+        - ufix_8_0 lambda_line100_112
+        - mv lambda_line100_112 cropSpecial0Node_pp[2][2][3] #index
+        - ufix_8_0 lambda_line100_113
+        - mv lambda_line100_113 cropSpecial0Node_pp[2][2][4] #index
+        - ufix_8_0 lambda_line100_114
+        - mv lambda_line100_114 cropSpecial0Node_pp[2][2][5] #index
+        - ufix_8_0 lambda_line81_26[2:0]
+        - mv lambda_line81_26[0] lambda_line100_112 # repack for array
+        - mv lambda_line81_26[1] lambda_line100_113 # repack for array
+        - mv lambda_line81_26[2] lambda_line100_114 # repack for array
+        - ufix_16_0 lambda_line40_71[2:0]
+        - mv lambda_line40_71 lambda_line81_26 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF9
+        - ufix_16_0 lambda_line40_30
+        - mv lambda_line40_30 tap_PSF9 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_31[2:0]
+        - #broadcast
+        - mv lambda_line40_31[0] lambda_line40_30 #cast uint16 to uint16[3]
+        - mv lambda_line40_31[1] lambda_line40_30 #cast uint16 to uint16[3]
+        - mv lambda_line40_31[2] lambda_line40_30 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_72[2:0]
+        - mult lambda_line40_72 lambda_line40_71 lambda_line40_31
+        - ufix_8_0 lambda_line100_115
+        - mv lambda_line100_115 cropSpecial0Node_pp[2][1][3] #index
+        - ufix_8_0 lambda_line100_116
+        - mv lambda_line100_116 cropSpecial0Node_pp[2][1][4] #index
+        - ufix_8_0 lambda_line100_117
+        - mv lambda_line100_117 cropSpecial0Node_pp[2][1][5] #index
+        - ufix_8_0 lambda_line81_27[2:0]
+        - mv lambda_line81_27[0] lambda_line100_115 # repack for array
+        - mv lambda_line81_27[1] lambda_line100_116 # repack for array
+        - mv lambda_line81_27[2] lambda_line100_117 # repack for array
+        - ufix_16_0 lambda_line40_73[2:0]
+        - mv lambda_line40_73 lambda_line81_27 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF6
+        - ufix_16_0 lambda_line40_34
+        - mv lambda_line40_34 tap_PSF6 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_35[2:0]
+        - #broadcast
+        - mv lambda_line40_35[0] lambda_line40_34 #cast uint16 to uint16[3]
+        - mv lambda_line40_35[1] lambda_line40_34 #cast uint16 to uint16[3]
+        - mv lambda_line40_35[2] lambda_line40_34 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_74[2:0]
+        - mult lambda_line40_74 lambda_line40_73 lambda_line40_35
+        - ufix_8_0 lambda_line100_106
+        - mv lambda_line100_106 cropSpecial0Node_pp[0][2][3] #index
+        - ufix_8_0 lambda_line100_107
+        - mv lambda_line100_107 cropSpecial0Node_pp[0][2][4] #index
+        - ufix_8_0 lambda_line100_108
+        - mv lambda_line100_108 cropSpecial0Node_pp[0][2][5] #index
+        - ufix_8_0 lambda_line81_24[2:0]
+        - mv lambda_line81_24[0] lambda_line100_106 # repack for array
+        - mv lambda_line81_24[1] lambda_line100_107 # repack for array
+        - mv lambda_line81_24[2] lambda_line100_108 # repack for array
+        - ufix_16_0 lambda_line40_67[2:0]
+        - mv lambda_line40_67 lambda_line81_24 #cast uint8[3] to uint16[3]
+        - ufix_8_0 tap_PSF7
+        - ufix_16_0 lambda_line40_26
+        - mv lambda_line40_26 tap_PSF7 #cast uint8 to uint16
+        - ufix_16_0 lambda_line40_27[2:0]
+        - #broadcast
+        - mv lambda_line40_27[0] lambda_line40_26 #cast uint16 to uint16[3]
+        - mv lambda_line40_27[1] lambda_line40_26 #cast uint16 to uint16[3]
+        - mv lambda_line40_27[2] lambda_line40_26 #cast uint16 to uint16[3]
+        - ufix_16_0 lambda_line40_68[2:0]
+        - mult lambda_line40_68 lambda_line40_67 lambda_line40_27
+        -
+        - ufix_16_0 lambda_line40_75_pack[2:0][8:0]
+        - ufix_16_0 lambda_line40_75[2:0]
+        - mv lambda_line40_75_pack[0][0] lambda_line40_68[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][0] lambda_line40_68[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][0] lambda_line40_68[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][1] lambda_line40_62[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][1] lambda_line40_62[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][1] lambda_line40_62[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][2] lambda_line40_64[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][2] lambda_line40_64[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][2] lambda_line40_64[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][3] lambda_line40_66[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][3] lambda_line40_66[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][3] lambda_line40_66[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][4] lambda_line40_58[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][4] lambda_line40_58[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][4] lambda_line40_58[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][5] lambda_line40_70[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][5] lambda_line40_70[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][5] lambda_line40_70[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][6] lambda_line40_72[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][6] lambda_line40_72[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][6] lambda_line40_72[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][7] lambda_line40_74[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][7] lambda_line40_74[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][7] lambda_line40_74[2] # repack for reduce op
+        - mv lambda_line40_75_pack[0][8] lambda_line40_60[0] # repack for reduce op
+        - mv lambda_line40_75_pack[1][8] lambda_line40_60[1] # repack for reduce op
+        - mv lambda_line40_75_pack[2][8] lambda_line40_60[2] # repack for reduce op
+        - sum lambda_line40_75 lambda_line40_75_pack
+        -
+        - ufix_8_0 lambda_line44
+        - mv lambda_line44 6 #value
+        - ufix_16_0 lambda_line44_2[2:0]
+        - #broadcast
+        - mv lambda_line44_2[0] lambda_line44 #cast uint8 to uint16[3]
+        - mv lambda_line44_2[1] lambda_line44 #cast uint8 to uint16[3]
+        - mv lambda_line44_2[2] lambda_line44 #cast uint8 to uint16[3]
+        - ufix_16_0 lambda_line44_5[2:0]
+        - fix_16_0  lambda_line44_5_tmp[2:0]
+        - rshift lambda_line44_5 lambda_line40_75 lambda_line44_2
+        - mv  lambda_line44_5_tmp lambda_line44_5
+        - fix_32_0 lambda_line117
+        - mv lambda_line117 0 #value
+        - fix_32_0 relative_blur_5[2:0]
+        - #broadcast
+        - mv relative_blur_5[0] lambda_line117 #cast int32 to int32[3]
+        - mv relative_blur_5[1] lambda_line117 #cast int32 to int32[3]
+        - mv relative_blur_5[2] lambda_line117 #cast int32 to int32[3]
+        - bool relative_blur_16[2:0]
+        - eq relative_blur_16 lambda_line44_5_tmp relative_blur_5
+        - ufix_8_0 lambda_line100_31
+        - mv lambda_line100_31 1 #value
+        - ufix_8_0 relative_blur_4[2:0]
+        - mv relative_blur_4[0] lambda_line100_31 # repack for array
+        - mv relative_blur_4[1] lambda_line100_31 # repack for array
+        - mv relative_blur_4[2] lambda_line100_31 # repack for array
+        - ufix_16_0 unnamed[2:0]
+        - mv unnamed relative_blur_4 #cast uint8[3] to uint16[3]
+        - ufix_16_0 relative_blur_17[2:0]
+        - mux relative_blur_17 relative_blur_16 unnamed lambda_line44_5
+        - ufix_32_0 relative_blur_18[2:0]
+        - mv relative_blur_18 relative_blur_17 #cast uint16[3] to uint32[3]
+        - ufix_32_0 relative_blur_19[2:0]
+        - div relative_blur_19 relative_blur_15 relative_blur_18
+        - ufix_32_0 lambda_line100_118
+        - mv lambda_line100_118 relative_blur_19[2] #index
+        - ufix_32_0 lambda_line100_85
+        - mv lambda_line100_85 lambda_line100_84 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_87
+        - mv lambda_line100_87 lambda_line100_86 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_89
+        - mv lambda_line100_89 lambda_line100_88 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_91
+        - mv lambda_line100_91 lambda_line100_90 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_93
+        - mv lambda_line100_93 lambda_line100_92 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_83
+        - mv lambda_line100_83 lambda_line100_82 #cast uint8 to uint32
+        - ufix_32_0 lambda_line100_120
+        - mv lambda_line100_120 relative_blur_19[1] #index
+        - ufix_32_0 lambda_line100_119
+        - mv lambda_line100_119 relative_blur_19[0] #index
+        - ufix_32_0 lambda_line100_121[8:0]
+        - mv lambda_line100_121[0] lambda_line100_83 # repack for array
+        - mv lambda_line100_121[1] lambda_line100_85 # repack for array
+        - mv lambda_line100_121[2] lambda_line100_87 # repack for array
+        - mv lambda_line100_121[3] lambda_line100_89 # repack for array
+        - mv lambda_line100_121[4] lambda_line100_91 # repack for array
+        - mv lambda_line100_121[5] lambda_line100_93 # repack for array
+        - mv lambda_line100_121[6] lambda_line100_119 # repack for array
+        - mv lambda_line100_121[7] lambda_line100_120 # repack for array
+        - mv lambda_line100_121[8] lambda_line100_118 # repack for array
+top: 
+    lambda_line117_3: 
+        PixelIn: 
+            - lambda_line100_121
+        RunTimeResize: 0
+        IfcCtl: 0
+        PixelOut: 
+            - lambda_line117_25
+        MaximumTileSize: 
+            - 256
+            - 256
+        MaximumDomainSize: 
+            - 256
+            - 256
+        Config: lambda_line117_3_cfg
+    output_image: 
+        - lambda_line117_25
+    scheduledIRNode: 
+        PixelIn: 
+            - special0
+        RunTimeResize: 0
+        IfcCtl: 0
+        PixelOut: 
+            - cropSpecial0Node
+        MaximumTileSize: 
+            - 256
+            - 256
+        MaximumDomainSize: 
+            - 256
+            - 256
+        Config: scheduledIRNode_cfg
+    lambda_line100_3: 
+        PixelIn: 
+            - cropSpecial0Node
+        RunTimeResize: 0
+        IfcCtl: 0
+        PixelOut: 
+            - lambda_line100_121
+        MaximumTileSize: 
+            - 256
+            - 256
+        MaximumDomainSize: 
+            - 256
+            - 256
+        Config: lambda_line100_3_cfg
+    MaximumTileSize: 
+        - 256
+        - 256
+    MaximumDomainSize: 
+        - 256
+        - 256
+    input_image: 
+        - special0
+scheduledIRNode_map: 
+    -   - ufix_8_0 special0_pp[5:0]
+        - ufix_8_0 special0[5:0]
+        - mv special0_pp special0
+lambda_line100_3_map: 
+    -   - ufix_8_0 cropSpecial0Node[5:0]
+        - ufix_8_0 cropSpecial0Node_pp[5:0]
+        - mv cropSpecial0Node_pp cropSpecial0Node
+scheduledIRNode_reduce: 
+    -   - ufix_8_0 special0_pp[0:0][0:0][5:0]
+        - ufix_8_0 cropSpecial0Node[5:0]
+        - mv cropSpecial0Node special0_pp[0][0]
+lambda_line117_3_reduce: 
+    -   - ufix_32_0 lambda_line100_121_pp[2:0][2:0][8:0]
+        - ufix_32_0 lambda_line100_149
+        - mv lambda_line100_149 lambda_line100_121_pp[1][1][0] #index
+        - ufix_32_0 lambda_line100_150
+        - mv lambda_line100_150 lambda_line100_121_pp[1][1][1] #index
+        - ufix_32_0 lambda_line100_151
+        - mv lambda_line100_151 lambda_line100_121_pp[1][1][2] #index
+        - ufix_32_0 lambda_line100_152[2:0]
+        - mv lambda_line100_152[0] lambda_line100_149 # repack for array
+        - mv lambda_line100_152[1] lambda_line100_150 # repack for array
+        - mv lambda_line100_152[2] lambda_line100_151 # repack for array
+        - ufix_32_0 lambda_line117_18
+        - mv lambda_line117_18 lambda_line100_152[0] #index
+        - ufix_32_0 lambda_line117_19
+        - mv lambda_line117_19 lambda_line100_152[1] #index
+        - ufix_32_0 lambda_line101_9
+        - mv lambda_line101_9 lambda_line100_121_pp[1][1][3] #index
+        - ufix_32_0 lambda_line101_10
+        - mv lambda_line101_10 lambda_line100_121_pp[1][1][4] #index
+        - ufix_32_0 lambda_line101_11
+        - mv lambda_line101_11 lambda_line100_121_pp[1][1][5] #index
+        - ufix_32_0 lambda_line101_12[2:0]
+        - mv lambda_line101_12[0] lambda_line101_9 # repack for array
+        - mv lambda_line101_12[1] lambda_line101_10 # repack for array
+        - mv lambda_line101_12[2] lambda_line101_11 # repack for array
+        - ufix_32_0 lambda_line102_77
+        - mv lambda_line102_77 lambda_line100_121_pp[2][0][6] #index
+        - ufix_32_0 lambda_line102_78
+        - mv lambda_line102_78 lambda_line100_121_pp[2][0][7] #index
+        - ufix_32_0 lambda_line102_79
+        - mv lambda_line102_79 lambda_line100_121_pp[2][0][8] #index
+        - ufix_32_0 lambda_line102_80[2:0]
+        - mv lambda_line102_80[0] lambda_line102_77 # repack for array
+        - mv lambda_line102_80[1] lambda_line102_78 # repack for array
+        - mv lambda_line102_80[2] lambda_line102_79 # repack for array
+        - ufix_8_0 tap_PSF7
+        - ufix_16_0 lambda_line40_76
+        - mv lambda_line40_76 tap_PSF7 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_77[2:0]
+        - #broadcast
+        - mv lambda_line40_77[0] lambda_line40_76 #cast uint16 to uint32[3]
+        - mv lambda_line40_77[1] lambda_line40_76 #cast uint16 to uint32[3]
+        - mv lambda_line40_77[2] lambda_line40_76 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_115[2:0]
+        - mult lambda_line40_115 lambda_line102_80 lambda_line40_77
+        - ufix_32_0 lambda_line102_81
+        - mv lambda_line102_81 lambda_line100_121_pp[0][1][6] #index
+        - ufix_32_0 lambda_line102_82
+        - mv lambda_line102_82 lambda_line100_121_pp[0][1][7] #index
+        - ufix_32_0 lambda_line102_83
+        - mv lambda_line102_83 lambda_line100_121_pp[0][1][8] #index
+        - ufix_32_0 lambda_line102_84[2:0]
+        - mv lambda_line102_84[0] lambda_line102_81 # repack for array
+        - mv lambda_line102_84[1] lambda_line102_82 # repack for array
+        - mv lambda_line102_84[2] lambda_line102_83 # repack for array
+        - ufix_8_0 tap_PSF6
+        - ufix_16_0 lambda_line40_91
+        - mv lambda_line40_91 tap_PSF6 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_92[2:0]
+        - #broadcast
+        - mv lambda_line40_92[0] lambda_line40_91 #cast uint16 to uint32[3]
+        - mv lambda_line40_92[1] lambda_line40_91 #cast uint16 to uint32[3]
+        - mv lambda_line40_92[2] lambda_line40_91 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_116[2:0]
+        - mult lambda_line40_116 lambda_line102_84 lambda_line40_92
+        - ufix_32_0 lambda_line102_85
+        - mv lambda_line102_85 lambda_line100_121_pp[0][0][6] #index
+        - ufix_32_0 lambda_line102_86
+        - mv lambda_line102_86 lambda_line100_121_pp[0][0][7] #index
+        - ufix_32_0 lambda_line102_87
+        - mv lambda_line102_87 lambda_line100_121_pp[0][0][8] #index
+        - ufix_32_0 lambda_line102_88[2:0]
+        - mv lambda_line102_88[0] lambda_line102_85 # repack for array
+        - mv lambda_line102_88[1] lambda_line102_86 # repack for array
+        - mv lambda_line102_88[2] lambda_line102_87 # repack for array
+        - ufix_8_0 tap_PSF9
+        - ufix_16_0 lambda_line40_82
+        - mv lambda_line40_82 tap_PSF9 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_83[2:0]
+        - #broadcast
+        - mv lambda_line40_83[0] lambda_line40_82 #cast uint16 to uint32[3]
+        - mv lambda_line40_83[1] lambda_line40_82 #cast uint16 to uint32[3]
+        - mv lambda_line40_83[2] lambda_line40_82 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_117[2:0]
+        - mult lambda_line40_117 lambda_line102_88 lambda_line40_83
+        - ufix_32_0 lambda_line102_89
+        - mv lambda_line102_89 lambda_line100_121_pp[1][2][6] #index
+        - ufix_32_0 lambda_line102_90
+        - mv lambda_line102_90 lambda_line100_121_pp[1][2][7] #index
+        - ufix_32_0 lambda_line102_91
+        - mv lambda_line102_91 lambda_line100_121_pp[1][2][8] #index
+        - ufix_32_0 lambda_line102_92[2:0]
+        - mv lambda_line102_92[0] lambda_line102_89 # repack for array
+        - mv lambda_line102_92[1] lambda_line102_90 # repack for array
+        - mv lambda_line102_92[2] lambda_line102_91 # repack for array
+        - ufix_8_0 tap_PSF2
+        - ufix_16_0 lambda_line40_85
+        - mv lambda_line40_85 tap_PSF2 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_86[2:0]
+        - #broadcast
+        - mv lambda_line40_86[0] lambda_line40_85 #cast uint16 to uint32[3]
+        - mv lambda_line40_86[1] lambda_line40_85 #cast uint16 to uint32[3]
+        - mv lambda_line40_86[2] lambda_line40_85 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_118[2:0]
+        - mult lambda_line40_118 lambda_line102_92 lambda_line40_86
+        - ufix_32_0 lambda_line102_73
+        - mv lambda_line102_73 lambda_line100_121_pp[1][1][6] #index
+        - ufix_32_0 lambda_line102_74
+        - mv lambda_line102_74 lambda_line100_121_pp[1][1][7] #index
+        - ufix_32_0 lambda_line102_75
+        - mv lambda_line102_75 lambda_line100_121_pp[1][1][8] #index
+        - ufix_32_0 lambda_line102_76[2:0]
+        - mv lambda_line102_76[0] lambda_line102_73 # repack for array
+        - mv lambda_line102_76[1] lambda_line102_74 # repack for array
+        - mv lambda_line102_76[2] lambda_line102_75 # repack for array
+        - ufix_8_0 tap_PSF5
+        - ufix_16_0 lambda_line40_88
+        - mv lambda_line40_88 tap_PSF5 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_89[2:0]
+        - #broadcast
+        - mv lambda_line40_89[0] lambda_line40_88 #cast uint16 to uint32[3]
+        - mv lambda_line40_89[1] lambda_line40_88 #cast uint16 to uint32[3]
+        - mv lambda_line40_89[2] lambda_line40_88 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_114[2:0]
+        - mult lambda_line40_114 lambda_line102_76 lambda_line40_89
+        - ufix_32_0 lambda_line102_97
+        - mv lambda_line102_97 lambda_line100_121_pp[1][0][6] #index
+        - ufix_32_0 lambda_line102_98
+        - mv lambda_line102_98 lambda_line100_121_pp[1][0][7] #index
+        - ufix_32_0 lambda_line102_99
+        - mv lambda_line102_99 lambda_line100_121_pp[1][0][8] #index
+        - ufix_32_0 lambda_line102_100[2:0]
+        - mv lambda_line102_100[0] lambda_line102_97 # repack for array
+        - mv lambda_line102_100[1] lambda_line102_98 # repack for array
+        - mv lambda_line102_100[2] lambda_line102_99 # repack for array
+        - ufix_8_0 tap_PSF8
+        - ufix_16_0 lambda_line40_79
+        - mv lambda_line40_79 tap_PSF8 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_80[2:0]
+        - #broadcast
+        - mv lambda_line40_80[0] lambda_line40_79 #cast uint16 to uint32[3]
+        - mv lambda_line40_80[1] lambda_line40_79 #cast uint16 to uint32[3]
+        - mv lambda_line40_80[2] lambda_line40_79 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_120[2:0]
+        - mult lambda_line40_120 lambda_line102_100 lambda_line40_80
+        - ufix_32_0 lambda_line102_101
+        - mv lambda_line102_101 lambda_line100_121_pp[2][2][6] #index
+        - ufix_32_0 lambda_line102_102
+        - mv lambda_line102_102 lambda_line100_121_pp[2][2][7] #index
+        - ufix_32_0 lambda_line102_103
+        - mv lambda_line102_103 lambda_line100_121_pp[2][2][8] #index
+        - ufix_32_0 lambda_line102_104[2:0]
+        - mv lambda_line102_104[0] lambda_line102_101 # repack for array
+        - mv lambda_line102_104[1] lambda_line102_102 # repack for array
+        - mv lambda_line102_104[2] lambda_line102_103 # repack for array
+        - ufix_8_0 tap_PSF1
+        - ufix_16_0 lambda_line40_94
+        - mv lambda_line40_94 tap_PSF1 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_95[2:0]
+        - #broadcast
+        - mv lambda_line40_95[0] lambda_line40_94 #cast uint16 to uint32[3]
+        - mv lambda_line40_95[1] lambda_line40_94 #cast uint16 to uint32[3]
+        - mv lambda_line40_95[2] lambda_line40_94 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_121[2:0]
+        - mult lambda_line40_121 lambda_line102_104 lambda_line40_95
+        - ufix_32_0 lambda_line102_105
+        - mv lambda_line102_105 lambda_line100_121_pp[2][1][6] #index
+        - ufix_32_0 lambda_line102_106
+        - mv lambda_line102_106 lambda_line100_121_pp[2][1][7] #index
+        - ufix_32_0 lambda_line102_107
+        - mv lambda_line102_107 lambda_line100_121_pp[2][1][8] #index
+        - ufix_32_0 lambda_line102_108[2:0]
+        - mv lambda_line102_108[0] lambda_line102_105 # repack for array
+        - mv lambda_line102_108[1] lambda_line102_106 # repack for array
+        - mv lambda_line102_108[2] lambda_line102_107 # repack for array
+        - ufix_8_0 tap_PSF4
+        - ufix_16_0 lambda_line40_100
+        - mv lambda_line40_100 tap_PSF4 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_101[2:0]
+        - #broadcast
+        - mv lambda_line40_101[0] lambda_line40_100 #cast uint16 to uint32[3]
+        - mv lambda_line40_101[1] lambda_line40_100 #cast uint16 to uint32[3]
+        - mv lambda_line40_101[2] lambda_line40_100 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_122[2:0]
+        - mult lambda_line40_122 lambda_line102_108 lambda_line40_101
+        - ufix_32_0 lambda_line102_93
+        - mv lambda_line102_93 lambda_line100_121_pp[0][2][6] #index
+        - ufix_32_0 lambda_line102_94
+        - mv lambda_line102_94 lambda_line100_121_pp[0][2][7] #index
+        - ufix_32_0 lambda_line102_95
+        - mv lambda_line102_95 lambda_line100_121_pp[0][2][8] #index
+        - ufix_32_0 lambda_line102_96[2:0]
+        - mv lambda_line102_96[0] lambda_line102_93 # repack for array
+        - mv lambda_line102_96[1] lambda_line102_94 # repack for array
+        - mv lambda_line102_96[2] lambda_line102_95 # repack for array
+        - ufix_8_0 tap_PSF3
+        - ufix_16_0 lambda_line40_97
+        - mv lambda_line40_97 tap_PSF3 #cast uint8 to uint16
+        - ufix_32_0 lambda_line40_98[2:0]
+        - #broadcast
+        - mv lambda_line40_98[0] lambda_line40_97 #cast uint16 to uint32[3]
+        - mv lambda_line40_98[1] lambda_line40_97 #cast uint16 to uint32[3]
+        - mv lambda_line40_98[2] lambda_line40_97 #cast uint16 to uint32[3]
+        - ufix_32_0 lambda_line40_119[2:0]
+        - mult lambda_line40_119 lambda_line102_96 lambda_line40_98
+        - ufix_32_0 lambda_line40_123_pack[8:0][2:0]
+        - ufix_32_0 lambda_line40_123[2:0]
+        - mv lambda_line40_123_pack[0] lambda_line40_119 # repack for reduce op
+        - mv lambda_line40_123_pack[1] lambda_line40_116 # repack for reduce op
+        - mv lambda_line40_123_pack[2] lambda_line40_117 # repack for reduce op
+        - mv lambda_line40_123_pack[3] lambda_line40_118 # repack for reduce op
+        - mv lambda_line40_123_pack[4] lambda_line40_114 # repack for reduce op
+        - mv lambda_line40_123_pack[5] lambda_line40_120 # repack for reduce op
+        - mv lambda_line40_123_pack[6] lambda_line40_121 # repack for reduce op
+        - mv lambda_line40_123_pack[7] lambda_line40_122 # repack for reduce op
+        - mv lambda_line40_123_pack[8] lambda_line40_115 # repack for reduce op
+        - sum lambda_line40_123 lambda_line40_123_pack
+        - ufix_8_0 lambda_line44_6
+        - mv lambda_line44_6 6 #value
+        - ufix_32_0 lambda_line44_7[2:0]
+        - #broadcast
+        - mv lambda_line44_7[0] lambda_line44_6 #cast uint8 to uint32[3]
+        - mv lambda_line44_7[1] lambda_line44_6 #cast uint8 to uint32[3]
+        - mv lambda_line44_7[2] lambda_line44_6 #cast uint8 to uint32[3]
+        - ufix_32_0 lambda_line44_10[2:0]
+        - rshift lambda_line44_10 lambda_line40_123 lambda_line44_7
+        - ufix_32_0 lambda_line109_5[2:0]
+        - mult lambda_line109_5 lambda_line101_12 lambda_line44_10
+        - ufix_8_0 relative_blur_20
+        - mv relative_blur_20 12 #value
+        - ufix_32_0 relative_blur_21[2:0]
+        - #broadcast
+        - mv relative_blur_21[0] relative_blur_20 #cast uint8 to uint32[3]
+        - mv relative_blur_21[1] relative_blur_20 #cast uint8 to uint32[3]
+        - mv relative_blur_21[2] relative_blur_20 #cast uint8 to uint32[3]
+        - ufix_32_0 lambda_line109_6[2:0]
+        - fix_32_0 lambda_line109_6_tmp[2:0]
+        - rshift lambda_line109_6 lambda_line109_5 relative_blur_21
+        - mv lambda_line109_6_tmp lambda_line109_6
+        - fix_32_0 lambda_line26_3
+        - mv lambda_line26_3 255 #value
+        - fix_32_0 lambda_line26_4[2:0]
+        - #broadcast
+        - mv lambda_line26_4[0] lambda_line26_3 #cast int32 to int32[3]
+        - mv lambda_line26_4[1] lambda_line26_3 #cast int32 to int32[3]
+        - mv lambda_line26_4[2] lambda_line26_3 #cast int32 to int32[3]
+        - bool lambda_line26_9[2:0]
+        - gt lambda_line26_9 lambda_line109_6_tmp lambda_line26_4
+        - ufix_8_0 lambda_line26
+        - mv lambda_line26 255 #value
+        - ufix_8_0 lambda_line26_2[2:0]
+        - mv lambda_line26_2[0] lambda_line26 # repack for array
+        - mv lambda_line26_2[1] lambda_line26 # repack for array
+        - mv lambda_line26_2[2] lambda_line26 # repack for array
+        - ufix_32_0 unnamed_2[2:0]
+        - mv unnamed_2 lambda_line26_2 #cast uint8[3] to uint32[3]
+        - ufix_32_0 lambda_line26_10[2:0]
+        - mux lambda_line26_10 lambda_line26_9 unnamed_2 lambda_line109_6
+        - ufix_32_0 lambda_line117_21
+        - mv lambda_line117_21 lambda_line26_10[2] #index
+        - ufix_32_0 lambda_line117_23
+        - mv lambda_line117_23 lambda_line26_10[1] #index
+        - ufix_32_0 lambda_line117_22
+        - mv lambda_line117_22 lambda_line26_10[0] #index
+        - ufix_32_0 lambda_line117_20
+        - mv lambda_line117_20 lambda_line100_152[2] #index
+        - ufix_32_0 lambda_line117_24[5:0]
+        - mv lambda_line117_24[0] lambda_line117_18 # repack for array
+        - mv lambda_line117_24[1] lambda_line117_19 # repack for array
+        - mv lambda_line117_24[2] lambda_line117_20 # repack for array
+        - mv lambda_line117_24[3] lambda_line117_22 # repack for array
+        - mv lambda_line117_24[4] lambda_line117_23 # repack for array
+        - mv lambda_line117_24[5] lambda_line117_21 # repack for array
+        - ufix_8_0 lambda_line117_25[5:0]
+        - mv lambda_line117_25 lambda_line117_24 #cast uint32[6] to uint8[6]
+lambda_line117_3_map: 
+    -   - ufix_32_0 lambda_line100_121[8:0]
+        - ufix_32_0 lambda_line100_121_pp[8:0]
+        - mv lambda_line100_121_pp lambda_line100_121
+lambda_line100_3_cfg: 
+    PixelOut: 
+        - ufix_32_0 lambda_line100_121[8:0]
+    Tap: []
+    PixelPart: 
+        - ufix_8_0 cropSpecial0Node_pp[5:0]
+    StencilIn: 
+        - 3
+        - 3
+    Stride: 
+        - 1
+        - 1
+    InputBoundary: zero-pad
+    PixelIn: 
+        - ufix_8_0 cropSpecial0Node[5:0]
+    Reduce: lambda_line100_3_reduce
+    StencilOut: 
+        - 1
+        - 1
+    Map: lambda_line100_3_map
+    RTap: 
+        - ufix_8_0 tap_PSF3
+        - ufix_8_0 tap_PSF4
+        - ufix_8_0 tap_PSF1
+        - ufix_8_0 tap_PSF8
+        - ufix_8_0 tap_PSF5
+        - ufix_8_0 tap_PSF2
+        - ufix_8_0 tap_PSF9
+        - ufix_8_0 tap_PSF6
+        - ufix_8_0 tap_PSF7
+    RPixelPart: 
+        - ufix_8_0 cropSpecial0Node_pp[2:0][2:0][5:0]
+    Centroid: 
+        - 1
+        - 1
+    Name: lambda_line100_3_cfg
+lambda_line117_3_cfg: 
+    PixelOut: 
+        - ufix_8_0 lambda_line117_25[5:0]
+    Tap: []
+    PixelPart: 
+        - ufix_32_0 lambda_line100_121_pp[8:0]
+    StencilIn: 
+        - 3
+        - 3
+    Stride: 
+        - 1
+        - 1
+    InputBoundary: zero-pad
+    PixelIn: 
+        - ufix_32_0 lambda_line100_121[8:0]
+    Reduce: lambda_line117_3_reduce
+    StencilOut: 
+        - 1
+        - 1
+    Map: lambda_line117_3_map
+    RTap: 
+        - ufix_8_0 tap_PSF7
+        - ufix_8_0 tap_PSF6
+        - ufix_8_0 tap_PSF9
+        - ufix_8_0 tap_PSF2
+        - ufix_8_0 tap_PSF5
+        - ufix_8_0 tap_PSF8
+        - ufix_8_0 tap_PSF1
+        - ufix_8_0 tap_PSF4
+        - ufix_8_0 tap_PSF3
+    RPixelPart: 
+        - ufix_32_0 lambda_line100_121_pp[2:0][2:0][8:0]
+    Centroid: 
+        - 1
+        - 1
+    Name: lambda_line117_3_cfg
+scheduledIRNode_cfg: 
+    PixelOut: 
+        - ufix_8_0 cropSpecial0Node[5:0]
+    Tap: []
+    PixelPart: 
+        - ufix_8_0 special0_pp[5:0]
+    StencilIn: 
+        - 1
+        - 1
+    Stride: 
+        - 1
+        - 1
+    InputBoundary: zero-pad
+    PixelIn: 
+        - ufix_8_0 special0[5:0]
+    Reduce: scheduledIRNode_reduce
+    StencilOut: 
+        - 1
+        - 1
+    Map: scheduledIRNode_map
+    RTap: []
+    RPixelPart: 
+        - ufix_8_0 special0_pp[0:0][0:0][5:0]
+    Centroid: 
+        - -0
+        - 0
+    Name: scheduledIRNode_cfg

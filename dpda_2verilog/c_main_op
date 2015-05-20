@@ -1,0 +1,22 @@
+int main(int argc, char* argv[])
+{
+  Image special0(argv[1]);
+  int width = special0.width();
+  int height = special0.height();
+  int channels = special0.channels();
+  
+  Image cropSpecial0Node_10(width, height, channels);
+  scheduledIRNode_28(special0, cropSpecial0Node_10);
+  Image lambda_arris_v3lua_line43_51(width, height, channels);
+  lambda_arris_v3lua_line43_10(cropSpecial0Node_10, lambda_arris_v3lua_line43_51);
+  Image downCast_20(width, height, channels);
+  downCast_13(lambda_arris_v3lua_line43_51, downCast_20);
+  Image downCast_38(width, height, channels);
+  downCast_15(downCast_20, downCast_38);
+  Image Resp_32(width, height, channels);
+  Resp_5(downCast_38, Resp_32);
+  Image NMS_11(width, height, channels);
+  NMS_10(Resp_32, NMS_11);
+  NMS_11.save("result.jjm");
+  return(0);
+}

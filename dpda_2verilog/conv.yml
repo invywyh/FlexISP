@@ -1,0 +1,52 @@
+
+top:
+  input_image:
+    - pixel_in
+  output_image:
+    - pixel_out 
+  MaximumDomainSize: [256,256]
+  MaximumTileSize: [256,256]
+  simp:
+    PixelIn: 
+      - pixel_in          
+    PixelOut: 
+      - pixel_out
+    Config: simp_cfg
+    MaximumDomainSize: [256,256]
+    MaximumTileSize: [256,256]
+    RunTimeResize: 0 
+  IfcCtl: 0 
+
+simp_cfg:
+   Name: simp_cfg
+   StencilIn: [3,3]                   
+   StencilOut: [1,1]                  
+   Stride: [1,1]
+   Centroid: [1,1]
+   PixelIn: 
+     - ufix_16_0 pixel_in              
+   InputBoundary: zero-pad
+   PixelPart:
+     - ufix_16_0 p_p0 
+   RPixelPart:
+     - ufix_16_0 p_p0[2:0][2:0]
+   PixelOut:
+     - ufix_16_0 pixel_out 
+   Tap:
+     - ufix_16_0 tap_0
+   RTap: []
+   Map: simp_map                
+   Reduce: simp_reduce
+
+simp_map:   
+  -  - ufix_16_0 pixel_in 
+     - ufix_16_0 p_p0
+     - ufix_16_0 tap_0
+     -
+     - mult p_p0 pixel_in tap_0
+
+simp_reduce:
+  -  -  ufix_16_0 p_p0[2:0][2:0]
+     -  ufix_16_0 pixel_out
+     -
+     -  sum pixel_out p_p0   
