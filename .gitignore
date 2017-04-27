@@ -1,3 +1,9 @@
+#Local saves
+*.*-sv*
+
+#Python lib files
+*.pyc
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
