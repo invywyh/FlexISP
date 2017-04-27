@@ -533,7 +533,7 @@ def get_lb_config_from_key(lb_key):
 
 	lb_dims = lb_def[0].split("_")
 	if len(lb_dims) == 3:
-		(height, width, channels) = (int(lb_dims[2]), int(lb_dims[1]), int(lb_dims[0]))
+		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
 	elif len(lb_dims) == 2:
 		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
 	else:
@@ -650,7 +650,7 @@ def print_verilog_top(G):
 				sign = "gnd"
 				if i < len(inp_connections):
 					sign = inp_connections[i]
-				print "		.%s(%s),"%(port, sign)
+				print "    .%s(%s),"%(port, sign)
 			print ""
 
 			#Outputs
@@ -661,16 +661,16 @@ def print_verilog_top(G):
 				sign = ""
 				if i < len(out_sign):
 					sign = out_sign[i]
-				print "		.%s(%s),"%(port, sign)
+				print "    .%s(%s),"%(port, sign)
 
 			print ""
-			print "		.clk(clk)"
+			print "    .clk(clk)"
 
 		elif (G.node[n]['obj'] == "lb"):
 			#print G.node[n]['obj'], " KERN_", n," ("
 			print "%s LB_%s ("%(make_lb_module_type(G, G.node[n]['dims'], G.node[n]['type']), n)
 			#print G.node[n], "\n"
-			print "		.clk(clk),"
+			print "    .clk(clk),"
 			print ""
 
 			inp_cnt = 0
@@ -678,7 +678,7 @@ def print_verilog_top(G):
 				bit_range = ""
 				for s in make_names (p, G.node[p]['dims']):
 					#print "wire  %s %s;"%(bit_range, s)
-					print "		.in%d(%s),"%(inp_cnt, s)
+					print "    .in%d(%s),"%(inp_cnt, s)
 					inp_cnt = inp_cnt + 1
 				print ""
 
@@ -690,7 +690,7 @@ def print_verilog_top(G):
 				coma = ","
 				if (s == len(out_ports)-1):
 					coma = "" 
-				print "		.out%d(%s)%s"%(s, out_ports[s], coma)
+				print "    .out%d(%s)%s"%(s, out_ports[s], coma)
 
 		print ");\n"
 
@@ -741,7 +741,9 @@ for n in G.nodes():
 		#print "Parsing: ", n, "\n"
 #		kern_f     = open("kernel_"+n+".v", 'w')
 #		sys.stdout = kern_f
+		print "\n\n"
 		kern_unique_ops = print_kernel_verilog(node_attr['code'], "kernel_"+n)
+		print "\n\n"
 		unique_ops = unique_ops | kern_unique_ops
 #		print_macros_verilog(kern_unique_ops)
 #		kern_f.close()
