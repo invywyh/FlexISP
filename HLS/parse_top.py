@@ -85,11 +85,6 @@ def make_names (prefix, dims) :
 
 ##########################################################################
 
-#These don't work due to unrolled 0 rows LB in hls_target
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/unsharp_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/bilateral_grid_hls/"
 
 #This doesn't work because of explicit control sinals to LBs ('if...else')
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/"
@@ -98,10 +93,20 @@ def make_names (prefix, dims) :
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/stereo_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/simpleCNN_hls/"
 
+#These don't work due to unrolled 0 rows LB in hls_target and  kernels use indexing with a variable
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/bilateral_grid_hls/"
+
+
+#These have unrolled 0 rows LB in hls_target, but worked after hand changes
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/unsharp_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/"
+
+
 #These examples work:
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/gaussian_hls/"
-DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/"
+DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
 TOP_NAME = "hls_target.cpp"
 
 
@@ -528,11 +533,15 @@ def get_lb_config_from_key(lb_key):
 
 	if lb_def[1] == "bool":
 		sig_width = 1
-	elif lb_def[1] == "uint8_t":
+	elif lb_def[1] == "uint8_t" or lb_def[1] == "int8_t":
 		sig_width = 8
+	elif lb_def[1] == "uint32_t" or lb_def[1] == "int32_t":
+		sig_width = 32
 
 	lb_dims = lb_def[0].split("_")
 	if len(lb_dims) == 3:
+#TODO: LB definition is NOT consistent
+		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
 		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
 	elif len(lb_dims) == 2:
 		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
@@ -704,7 +713,12 @@ def print_verilog_top(G):
 def print_lb_marcos(G):
 	IGNORE_WIDTH = True
 	lb_base = {}
-	for lb in G.graph['LBs']:
+	LBs = list(G.graph['LBs'])
+	#LBs = map(lambda x: "%s;uint16_t"%x  ,set(map(lambda x: x.split(";")[0],G.graph['LBs'])))
+
+
+
+	for lb in LBs:
 		#print "LB: ", lb
 		config = get_lb_config_from_key(lb)
 		#print "		", config

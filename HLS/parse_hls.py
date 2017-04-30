@@ -208,12 +208,12 @@ def find_dual_op_math(G, line):
 
     matchObj = re.match( r'(.+)=(.+) (.{1,2}) (.+);$', line, re.M|re.I)
 
-    op_dic = {'-': "sub", '+': "add", '*': "mult", '/': "div", '^': "xor", '|': "or", '&': "and", ">>" : "lshift", "<<" : "rshift", ">" : "gt", "<" : "lt", ">=" : "gte", "<=" : "lte", "==" : "eq", "!=" : "ne"}
+    op_dic = {'-': "sub", '+': "add", '*': "mult", '/': "div", '^': "xor", '|': "or", '&': "and", '&&': "and", ">>" : "lshift", "<<" : "rshift", ">" : "gt", "<" : "lt", ">=" : "gte", "<=" : "lte", "==" : "eq", "!=" : "ne"}
 
     if matchObj and matchObj.group(3) in op_dic.keys():
         target = matchObj.group(1)
-        op1    = matchObj.group(2)
-        op2    = matchObj.group(4)
+        op1    = matchObj.group(2).strip()
+        op2    = matchObj.group(4).strip()
         instr  = matchObj.group(3)
 
         (decl, target, dims) = parse_declration(target)
@@ -325,6 +325,7 @@ Detects a singal declaration. Example: uint8_t _543
 
 def check_immediate(line):
     matchImmObj = re.match( r'\(?(-?[0-9]+)\)?', line, re.M|re.I)
+
     if matchImmObj:
         return matchImmObj.group(1)
     else:
@@ -488,12 +489,13 @@ def find_assign(G, line):
     SOURCES = G.graph['SOURCES']
 
     #matchObj = re.match( r'(.+?) = (\(.+?\))?(.+);$', line, re.M|re.I)
-    matchObj = re.match( r'(.+?)[ ]+=[ ]+(\([a-zA-Z0-9_]+?\))?\(?([a-zA-Z0-9_<>\[\]]+(\([0-9, ]+\))?)\)?;$', line, re.M|re.I)
+    matchObj = re.match( r'(.+?)[ ]+=[ ]+(\([a-zA-Z0-9_]+?\))?([~])?\(?([a-zA-Z0-9_<>\[\]]+(\([0-9, ]+\))?)\)?;$', line, re.M|re.I)
 
     if matchObj:
         target = matchObj.group(1)
         cast   = matchObj.group(2)
-        source = matchObj.group(3)
+        oper   = matchObj.group(3)
+        source = matchObj.group(4)
 
         if (source.startswith("arg_")):
             arg_ind = source[len("arg_"):]
@@ -558,7 +560,11 @@ def find_assign(G, line):
 
         G.add_node(target)
         #print "#->", target, " (", source,")"
-        G.node[target]['op']   = "mv"
+        if oper == "~":
+            G.node[target]['op']   = "inv"
+            G.node[target]['op_raw'] = oper
+        else:
+            G.node[target]['op']   = "mv"
 
         #Check if assigning to an immediate
         val = check_immediate(source)
@@ -1022,6 +1028,58 @@ module EQ_16b_pe(a,b,c,clk);
 endmodule
 
     """
+    macros['lt'] = """
+module LT_16b_pe(a,b,c,clk);
+  input  a;
+  input  b;
+  output  c;
+  input clk;
+    mux2o ALU_0(
+        .clk(clk),
+        .a16b( a ),
+        .b16b( b ),
+        .s1b( 1'b0 ),
+        .out16b(c)
+    );
+
+endmodule
+
+    """
+
+    macros['lte'] = """
+module LTE_16b_pe(a,b,c,clk);
+  input  a;
+  input  b;
+  output  c;
+  input clk;
+    mux2o ALU_0(
+        .clk(clk),
+        .a16b( a ),
+        .b16b( b ),
+        .s1b( 1'b0 ),
+        .out16b(c)
+    );
+
+endmodule
+
+    """
+
+    macros['inv'] = """
+module INV_16b_pe(a,c,clk);
+  input  a;
+  output  c;
+  input clk;
+    mux2o ALU_0(
+        .clk(clk),
+        .a16b( a ),
+        .b16b( 1'b0 ),
+        .s1b( 1'b0 ),
+        .out16b(c)
+    );
+
+endmodule
+
+    """
 
     for o in op_list:
         print macros[o]
@@ -1086,7 +1144,7 @@ def print_kernel_verilog(all_lines, module_name="kernel"):
 
     #quit()
 
-    unique_ops = set( map(lambda x: G.node[x]['op'] ,filter(lambda x: 'op' in G.node[x].keys() , G.nodes()))) 
+    unique_ops = set( map(lambda x: G.node[x]['op'] ,filter(lambda x: ('op' in G.node[x].keys()) and (not check_key(G.node[x], 'is_const', True)) , G.nodes()))) 
     return unique_ops 
 
 
@@ -1101,6 +1159,7 @@ if __name__ == "__main__":
     F_NAME = "demosaic_1.cpp"
     F_DIR  = "examples/"
     f = open(F_DIR+F_NAME, 'r')
+    #f = ["bool _566 = 10 <= _549;"]
 
     unique_ops = print_kernel_verilog(f)
     print "\n\n"
