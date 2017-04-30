@@ -86,8 +86,6 @@ def make_names (prefix, dims) :
 ##########################################################################
 
 
-#This doesn't work because of explicit control sinals to LBs ('if...else')
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/"
 
 #These don't work because kernels use indexing with a variable:
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/stereo_hls/"
@@ -102,11 +100,14 @@ def make_names (prefix, dims) :
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/"
 
+#This has explicit control sinals to LBs ('if...else'), but worked after hand changes
+DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/"
+
 
 #These examples work:
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/gaussian_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/"
-DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
 TOP_NAME = "hls_target.cpp"
 
 
@@ -545,10 +546,12 @@ def get_lb_config_from_key(lb_key):
 	lb_dims = lb_def[0].split("_")
 	if len(lb_dims) == 3:
 #TODO: LB definition is NOT consistent
-		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
-		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
+		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
+		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
 	elif len(lb_dims) == 2:
 		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
+	elif len(lb_dims) == 1:
+		(height, width, channels) = (1, int(lb_dims[0]), 1)
 	else:
 		print "ERROR: Unsupported LB definition - ", lb_key
 
