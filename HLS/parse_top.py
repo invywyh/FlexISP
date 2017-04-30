@@ -22,7 +22,7 @@ def filter_line(line):
 
 	if l.startswith("//"):
 		return ""
-	elif l.startswith("#pragma "):
+	elif l.startswith("#pragma ") or l.startswith("for") or l.startswith("if"):
 		return ""
 	elif l == "(void)0;":
 		return ""
@@ -288,9 +288,13 @@ def parse_func(file_name, func_name):
 			#if l != "":
 			#	print ">>>> ", l
 	f.close()
+
+
 	args = filter(lambda x: x.startswith("arg_"), func_G.nodes())
 	#in_arg  = func_G.predecessors(INPUTS[0])[0]
-	out_arg = func_G.predecessors(OUPUTS[0])[0]
+	#out_arg = func_G.predecessors(OUPUTS[0])[0]
+	out_arg = (filter(lambda x: x.startswith("arg_"),func_G.predecessors(OUPUTS[0])))[0]
+
 
 	if len(OUPUTS)!=1:
 		print "ERROR: Expected 1 output, but found %d!!!"%(len(OUPUTS))
