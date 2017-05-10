@@ -654,11 +654,26 @@ def parse_ssa(G, line):
     return line
 
 
+
+def format_signal(name,atribs):
+    """
+Marks signal name with the bitwidth, base on 'type' attribute
+    """
+    #return name
+
+    if 'type' in atribs and atribs['type'] == 'bool':
+        return "%s_1b"%name
+    elif 'type' in atribs and (atribs['type'] == 'uint8_t' or atribs['type'] == 'int8_t'):
+       return "%s_8b"%name
+    else:
+       return "%s_16b"%name
+
+
 def get_node_name(G, node):
     if check_key(G.node[node], 'is_immediate', True):
         return "const_"+str(node)
     else:
-        return str(node)
+        return format_signal(node, G.node[node])
 
 def find_busses(singals):
     """
@@ -704,6 +719,8 @@ def get_grouped_inputs(G):
 
     inp_buses_grouped += sorted(find_busses(input_extra))
 
+    #inp_buses_grouped_formated = map(lambda x: format_signal(x, G.node[x]), inp_buses_grouped)
+    #return inp_buses_grouped_formated
     return inp_buses_grouped
 
 
@@ -724,11 +741,10 @@ def get_grouped_outputs(G):
         out_name = "out_"+n
         if matchObj:
             out_name = "out_"+matchObj.group(1)
-        out_names.append(out_name)
+        out_names.append(format_signal(out_name,G.node[n]))
 
         #print out_name ,"  ", dims_to_verilog_range(out_buses[n])
     return out_names
-
 
 
 
@@ -759,15 +775,16 @@ def print_verilog(G, module_name="kernel"):
     print "//Inputs"
     for n in inp_buses_grouped:
         #print n ,"  ", dims_to_verilog_range(inp_buses[n])
-        print "  %s,"%(n)
+        print "  %s,"%(format_signal(n, G.node[n]))
+
 
     print "//Outputs"
     regex=re.compile('r[0-9]+_(.+)')
     for n in sorted(out_buses):
         matchObj = re.match(regex, n)
-        out_name = "out_"+n
+        out_name = "out_"+format_signal(n, G.node[n])
         if matchObj:
-            out_name = "out_"+matchObj.group(1)
+            out_name = "out_"+format_signal(matchObj.group(1), G.node[n])
         out_names[n] = out_name
 
         #print out_name ,"  ", dims_to_verilog_range(out_buses[n])
@@ -784,7 +801,7 @@ def print_verilog(G, module_name="kernel"):
     print "//Inputs"
     for n in inp_buses:
         #print n ,"  ", dims_to_verilog_range(inp_buses[n])
-        print "input %s %s;"%(dims_to_verilog_range(inp_buses[n]), n)
+        print "input %s %s;"%(dims_to_verilog_range(inp_buses[n]), format_signal(n, G.node[n]))
 
 
     print "//Outputs"
@@ -792,21 +809,20 @@ def print_verilog(G, module_name="kernel"):
         print "output %s %s;"%(dims_to_verilog_range(out_buses[n]), out_names[n])
     print ""
     print "input  clk;\n\n"
-    #quit()
 
 
     #all_sources = find_busses(SOURCES & SINKS)
     all_sources = find_busses(SINKS) #(G.nodes() )
 
     for n in sorted(all_sources.keys()):
-        print "wire %s %s;"%(dims_to_verilog_range(all_sources[n]), n)
+        print "wire %s %s;"%(dims_to_verilog_range(all_sources[n]), format_signal(n, G.node[n]))
 
     print "wire   tmp_clk;\n"
     print "assign tmp_clk = clk;"
 
     print "\n//Assign results"
     for n in out_buses:
-        print "assign %s=%s;"%(out_names[n], n)
+        print "assign %s = %s;"%(out_names[n], format_signal(n, G.node[n]))
 
     #for n in G.nodes():
     #    print "logic [15:0] ", get_node_name(G,n),";"

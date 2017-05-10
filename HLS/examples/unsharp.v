@@ -1,210 +1,212 @@
+// Source:  /home/tema8/projects/Halide-HLS/apps/hls_examples/unsharp_hls/hls_target.cpp 
+
 module top(
 //Inputs
-  w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0,
-  w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0,
-  w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0,
+  w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0_8b,
+  w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0_8b,
+  w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0_8b,
 
-  w_p2_in_bounded_stencil_stream_0_0_0,
-  w_p2_in_bounded_stencil_stream_1_0_0,
-  w_p2_in_bounded_stencil_stream_2_0_0,
+  w_p2_in_bounded_stencil_stream_0_0_0_8b,
+  w_p2_in_bounded_stencil_stream_1_0_0_8b,
+  w_p2_in_bounded_stencil_stream_2_0_0_8b,
 
 //Outputs
-  w_hw_output_1_stencil_stream_0_0_0,
-  w_hw_output_1_stencil_stream_1_0_0,
-  w_hw_output_1_stencil_stream_2_0_0,
+  w_hw_output_1_stencil_stream_0_0_0_8b,
+  w_hw_output_1_stencil_stream_1_0_0_8b,
+  w_hw_output_1_stencil_stream_2_0_0_8b,
 
   clk
 );
 
 //Inputs
-input    w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0;
-input    w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0;
-input    w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0;
+input    w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0_8b;
+input    w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0_8b;
+input    w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0_8b;
 
-input    w_p2_in_bounded_stencil_stream_0_0_0;
-input    w_p2_in_bounded_stencil_stream_1_0_0;
-input    w_p2_in_bounded_stencil_stream_2_0_0;
+input    w_p2_in_bounded_stencil_stream_0_0_0_8b;
+input    w_p2_in_bounded_stencil_stream_1_0_0_8b;
+input    w_p2_in_bounded_stencil_stream_2_0_0_8b;
 
 //Outputs
-output   w_hw_output_1_stencil_stream_0_0_0;
-output   w_hw_output_1_stencil_stream_1_0_0;
-output   w_hw_output_1_stencil_stream_2_0_0;
+output   w_hw_output_1_stencil_stream_0_0_0_8b;
+output   w_hw_output_1_stencil_stream_1_0_0_8b;
+output   w_hw_output_1_stencil_stream_2_0_0_8b;
 
 input   clk;
 
-wire   w_ratio_1_stencil_stream_0_0;
+wire   w_ratio_1_stencil_stream_0_0_8b;
 
-wire   w_gray_1_stencil_stream_0_0;
-wire   w_gray_1_stencil_stream_0_1;
-wire   w_gray_1_stencil_stream_0_2;
-wire   w_gray_1_stencil_stream_0_3;
-wire   w_gray_1_stencil_stream_0_4;
-wire   w_gray_1_stencil_stream_0_5;
-wire   w_gray_1_stencil_stream_0_6;
-wire   w_gray_1_stencil_stream_0_7;
-wire   w_gray_1_stencil_stream_0_8;
-wire   w_gray_1_stencil_stream_1_0;
-wire   w_gray_1_stencil_stream_1_1;
-wire   w_gray_1_stencil_stream_1_2;
-wire   w_gray_1_stencil_stream_1_3;
-wire   w_gray_1_stencil_stream_1_4;
-wire   w_gray_1_stencil_stream_1_5;
-wire   w_gray_1_stencil_stream_1_6;
-wire   w_gray_1_stencil_stream_1_7;
-wire   w_gray_1_stencil_stream_1_8;
-wire   w_gray_1_stencil_stream_2_0;
-wire   w_gray_1_stencil_stream_2_1;
-wire   w_gray_1_stencil_stream_2_2;
-wire   w_gray_1_stencil_stream_2_3;
-wire   w_gray_1_stencil_stream_2_4;
-wire   w_gray_1_stencil_stream_2_5;
-wire   w_gray_1_stencil_stream_2_6;
-wire   w_gray_1_stencil_stream_2_7;
-wire   w_gray_1_stencil_stream_2_8;
-wire   w_gray_1_stencil_stream_3_0;
-wire   w_gray_1_stencil_stream_3_1;
-wire   w_gray_1_stencil_stream_3_2;
-wire   w_gray_1_stencil_stream_3_3;
-wire   w_gray_1_stencil_stream_3_4;
-wire   w_gray_1_stencil_stream_3_5;
-wire   w_gray_1_stencil_stream_3_6;
-wire   w_gray_1_stencil_stream_3_7;
-wire   w_gray_1_stencil_stream_3_8;
-wire   w_gray_1_stencil_stream_4_0;
-wire   w_gray_1_stencil_stream_4_1;
-wire   w_gray_1_stencil_stream_4_2;
-wire   w_gray_1_stencil_stream_4_3;
-wire   w_gray_1_stencil_stream_4_4;
-wire   w_gray_1_stencil_stream_4_5;
-wire   w_gray_1_stencil_stream_4_6;
-wire   w_gray_1_stencil_stream_4_7;
-wire   w_gray_1_stencil_stream_4_8;
-wire   w_gray_1_stencil_stream_5_0;
-wire   w_gray_1_stencil_stream_5_1;
-wire   w_gray_1_stencil_stream_5_2;
-wire   w_gray_1_stencil_stream_5_3;
-wire   w_gray_1_stencil_stream_5_4;
-wire   w_gray_1_stencil_stream_5_5;
-wire   w_gray_1_stencil_stream_5_6;
-wire   w_gray_1_stencil_stream_5_7;
-wire   w_gray_1_stencil_stream_5_8;
-wire   w_gray_1_stencil_stream_6_0;
-wire   w_gray_1_stencil_stream_6_1;
-wire   w_gray_1_stencil_stream_6_2;
-wire   w_gray_1_stencil_stream_6_3;
-wire   w_gray_1_stencil_stream_6_4;
-wire   w_gray_1_stencil_stream_6_5;
-wire   w_gray_1_stencil_stream_6_6;
-wire   w_gray_1_stencil_stream_6_7;
-wire   w_gray_1_stencil_stream_6_8;
-wire   w_gray_1_stencil_stream_7_0;
-wire   w_gray_1_stencil_stream_7_1;
-wire   w_gray_1_stencil_stream_7_2;
-wire   w_gray_1_stencil_stream_7_3;
-wire   w_gray_1_stencil_stream_7_4;
-wire   w_gray_1_stencil_stream_7_5;
-wire   w_gray_1_stencil_stream_7_6;
-wire   w_gray_1_stencil_stream_7_7;
-wire   w_gray_1_stencil_stream_7_8;
-wire   w_gray_1_stencil_stream_8_0;
-wire   w_gray_1_stencil_stream_8_1;
-wire   w_gray_1_stencil_stream_8_2;
-wire   w_gray_1_stencil_stream_8_3;
-wire   w_gray_1_stencil_stream_8_4;
-wire   w_gray_1_stencil_stream_8_5;
-wire   w_gray_1_stencil_stream_8_6;
-wire   w_gray_1_stencil_stream_8_7;
-wire   w_gray_1_stencil_stream_8_8;
+wire   w_gray_1_stencil_stream_0_0_8b;
+wire   w_gray_1_stencil_stream_0_1_8b;
+wire   w_gray_1_stencil_stream_0_2_8b;
+wire   w_gray_1_stencil_stream_0_3_8b;
+wire   w_gray_1_stencil_stream_0_4_8b;
+wire   w_gray_1_stencil_stream_0_5_8b;
+wire   w_gray_1_stencil_stream_0_6_8b;
+wire   w_gray_1_stencil_stream_0_7_8b;
+wire   w_gray_1_stencil_stream_0_8_8b;
+wire   w_gray_1_stencil_stream_1_0_8b;
+wire   w_gray_1_stencil_stream_1_1_8b;
+wire   w_gray_1_stencil_stream_1_2_8b;
+wire   w_gray_1_stencil_stream_1_3_8b;
+wire   w_gray_1_stencil_stream_1_4_8b;
+wire   w_gray_1_stencil_stream_1_5_8b;
+wire   w_gray_1_stencil_stream_1_6_8b;
+wire   w_gray_1_stencil_stream_1_7_8b;
+wire   w_gray_1_stencil_stream_1_8_8b;
+wire   w_gray_1_stencil_stream_2_0_8b;
+wire   w_gray_1_stencil_stream_2_1_8b;
+wire   w_gray_1_stencil_stream_2_2_8b;
+wire   w_gray_1_stencil_stream_2_3_8b;
+wire   w_gray_1_stencil_stream_2_4_8b;
+wire   w_gray_1_stencil_stream_2_5_8b;
+wire   w_gray_1_stencil_stream_2_6_8b;
+wire   w_gray_1_stencil_stream_2_7_8b;
+wire   w_gray_1_stencil_stream_2_8_8b;
+wire   w_gray_1_stencil_stream_3_0_8b;
+wire   w_gray_1_stencil_stream_3_1_8b;
+wire   w_gray_1_stencil_stream_3_2_8b;
+wire   w_gray_1_stencil_stream_3_3_8b;
+wire   w_gray_1_stencil_stream_3_4_8b;
+wire   w_gray_1_stencil_stream_3_5_8b;
+wire   w_gray_1_stencil_stream_3_6_8b;
+wire   w_gray_1_stencil_stream_3_7_8b;
+wire   w_gray_1_stencil_stream_3_8_8b;
+wire   w_gray_1_stencil_stream_4_0_8b;
+wire   w_gray_1_stencil_stream_4_1_8b;
+wire   w_gray_1_stencil_stream_4_2_8b;
+wire   w_gray_1_stencil_stream_4_3_8b;
+wire   w_gray_1_stencil_stream_4_4_8b;
+wire   w_gray_1_stencil_stream_4_5_8b;
+wire   w_gray_1_stencil_stream_4_6_8b;
+wire   w_gray_1_stencil_stream_4_7_8b;
+wire   w_gray_1_stencil_stream_4_8_8b;
+wire   w_gray_1_stencil_stream_5_0_8b;
+wire   w_gray_1_stencil_stream_5_1_8b;
+wire   w_gray_1_stencil_stream_5_2_8b;
+wire   w_gray_1_stencil_stream_5_3_8b;
+wire   w_gray_1_stencil_stream_5_4_8b;
+wire   w_gray_1_stencil_stream_5_5_8b;
+wire   w_gray_1_stencil_stream_5_6_8b;
+wire   w_gray_1_stencil_stream_5_7_8b;
+wire   w_gray_1_stencil_stream_5_8_8b;
+wire   w_gray_1_stencil_stream_6_0_8b;
+wire   w_gray_1_stencil_stream_6_1_8b;
+wire   w_gray_1_stencil_stream_6_2_8b;
+wire   w_gray_1_stencil_stream_6_3_8b;
+wire   w_gray_1_stencil_stream_6_4_8b;
+wire   w_gray_1_stencil_stream_6_5_8b;
+wire   w_gray_1_stencil_stream_6_6_8b;
+wire   w_gray_1_stencil_stream_6_7_8b;
+wire   w_gray_1_stencil_stream_6_8_8b;
+wire   w_gray_1_stencil_stream_7_0_8b;
+wire   w_gray_1_stencil_stream_7_1_8b;
+wire   w_gray_1_stencil_stream_7_2_8b;
+wire   w_gray_1_stencil_stream_7_3_8b;
+wire   w_gray_1_stencil_stream_7_4_8b;
+wire   w_gray_1_stencil_stream_7_5_8b;
+wire   w_gray_1_stencil_stream_7_6_8b;
+wire   w_gray_1_stencil_stream_7_7_8b;
+wire   w_gray_1_stencil_stream_7_8_8b;
+wire   w_gray_1_stencil_stream_8_0_8b;
+wire   w_gray_1_stencil_stream_8_1_8b;
+wire   w_gray_1_stencil_stream_8_2_8b;
+wire   w_gray_1_stencil_stream_8_3_8b;
+wire   w_gray_1_stencil_stream_8_4_8b;
+wire   w_gray_1_stencil_stream_8_5_8b;
+wire   w_gray_1_stencil_stream_8_6_8b;
+wire   w_gray_1_stencil_stream_8_7_8b;
+wire   w_gray_1_stencil_stream_8_8_8b;
 
-wire   w_gray_1_stencil_update_stream_0_0;
+wire   w_gray_1_stencil_update_stream_0_0_8b;
 
 wire   gnd;
 assign gnd=1'b0;
 
 kernel__ratio_1_stencil_stream KERN__ratio_1_stencil_stream (
-    .w_gray_1_stencil_0_0(w_gray_1_stencil_stream_0_0),
-    .w_gray_1_stencil_0_1(w_gray_1_stencil_stream_0_1),
-    .w_gray_1_stencil_0_2(w_gray_1_stencil_stream_0_2),
-    .w_gray_1_stencil_0_3(w_gray_1_stencil_stream_0_3),
-    .w_gray_1_stencil_0_4(w_gray_1_stencil_stream_0_4),
-    .w_gray_1_stencil_0_5(w_gray_1_stencil_stream_0_5),
-    .w_gray_1_stencil_0_6(w_gray_1_stencil_stream_0_6),
-    .w_gray_1_stencil_0_7(w_gray_1_stencil_stream_0_7),
-    .w_gray_1_stencil_0_8(w_gray_1_stencil_stream_0_8),
-    .w_gray_1_stencil_1_0(w_gray_1_stencil_stream_1_0),
-    .w_gray_1_stencil_1_1(w_gray_1_stencil_stream_1_1),
-    .w_gray_1_stencil_1_2(w_gray_1_stencil_stream_1_2),
-    .w_gray_1_stencil_1_3(w_gray_1_stencil_stream_1_3),
-    .w_gray_1_stencil_1_4(w_gray_1_stencil_stream_1_4),
-    .w_gray_1_stencil_1_5(w_gray_1_stencil_stream_1_5),
-    .w_gray_1_stencil_1_6(w_gray_1_stencil_stream_1_6),
-    .w_gray_1_stencil_1_7(w_gray_1_stencil_stream_1_7),
-    .w_gray_1_stencil_1_8(w_gray_1_stencil_stream_1_8),
-    .w_gray_1_stencil_2_0(w_gray_1_stencil_stream_2_0),
-    .w_gray_1_stencil_2_1(w_gray_1_stencil_stream_2_1),
-    .w_gray_1_stencil_2_2(w_gray_1_stencil_stream_2_2),
-    .w_gray_1_stencil_2_3(w_gray_1_stencil_stream_2_3),
-    .w_gray_1_stencil_2_4(w_gray_1_stencil_stream_2_4),
-    .w_gray_1_stencil_2_5(w_gray_1_stencil_stream_2_5),
-    .w_gray_1_stencil_2_6(w_gray_1_stencil_stream_2_6),
-    .w_gray_1_stencil_2_7(w_gray_1_stencil_stream_2_7),
-    .w_gray_1_stencil_2_8(w_gray_1_stencil_stream_2_8),
-    .w_gray_1_stencil_3_0(w_gray_1_stencil_stream_3_0),
-    .w_gray_1_stencil_3_1(w_gray_1_stencil_stream_3_1),
-    .w_gray_1_stencil_3_2(w_gray_1_stencil_stream_3_2),
-    .w_gray_1_stencil_3_3(w_gray_1_stencil_stream_3_3),
-    .w_gray_1_stencil_3_4(w_gray_1_stencil_stream_3_4),
-    .w_gray_1_stencil_3_5(w_gray_1_stencil_stream_3_5),
-    .w_gray_1_stencil_3_6(w_gray_1_stencil_stream_3_6),
-    .w_gray_1_stencil_3_7(w_gray_1_stencil_stream_3_7),
-    .w_gray_1_stencil_3_8(w_gray_1_stencil_stream_3_8),
-    .w_gray_1_stencil_4_0(w_gray_1_stencil_stream_4_0),
-    .w_gray_1_stencil_4_1(w_gray_1_stencil_stream_4_1),
-    .w_gray_1_stencil_4_2(w_gray_1_stencil_stream_4_2),
-    .w_gray_1_stencil_4_3(w_gray_1_stencil_stream_4_3),
-    .w_gray_1_stencil_4_4(w_gray_1_stencil_stream_4_4),
-    .w_gray_1_stencil_4_5(w_gray_1_stencil_stream_4_5),
-    .w_gray_1_stencil_4_6(w_gray_1_stencil_stream_4_6),
-    .w_gray_1_stencil_4_7(w_gray_1_stencil_stream_4_7),
-    .w_gray_1_stencil_4_8(w_gray_1_stencil_stream_4_8),
-    .w_gray_1_stencil_5_0(w_gray_1_stencil_stream_5_0),
-    .w_gray_1_stencil_5_1(w_gray_1_stencil_stream_5_1),
-    .w_gray_1_stencil_5_2(w_gray_1_stencil_stream_5_2),
-    .w_gray_1_stencil_5_3(w_gray_1_stencil_stream_5_3),
-    .w_gray_1_stencil_5_4(w_gray_1_stencil_stream_5_4),
-    .w_gray_1_stencil_5_5(w_gray_1_stencil_stream_5_5),
-    .w_gray_1_stencil_5_6(w_gray_1_stencil_stream_5_6),
-    .w_gray_1_stencil_5_7(w_gray_1_stencil_stream_5_7),
-    .w_gray_1_stencil_5_8(w_gray_1_stencil_stream_5_8),
-    .w_gray_1_stencil_6_0(w_gray_1_stencil_stream_6_0),
-    .w_gray_1_stencil_6_1(w_gray_1_stencil_stream_6_1),
-    .w_gray_1_stencil_6_2(w_gray_1_stencil_stream_6_2),
-    .w_gray_1_stencil_6_3(w_gray_1_stencil_stream_6_3),
-    .w_gray_1_stencil_6_4(w_gray_1_stencil_stream_6_4),
-    .w_gray_1_stencil_6_5(w_gray_1_stencil_stream_6_5),
-    .w_gray_1_stencil_6_6(w_gray_1_stencil_stream_6_6),
-    .w_gray_1_stencil_6_7(w_gray_1_stencil_stream_6_7),
-    .w_gray_1_stencil_6_8(w_gray_1_stencil_stream_6_8),
-    .w_gray_1_stencil_7_0(w_gray_1_stencil_stream_7_0),
-    .w_gray_1_stencil_7_1(w_gray_1_stencil_stream_7_1),
-    .w_gray_1_stencil_7_2(w_gray_1_stencil_stream_7_2),
-    .w_gray_1_stencil_7_3(w_gray_1_stencil_stream_7_3),
-    .w_gray_1_stencil_7_4(w_gray_1_stencil_stream_7_4),
-    .w_gray_1_stencil_7_5(w_gray_1_stencil_stream_7_5),
-    .w_gray_1_stencil_7_6(w_gray_1_stencil_stream_7_6),
-    .w_gray_1_stencil_7_7(w_gray_1_stencil_stream_7_7),
-    .w_gray_1_stencil_7_8(w_gray_1_stencil_stream_7_8),
-    .w_gray_1_stencil_8_0(w_gray_1_stencil_stream_8_0),
-    .w_gray_1_stencil_8_1(w_gray_1_stencil_stream_8_1),
-    .w_gray_1_stencil_8_2(w_gray_1_stencil_stream_8_2),
-    .w_gray_1_stencil_8_3(w_gray_1_stencil_stream_8_3),
-    .w_gray_1_stencil_8_4(w_gray_1_stencil_stream_8_4),
-    .w_gray_1_stencil_8_5(w_gray_1_stencil_stream_8_5),
-    .w_gray_1_stencil_8_6(w_gray_1_stencil_stream_8_6),
-    .w_gray_1_stencil_8_7(w_gray_1_stencil_stream_8_7),
-    .w_gray_1_stencil_8_8(w_gray_1_stencil_stream_8_8),
+    .w_gray_1_stencil_0_0_8b(w_gray_1_stencil_stream_0_0_8b),
+    .w_gray_1_stencil_0_1_8b(w_gray_1_stencil_stream_0_1_8b),
+    .w_gray_1_stencil_0_2_8b(w_gray_1_stencil_stream_0_2_8b),
+    .w_gray_1_stencil_0_3_8b(w_gray_1_stencil_stream_0_3_8b),
+    .w_gray_1_stencil_0_4_8b(w_gray_1_stencil_stream_0_4_8b),
+    .w_gray_1_stencil_0_5_8b(w_gray_1_stencil_stream_0_5_8b),
+    .w_gray_1_stencil_0_6_8b(w_gray_1_stencil_stream_0_6_8b),
+    .w_gray_1_stencil_0_7_8b(w_gray_1_stencil_stream_0_7_8b),
+    .w_gray_1_stencil_0_8_8b(w_gray_1_stencil_stream_0_8_8b),
+    .w_gray_1_stencil_1_0_8b(w_gray_1_stencil_stream_1_0_8b),
+    .w_gray_1_stencil_1_1_8b(w_gray_1_stencil_stream_1_1_8b),
+    .w_gray_1_stencil_1_2_8b(w_gray_1_stencil_stream_1_2_8b),
+    .w_gray_1_stencil_1_3_8b(w_gray_1_stencil_stream_1_3_8b),
+    .w_gray_1_stencil_1_4_8b(w_gray_1_stencil_stream_1_4_8b),
+    .w_gray_1_stencil_1_5_8b(w_gray_1_stencil_stream_1_5_8b),
+    .w_gray_1_stencil_1_6_8b(w_gray_1_stencil_stream_1_6_8b),
+    .w_gray_1_stencil_1_7_8b(w_gray_1_stencil_stream_1_7_8b),
+    .w_gray_1_stencil_1_8_8b(w_gray_1_stencil_stream_1_8_8b),
+    .w_gray_1_stencil_2_0_8b(w_gray_1_stencil_stream_2_0_8b),
+    .w_gray_1_stencil_2_1_8b(w_gray_1_stencil_stream_2_1_8b),
+    .w_gray_1_stencil_2_2_8b(w_gray_1_stencil_stream_2_2_8b),
+    .w_gray_1_stencil_2_3_8b(w_gray_1_stencil_stream_2_3_8b),
+    .w_gray_1_stencil_2_4_8b(w_gray_1_stencil_stream_2_4_8b),
+    .w_gray_1_stencil_2_5_8b(w_gray_1_stencil_stream_2_5_8b),
+    .w_gray_1_stencil_2_6_8b(w_gray_1_stencil_stream_2_6_8b),
+    .w_gray_1_stencil_2_7_8b(w_gray_1_stencil_stream_2_7_8b),
+    .w_gray_1_stencil_2_8_8b(w_gray_1_stencil_stream_2_8_8b),
+    .w_gray_1_stencil_3_0_8b(w_gray_1_stencil_stream_3_0_8b),
+    .w_gray_1_stencil_3_1_8b(w_gray_1_stencil_stream_3_1_8b),
+    .w_gray_1_stencil_3_2_8b(w_gray_1_stencil_stream_3_2_8b),
+    .w_gray_1_stencil_3_3_8b(w_gray_1_stencil_stream_3_3_8b),
+    .w_gray_1_stencil_3_4_8b(w_gray_1_stencil_stream_3_4_8b),
+    .w_gray_1_stencil_3_5_8b(w_gray_1_stencil_stream_3_5_8b),
+    .w_gray_1_stencil_3_6_8b(w_gray_1_stencil_stream_3_6_8b),
+    .w_gray_1_stencil_3_7_8b(w_gray_1_stencil_stream_3_7_8b),
+    .w_gray_1_stencil_3_8_8b(w_gray_1_stencil_stream_3_8_8b),
+    .w_gray_1_stencil_4_0_8b(w_gray_1_stencil_stream_4_0_8b),
+    .w_gray_1_stencil_4_1_8b(w_gray_1_stencil_stream_4_1_8b),
+    .w_gray_1_stencil_4_2_8b(w_gray_1_stencil_stream_4_2_8b),
+    .w_gray_1_stencil_4_3_8b(w_gray_1_stencil_stream_4_3_8b),
+    .w_gray_1_stencil_4_4_8b(w_gray_1_stencil_stream_4_4_8b),
+    .w_gray_1_stencil_4_5_8b(w_gray_1_stencil_stream_4_5_8b),
+    .w_gray_1_stencil_4_6_8b(w_gray_1_stencil_stream_4_6_8b),
+    .w_gray_1_stencil_4_7_8b(w_gray_1_stencil_stream_4_7_8b),
+    .w_gray_1_stencil_4_8_8b(w_gray_1_stencil_stream_4_8_8b),
+    .w_gray_1_stencil_5_0_8b(w_gray_1_stencil_stream_5_0_8b),
+    .w_gray_1_stencil_5_1_8b(w_gray_1_stencil_stream_5_1_8b),
+    .w_gray_1_stencil_5_2_8b(w_gray_1_stencil_stream_5_2_8b),
+    .w_gray_1_stencil_5_3_8b(w_gray_1_stencil_stream_5_3_8b),
+    .w_gray_1_stencil_5_4_8b(w_gray_1_stencil_stream_5_4_8b),
+    .w_gray_1_stencil_5_5_8b(w_gray_1_stencil_stream_5_5_8b),
+    .w_gray_1_stencil_5_6_8b(w_gray_1_stencil_stream_5_6_8b),
+    .w_gray_1_stencil_5_7_8b(w_gray_1_stencil_stream_5_7_8b),
+    .w_gray_1_stencil_5_8_8b(w_gray_1_stencil_stream_5_8_8b),
+    .w_gray_1_stencil_6_0_8b(w_gray_1_stencil_stream_6_0_8b),
+    .w_gray_1_stencil_6_1_8b(w_gray_1_stencil_stream_6_1_8b),
+    .w_gray_1_stencil_6_2_8b(w_gray_1_stencil_stream_6_2_8b),
+    .w_gray_1_stencil_6_3_8b(w_gray_1_stencil_stream_6_3_8b),
+    .w_gray_1_stencil_6_4_8b(w_gray_1_stencil_stream_6_4_8b),
+    .w_gray_1_stencil_6_5_8b(w_gray_1_stencil_stream_6_5_8b),
+    .w_gray_1_stencil_6_6_8b(w_gray_1_stencil_stream_6_6_8b),
+    .w_gray_1_stencil_6_7_8b(w_gray_1_stencil_stream_6_7_8b),
+    .w_gray_1_stencil_6_8_8b(w_gray_1_stencil_stream_6_8_8b),
+    .w_gray_1_stencil_7_0_8b(w_gray_1_stencil_stream_7_0_8b),
+    .w_gray_1_stencil_7_1_8b(w_gray_1_stencil_stream_7_1_8b),
+    .w_gray_1_stencil_7_2_8b(w_gray_1_stencil_stream_7_2_8b),
+    .w_gray_1_stencil_7_3_8b(w_gray_1_stencil_stream_7_3_8b),
+    .w_gray_1_stencil_7_4_8b(w_gray_1_stencil_stream_7_4_8b),
+    .w_gray_1_stencil_7_5_8b(w_gray_1_stencil_stream_7_5_8b),
+    .w_gray_1_stencil_7_6_8b(w_gray_1_stencil_stream_7_6_8b),
+    .w_gray_1_stencil_7_7_8b(w_gray_1_stencil_stream_7_7_8b),
+    .w_gray_1_stencil_7_8_8b(w_gray_1_stencil_stream_7_8_8b),
+    .w_gray_1_stencil_8_0_8b(w_gray_1_stencil_stream_8_0_8b),
+    .w_gray_1_stencil_8_1_8b(w_gray_1_stencil_stream_8_1_8b),
+    .w_gray_1_stencil_8_2_8b(w_gray_1_stencil_stream_8_2_8b),
+    .w_gray_1_stencil_8_3_8b(w_gray_1_stencil_stream_8_3_8b),
+    .w_gray_1_stencil_8_4_8b(w_gray_1_stencil_stream_8_4_8b),
+    .w_gray_1_stencil_8_5_8b(w_gray_1_stencil_stream_8_5_8b),
+    .w_gray_1_stencil_8_6_8b(w_gray_1_stencil_stream_8_6_8b),
+    .w_gray_1_stencil_8_7_8b(w_gray_1_stencil_stream_8_7_8b),
+    .w_gray_1_stencil_8_8_8b(w_gray_1_stencil_stream_8_8_8b),
 
-    .out_w_ratio_1_stencil_0_0(w_ratio_1_stencil_stream_0_0),
+    .out_w_ratio_1_stencil_0_0_8b(w_ratio_1_stencil_stream_0_0_8b),
 
     .clk(clk)
 );
@@ -212,110 +214,110 @@ kernel__ratio_1_stencil_stream KERN__ratio_1_stencil_stream (
 LB_9_9_1_8bit_False LB__gray_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_gray_1_stencil_update_stream_0_0),
+    .in0(w_gray_1_stencil_update_stream_0_0_8b),
 
-    .out0(w_gray_1_stencil_stream_0_0),
-    .out1(w_gray_1_stencil_stream_0_1),
-    .out2(w_gray_1_stencil_stream_0_2),
-    .out3(w_gray_1_stencil_stream_0_3),
-    .out4(w_gray_1_stencil_stream_0_4),
-    .out5(w_gray_1_stencil_stream_0_5),
-    .out6(w_gray_1_stencil_stream_0_6),
-    .out7(w_gray_1_stencil_stream_0_7),
-    .out8(w_gray_1_stencil_stream_0_8),
-    .out9(w_gray_1_stencil_stream_1_0),
-    .out10(w_gray_1_stencil_stream_1_1),
-    .out11(w_gray_1_stencil_stream_1_2),
-    .out12(w_gray_1_stencil_stream_1_3),
-    .out13(w_gray_1_stencil_stream_1_4),
-    .out14(w_gray_1_stencil_stream_1_5),
-    .out15(w_gray_1_stencil_stream_1_6),
-    .out16(w_gray_1_stencil_stream_1_7),
-    .out17(w_gray_1_stencil_stream_1_8),
-    .out18(w_gray_1_stencil_stream_2_0),
-    .out19(w_gray_1_stencil_stream_2_1),
-    .out20(w_gray_1_stencil_stream_2_2),
-    .out21(w_gray_1_stencil_stream_2_3),
-    .out22(w_gray_1_stencil_stream_2_4),
-    .out23(w_gray_1_stencil_stream_2_5),
-    .out24(w_gray_1_stencil_stream_2_6),
-    .out25(w_gray_1_stencil_stream_2_7),
-    .out26(w_gray_1_stencil_stream_2_8),
-    .out27(w_gray_1_stencil_stream_3_0),
-    .out28(w_gray_1_stencil_stream_3_1),
-    .out29(w_gray_1_stencil_stream_3_2),
-    .out30(w_gray_1_stencil_stream_3_3),
-    .out31(w_gray_1_stencil_stream_3_4),
-    .out32(w_gray_1_stencil_stream_3_5),
-    .out33(w_gray_1_stencil_stream_3_6),
-    .out34(w_gray_1_stencil_stream_3_7),
-    .out35(w_gray_1_stencil_stream_3_8),
-    .out36(w_gray_1_stencil_stream_4_0),
-    .out37(w_gray_1_stencil_stream_4_1),
-    .out38(w_gray_1_stencil_stream_4_2),
-    .out39(w_gray_1_stencil_stream_4_3),
-    .out40(w_gray_1_stencil_stream_4_4),
-    .out41(w_gray_1_stencil_stream_4_5),
-    .out42(w_gray_1_stencil_stream_4_6),
-    .out43(w_gray_1_stencil_stream_4_7),
-    .out44(w_gray_1_stencil_stream_4_8),
-    .out45(w_gray_1_stencil_stream_5_0),
-    .out46(w_gray_1_stencil_stream_5_1),
-    .out47(w_gray_1_stencil_stream_5_2),
-    .out48(w_gray_1_stencil_stream_5_3),
-    .out49(w_gray_1_stencil_stream_5_4),
-    .out50(w_gray_1_stencil_stream_5_5),
-    .out51(w_gray_1_stencil_stream_5_6),
-    .out52(w_gray_1_stencil_stream_5_7),
-    .out53(w_gray_1_stencil_stream_5_8),
-    .out54(w_gray_1_stencil_stream_6_0),
-    .out55(w_gray_1_stencil_stream_6_1),
-    .out56(w_gray_1_stencil_stream_6_2),
-    .out57(w_gray_1_stencil_stream_6_3),
-    .out58(w_gray_1_stencil_stream_6_4),
-    .out59(w_gray_1_stencil_stream_6_5),
-    .out60(w_gray_1_stencil_stream_6_6),
-    .out61(w_gray_1_stencil_stream_6_7),
-    .out62(w_gray_1_stencil_stream_6_8),
-    .out63(w_gray_1_stencil_stream_7_0),
-    .out64(w_gray_1_stencil_stream_7_1),
-    .out65(w_gray_1_stencil_stream_7_2),
-    .out66(w_gray_1_stencil_stream_7_3),
-    .out67(w_gray_1_stencil_stream_7_4),
-    .out68(w_gray_1_stencil_stream_7_5),
-    .out69(w_gray_1_stencil_stream_7_6),
-    .out70(w_gray_1_stencil_stream_7_7),
-    .out71(w_gray_1_stencil_stream_7_8),
-    .out72(w_gray_1_stencil_stream_8_0),
-    .out73(w_gray_1_stencil_stream_8_1),
-    .out74(w_gray_1_stencil_stream_8_2),
-    .out75(w_gray_1_stencil_stream_8_3),
-    .out76(w_gray_1_stencil_stream_8_4),
-    .out77(w_gray_1_stencil_stream_8_5),
-    .out78(w_gray_1_stencil_stream_8_6),
-    .out79(w_gray_1_stencil_stream_8_7),
-    .out80(w_gray_1_stencil_stream_8_8)
+    .out0(w_gray_1_stencil_stream_0_0_8b),
+    .out1(w_gray_1_stencil_stream_0_1_8b),
+    .out2(w_gray_1_stencil_stream_0_2_8b),
+    .out3(w_gray_1_stencil_stream_0_3_8b),
+    .out4(w_gray_1_stencil_stream_0_4_8b),
+    .out5(w_gray_1_stencil_stream_0_5_8b),
+    .out6(w_gray_1_stencil_stream_0_6_8b),
+    .out7(w_gray_1_stencil_stream_0_7_8b),
+    .out8(w_gray_1_stencil_stream_0_8_8b),
+    .out9(w_gray_1_stencil_stream_1_0_8b),
+    .out10(w_gray_1_stencil_stream_1_1_8b),
+    .out11(w_gray_1_stencil_stream_1_2_8b),
+    .out12(w_gray_1_stencil_stream_1_3_8b),
+    .out13(w_gray_1_stencil_stream_1_4_8b),
+    .out14(w_gray_1_stencil_stream_1_5_8b),
+    .out15(w_gray_1_stencil_stream_1_6_8b),
+    .out16(w_gray_1_stencil_stream_1_7_8b),
+    .out17(w_gray_1_stencil_stream_1_8_8b),
+    .out18(w_gray_1_stencil_stream_2_0_8b),
+    .out19(w_gray_1_stencil_stream_2_1_8b),
+    .out20(w_gray_1_stencil_stream_2_2_8b),
+    .out21(w_gray_1_stencil_stream_2_3_8b),
+    .out22(w_gray_1_stencil_stream_2_4_8b),
+    .out23(w_gray_1_stencil_stream_2_5_8b),
+    .out24(w_gray_1_stencil_stream_2_6_8b),
+    .out25(w_gray_1_stencil_stream_2_7_8b),
+    .out26(w_gray_1_stencil_stream_2_8_8b),
+    .out27(w_gray_1_stencil_stream_3_0_8b),
+    .out28(w_gray_1_stencil_stream_3_1_8b),
+    .out29(w_gray_1_stencil_stream_3_2_8b),
+    .out30(w_gray_1_stencil_stream_3_3_8b),
+    .out31(w_gray_1_stencil_stream_3_4_8b),
+    .out32(w_gray_1_stencil_stream_3_5_8b),
+    .out33(w_gray_1_stencil_stream_3_6_8b),
+    .out34(w_gray_1_stencil_stream_3_7_8b),
+    .out35(w_gray_1_stencil_stream_3_8_8b),
+    .out36(w_gray_1_stencil_stream_4_0_8b),
+    .out37(w_gray_1_stencil_stream_4_1_8b),
+    .out38(w_gray_1_stencil_stream_4_2_8b),
+    .out39(w_gray_1_stencil_stream_4_3_8b),
+    .out40(w_gray_1_stencil_stream_4_4_8b),
+    .out41(w_gray_1_stencil_stream_4_5_8b),
+    .out42(w_gray_1_stencil_stream_4_6_8b),
+    .out43(w_gray_1_stencil_stream_4_7_8b),
+    .out44(w_gray_1_stencil_stream_4_8_8b),
+    .out45(w_gray_1_stencil_stream_5_0_8b),
+    .out46(w_gray_1_stencil_stream_5_1_8b),
+    .out47(w_gray_1_stencil_stream_5_2_8b),
+    .out48(w_gray_1_stencil_stream_5_3_8b),
+    .out49(w_gray_1_stencil_stream_5_4_8b),
+    .out50(w_gray_1_stencil_stream_5_5_8b),
+    .out51(w_gray_1_stencil_stream_5_6_8b),
+    .out52(w_gray_1_stencil_stream_5_7_8b),
+    .out53(w_gray_1_stencil_stream_5_8_8b),
+    .out54(w_gray_1_stencil_stream_6_0_8b),
+    .out55(w_gray_1_stencil_stream_6_1_8b),
+    .out56(w_gray_1_stencil_stream_6_2_8b),
+    .out57(w_gray_1_stencil_stream_6_3_8b),
+    .out58(w_gray_1_stencil_stream_6_4_8b),
+    .out59(w_gray_1_stencil_stream_6_5_8b),
+    .out60(w_gray_1_stencil_stream_6_6_8b),
+    .out61(w_gray_1_stencil_stream_6_7_8b),
+    .out62(w_gray_1_stencil_stream_6_8_8b),
+    .out63(w_gray_1_stencil_stream_7_0_8b),
+    .out64(w_gray_1_stencil_stream_7_1_8b),
+    .out65(w_gray_1_stencil_stream_7_2_8b),
+    .out66(w_gray_1_stencil_stream_7_3_8b),
+    .out67(w_gray_1_stencil_stream_7_4_8b),
+    .out68(w_gray_1_stencil_stream_7_5_8b),
+    .out69(w_gray_1_stencil_stream_7_6_8b),
+    .out70(w_gray_1_stencil_stream_7_7_8b),
+    .out71(w_gray_1_stencil_stream_7_8_8b),
+    .out72(w_gray_1_stencil_stream_8_0_8b),
+    .out73(w_gray_1_stencil_stream_8_1_8b),
+    .out74(w_gray_1_stencil_stream_8_2_8b),
+    .out75(w_gray_1_stencil_stream_8_3_8b),
+    .out76(w_gray_1_stencil_stream_8_4_8b),
+    .out77(w_gray_1_stencil_stream_8_5_8b),
+    .out78(w_gray_1_stencil_stream_8_6_8b),
+    .out79(w_gray_1_stencil_stream_8_7_8b),
+    .out80(w_gray_1_stencil_stream_8_8_8b)
 );
 
 kernel__gray_1_stencil_update_stream KERN__gray_1_stencil_update_stream (
-    .w_p2_in_bounded_stencil_0_0_0(w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0),
-    .w_p2_in_bounded_stencil_1_0_0(w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0),
-    .w_p2_in_bounded_stencil_2_0_0(w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0),
+    .w_p2_in_bounded_stencil_0_0_0_8b(w_p2_in_bounded_stencil_stream_to_gray_1_0_0_0_8b),
+    .w_p2_in_bounded_stencil_1_0_0_8b(w_p2_in_bounded_stencil_stream_to_gray_1_1_0_0_8b),
+    .w_p2_in_bounded_stencil_2_0_0_8b(w_p2_in_bounded_stencil_stream_to_gray_1_2_0_0_8b),
 
-    .out_w_gray_1_stencil_0_0(w_gray_1_stencil_update_stream_0_0),
+    .out_w_gray_1_stencil_0_0_8b(w_gray_1_stencil_update_stream_0_0_8b),
 
     .clk(clk)
 );
 
 kernel__hw_output_1_stencil_stream KERN__hw_output_1_stencil_stream (
-    .w_p2_in_bounded_stencil_0_0_0(w_ratio_1_stencil_stream_0_0),
-    .w_p2_in_bounded_stencil_1_0_0(w_p2_in_bounded_stencil_stream_0_0_0),
-    .w_p2_in_bounded_stencil_2_0_0(w_p2_in_bounded_stencil_stream_1_0_0),
-    .w_ratio_1_stencil_0_0(w_p2_in_bounded_stencil_stream_2_0_0),
+    .w_p2_in_bounded_stencil_0_0_0_8b(w_ratio_1_stencil_stream_0_0_8b),
+    .w_p2_in_bounded_stencil_1_0_0_8b(w_p2_in_bounded_stencil_stream_0_0_0_8b),
+    .w_p2_in_bounded_stencil_2_0_0_8b(w_p2_in_bounded_stencil_stream_1_0_0_8b),
+    .w_ratio_1_stencil_0_0_8b(w_p2_in_bounded_stencil_stream_2_0_0_8b),
 
-    .out_w_hw_output_1_stencil_1_0_0(w_hw_output_1_stencil_stream_0_0_0),
-    .out_w_hw_output_1_stencil_2_0_0(w_hw_output_1_stencil_stream_1_0_0),
-    .out_w_hw_output_1_stencil_packed(w_hw_output_1_stencil_stream_2_0_0),
+    .out_w_hw_output_1_stencil_1_0_0_8b(w_hw_output_1_stencil_stream_0_0_0_8b),
+    .out_w_hw_output_1_stencil_2_0_0_8b(w_hw_output_1_stencil_stream_1_0_0_8b),
+    .out_w_hw_output_1_stencil_packed_16b(w_hw_output_1_stencil_stream_2_0_0_8b),
 
     .clk(clk)
 );
@@ -326,95 +328,95 @@ endmodule
 
 module kernel__gray_1_stencil_update_stream(
 //Inputs
-  w_p2_in_bounded_stencil_0_0_0,
-  w_p2_in_bounded_stencil_1_0_0,
-  w_p2_in_bounded_stencil_2_0_0,
+  w_p2_in_bounded_stencil_0_0_0_8b,
+  w_p2_in_bounded_stencil_1_0_0_8b,
+  w_p2_in_bounded_stencil_2_0_0_8b,
 //Outputs
-  out_w_gray_1_stencil_0_0,
+  out_w_gray_1_stencil_0_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_p2_in_bounded_stencil_1_0_0;
-input  w_p2_in_bounded_stencil_0_0_0;
-input  w_p2_in_bounded_stencil_2_0_0;
+input  w_p2_in_bounded_stencil_1_0_0_8b;
+input  w_p2_in_bounded_stencil_0_0_0_8b;
+input  w_p2_in_bounded_stencil_2_0_0_8b;
 //Outputs
-output  out_w_gray_1_stencil_0_0;
+output  out_w_gray_1_stencil_0_0_8b;
 
 input  clk;
 
 
-wire  w_267;
-wire  w_268;
-wire  w_269;
-wire  w_270;
-wire  w_271;
-wire  w_272;
-wire  w_273;
-wire  w_274;
-wire  w_275;
-wire  w_276;
-wire  w_277;
-wire  w_278;
-wire  w_279;
-wire  w_280;
-wire  w_281;
-wire  w_282;
-wire  w_gray_1_stencil_0_0;
+wire  w_267_16b;
+wire  w_268_16b;
+wire  w_269_16b;
+wire  w_270_16b;
+wire  w_271_16b;
+wire  w_272_16b;
+wire  w_273_16b;
+wire  w_274_16b;
+wire  w_275_16b;
+wire  w_276_16b;
+wire  w_277_16b;
+wire  w_278_16b;
+wire  w_279_16b;
+wire  w_280_16b;
+wire  w_281_16b;
+wire  w_282_16b;
+wire  w_gray_1_stencil_0_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_gray_1_stencil_0_0=w_gray_1_stencil_0_0;
-assign  w_267  =  w_p2_in_bounded_stencil_0_0_0 ;
-assign  w_268  =  w_267 ;
-assign  w_269  = 1'b0;
+assign out_w_gray_1_stencil_0_0_8b = w_gray_1_stencil_0_0_8b;
+assign  w_267_16b  =  w_p2_in_bounded_stencil_0_0_0_8b ;
+assign  w_268_16b  =  w_267_16b ;
+assign  w_269_16b  = 1'b0;
 MULT_16b_pe mult_0 (
-  .a(w_269),
-  .b(w_268),
-  .c(w_270),
+  .a(w_269_16b),
+  .b(w_268_16b),
+  .c(w_270_16b),
   .clk(clk)
 );
-assign  w_271  =  w_p2_in_bounded_stencil_1_0_0 ;
-assign  w_272  =  w_271 ;
-assign  w_273  = 1'b0;
+assign  w_271_16b  =  w_p2_in_bounded_stencil_1_0_0_8b ;
+assign  w_272_16b  =  w_271_16b ;
+assign  w_273_16b  = 1'b0;
 MULT_16b_pe mult_1 (
-  .a(w_272),
-  .b(w_273),
-  .c(w_274),
+  .a(w_272_16b),
+  .b(w_273_16b),
+  .c(w_274_16b),
   .clk(clk)
 );
 ADD_16b_pe add_2 (
-  .a(w_274),
-  .b(w_270),
-  .c(w_275),
+  .a(w_274_16b),
+  .b(w_270_16b),
+  .c(w_275_16b),
   .clk(clk)
 );
-assign  w_276  =  w_p2_in_bounded_stencil_2_0_0 ;
-assign  w_277  =  w_276 ;
-assign  w_278  = 1'b0;
+assign  w_276_16b  =  w_p2_in_bounded_stencil_2_0_0_8b ;
+assign  w_277_16b  =  w_276_16b ;
+assign  w_278_16b  = 1'b0;
 MULT_16b_pe mult_3 (
-  .a(w_277),
-  .b(w_278),
-  .c(w_279),
+  .a(w_277_16b),
+  .b(w_278_16b),
+  .c(w_279_16b),
   .clk(clk)
 );
 ADD_16b_pe add_4 (
-  .a(w_275),
-  .b(w_279),
-  .c(w_280),
+  .a(w_275_16b),
+  .b(w_279_16b),
+  .c(w_280_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_5 (
-  .a(w_280),
+  .a(w_280_16b),
   .b(1'b0),
-  .c(w_281),
+  .c(w_281_16b),
   .clk(clk)
 );
-assign  w_282  =  w_281 ;
-assign  w_gray_1_stencil_0_0  =  w_282 ;
+assign  w_282_16b  =  w_281_16b ;
+assign  w_gray_1_stencil_0_0_8b  =  w_282_16b ;
 
 endmodule
 
@@ -426,2183 +428,2183 @@ endmodule
 
 module kernel__ratio_1_stencil_stream(
 //Inputs
-  w_gray_1_stencil_0_0,
-  w_gray_1_stencil_0_1,
-  w_gray_1_stencil_0_2,
-  w_gray_1_stencil_0_3,
-  w_gray_1_stencil_0_4,
-  w_gray_1_stencil_0_5,
-  w_gray_1_stencil_0_6,
-  w_gray_1_stencil_0_7,
-  w_gray_1_stencil_0_8,
-  w_gray_1_stencil_1_0,
-  w_gray_1_stencil_1_1,
-  w_gray_1_stencil_1_2,
-  w_gray_1_stencil_1_3,
-  w_gray_1_stencil_1_4,
-  w_gray_1_stencil_1_5,
-  w_gray_1_stencil_1_6,
-  w_gray_1_stencil_1_7,
-  w_gray_1_stencil_1_8,
-  w_gray_1_stencil_2_0,
-  w_gray_1_stencil_2_1,
-  w_gray_1_stencil_2_2,
-  w_gray_1_stencil_2_3,
-  w_gray_1_stencil_2_4,
-  w_gray_1_stencil_2_5,
-  w_gray_1_stencil_2_6,
-  w_gray_1_stencil_2_7,
-  w_gray_1_stencil_2_8,
-  w_gray_1_stencil_3_0,
-  w_gray_1_stencil_3_1,
-  w_gray_1_stencil_3_2,
-  w_gray_1_stencil_3_3,
-  w_gray_1_stencil_3_4,
-  w_gray_1_stencil_3_5,
-  w_gray_1_stencil_3_6,
-  w_gray_1_stencil_3_7,
-  w_gray_1_stencil_3_8,
-  w_gray_1_stencil_4_0,
-  w_gray_1_stencil_4_1,
-  w_gray_1_stencil_4_2,
-  w_gray_1_stencil_4_3,
-  w_gray_1_stencil_4_4,
-  w_gray_1_stencil_4_5,
-  w_gray_1_stencil_4_6,
-  w_gray_1_stencil_4_7,
-  w_gray_1_stencil_4_8,
-  w_gray_1_stencil_5_0,
-  w_gray_1_stencil_5_1,
-  w_gray_1_stencil_5_2,
-  w_gray_1_stencil_5_3,
-  w_gray_1_stencil_5_4,
-  w_gray_1_stencil_5_5,
-  w_gray_1_stencil_5_6,
-  w_gray_1_stencil_5_7,
-  w_gray_1_stencil_5_8,
-  w_gray_1_stencil_6_0,
-  w_gray_1_stencil_6_1,
-  w_gray_1_stencil_6_2,
-  w_gray_1_stencil_6_3,
-  w_gray_1_stencil_6_4,
-  w_gray_1_stencil_6_5,
-  w_gray_1_stencil_6_6,
-  w_gray_1_stencil_6_7,
-  w_gray_1_stencil_6_8,
-  w_gray_1_stencil_7_0,
-  w_gray_1_stencil_7_1,
-  w_gray_1_stencil_7_2,
-  w_gray_1_stencil_7_3,
-  w_gray_1_stencil_7_4,
-  w_gray_1_stencil_7_5,
-  w_gray_1_stencil_7_6,
-  w_gray_1_stencil_7_7,
-  w_gray_1_stencil_7_8,
-  w_gray_1_stencil_8_0,
-  w_gray_1_stencil_8_1,
-  w_gray_1_stencil_8_2,
-  w_gray_1_stencil_8_3,
-  w_gray_1_stencil_8_4,
-  w_gray_1_stencil_8_5,
-  w_gray_1_stencil_8_6,
-  w_gray_1_stencil_8_7,
-  w_gray_1_stencil_8_8,
+  w_gray_1_stencil_0_0_8b,
+  w_gray_1_stencil_0_1_8b,
+  w_gray_1_stencil_0_2_8b,
+  w_gray_1_stencil_0_3_8b,
+  w_gray_1_stencil_0_4_8b,
+  w_gray_1_stencil_0_5_8b,
+  w_gray_1_stencil_0_6_8b,
+  w_gray_1_stencil_0_7_8b,
+  w_gray_1_stencil_0_8_8b,
+  w_gray_1_stencil_1_0_8b,
+  w_gray_1_stencil_1_1_8b,
+  w_gray_1_stencil_1_2_8b,
+  w_gray_1_stencil_1_3_8b,
+  w_gray_1_stencil_1_4_8b,
+  w_gray_1_stencil_1_5_8b,
+  w_gray_1_stencil_1_6_8b,
+  w_gray_1_stencil_1_7_8b,
+  w_gray_1_stencil_1_8_8b,
+  w_gray_1_stencil_2_0_8b,
+  w_gray_1_stencil_2_1_8b,
+  w_gray_1_stencil_2_2_8b,
+  w_gray_1_stencil_2_3_8b,
+  w_gray_1_stencil_2_4_8b,
+  w_gray_1_stencil_2_5_8b,
+  w_gray_1_stencil_2_6_8b,
+  w_gray_1_stencil_2_7_8b,
+  w_gray_1_stencil_2_8_8b,
+  w_gray_1_stencil_3_0_8b,
+  w_gray_1_stencil_3_1_8b,
+  w_gray_1_stencil_3_2_8b,
+  w_gray_1_stencil_3_3_8b,
+  w_gray_1_stencil_3_4_8b,
+  w_gray_1_stencil_3_5_8b,
+  w_gray_1_stencil_3_6_8b,
+  w_gray_1_stencil_3_7_8b,
+  w_gray_1_stencil_3_8_8b,
+  w_gray_1_stencil_4_0_8b,
+  w_gray_1_stencil_4_1_8b,
+  w_gray_1_stencil_4_2_8b,
+  w_gray_1_stencil_4_3_8b,
+  w_gray_1_stencil_4_4_8b,
+  w_gray_1_stencil_4_5_8b,
+  w_gray_1_stencil_4_6_8b,
+  w_gray_1_stencil_4_7_8b,
+  w_gray_1_stencil_4_8_8b,
+  w_gray_1_stencil_5_0_8b,
+  w_gray_1_stencil_5_1_8b,
+  w_gray_1_stencil_5_2_8b,
+  w_gray_1_stencil_5_3_8b,
+  w_gray_1_stencil_5_4_8b,
+  w_gray_1_stencil_5_5_8b,
+  w_gray_1_stencil_5_6_8b,
+  w_gray_1_stencil_5_7_8b,
+  w_gray_1_stencil_5_8_8b,
+  w_gray_1_stencil_6_0_8b,
+  w_gray_1_stencil_6_1_8b,
+  w_gray_1_stencil_6_2_8b,
+  w_gray_1_stencil_6_3_8b,
+  w_gray_1_stencil_6_4_8b,
+  w_gray_1_stencil_6_5_8b,
+  w_gray_1_stencil_6_6_8b,
+  w_gray_1_stencil_6_7_8b,
+  w_gray_1_stencil_6_8_8b,
+  w_gray_1_stencil_7_0_8b,
+  w_gray_1_stencil_7_1_8b,
+  w_gray_1_stencil_7_2_8b,
+  w_gray_1_stencil_7_3_8b,
+  w_gray_1_stencil_7_4_8b,
+  w_gray_1_stencil_7_5_8b,
+  w_gray_1_stencil_7_6_8b,
+  w_gray_1_stencil_7_7_8b,
+  w_gray_1_stencil_7_8_8b,
+  w_gray_1_stencil_8_0_8b,
+  w_gray_1_stencil_8_1_8b,
+  w_gray_1_stencil_8_2_8b,
+  w_gray_1_stencil_8_3_8b,
+  w_gray_1_stencil_8_4_8b,
+  w_gray_1_stencil_8_5_8b,
+  w_gray_1_stencil_8_6_8b,
+  w_gray_1_stencil_8_7_8b,
+  w_gray_1_stencil_8_8_8b,
 //Outputs
-  out_w_ratio_1_stencil_0_0,
+  out_w_ratio_1_stencil_0_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_gray_1_stencil_3_5;
-input  w_gray_1_stencil_3_4;
-input  w_gray_1_stencil_3_7;
-input  w_gray_1_stencil_3_6;
-input  w_gray_1_stencil_3_1;
-input  w_gray_1_stencil_3_0;
-input  w_gray_1_stencil_3_3;
-input  w_gray_1_stencil_3_2;
-input  w_gray_1_stencil_4_6;
-input  w_gray_1_stencil_4_7;
-input  w_gray_1_stencil_4_4;
-input  w_gray_1_stencil_4_5;
-input  w_gray_1_stencil_4_2;
-input  w_gray_1_stencil_3_8;
-input  w_gray_1_stencil_4_0;
-input  w_gray_1_stencil_4_1;
-input  w_gray_1_stencil_5_7;
-input  w_gray_1_stencil_5_6;
-input  w_gray_1_stencil_5_5;
-input  w_gray_1_stencil_5_4;
-input  w_gray_1_stencil_5_3;
-input  w_gray_1_stencil_5_2;
-input  w_gray_1_stencil_5_1;
-input  w_gray_1_stencil_5_0;
-input  w_gray_1_stencil_6_0;
-input  w_gray_1_stencil_6_1;
-input  w_gray_1_stencil_6_2;
-input  w_gray_1_stencil_6_3;
-input  w_gray_1_stencil_6_4;
-input  w_gray_1_stencil_6_5;
-input  w_gray_1_stencil_6_6;
-input  w_gray_1_stencil_5_8;
-input  w_gray_1_stencil_0_2;
-input  w_gray_1_stencil_0_3;
-input  w_gray_1_stencil_0_0;
-input  w_gray_1_stencil_1_8;
-input  w_gray_1_stencil_0_6;
-input  w_gray_1_stencil_4_8;
-input  w_gray_1_stencil_0_4;
-input  w_gray_1_stencil_0_5;
-input  w_gray_1_stencil_1_3;
-input  w_gray_1_stencil_1_2;
-input  w_gray_1_stencil_1_1;
-input  w_gray_1_stencil_1_0;
-input  w_gray_1_stencil_1_7;
-input  w_gray_1_stencil_1_6;
-input  w_gray_1_stencil_1_5;
-input  w_gray_1_stencil_1_4;
-input  w_gray_1_stencil_6_8;
-input  w_gray_1_stencil_2_8;
-input  w_gray_1_stencil_2_4;
-input  w_gray_1_stencil_2_5;
-input  w_gray_1_stencil_2_6;
-input  w_gray_1_stencil_6_7;
-input  w_gray_1_stencil_2_0;
-input  w_gray_1_stencil_2_7;
-input  w_gray_1_stencil_2_2;
-input  w_gray_1_stencil_2_3;
-input  w_gray_1_stencil_8_8;
-input  w_gray_1_stencil_4_3;
-input  w_gray_1_stencil_0_1;
-input  w_gray_1_stencil_8_5;
-input  w_gray_1_stencil_0_7;
-input  w_gray_1_stencil_7_1;
-input  w_gray_1_stencil_7_0;
-input  w_gray_1_stencil_7_3;
-input  w_gray_1_stencil_7_2;
-input  w_gray_1_stencil_7_5;
-input  w_gray_1_stencil_7_4;
-input  w_gray_1_stencil_7_7;
-input  w_gray_1_stencil_7_6;
-input  w_gray_1_stencil_8_2;
-input  w_gray_1_stencil_7_8;
-input  w_gray_1_stencil_8_0;
-input  w_gray_1_stencil_8_1;
-input  w_gray_1_stencil_8_6;
-input  w_gray_1_stencil_8_7;
-input  w_gray_1_stencil_8_4;
-input  w_gray_1_stencil_2_1;
-input  w_gray_1_stencil_8_3;
-input  w_gray_1_stencil_0_8;
+input  w_gray_1_stencil_3_5_8b;
+input  w_gray_1_stencil_3_4_8b;
+input  w_gray_1_stencil_3_7_8b;
+input  w_gray_1_stencil_3_6_8b;
+input  w_gray_1_stencil_3_1_8b;
+input  w_gray_1_stencil_3_0_8b;
+input  w_gray_1_stencil_3_3_8b;
+input  w_gray_1_stencil_3_2_8b;
+input  w_gray_1_stencil_4_6_8b;
+input  w_gray_1_stencil_4_7_8b;
+input  w_gray_1_stencil_4_4_8b;
+input  w_gray_1_stencil_4_5_8b;
+input  w_gray_1_stencil_4_2_8b;
+input  w_gray_1_stencil_3_8_8b;
+input  w_gray_1_stencil_4_0_8b;
+input  w_gray_1_stencil_4_1_8b;
+input  w_gray_1_stencil_5_7_8b;
+input  w_gray_1_stencil_5_6_8b;
+input  w_gray_1_stencil_5_5_8b;
+input  w_gray_1_stencil_5_4_8b;
+input  w_gray_1_stencil_5_3_8b;
+input  w_gray_1_stencil_5_2_8b;
+input  w_gray_1_stencil_5_1_8b;
+input  w_gray_1_stencil_5_0_8b;
+input  w_gray_1_stencil_6_0_8b;
+input  w_gray_1_stencil_6_1_8b;
+input  w_gray_1_stencil_6_2_8b;
+input  w_gray_1_stencil_6_3_8b;
+input  w_gray_1_stencil_6_4_8b;
+input  w_gray_1_stencil_6_5_8b;
+input  w_gray_1_stencil_6_6_8b;
+input  w_gray_1_stencil_5_8_8b;
+input  w_gray_1_stencil_0_2_8b;
+input  w_gray_1_stencil_0_3_8b;
+input  w_gray_1_stencil_0_0_8b;
+input  w_gray_1_stencil_1_8_8b;
+input  w_gray_1_stencil_0_6_8b;
+input  w_gray_1_stencil_4_8_8b;
+input  w_gray_1_stencil_0_4_8b;
+input  w_gray_1_stencil_0_5_8b;
+input  w_gray_1_stencil_1_3_8b;
+input  w_gray_1_stencil_1_2_8b;
+input  w_gray_1_stencil_1_1_8b;
+input  w_gray_1_stencil_1_0_8b;
+input  w_gray_1_stencil_1_7_8b;
+input  w_gray_1_stencil_1_6_8b;
+input  w_gray_1_stencil_1_5_8b;
+input  w_gray_1_stencil_1_4_8b;
+input  w_gray_1_stencil_6_8_8b;
+input  w_gray_1_stencil_2_8_8b;
+input  w_gray_1_stencil_2_4_8b;
+input  w_gray_1_stencil_2_5_8b;
+input  w_gray_1_stencil_2_6_8b;
+input  w_gray_1_stencil_6_7_8b;
+input  w_gray_1_stencil_2_0_8b;
+input  w_gray_1_stencil_2_7_8b;
+input  w_gray_1_stencil_2_2_8b;
+input  w_gray_1_stencil_2_3_8b;
+input  w_gray_1_stencil_8_8_8b;
+input  w_gray_1_stencil_4_3_8b;
+input  w_gray_1_stencil_0_1_8b;
+input  w_gray_1_stencil_8_5_8b;
+input  w_gray_1_stencil_0_7_8b;
+input  w_gray_1_stencil_7_1_8b;
+input  w_gray_1_stencil_7_0_8b;
+input  w_gray_1_stencil_7_3_8b;
+input  w_gray_1_stencil_7_2_8b;
+input  w_gray_1_stencil_7_5_8b;
+input  w_gray_1_stencil_7_4_8b;
+input  w_gray_1_stencil_7_7_8b;
+input  w_gray_1_stencil_7_6_8b;
+input  w_gray_1_stencil_8_2_8b;
+input  w_gray_1_stencil_7_8_8b;
+input  w_gray_1_stencil_8_0_8b;
+input  w_gray_1_stencil_8_1_8b;
+input  w_gray_1_stencil_8_6_8b;
+input  w_gray_1_stencil_8_7_8b;
+input  w_gray_1_stencil_8_4_8b;
+input  w_gray_1_stencil_2_1_8b;
+input  w_gray_1_stencil_8_3_8b;
+input  w_gray_1_stencil_0_8_8b;
 //Outputs
-output  out_w_ratio_1_stencil_0_0;
+output  out_w_ratio_1_stencil_0_0_8b;
 
 input  clk;
 
 
-wire  r0_w_p2_sum_xa24_0;
-wire  r10_w_p2_sum_xa24_0;
-wire  r11_w_p2_sum_xa24_0;
-wire  r12_w_p2_sum_xa24_0;
-wire  r13_w_p2_sum_xa24_0;
-wire  r14_w_p2_sum_xa24_0;
-wire  r15_w_p2_sum_xa24_0;
-wire  r16_w_p2_sum_xa24_0;
-wire  r17_w_p2_sum_xa24_0;
-wire  r18_w_p2_sum_xa24_0;
-wire  r19_w_p2_sum_xa24_0;
-wire  r1_w_p2_sum_xa24_0;
-wire  r20_w_p2_sum_xa24_0;
-wire  r21_w_p2_sum_xa24_0;
-wire  r22_w_p2_sum_xa24_0;
-wire  r23_w_p2_sum_xa24_0;
-wire  r24_w_p2_sum_xa24_0;
-wire  r25_w_p2_sum_xa24_0;
-wire  r26_w_p2_sum_xa24_0;
-wire  r27_w_p2_sum_xa24_0;
-wire  r28_w_p2_sum_xa24_0;
-wire  r29_w_p2_sum_xa24_0;
-wire  r2_w_p2_sum_xa24_0;
-wire  r30_w_p2_sum_xa24_0;
-wire  r31_w_p2_sum_xa24_0;
-wire  r32_w_p2_sum_xa24_0;
-wire  r33_w_p2_sum_xa24_0;
-wire  r34_w_p2_sum_xa24_0;
-wire  r35_w_p2_sum_xa24_0;
-wire  r36_w_p2_sum_xa24_0;
-wire  r37_w_p2_sum_xa24_0;
-wire  r38_w_p2_sum_xa24_0;
-wire  r39_w_p2_sum_xa24_0;
-wire  r3_w_p2_sum_xa24_0;
-wire  r40_w_p2_sum_xa24_0;
-wire  r41_w_p2_sum_xa24_0;
-wire  r42_w_p2_sum_xa24_0;
-wire  r43_w_p2_sum_xa24_0;
-wire  r44_w_p2_sum_xa24_0;
-wire  r45_w_p2_sum_xa24_0;
-wire  r46_w_p2_sum_xa24_0;
-wire  r47_w_p2_sum_xa24_0;
-wire  r48_w_p2_sum_xa24_0;
-wire  r49_w_p2_sum_xa24_0;
-wire  r4_w_p2_sum_xa24_0;
-wire  r50_w_p2_sum_xa24_0;
-wire  r51_w_p2_sum_xa24_0;
-wire  r52_w_p2_sum_xa24_0;
-wire  r53_w_p2_sum_xa24_0;
-wire  r54_w_p2_sum_xa24_0;
-wire  r55_w_p2_sum_xa24_0;
-wire  r56_w_p2_sum_xa24_0;
-wire  r57_w_p2_sum_xa24_0;
-wire  r58_w_p2_sum_xa24_0;
-wire  r59_w_p2_sum_xa24_0;
-wire  r5_w_p2_sum_xa24_0;
-wire  r60_w_p2_sum_xa24_0;
-wire  r61_w_p2_sum_xa24_0;
-wire  r62_w_p2_sum_xa24_0;
-wire  r63_w_p2_sum_xa24_0;
-wire  r64_w_p2_sum_xa24_0;
-wire  r65_w_p2_sum_xa24_0;
-wire  r66_w_p2_sum_xa24_0;
-wire  r67_w_p2_sum_xa24_0;
-wire  r68_w_p2_sum_xa24_0;
-wire  r69_w_p2_sum_xa24_0;
-wire  r6_w_p2_sum_xa24_0;
-wire  r70_w_p2_sum_xa24_0;
-wire  r71_w_p2_sum_xa24_0;
-wire  r72_w_p2_sum_xa24_0;
-wire  r73_w_p2_sum_xa24_0;
-wire  r74_w_p2_sum_xa24_0;
-wire  r75_w_p2_sum_xa24_0;
-wire  r76_w_p2_sum_xa24_0;
-wire  r77_w_p2_sum_xa24_0;
-wire  r78_w_p2_sum_xa24_0;
-wire  r79_w_p2_sum_xa24_0;
-wire  r7_w_p2_sum_xa24_0;
-wire  r80_w_p2_sum_xa24_0;
-wire  r8_w_p2_sum_xa24_0;
-wire  r9_w_p2_sum_xa24_0;
-wire  w_283;
-wire  w_284;
-wire  w_285;
-wire  w_286;
-wire  w_287;
-wire  w_288;
-wire  w_289;
-wire  w_290;
-wire  w_291;
-wire  w_292;
-wire  w_293;
-wire  w_294;
-wire  w_295;
-wire  w_296;
-wire  w_297;
-wire  w_298;
-wire  w_299;
-wire  w_300;
-wire  w_301;
-wire  w_302;
-wire  w_303;
-wire  w_304;
-wire  w_305;
-wire  w_306;
-wire  w_307;
-wire  w_308;
-wire  w_309;
-wire  w_310;
-wire  w_311;
-wire  w_312;
-wire  w_313;
-wire  w_314;
-wire  w_315;
-wire  w_316;
-wire  w_317;
-wire  w_318;
-wire  w_319;
-wire  w_320;
-wire  w_321;
-wire  w_322;
-wire  w_323;
-wire  w_324;
-wire  w_325;
-wire  w_326;
-wire  w_327;
-wire  w_328;
-wire  w_329;
-wire  w_330;
-wire  w_331;
-wire  w_332;
-wire  w_333;
-wire  w_334;
-wire  w_335;
-wire  w_336;
-wire  w_337;
-wire  w_338;
-wire  w_339;
-wire  w_340;
-wire  w_341;
-wire  w_342;
-wire  w_343;
-wire  w_344;
-wire  w_345;
-wire  w_346;
-wire  w_347;
-wire  w_348;
-wire  w_349;
-wire  w_350;
-wire  w_351;
-wire  w_352;
-wire  w_353;
-wire  w_354;
-wire  w_355;
-wire  w_356;
-wire  w_357;
-wire  w_358;
-wire  w_359;
-wire  w_360;
-wire  w_361;
-wire  w_362;
-wire  w_363;
-wire  w_364;
-wire  w_365;
-wire  w_366;
-wire  w_367;
-wire  w_368;
-wire  w_369;
-wire  w_370;
-wire  w_371;
-wire  w_372;
-wire  w_373;
-wire  w_374;
-wire  w_375;
-wire  w_376;
-wire  w_377;
-wire  w_378;
-wire  w_379;
-wire  w_380;
-wire  w_381;
-wire  w_382;
-wire  w_383;
-wire  w_384;
-wire  w_385;
-wire  w_386;
-wire  w_387;
-wire  w_388;
-wire  w_389;
-wire  w_390;
-wire  w_391;
-wire  w_392;
-wire  w_393;
-wire  w_394;
-wire  w_395;
-wire  w_396;
-wire  w_397;
-wire  w_398;
-wire  w_399;
-wire  w_400;
-wire  w_401;
-wire  w_402;
-wire  w_403;
-wire  w_404;
-wire  w_405;
-wire  w_406;
-wire  w_407;
-wire  w_408;
-wire  w_409;
-wire  w_410;
-wire  w_411;
-wire  w_412;
-wire  w_413;
-wire  w_414;
-wire  w_415;
-wire  w_416;
-wire  w_417;
-wire  w_418;
-wire  w_419;
-wire  w_420;
-wire  w_421;
-wire  w_422;
-wire  w_423;
-wire  w_424;
-wire  w_425;
-wire  w_426;
-wire  w_427;
-wire  w_428;
-wire  w_429;
-wire  w_430;
-wire  w_431;
-wire  w_432;
-wire  w_433;
-wire  w_434;
-wire  w_435;
-wire  w_436;
-wire  w_437;
-wire  w_438;
-wire  w_439;
-wire  w_440;
-wire  w_441;
-wire  w_442;
-wire  w_443;
-wire  w_444;
-wire  w_445;
-wire  w_446;
-wire  w_447;
-wire  w_448;
-wire  w_449;
-wire  w_450;
-wire  w_451;
-wire  w_452;
-wire  w_453;
-wire  w_454;
-wire  w_455;
-wire  w_456;
-wire  w_457;
-wire  w_458;
-wire  w_459;
-wire  w_460;
-wire  w_461;
-wire  w_462;
-wire  w_463;
-wire  w_464;
-wire  w_465;
-wire  w_466;
-wire  w_467;
-wire  w_468;
-wire  w_469;
-wire  w_470;
-wire  w_471;
-wire  w_472;
-wire  w_473;
-wire  w_474;
-wire  w_475;
-wire  w_476;
-wire  w_477;
-wire  w_478;
-wire  w_479;
-wire  w_480;
-wire  w_481;
-wire  w_482;
-wire  w_483;
-wire  w_484;
-wire  w_485;
-wire  w_486;
-wire  w_487;
-wire  w_488;
-wire  w_489;
-wire  w_490;
-wire  w_491;
-wire  w_492;
-wire  w_493;
-wire  w_494;
-wire  w_495;
-wire  w_496;
-wire  w_497;
-wire  w_498;
-wire  w_499;
-wire  w_500;
-wire  w_501;
-wire  w_502;
-wire  w_503;
-wire  w_504;
-wire  w_505;
-wire  w_506;
-wire  w_507;
-wire  w_508;
-wire  w_509;
-wire  w_510;
-wire  w_511;
-wire  w_512;
-wire  w_513;
-wire  w_514;
-wire  w_515;
-wire  w_516;
-wire  w_517;
-wire  w_518;
-wire  w_519;
-wire  w_520;
-wire  w_521;
-wire  w_522;
-wire  w_523;
-wire  w_524;
-wire  w_525;
-wire  w_526;
-wire  w_527;
-wire  w_528;
-wire  w_529;
-wire  w_530;
-wire  w_531;
-wire  w_532;
-wire  w_533;
-wire  w_534;
-wire  w_535;
-wire  w_536;
-wire  w_537;
-wire  w_538;
-wire  w_539;
-wire  w_540;
-wire  w_541;
-wire  w_542;
-wire  w_543;
-wire  w_544;
-wire  w_545;
-wire  w_546;
-wire  w_547;
-wire  w_548;
-wire  w_549;
-wire  w_550;
-wire  w_551;
-wire  w_552;
-wire  w_553;
-wire  w_554;
-wire  w_555;
-wire  w_556;
-wire  w_557;
-wire  w_558;
-wire  w_559;
-wire  w_560;
-wire  w_561;
-wire  w_562;
-wire  w_563;
-wire  w_564;
-wire  w_565;
-wire  w_566;
-wire  w_567;
-wire  w_568;
-wire  w_569;
-wire  w_570;
-wire  w_571;
-wire  w_572;
-wire  w_573;
-wire  w_574;
-wire  w_575;
-wire  w_576;
-wire  w_577;
-wire  w_578;
-wire  w_579;
-wire  w_580;
-wire  w_581;
-wire  w_582;
-wire  w_583;
-wire  w_584;
-wire  w_585;
-wire  w_586;
-wire  w_587;
-wire  w_588;
-wire  w_589;
-wire  w_590;
-wire  w_591;
-wire  w_592;
-wire  w_593;
-wire  w_594;
-wire  w_595;
-wire  w_596;
-wire  w_597;
-wire  w_598;
-wire  w_599;
-wire  w_600;
-wire  w_601;
-wire  w_602;
-wire  w_603;
-wire  w_604;
-wire  w_605;
-wire  w_606;
-wire  w_607;
-wire  w_608;
-wire  w_609;
-wire  w_610;
-wire  w_611;
-wire  w_612;
-wire  w_613;
-wire  w_614;
-wire  w_615;
-wire  w_616;
-wire  w_617;
-wire  w_618;
-wire  w_619;
-wire  w_620;
-wire  w_621;
-wire  w_622;
-wire  w_623;
-wire  w_624;
-wire  w_625;
-wire  w_626;
-wire  w_627;
-wire  w_628;
-wire  w_629;
-wire  w_630;
-wire  w_631;
-wire  w_632;
-wire  w_633;
-wire  w_634;
-wire  w_635;
-wire  w_636;
-wire  w_637;
-wire  w_638;
-wire  w_639;
-wire  w_640;
-wire  w_641;
-wire  w_642;
-wire  w_643;
-wire  w_644;
-wire  w_645;
-wire  w_646;
-wire  w_647;
-wire  w_648;
-wire  w_649;
-wire  w_650;
-wire  w_651;
-wire  w_652;
-wire  w_653;
-wire  w_654;
-wire  w_655;
-wire  w_656;
-wire  w_657;
-wire  w_658;
-wire  w_659;
-wire  w_660;
-wire  w_661;
-wire  w_662;
-wire  w_663;
-wire  w_664;
-wire  w_665;
-wire  w_666;
-wire  w_667;
-wire  w_668;
-wire  w_669;
-wire  w_670;
-wire  w_671;
-wire  w_672;
-wire  w_673;
-wire  w_674;
-wire  w_675;
-wire  w_676;
-wire  w_677;
-wire  w_678;
-wire  w_679;
-wire  w_680;
-wire  w_681;
-wire  w_682;
-wire  w_683;
-wire  w_684;
-wire  w_685;
-wire  w_686;
-wire  w_687;
-wire  w_688;
-wire  w_689;
-wire  w_690;
-wire  w_691;
-wire  w_692;
-wire  w_693;
-wire  w_694;
-wire  w_695;
-wire  w_696;
-wire  w_697;
-wire  w_698;
-wire  w_699;
-wire  w_700;
-wire  w_701;
-wire  w_702;
-wire  w_703;
-wire  w_704;
-wire  w_705;
-wire  w_706;
-wire  w_707;
-wire  w_708;
-wire  w_709;
-wire  w_710;
-wire  w_711;
-wire  w_712;
-wire  w_713;
-wire  w_714;
-wire  w_715;
-wire  w_716;
-wire  w_717;
-wire  w_718;
-wire  w_719;
-wire  w_720;
-wire  w_721;
-wire  w_722;
-wire  w_723;
-wire  w_724;
-wire  w_725;
-wire  w_726;
-wire  w_727;
-wire  w_728;
-wire  w_729;
-wire  w_730;
-wire  w_731;
-wire  w_732;
-wire  w_733;
-wire  w_734;
-wire  w_735;
-wire  w_736;
-wire  w_737;
-wire  w_738;
-wire  w_739;
-wire  w_740;
-wire  w_741;
-wire  w_742;
-wire  w_743;
-wire  w_744;
-wire  w_745;
-wire  w_746;
-wire  w_747;
-wire  w_748;
-wire  w_749;
-wire  w_750;
-wire  w_751;
-wire  w_752;
-wire  w_753;
-wire  w_754;
-wire  w_755;
-wire  w_756;
-wire  w_757;
-wire  w_758;
-wire  w_759;
-wire  w_760;
-wire  w_761;
-wire  w_762;
-wire  w_763;
-wire  w_764;
-wire  w_765;
-wire  w_766;
-wire  w_767;
-wire  w_768;
-wire  w_769;
-wire  w_770;
-wire  w_771;
-wire  w_772;
-wire  w_773;
-wire  w_774;
-wire  w_775;
-wire  w_776;
-wire  w_777;
-wire  w_778;
-wire  w_779;
-wire  w_780;
-wire  w_781;
-wire  w_782;
-wire  w_p2_sum_xa24_0;
-wire  w_ratio_1_stencil_0_0;
+wire  r0_w_p2_sum_xa24_0_16b;
+wire  r10_w_p2_sum_xa24_0_16b;
+wire  r11_w_p2_sum_xa24_0_16b;
+wire  r12_w_p2_sum_xa24_0_16b;
+wire  r13_w_p2_sum_xa24_0_16b;
+wire  r14_w_p2_sum_xa24_0_16b;
+wire  r15_w_p2_sum_xa24_0_16b;
+wire  r16_w_p2_sum_xa24_0_16b;
+wire  r17_w_p2_sum_xa24_0_16b;
+wire  r18_w_p2_sum_xa24_0_16b;
+wire  r19_w_p2_sum_xa24_0_16b;
+wire  r1_w_p2_sum_xa24_0_16b;
+wire  r20_w_p2_sum_xa24_0_16b;
+wire  r21_w_p2_sum_xa24_0_16b;
+wire  r22_w_p2_sum_xa24_0_16b;
+wire  r23_w_p2_sum_xa24_0_16b;
+wire  r24_w_p2_sum_xa24_0_16b;
+wire  r25_w_p2_sum_xa24_0_16b;
+wire  r26_w_p2_sum_xa24_0_16b;
+wire  r27_w_p2_sum_xa24_0_16b;
+wire  r28_w_p2_sum_xa24_0_16b;
+wire  r29_w_p2_sum_xa24_0_16b;
+wire  r2_w_p2_sum_xa24_0_16b;
+wire  r30_w_p2_sum_xa24_0_16b;
+wire  r31_w_p2_sum_xa24_0_16b;
+wire  r32_w_p2_sum_xa24_0_16b;
+wire  r33_w_p2_sum_xa24_0_16b;
+wire  r34_w_p2_sum_xa24_0_16b;
+wire  r35_w_p2_sum_xa24_0_16b;
+wire  r36_w_p2_sum_xa24_0_16b;
+wire  r37_w_p2_sum_xa24_0_16b;
+wire  r38_w_p2_sum_xa24_0_16b;
+wire  r39_w_p2_sum_xa24_0_16b;
+wire  r3_w_p2_sum_xa24_0_16b;
+wire  r40_w_p2_sum_xa24_0_16b;
+wire  r41_w_p2_sum_xa24_0_16b;
+wire  r42_w_p2_sum_xa24_0_16b;
+wire  r43_w_p2_sum_xa24_0_16b;
+wire  r44_w_p2_sum_xa24_0_16b;
+wire  r45_w_p2_sum_xa24_0_16b;
+wire  r46_w_p2_sum_xa24_0_16b;
+wire  r47_w_p2_sum_xa24_0_16b;
+wire  r48_w_p2_sum_xa24_0_16b;
+wire  r49_w_p2_sum_xa24_0_16b;
+wire  r4_w_p2_sum_xa24_0_16b;
+wire  r50_w_p2_sum_xa24_0_16b;
+wire  r51_w_p2_sum_xa24_0_16b;
+wire  r52_w_p2_sum_xa24_0_16b;
+wire  r53_w_p2_sum_xa24_0_16b;
+wire  r54_w_p2_sum_xa24_0_16b;
+wire  r55_w_p2_sum_xa24_0_16b;
+wire  r56_w_p2_sum_xa24_0_16b;
+wire  r57_w_p2_sum_xa24_0_16b;
+wire  r58_w_p2_sum_xa24_0_16b;
+wire  r59_w_p2_sum_xa24_0_16b;
+wire  r5_w_p2_sum_xa24_0_16b;
+wire  r60_w_p2_sum_xa24_0_16b;
+wire  r61_w_p2_sum_xa24_0_16b;
+wire  r62_w_p2_sum_xa24_0_16b;
+wire  r63_w_p2_sum_xa24_0_16b;
+wire  r64_w_p2_sum_xa24_0_16b;
+wire  r65_w_p2_sum_xa24_0_16b;
+wire  r66_w_p2_sum_xa24_0_16b;
+wire  r67_w_p2_sum_xa24_0_16b;
+wire  r68_w_p2_sum_xa24_0_16b;
+wire  r69_w_p2_sum_xa24_0_16b;
+wire  r6_w_p2_sum_xa24_0_16b;
+wire  r70_w_p2_sum_xa24_0_16b;
+wire  r71_w_p2_sum_xa24_0_16b;
+wire  r72_w_p2_sum_xa24_0_16b;
+wire  r73_w_p2_sum_xa24_0_16b;
+wire  r74_w_p2_sum_xa24_0_16b;
+wire  r75_w_p2_sum_xa24_0_16b;
+wire  r76_w_p2_sum_xa24_0_16b;
+wire  r77_w_p2_sum_xa24_0_16b;
+wire  r78_w_p2_sum_xa24_0_16b;
+wire  r79_w_p2_sum_xa24_0_16b;
+wire  r7_w_p2_sum_xa24_0_16b;
+wire  r80_w_p2_sum_xa24_0_16b;
+wire  r8_w_p2_sum_xa24_0_16b;
+wire  r9_w_p2_sum_xa24_0_16b;
+wire  w_283_16b;
+wire  w_284_16b;
+wire  w_285_16b;
+wire  w_286_16b;
+wire  w_287_16b;
+wire  w_288_16b;
+wire  w_289_16b;
+wire  w_290_16b;
+wire  w_291_16b;
+wire  w_292_16b;
+wire  w_293_16b;
+wire  w_294_16b;
+wire  w_295_16b;
+wire  w_296_16b;
+wire  w_297_16b;
+wire  w_298_16b;
+wire  w_299_16b;
+wire  w_300_16b;
+wire  w_301_16b;
+wire  w_302_16b;
+wire  w_303_16b;
+wire  w_304_16b;
+wire  w_305_16b;
+wire  w_306_16b;
+wire  w_307_16b;
+wire  w_308_16b;
+wire  w_309_16b;
+wire  w_310_16b;
+wire  w_311_16b;
+wire  w_312_16b;
+wire  w_313_16b;
+wire  w_314_16b;
+wire  w_315_16b;
+wire  w_316_16b;
+wire  w_317_16b;
+wire  w_318_16b;
+wire  w_319_16b;
+wire  w_320_16b;
+wire  w_321_16b;
+wire  w_322_16b;
+wire  w_323_16b;
+wire  w_324_16b;
+wire  w_325_16b;
+wire  w_326_16b;
+wire  w_327_16b;
+wire  w_328_16b;
+wire  w_329_16b;
+wire  w_330_16b;
+wire  w_331_16b;
+wire  w_332_16b;
+wire  w_333_16b;
+wire  w_334_16b;
+wire  w_335_16b;
+wire  w_336_16b;
+wire  w_337_16b;
+wire  w_338_16b;
+wire  w_339_16b;
+wire  w_340_16b;
+wire  w_341_16b;
+wire  w_342_16b;
+wire  w_343_16b;
+wire  w_344_16b;
+wire  w_345_16b;
+wire  w_346_16b;
+wire  w_347_16b;
+wire  w_348_16b;
+wire  w_349_16b;
+wire  w_350_16b;
+wire  w_351_16b;
+wire  w_352_16b;
+wire  w_353_16b;
+wire  w_354_16b;
+wire  w_355_16b;
+wire  w_356_16b;
+wire  w_357_16b;
+wire  w_358_16b;
+wire  w_359_16b;
+wire  w_360_16b;
+wire  w_361_16b;
+wire  w_362_16b;
+wire  w_363_16b;
+wire  w_364_16b;
+wire  w_365_16b;
+wire  w_366_16b;
+wire  w_367_16b;
+wire  w_368_16b;
+wire  w_369_16b;
+wire  w_370_16b;
+wire  w_371_16b;
+wire  w_372_16b;
+wire  w_373_16b;
+wire  w_374_16b;
+wire  w_375_16b;
+wire  w_376_16b;
+wire  w_377_16b;
+wire  w_378_16b;
+wire  w_379_16b;
+wire  w_380_16b;
+wire  w_381_16b;
+wire  w_382_16b;
+wire  w_383_16b;
+wire  w_384_16b;
+wire  w_385_16b;
+wire  w_386_16b;
+wire  w_387_16b;
+wire  w_388_16b;
+wire  w_389_16b;
+wire  w_390_16b;
+wire  w_391_16b;
+wire  w_392_16b;
+wire  w_393_16b;
+wire  w_394_16b;
+wire  w_395_16b;
+wire  w_396_16b;
+wire  w_397_16b;
+wire  w_398_16b;
+wire  w_399_16b;
+wire  w_400_16b;
+wire  w_401_16b;
+wire  w_402_16b;
+wire  w_403_16b;
+wire  w_404_16b;
+wire  w_405_16b;
+wire  w_406_16b;
+wire  w_407_16b;
+wire  w_408_16b;
+wire  w_409_16b;
+wire  w_410_16b;
+wire  w_411_16b;
+wire  w_412_16b;
+wire  w_413_16b;
+wire  w_414_16b;
+wire  w_415_16b;
+wire  w_416_16b;
+wire  w_417_16b;
+wire  w_418_16b;
+wire  w_419_16b;
+wire  w_420_16b;
+wire  w_421_16b;
+wire  w_422_16b;
+wire  w_423_16b;
+wire  w_424_16b;
+wire  w_425_16b;
+wire  w_426_16b;
+wire  w_427_16b;
+wire  w_428_16b;
+wire  w_429_16b;
+wire  w_430_16b;
+wire  w_431_16b;
+wire  w_432_16b;
+wire  w_433_16b;
+wire  w_434_16b;
+wire  w_435_16b;
+wire  w_436_16b;
+wire  w_437_16b;
+wire  w_438_16b;
+wire  w_439_16b;
+wire  w_440_16b;
+wire  w_441_16b;
+wire  w_442_16b;
+wire  w_443_16b;
+wire  w_444_16b;
+wire  w_445_16b;
+wire  w_446_16b;
+wire  w_447_16b;
+wire  w_448_16b;
+wire  w_449_16b;
+wire  w_450_16b;
+wire  w_451_16b;
+wire  w_452_16b;
+wire  w_453_16b;
+wire  w_454_16b;
+wire  w_455_16b;
+wire  w_456_16b;
+wire  w_457_16b;
+wire  w_458_16b;
+wire  w_459_16b;
+wire  w_460_16b;
+wire  w_461_16b;
+wire  w_462_16b;
+wire  w_463_16b;
+wire  w_464_16b;
+wire  w_465_16b;
+wire  w_466_16b;
+wire  w_467_16b;
+wire  w_468_16b;
+wire  w_469_16b;
+wire  w_470_16b;
+wire  w_471_16b;
+wire  w_472_16b;
+wire  w_473_16b;
+wire  w_474_16b;
+wire  w_475_16b;
+wire  w_476_16b;
+wire  w_477_16b;
+wire  w_478_16b;
+wire  w_479_16b;
+wire  w_480_16b;
+wire  w_481_16b;
+wire  w_482_16b;
+wire  w_483_16b;
+wire  w_484_16b;
+wire  w_485_16b;
+wire  w_486_16b;
+wire  w_487_16b;
+wire  w_488_16b;
+wire  w_489_16b;
+wire  w_490_16b;
+wire  w_491_16b;
+wire  w_492_16b;
+wire  w_493_16b;
+wire  w_494_16b;
+wire  w_495_16b;
+wire  w_496_16b;
+wire  w_497_16b;
+wire  w_498_16b;
+wire  w_499_16b;
+wire  w_500_16b;
+wire  w_501_16b;
+wire  w_502_16b;
+wire  w_503_16b;
+wire  w_504_16b;
+wire  w_505_16b;
+wire  w_506_16b;
+wire  w_507_16b;
+wire  w_508_16b;
+wire  w_509_16b;
+wire  w_510_16b;
+wire  w_511_16b;
+wire  w_512_16b;
+wire  w_513_16b;
+wire  w_514_16b;
+wire  w_515_16b;
+wire  w_516_16b;
+wire  w_517_16b;
+wire  w_518_16b;
+wire  w_519_16b;
+wire  w_520_16b;
+wire  w_521_16b;
+wire  w_522_16b;
+wire  w_523_16b;
+wire  w_524_16b;
+wire  w_525_16b;
+wire  w_526_16b;
+wire  w_527_16b;
+wire  w_528_16b;
+wire  w_529_16b;
+wire  w_530_16b;
+wire  w_531_16b;
+wire  w_532_16b;
+wire  w_533_16b;
+wire  w_534_16b;
+wire  w_535_16b;
+wire  w_536_16b;
+wire  w_537_16b;
+wire  w_538_16b;
+wire  w_539_16b;
+wire  w_540_16b;
+wire  w_541_16b;
+wire  w_542_16b;
+wire  w_543_16b;
+wire  w_544_16b;
+wire  w_545_16b;
+wire  w_546_16b;
+wire  w_547_16b;
+wire  w_548_16b;
+wire  w_549_16b;
+wire  w_550_16b;
+wire  w_551_16b;
+wire  w_552_16b;
+wire  w_553_16b;
+wire  w_554_16b;
+wire  w_555_16b;
+wire  w_556_16b;
+wire  w_557_16b;
+wire  w_558_16b;
+wire  w_559_16b;
+wire  w_560_16b;
+wire  w_561_16b;
+wire  w_562_16b;
+wire  w_563_16b;
+wire  w_564_16b;
+wire  w_565_16b;
+wire  w_566_16b;
+wire  w_567_16b;
+wire  w_568_16b;
+wire  w_569_16b;
+wire  w_570_16b;
+wire  w_571_16b;
+wire  w_572_16b;
+wire  w_573_16b;
+wire  w_574_16b;
+wire  w_575_16b;
+wire  w_576_16b;
+wire  w_577_16b;
+wire  w_578_16b;
+wire  w_579_16b;
+wire  w_580_16b;
+wire  w_581_16b;
+wire  w_582_16b;
+wire  w_583_16b;
+wire  w_584_16b;
+wire  w_585_16b;
+wire  w_586_16b;
+wire  w_587_16b;
+wire  w_588_16b;
+wire  w_589_16b;
+wire  w_590_16b;
+wire  w_591_16b;
+wire  w_592_16b;
+wire  w_593_16b;
+wire  w_594_16b;
+wire  w_595_16b;
+wire  w_596_16b;
+wire  w_597_16b;
+wire  w_598_16b;
+wire  w_599_16b;
+wire  w_600_16b;
+wire  w_601_16b;
+wire  w_602_16b;
+wire  w_603_16b;
+wire  w_604_16b;
+wire  w_605_16b;
+wire  w_606_16b;
+wire  w_607_16b;
+wire  w_608_16b;
+wire  w_609_16b;
+wire  w_610_16b;
+wire  w_611_16b;
+wire  w_612_16b;
+wire  w_613_16b;
+wire  w_614_16b;
+wire  w_615_16b;
+wire  w_616_16b;
+wire  w_617_16b;
+wire  w_618_16b;
+wire  w_619_16b;
+wire  w_620_16b;
+wire  w_621_16b;
+wire  w_622_16b;
+wire  w_623_16b;
+wire  w_624_16b;
+wire  w_625_16b;
+wire  w_626_16b;
+wire  w_627_16b;
+wire  w_628_16b;
+wire  w_629_16b;
+wire  w_630_16b;
+wire  w_631_16b;
+wire  w_632_16b;
+wire  w_633_16b;
+wire  w_634_16b;
+wire  w_635_16b;
+wire  w_636_16b;
+wire  w_637_16b;
+wire  w_638_16b;
+wire  w_639_16b;
+wire  w_640_16b;
+wire  w_641_16b;
+wire  w_642_16b;
+wire  w_643_16b;
+wire  w_644_16b;
+wire  w_645_16b;
+wire  w_646_16b;
+wire  w_647_16b;
+wire  w_648_16b;
+wire  w_649_16b;
+wire  w_650_16b;
+wire  w_651_16b;
+wire  w_652_16b;
+wire  w_653_16b;
+wire  w_654_16b;
+wire  w_655_16b;
+wire  w_656_16b;
+wire  w_657_16b;
+wire  w_658_16b;
+wire  w_659_16b;
+wire  w_660_16b;
+wire  w_661_16b;
+wire  w_662_16b;
+wire  w_663_16b;
+wire  w_664_16b;
+wire  w_665_16b;
+wire  w_666_16b;
+wire  w_667_16b;
+wire  w_668_16b;
+wire  w_669_16b;
+wire  w_670_16b;
+wire  w_671_16b;
+wire  w_672_16b;
+wire  w_673_16b;
+wire  w_674_16b;
+wire  w_675_16b;
+wire  w_676_16b;
+wire  w_677_16b;
+wire  w_678_16b;
+wire  w_679_16b;
+wire  w_680_16b;
+wire  w_681_16b;
+wire  w_682_16b;
+wire  w_683_16b;
+wire  w_684_16b;
+wire  w_685_16b;
+wire  w_686_16b;
+wire  w_687_16b;
+wire  w_688_16b;
+wire  w_689_16b;
+wire  w_690_16b;
+wire  w_691_16b;
+wire  w_692_16b;
+wire  w_693_16b;
+wire  w_694_16b;
+wire  w_695_16b;
+wire  w_696_16b;
+wire  w_697_16b;
+wire  w_698_16b;
+wire  w_699_16b;
+wire  w_700_16b;
+wire  w_701_16b;
+wire  w_702_16b;
+wire  w_703_16b;
+wire  w_704_16b;
+wire  w_705_16b;
+wire  w_706_16b;
+wire  w_707_16b;
+wire  w_708_16b;
+wire  w_709_16b;
+wire  w_710_16b;
+wire  w_711_16b;
+wire  w_712_16b;
+wire  w_713_16b;
+wire  w_714_16b;
+wire  w_715_16b;
+wire  w_716_16b;
+wire  w_717_16b;
+wire  w_718_16b;
+wire  w_719_16b;
+wire  w_720_16b;
+wire  w_721_16b;
+wire  w_722_16b;
+wire  w_723_16b;
+wire  w_724_16b;
+wire  w_725_16b;
+wire  w_726_16b;
+wire  w_727_16b;
+wire  w_728_16b;
+wire  w_729_16b;
+wire  w_730_16b;
+wire  w_731_16b;
+wire  w_732_16b;
+wire  w_733_16b;
+wire  w_734_16b;
+wire  w_735_16b;
+wire  w_736_16b;
+wire  w_737_16b;
+wire  w_738_16b;
+wire  w_739_16b;
+wire  w_740_16b;
+wire  w_741_16b;
+wire  w_742_16b;
+wire  w_743_16b;
+wire  w_744_16b;
+wire  w_745_16b;
+wire  w_746_16b;
+wire  w_747_16b;
+wire  w_748_16b;
+wire  w_749_16b;
+wire  w_750_16b;
+wire  w_751_16b;
+wire  w_752_16b;
+wire  w_753_16b;
+wire  w_754_16b;
+wire  w_755_16b;
+wire  w_756_16b;
+wire  w_757_16b;
+wire  w_758_16b;
+wire  w_759_16b;
+wire  w_760_16b;
+wire  w_761_16b;
+wire  w_762_16b;
+wire  w_763_16b;
+wire  w_764_16b;
+wire  w_765_16b;
+wire  w_766_16b;
+wire  w_767_16b;
+wire  w_768_16b;
+wire  w_769_16b;
+wire  w_770_16b;
+wire  w_771_16b;
+wire  w_772_16b;
+wire  w_773_16b;
+wire  w_774_16b;
+wire  w_775_16b;
+wire  w_776_16b;
+wire  w_777_16b;
+wire  w_778_16b;
+wire  w_779_16b;
+wire  w_780_16b;
+wire  w_781_16b;
+wire  w_782_16b;
+wire  w_p2_sum_xa24_0_16b;
+wire  w_ratio_1_stencil_0_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_ratio_1_stencil_0_0=w_ratio_1_stencil_0_0;
-assign  r0_w_p2_sum_xa24_0  =  w_287 ;
-assign  r10_w_p2_sum_xa24_0  =  w_345 ;
-assign  r11_w_p2_sum_xa24_0  =  w_351 ;
-assign  r12_w_p2_sum_xa24_0  =  w_357 ;
-assign  r13_w_p2_sum_xa24_0  =  w_363 ;
-assign  r14_w_p2_sum_xa24_0  =  w_369 ;
-assign  r15_w_p2_sum_xa24_0  =  w_375 ;
-assign  r16_w_p2_sum_xa24_0  =  w_381 ;
-assign  r17_w_p2_sum_xa24_0  =  w_387 ;
-assign  r18_w_p2_sum_xa24_0  =  w_393 ;
-assign  r19_w_p2_sum_xa24_0  =  w_399 ;
-assign  r1_w_p2_sum_xa24_0  =  w_293 ;
-assign  r20_w_p2_sum_xa24_0  =  w_405 ;
-assign  r21_w_p2_sum_xa24_0  =  w_411 ;
-assign  r22_w_p2_sum_xa24_0  =  w_417 ;
-assign  r23_w_p2_sum_xa24_0  =  w_423 ;
-assign  r24_w_p2_sum_xa24_0  =  w_429 ;
-assign  r25_w_p2_sum_xa24_0  =  w_435 ;
-assign  r26_w_p2_sum_xa24_0  =  w_441 ;
-assign  r27_w_p2_sum_xa24_0  =  w_447 ;
-assign  r28_w_p2_sum_xa24_0  =  w_453 ;
-assign  r29_w_p2_sum_xa24_0  =  w_459 ;
-assign  r2_w_p2_sum_xa24_0  =  w_299 ;
-assign  r30_w_p2_sum_xa24_0  =  w_465 ;
-assign  r31_w_p2_sum_xa24_0  =  w_471 ;
-assign  r32_w_p2_sum_xa24_0  =  w_477 ;
-assign  r33_w_p2_sum_xa24_0  =  w_483 ;
-assign  r34_w_p2_sum_xa24_0  =  w_489 ;
-assign  r35_w_p2_sum_xa24_0  =  w_495 ;
-assign  r36_w_p2_sum_xa24_0  =  w_501 ;
-assign  r37_w_p2_sum_xa24_0  =  w_507 ;
-assign  r38_w_p2_sum_xa24_0  =  w_513 ;
-assign  r39_w_p2_sum_xa24_0  =  w_519 ;
-assign  r3_w_p2_sum_xa24_0  =  w_305 ;
-assign  r40_w_p2_sum_xa24_0  =  w_525 ;
-assign  r41_w_p2_sum_xa24_0  =  w_531 ;
-assign  r42_w_p2_sum_xa24_0  =  w_537 ;
-assign  r43_w_p2_sum_xa24_0  =  w_543 ;
-assign  r44_w_p2_sum_xa24_0  =  w_549 ;
-assign  r45_w_p2_sum_xa24_0  =  w_555 ;
-assign  r46_w_p2_sum_xa24_0  =  w_561 ;
-assign  r47_w_p2_sum_xa24_0  =  w_567 ;
-assign  r48_w_p2_sum_xa24_0  =  w_573 ;
-assign  r49_w_p2_sum_xa24_0  =  w_579 ;
-assign  r4_w_p2_sum_xa24_0  =  w_311 ;
-assign  r50_w_p2_sum_xa24_0  =  w_585 ;
-assign  r51_w_p2_sum_xa24_0  =  w_591 ;
-assign  r52_w_p2_sum_xa24_0  =  w_597 ;
-assign  r53_w_p2_sum_xa24_0  =  w_603 ;
-assign  r54_w_p2_sum_xa24_0  =  w_609 ;
-assign  r55_w_p2_sum_xa24_0  =  w_615 ;
-assign  r56_w_p2_sum_xa24_0  =  w_621 ;
-assign  r57_w_p2_sum_xa24_0  =  w_627 ;
-assign  r58_w_p2_sum_xa24_0  =  w_633 ;
-assign  r59_w_p2_sum_xa24_0  =  w_639 ;
-assign  r5_w_p2_sum_xa24_0  =  w_317 ;
-assign  r60_w_p2_sum_xa24_0  =  w_645 ;
-assign  r61_w_p2_sum_xa24_0  =  w_651 ;
-assign  r62_w_p2_sum_xa24_0  =  w_657 ;
-assign  r63_w_p2_sum_xa24_0  =  w_663 ;
-assign  r64_w_p2_sum_xa24_0  =  w_669 ;
-assign  r65_w_p2_sum_xa24_0  =  w_675 ;
-assign  r66_w_p2_sum_xa24_0  =  w_681 ;
-assign  r67_w_p2_sum_xa24_0  =  w_687 ;
-assign  r68_w_p2_sum_xa24_0  =  w_693 ;
-assign  r69_w_p2_sum_xa24_0  =  w_699 ;
-assign  r6_w_p2_sum_xa24_0  =  w_323 ;
-assign  r70_w_p2_sum_xa24_0  =  w_705 ;
-assign  r71_w_p2_sum_xa24_0  =  w_711 ;
-assign  r72_w_p2_sum_xa24_0  =  w_715 ;
-assign  r73_w_p2_sum_xa24_0  =  w_721 ;
-assign  r74_w_p2_sum_xa24_0  =  w_727 ;
-assign  r75_w_p2_sum_xa24_0  =  w_733 ;
-assign  r76_w_p2_sum_xa24_0  =  w_739 ;
-assign  r77_w_p2_sum_xa24_0  =  w_745 ;
-assign  r78_w_p2_sum_xa24_0  =  w_751 ;
-assign  r79_w_p2_sum_xa24_0  =  w_757 ;
-assign  r7_w_p2_sum_xa24_0  =  w_329 ;
-assign  r80_w_p2_sum_xa24_0  =  w_761 ;
-assign  r8_w_p2_sum_xa24_0  =  w_333 ;
-assign  r9_w_p2_sum_xa24_0  =  w_339 ;
-assign  w_283  = 1'b0;
-assign  w_284  = 1'b0;
-assign  w_285  =  w_gray_1_stencil_0_0 ;
-assign  w_286  =  w_285 ;
+assign out_w_ratio_1_stencil_0_0_8b = w_ratio_1_stencil_0_0_8b;
+assign  r0_w_p2_sum_xa24_0_16b  =  w_287_16b ;
+assign  r10_w_p2_sum_xa24_0_16b  =  w_345_16b ;
+assign  r11_w_p2_sum_xa24_0_16b  =  w_351_16b ;
+assign  r12_w_p2_sum_xa24_0_16b  =  w_357_16b ;
+assign  r13_w_p2_sum_xa24_0_16b  =  w_363_16b ;
+assign  r14_w_p2_sum_xa24_0_16b  =  w_369_16b ;
+assign  r15_w_p2_sum_xa24_0_16b  =  w_375_16b ;
+assign  r16_w_p2_sum_xa24_0_16b  =  w_381_16b ;
+assign  r17_w_p2_sum_xa24_0_16b  =  w_387_16b ;
+assign  r18_w_p2_sum_xa24_0_16b  =  w_393_16b ;
+assign  r19_w_p2_sum_xa24_0_16b  =  w_399_16b ;
+assign  r1_w_p2_sum_xa24_0_16b  =  w_293_16b ;
+assign  r20_w_p2_sum_xa24_0_16b  =  w_405_16b ;
+assign  r21_w_p2_sum_xa24_0_16b  =  w_411_16b ;
+assign  r22_w_p2_sum_xa24_0_16b  =  w_417_16b ;
+assign  r23_w_p2_sum_xa24_0_16b  =  w_423_16b ;
+assign  r24_w_p2_sum_xa24_0_16b  =  w_429_16b ;
+assign  r25_w_p2_sum_xa24_0_16b  =  w_435_16b ;
+assign  r26_w_p2_sum_xa24_0_16b  =  w_441_16b ;
+assign  r27_w_p2_sum_xa24_0_16b  =  w_447_16b ;
+assign  r28_w_p2_sum_xa24_0_16b  =  w_453_16b ;
+assign  r29_w_p2_sum_xa24_0_16b  =  w_459_16b ;
+assign  r2_w_p2_sum_xa24_0_16b  =  w_299_16b ;
+assign  r30_w_p2_sum_xa24_0_16b  =  w_465_16b ;
+assign  r31_w_p2_sum_xa24_0_16b  =  w_471_16b ;
+assign  r32_w_p2_sum_xa24_0_16b  =  w_477_16b ;
+assign  r33_w_p2_sum_xa24_0_16b  =  w_483_16b ;
+assign  r34_w_p2_sum_xa24_0_16b  =  w_489_16b ;
+assign  r35_w_p2_sum_xa24_0_16b  =  w_495_16b ;
+assign  r36_w_p2_sum_xa24_0_16b  =  w_501_16b ;
+assign  r37_w_p2_sum_xa24_0_16b  =  w_507_16b ;
+assign  r38_w_p2_sum_xa24_0_16b  =  w_513_16b ;
+assign  r39_w_p2_sum_xa24_0_16b  =  w_519_16b ;
+assign  r3_w_p2_sum_xa24_0_16b  =  w_305_16b ;
+assign  r40_w_p2_sum_xa24_0_16b  =  w_525_16b ;
+assign  r41_w_p2_sum_xa24_0_16b  =  w_531_16b ;
+assign  r42_w_p2_sum_xa24_0_16b  =  w_537_16b ;
+assign  r43_w_p2_sum_xa24_0_16b  =  w_543_16b ;
+assign  r44_w_p2_sum_xa24_0_16b  =  w_549_16b ;
+assign  r45_w_p2_sum_xa24_0_16b  =  w_555_16b ;
+assign  r46_w_p2_sum_xa24_0_16b  =  w_561_16b ;
+assign  r47_w_p2_sum_xa24_0_16b  =  w_567_16b ;
+assign  r48_w_p2_sum_xa24_0_16b  =  w_573_16b ;
+assign  r49_w_p2_sum_xa24_0_16b  =  w_579_16b ;
+assign  r4_w_p2_sum_xa24_0_16b  =  w_311_16b ;
+assign  r50_w_p2_sum_xa24_0_16b  =  w_585_16b ;
+assign  r51_w_p2_sum_xa24_0_16b  =  w_591_16b ;
+assign  r52_w_p2_sum_xa24_0_16b  =  w_597_16b ;
+assign  r53_w_p2_sum_xa24_0_16b  =  w_603_16b ;
+assign  r54_w_p2_sum_xa24_0_16b  =  w_609_16b ;
+assign  r55_w_p2_sum_xa24_0_16b  =  w_615_16b ;
+assign  r56_w_p2_sum_xa24_0_16b  =  w_621_16b ;
+assign  r57_w_p2_sum_xa24_0_16b  =  w_627_16b ;
+assign  r58_w_p2_sum_xa24_0_16b  =  w_633_16b ;
+assign  r59_w_p2_sum_xa24_0_16b  =  w_639_16b ;
+assign  r5_w_p2_sum_xa24_0_16b  =  w_317_16b ;
+assign  r60_w_p2_sum_xa24_0_16b  =  w_645_16b ;
+assign  r61_w_p2_sum_xa24_0_16b  =  w_651_16b ;
+assign  r62_w_p2_sum_xa24_0_16b  =  w_657_16b ;
+assign  r63_w_p2_sum_xa24_0_16b  =  w_663_16b ;
+assign  r64_w_p2_sum_xa24_0_16b  =  w_669_16b ;
+assign  r65_w_p2_sum_xa24_0_16b  =  w_675_16b ;
+assign  r66_w_p2_sum_xa24_0_16b  =  w_681_16b ;
+assign  r67_w_p2_sum_xa24_0_16b  =  w_687_16b ;
+assign  r68_w_p2_sum_xa24_0_16b  =  w_693_16b ;
+assign  r69_w_p2_sum_xa24_0_16b  =  w_699_16b ;
+assign  r6_w_p2_sum_xa24_0_16b  =  w_323_16b ;
+assign  r70_w_p2_sum_xa24_0_16b  =  w_705_16b ;
+assign  r71_w_p2_sum_xa24_0_16b  =  w_711_16b ;
+assign  r72_w_p2_sum_xa24_0_16b  =  w_715_16b ;
+assign  r73_w_p2_sum_xa24_0_16b  =  w_721_16b ;
+assign  r74_w_p2_sum_xa24_0_16b  =  w_727_16b ;
+assign  r75_w_p2_sum_xa24_0_16b  =  w_733_16b ;
+assign  r76_w_p2_sum_xa24_0_16b  =  w_739_16b ;
+assign  r77_w_p2_sum_xa24_0_16b  =  w_745_16b ;
+assign  r78_w_p2_sum_xa24_0_16b  =  w_751_16b ;
+assign  r79_w_p2_sum_xa24_0_16b  =  w_757_16b ;
+assign  r7_w_p2_sum_xa24_0_16b  =  w_329_16b ;
+assign  r80_w_p2_sum_xa24_0_16b  =  w_761_16b ;
+assign  r8_w_p2_sum_xa24_0_16b  =  w_333_16b ;
+assign  r9_w_p2_sum_xa24_0_16b  =  w_339_16b ;
+assign  w_283_16b  = 1'b0;
+assign  w_284_16b  = 1'b0;
+assign  w_285_16b  =  w_gray_1_stencil_0_0_8b ;
+assign  w_286_16b  =  w_285_16b ;
 ADD_16b_pe add_0 (
-  .a(w_284),
-  .b(w_286),
-  .c(w_287),
+  .a(w_284_16b),
+  .b(w_286_16b),
+  .c(w_287_16b),
   .clk(clk)
 );
-assign  w_288  =  r0_w_p2_sum_xa24_0 ;
-assign  w_289  =  w_gray_1_stencil_1_0 ;
-assign  w_290  =  w_289 ;
-assign  w_291  = 1'b0;
+assign  w_288_16b  =  r0_w_p2_sum_xa24_0_16b ;
+assign  w_289_16b  =  w_gray_1_stencil_1_0_8b ;
+assign  w_290_16b  =  w_289_16b ;
+assign  w_291_16b  = 1'b0;
 MULT_16b_pe mult_1 (
-  .a(w_290),
-  .b(w_291),
-  .c(w_292),
+  .a(w_290_16b),
+  .b(w_291_16b),
+  .c(w_292_16b),
   .clk(clk)
 );
 ADD_16b_pe add_2 (
-  .a(w_292),
-  .b(w_288),
-  .c(w_293),
+  .a(w_292_16b),
+  .b(w_288_16b),
+  .c(w_293_16b),
   .clk(clk)
 );
-assign  w_294  =  r1_w_p2_sum_xa24_0 ;
-assign  w_295  =  w_gray_1_stencil_2_0 ;
-assign  w_296  =  w_295 ;
-assign  w_297  = 1'b0;
+assign  w_294_16b  =  r1_w_p2_sum_xa24_0_16b ;
+assign  w_295_16b  =  w_gray_1_stencil_2_0_8b ;
+assign  w_296_16b  =  w_295_16b ;
+assign  w_297_16b  = 1'b0;
 MULT_16b_pe mult_3 (
-  .a(w_296),
-  .b(w_297),
-  .c(w_298),
+  .a(w_296_16b),
+  .b(w_297_16b),
+  .c(w_298_16b),
   .clk(clk)
 );
 ADD_16b_pe add_4 (
-  .a(w_298),
-  .b(w_294),
-  .c(w_299),
+  .a(w_298_16b),
+  .b(w_294_16b),
+  .c(w_299_16b),
   .clk(clk)
 );
-assign  w_300  =  r2_w_p2_sum_xa24_0 ;
-assign  w_301  =  w_gray_1_stencil_3_0 ;
-assign  w_302  =  w_301 ;
-assign  w_303  = 1'b0;
+assign  w_300_16b  =  r2_w_p2_sum_xa24_0_16b ;
+assign  w_301_16b  =  w_gray_1_stencil_3_0_8b ;
+assign  w_302_16b  =  w_301_16b ;
+assign  w_303_16b  = 1'b0;
 MULT_16b_pe mult_5 (
-  .a(w_302),
-  .b(w_303),
-  .c(w_304),
+  .a(w_302_16b),
+  .b(w_303_16b),
+  .c(w_304_16b),
   .clk(clk)
 );
 ADD_16b_pe add_6 (
-  .a(w_300),
-  .b(w_304),
-  .c(w_305),
+  .a(w_300_16b),
+  .b(w_304_16b),
+  .c(w_305_16b),
   .clk(clk)
 );
-assign  w_306  =  r3_w_p2_sum_xa24_0 ;
-assign  w_307  =  w_gray_1_stencil_4_0 ;
-assign  w_308  =  w_307 ;
-assign  w_309  = 1'b0;
+assign  w_306_16b  =  r3_w_p2_sum_xa24_0_16b ;
+assign  w_307_16b  =  w_gray_1_stencil_4_0_8b ;
+assign  w_308_16b  =  w_307_16b ;
+assign  w_309_16b  = 1'b0;
 MULT_16b_pe mult_7 (
-  .a(w_308),
-  .b(w_309),
-  .c(w_310),
+  .a(w_308_16b),
+  .b(w_309_16b),
+  .c(w_310_16b),
   .clk(clk)
 );
 ADD_16b_pe add_8 (
-  .a(w_306),
-  .b(w_310),
-  .c(w_311),
+  .a(w_306_16b),
+  .b(w_310_16b),
+  .c(w_311_16b),
   .clk(clk)
 );
-assign  w_312  =  r4_w_p2_sum_xa24_0 ;
-assign  w_313  =  w_gray_1_stencil_5_0 ;
-assign  w_314  =  w_313 ;
-assign  w_315  = 1'b0;
+assign  w_312_16b  =  r4_w_p2_sum_xa24_0_16b ;
+assign  w_313_16b  =  w_gray_1_stencil_5_0_8b ;
+assign  w_314_16b  =  w_313_16b ;
+assign  w_315_16b  = 1'b0;
 MULT_16b_pe mult_9 (
-  .a(w_315),
-  .b(w_314),
-  .c(w_316),
+  .a(w_315_16b),
+  .b(w_314_16b),
+  .c(w_316_16b),
   .clk(clk)
 );
 ADD_16b_pe add_10 (
-  .a(w_316),
-  .b(w_312),
-  .c(w_317),
+  .a(w_316_16b),
+  .b(w_312_16b),
+  .c(w_317_16b),
   .clk(clk)
 );
-assign  w_318  =  r5_w_p2_sum_xa24_0 ;
-assign  w_319  =  w_gray_1_stencil_6_0 ;
-assign  w_320  =  w_319 ;
-assign  w_321  = 1'b0;
+assign  w_318_16b  =  r5_w_p2_sum_xa24_0_16b ;
+assign  w_319_16b  =  w_gray_1_stencil_6_0_8b ;
+assign  w_320_16b  =  w_319_16b ;
+assign  w_321_16b  = 1'b0;
 MULT_16b_pe mult_11 (
-  .a(w_320),
-  .b(w_321),
-  .c(w_322),
+  .a(w_320_16b),
+  .b(w_321_16b),
+  .c(w_322_16b),
   .clk(clk)
 );
 ADD_16b_pe add_12 (
-  .a(w_322),
-  .b(w_318),
-  .c(w_323),
+  .a(w_322_16b),
+  .b(w_318_16b),
+  .c(w_323_16b),
   .clk(clk)
 );
-assign  w_324  =  r6_w_p2_sum_xa24_0 ;
-assign  w_325  =  w_gray_1_stencil_7_0 ;
-assign  w_326  =  w_325 ;
-assign  w_327  = 1'b0;
+assign  w_324_16b  =  r6_w_p2_sum_xa24_0_16b ;
+assign  w_325_16b  =  w_gray_1_stencil_7_0_8b ;
+assign  w_326_16b  =  w_325_16b ;
+assign  w_327_16b  = 1'b0;
 MULT_16b_pe mult_13 (
-  .a(w_326),
-  .b(w_327),
-  .c(w_328),
+  .a(w_326_16b),
+  .b(w_327_16b),
+  .c(w_328_16b),
   .clk(clk)
 );
 ADD_16b_pe add_14 (
-  .a(w_328),
-  .b(w_324),
-  .c(w_329),
+  .a(w_328_16b),
+  .b(w_324_16b),
+  .c(w_329_16b),
   .clk(clk)
 );
-assign  w_330  =  r7_w_p2_sum_xa24_0 ;
-assign  w_331  =  w_gray_1_stencil_8_0 ;
-assign  w_332  =  w_331 ;
+assign  w_330_16b  =  r7_w_p2_sum_xa24_0_16b ;
+assign  w_331_16b  =  w_gray_1_stencil_8_0_8b ;
+assign  w_332_16b  =  w_331_16b ;
 ADD_16b_pe add_15 (
-  .a(w_330),
-  .b(w_332),
-  .c(w_333),
+  .a(w_330_16b),
+  .b(w_332_16b),
+  .c(w_333_16b),
   .clk(clk)
 );
-assign  w_334  =  r8_w_p2_sum_xa24_0 ;
-assign  w_335  =  w_gray_1_stencil_0_1 ;
-assign  w_336  =  w_335 ;
-assign  w_337  = 1'b0;
+assign  w_334_16b  =  r8_w_p2_sum_xa24_0_16b ;
+assign  w_335_16b  =  w_gray_1_stencil_0_1_8b ;
+assign  w_336_16b  =  w_335_16b ;
+assign  w_337_16b  = 1'b0;
 MULT_16b_pe mult_16 (
-  .a(w_337),
-  .b(w_336),
-  .c(w_338),
+  .a(w_337_16b),
+  .b(w_336_16b),
+  .c(w_338_16b),
   .clk(clk)
 );
 ADD_16b_pe add_17 (
-  .a(w_338),
-  .b(w_334),
-  .c(w_339),
+  .a(w_338_16b),
+  .b(w_334_16b),
+  .c(w_339_16b),
   .clk(clk)
 );
-assign  w_340  =  r9_w_p2_sum_xa24_0 ;
-assign  w_341  =  w_gray_1_stencil_1_1 ;
-assign  w_342  =  w_341 ;
-assign  w_343  = 1'b0;
+assign  w_340_16b  =  r9_w_p2_sum_xa24_0_16b ;
+assign  w_341_16b  =  w_gray_1_stencil_1_1_8b ;
+assign  w_342_16b  =  w_341_16b ;
+assign  w_343_16b  = 1'b0;
 MULT_16b_pe mult_18 (
-  .a(w_342),
-  .b(w_343),
-  .c(w_344),
+  .a(w_342_16b),
+  .b(w_343_16b),
+  .c(w_344_16b),
   .clk(clk)
 );
 ADD_16b_pe add_19 (
-  .a(w_344),
-  .b(w_340),
-  .c(w_345),
+  .a(w_344_16b),
+  .b(w_340_16b),
+  .c(w_345_16b),
   .clk(clk)
 );
-assign  w_346  =  r10_w_p2_sum_xa24_0 ;
-assign  w_347  =  w_gray_1_stencil_2_1 ;
-assign  w_348  =  w_347 ;
-assign  w_349  = 1'b0;
+assign  w_346_16b  =  r10_w_p2_sum_xa24_0_16b ;
+assign  w_347_16b  =  w_gray_1_stencil_2_1_8b ;
+assign  w_348_16b  =  w_347_16b ;
+assign  w_349_16b  = 1'b0;
 MULT_16b_pe mult_20 (
-  .a(w_348),
-  .b(w_349),
-  .c(w_350),
+  .a(w_348_16b),
+  .b(w_349_16b),
+  .c(w_350_16b),
   .clk(clk)
 );
 ADD_16b_pe add_21 (
-  .a(w_346),
-  .b(w_350),
-  .c(w_351),
+  .a(w_346_16b),
+  .b(w_350_16b),
+  .c(w_351_16b),
   .clk(clk)
 );
-assign  w_352  =  r11_w_p2_sum_xa24_0 ;
-assign  w_353  =  w_gray_1_stencil_3_1 ;
-assign  w_354  =  w_353 ;
-assign  w_355  = 1'b0;
+assign  w_352_16b  =  r11_w_p2_sum_xa24_0_16b ;
+assign  w_353_16b  =  w_gray_1_stencil_3_1_8b ;
+assign  w_354_16b  =  w_353_16b ;
+assign  w_355_16b  = 1'b0;
 MULT_16b_pe mult_22 (
-  .a(w_355),
-  .b(w_354),
-  .c(w_356),
+  .a(w_355_16b),
+  .b(w_354_16b),
+  .c(w_356_16b),
   .clk(clk)
 );
 ADD_16b_pe add_23 (
-  .a(w_352),
-  .b(w_356),
-  .c(w_357),
+  .a(w_352_16b),
+  .b(w_356_16b),
+  .c(w_357_16b),
   .clk(clk)
 );
-assign  w_358  =  r12_w_p2_sum_xa24_0 ;
-assign  w_359  =  w_gray_1_stencil_4_1 ;
-assign  w_360  =  w_359 ;
-assign  w_361  = 1'b0;
+assign  w_358_16b  =  r12_w_p2_sum_xa24_0_16b ;
+assign  w_359_16b  =  w_gray_1_stencil_4_1_8b ;
+assign  w_360_16b  =  w_359_16b ;
+assign  w_361_16b  = 1'b0;
 MULT_16b_pe mult_24 (
-  .a(w_360),
-  .b(w_361),
-  .c(w_362),
+  .a(w_360_16b),
+  .b(w_361_16b),
+  .c(w_362_16b),
   .clk(clk)
 );
 ADD_16b_pe add_25 (
-  .a(w_358),
-  .b(w_362),
-  .c(w_363),
+  .a(w_358_16b),
+  .b(w_362_16b),
+  .c(w_363_16b),
   .clk(clk)
 );
-assign  w_364  =  r13_w_p2_sum_xa24_0 ;
-assign  w_365  =  w_gray_1_stencil_5_1 ;
-assign  w_366  =  w_365 ;
-assign  w_367  = 1'b0;
+assign  w_364_16b  =  r13_w_p2_sum_xa24_0_16b ;
+assign  w_365_16b  =  w_gray_1_stencil_5_1_8b ;
+assign  w_366_16b  =  w_365_16b ;
+assign  w_367_16b  = 1'b0;
 MULT_16b_pe mult_26 (
-  .a(w_366),
-  .b(w_367),
-  .c(w_368),
+  .a(w_366_16b),
+  .b(w_367_16b),
+  .c(w_368_16b),
   .clk(clk)
 );
 ADD_16b_pe add_27 (
-  .a(w_364),
-  .b(w_368),
-  .c(w_369),
+  .a(w_364_16b),
+  .b(w_368_16b),
+  .c(w_369_16b),
   .clk(clk)
 );
-assign  w_370  =  r14_w_p2_sum_xa24_0 ;
-assign  w_371  =  w_gray_1_stencil_6_1 ;
-assign  w_372  =  w_371 ;
-assign  w_373  = 1'b0;
+assign  w_370_16b  =  r14_w_p2_sum_xa24_0_16b ;
+assign  w_371_16b  =  w_gray_1_stencil_6_1_8b ;
+assign  w_372_16b  =  w_371_16b ;
+assign  w_373_16b  = 1'b0;
 MULT_16b_pe mult_28 (
-  .a(w_373),
-  .b(w_372),
-  .c(w_374),
+  .a(w_373_16b),
+  .b(w_372_16b),
+  .c(w_374_16b),
   .clk(clk)
 );
 ADD_16b_pe add_29 (
-  .a(w_374),
-  .b(w_370),
-  .c(w_375),
+  .a(w_374_16b),
+  .b(w_370_16b),
+  .c(w_375_16b),
   .clk(clk)
 );
-assign  w_376  =  r15_w_p2_sum_xa24_0 ;
-assign  w_377  =  w_gray_1_stencil_7_1 ;
-assign  w_378  =  w_377 ;
-assign  w_379  = 1'b0;
+assign  w_376_16b  =  r15_w_p2_sum_xa24_0_16b ;
+assign  w_377_16b  =  w_gray_1_stencil_7_1_8b ;
+assign  w_378_16b  =  w_377_16b ;
+assign  w_379_16b  = 1'b0;
 MULT_16b_pe mult_30 (
-  .a(w_379),
-  .b(w_378),
-  .c(w_380),
+  .a(w_379_16b),
+  .b(w_378_16b),
+  .c(w_380_16b),
   .clk(clk)
 );
 ADD_16b_pe add_31 (
-  .a(w_380),
-  .b(w_376),
-  .c(w_381),
+  .a(w_380_16b),
+  .b(w_376_16b),
+  .c(w_381_16b),
   .clk(clk)
 );
-assign  w_382  =  r16_w_p2_sum_xa24_0 ;
-assign  w_383  =  w_gray_1_stencil_8_1 ;
-assign  w_384  =  w_383 ;
-assign  w_385  = 1'b0;
+assign  w_382_16b  =  r16_w_p2_sum_xa24_0_16b ;
+assign  w_383_16b  =  w_gray_1_stencil_8_1_8b ;
+assign  w_384_16b  =  w_383_16b ;
+assign  w_385_16b  = 1'b0;
 MULT_16b_pe mult_32 (
-  .a(w_384),
-  .b(w_385),
-  .c(w_386),
+  .a(w_384_16b),
+  .b(w_385_16b),
+  .c(w_386_16b),
   .clk(clk)
 );
 ADD_16b_pe add_33 (
-  .a(w_382),
-  .b(w_386),
-  .c(w_387),
+  .a(w_382_16b),
+  .b(w_386_16b),
+  .c(w_387_16b),
   .clk(clk)
 );
-assign  w_388  =  r17_w_p2_sum_xa24_0 ;
-assign  w_389  =  w_gray_1_stencil_0_2 ;
-assign  w_390  =  w_389 ;
-assign  w_391  = 1'b0;
+assign  w_388_16b  =  r17_w_p2_sum_xa24_0_16b ;
+assign  w_389_16b  =  w_gray_1_stencil_0_2_8b ;
+assign  w_390_16b  =  w_389_16b ;
+assign  w_391_16b  = 1'b0;
 MULT_16b_pe mult_34 (
-  .a(w_391),
-  .b(w_390),
-  .c(w_392),
+  .a(w_391_16b),
+  .b(w_390_16b),
+  .c(w_392_16b),
   .clk(clk)
 );
 ADD_16b_pe add_35 (
-  .a(w_388),
-  .b(w_392),
-  .c(w_393),
+  .a(w_388_16b),
+  .b(w_392_16b),
+  .c(w_393_16b),
   .clk(clk)
 );
-assign  w_394  =  r18_w_p2_sum_xa24_0 ;
-assign  w_395  =  w_gray_1_stencil_1_2 ;
-assign  w_396  =  w_395 ;
-assign  w_397  = 1'b0;
+assign  w_394_16b  =  r18_w_p2_sum_xa24_0_16b ;
+assign  w_395_16b  =  w_gray_1_stencil_1_2_8b ;
+assign  w_396_16b  =  w_395_16b ;
+assign  w_397_16b  = 1'b0;
 MULT_16b_pe mult_36 (
-  .a(w_397),
-  .b(w_396),
-  .c(w_398),
+  .a(w_397_16b),
+  .b(w_396_16b),
+  .c(w_398_16b),
   .clk(clk)
 );
 ADD_16b_pe add_37 (
-  .a(w_394),
-  .b(w_398),
-  .c(w_399),
+  .a(w_394_16b),
+  .b(w_398_16b),
+  .c(w_399_16b),
   .clk(clk)
 );
-assign  w_400  =  r19_w_p2_sum_xa24_0 ;
-assign  w_401  =  w_gray_1_stencil_2_2 ;
-assign  w_402  =  w_401 ;
-assign  w_403  = 1'b0;
+assign  w_400_16b  =  r19_w_p2_sum_xa24_0_16b ;
+assign  w_401_16b  =  w_gray_1_stencil_2_2_8b ;
+assign  w_402_16b  =  w_401_16b ;
+assign  w_403_16b  = 1'b0;
 MULT_16b_pe mult_38 (
-  .a(w_403),
-  .b(w_402),
-  .c(w_404),
+  .a(w_403_16b),
+  .b(w_402_16b),
+  .c(w_404_16b),
   .clk(clk)
 );
 ADD_16b_pe add_39 (
-  .a(w_404),
-  .b(w_400),
-  .c(w_405),
+  .a(w_404_16b),
+  .b(w_400_16b),
+  .c(w_405_16b),
   .clk(clk)
 );
-assign  w_406  =  r20_w_p2_sum_xa24_0 ;
-assign  w_407  =  w_gray_1_stencil_3_2 ;
-assign  w_408  =  w_407 ;
-assign  w_409  = 1'b0;
+assign  w_406_16b  =  r20_w_p2_sum_xa24_0_16b ;
+assign  w_407_16b  =  w_gray_1_stencil_3_2_8b ;
+assign  w_408_16b  =  w_407_16b ;
+assign  w_409_16b  = 1'b0;
 MULT_16b_pe mult_40 (
-  .a(w_409),
-  .b(w_408),
-  .c(w_410),
+  .a(w_409_16b),
+  .b(w_408_16b),
+  .c(w_410_16b),
   .clk(clk)
 );
 ADD_16b_pe add_41 (
-  .a(w_410),
-  .b(w_406),
-  .c(w_411),
+  .a(w_410_16b),
+  .b(w_406_16b),
+  .c(w_411_16b),
   .clk(clk)
 );
-assign  w_412  =  r21_w_p2_sum_xa24_0 ;
-assign  w_413  =  w_gray_1_stencil_4_2 ;
-assign  w_414  =  w_413 ;
-assign  w_415  = 1'b0;
+assign  w_412_16b  =  r21_w_p2_sum_xa24_0_16b ;
+assign  w_413_16b  =  w_gray_1_stencil_4_2_8b ;
+assign  w_414_16b  =  w_413_16b ;
+assign  w_415_16b  = 1'b0;
 MULT_16b_pe mult_42 (
-  .a(w_414),
-  .b(w_415),
-  .c(w_416),
+  .a(w_414_16b),
+  .b(w_415_16b),
+  .c(w_416_16b),
   .clk(clk)
 );
 ADD_16b_pe add_43 (
-  .a(w_412),
-  .b(w_416),
-  .c(w_417),
+  .a(w_412_16b),
+  .b(w_416_16b),
+  .c(w_417_16b),
   .clk(clk)
 );
-assign  w_418  =  r22_w_p2_sum_xa24_0 ;
-assign  w_419  =  w_gray_1_stencil_5_2 ;
-assign  w_420  =  w_419 ;
-assign  w_421  = 1'b0;
+assign  w_418_16b  =  r22_w_p2_sum_xa24_0_16b ;
+assign  w_419_16b  =  w_gray_1_stencil_5_2_8b ;
+assign  w_420_16b  =  w_419_16b ;
+assign  w_421_16b  = 1'b0;
 MULT_16b_pe mult_44 (
-  .a(w_421),
-  .b(w_420),
-  .c(w_422),
+  .a(w_421_16b),
+  .b(w_420_16b),
+  .c(w_422_16b),
   .clk(clk)
 );
 ADD_16b_pe add_45 (
-  .a(w_418),
-  .b(w_422),
-  .c(w_423),
+  .a(w_418_16b),
+  .b(w_422_16b),
+  .c(w_423_16b),
   .clk(clk)
 );
-assign  w_424  =  r23_w_p2_sum_xa24_0 ;
-assign  w_425  =  w_gray_1_stencil_6_2 ;
-assign  w_426  =  w_425 ;
-assign  w_427  = 1'b0;
+assign  w_424_16b  =  r23_w_p2_sum_xa24_0_16b ;
+assign  w_425_16b  =  w_gray_1_stencil_6_2_8b ;
+assign  w_426_16b  =  w_425_16b ;
+assign  w_427_16b  = 1'b0;
 MULT_16b_pe mult_46 (
-  .a(w_427),
-  .b(w_426),
-  .c(w_428),
+  .a(w_427_16b),
+  .b(w_426_16b),
+  .c(w_428_16b),
   .clk(clk)
 );
 ADD_16b_pe add_47 (
-  .a(w_428),
-  .b(w_424),
-  .c(w_429),
+  .a(w_428_16b),
+  .b(w_424_16b),
+  .c(w_429_16b),
   .clk(clk)
 );
-assign  w_430  =  r24_w_p2_sum_xa24_0 ;
-assign  w_431  =  w_gray_1_stencil_7_2 ;
-assign  w_432  =  w_431 ;
-assign  w_433  = 1'b0;
+assign  w_430_16b  =  r24_w_p2_sum_xa24_0_16b ;
+assign  w_431_16b  =  w_gray_1_stencil_7_2_8b ;
+assign  w_432_16b  =  w_431_16b ;
+assign  w_433_16b  = 1'b0;
 MULT_16b_pe mult_48 (
-  .a(w_432),
-  .b(w_433),
-  .c(w_434),
+  .a(w_432_16b),
+  .b(w_433_16b),
+  .c(w_434_16b),
   .clk(clk)
 );
 ADD_16b_pe add_49 (
-  .a(w_430),
-  .b(w_434),
-  .c(w_435),
+  .a(w_430_16b),
+  .b(w_434_16b),
+  .c(w_435_16b),
   .clk(clk)
 );
-assign  w_436  =  r25_w_p2_sum_xa24_0 ;
-assign  w_437  =  w_gray_1_stencil_8_2 ;
-assign  w_438  =  w_437 ;
-assign  w_439  = 1'b0;
+assign  w_436_16b  =  r25_w_p2_sum_xa24_0_16b ;
+assign  w_437_16b  =  w_gray_1_stencil_8_2_8b ;
+assign  w_438_16b  =  w_437_16b ;
+assign  w_439_16b  = 1'b0;
 MULT_16b_pe mult_50 (
-  .a(w_438),
-  .b(w_439),
-  .c(w_440),
+  .a(w_438_16b),
+  .b(w_439_16b),
+  .c(w_440_16b),
   .clk(clk)
 );
 ADD_16b_pe add_51 (
-  .a(w_440),
-  .b(w_436),
-  .c(w_441),
+  .a(w_440_16b),
+  .b(w_436_16b),
+  .c(w_441_16b),
   .clk(clk)
 );
-assign  w_442  =  r26_w_p2_sum_xa24_0 ;
-assign  w_443  =  w_gray_1_stencil_0_3 ;
-assign  w_444  =  w_443 ;
-assign  w_445  = 1'b0;
+assign  w_442_16b  =  r26_w_p2_sum_xa24_0_16b ;
+assign  w_443_16b  =  w_gray_1_stencil_0_3_8b ;
+assign  w_444_16b  =  w_443_16b ;
+assign  w_445_16b  = 1'b0;
 MULT_16b_pe mult_52 (
-  .a(w_445),
-  .b(w_444),
-  .c(w_446),
+  .a(w_445_16b),
+  .b(w_444_16b),
+  .c(w_446_16b),
   .clk(clk)
 );
 ADD_16b_pe add_53 (
-  .a(w_442),
-  .b(w_446),
-  .c(w_447),
+  .a(w_442_16b),
+  .b(w_446_16b),
+  .c(w_447_16b),
   .clk(clk)
 );
-assign  w_448  =  r27_w_p2_sum_xa24_0 ;
-assign  w_449  =  w_gray_1_stencil_1_3 ;
-assign  w_450  =  w_449 ;
-assign  w_451  = 1'b0;
+assign  w_448_16b  =  r27_w_p2_sum_xa24_0_16b ;
+assign  w_449_16b  =  w_gray_1_stencil_1_3_8b ;
+assign  w_450_16b  =  w_449_16b ;
+assign  w_451_16b  = 1'b0;
 MULT_16b_pe mult_54 (
-  .a(w_450),
-  .b(w_451),
-  .c(w_452),
+  .a(w_450_16b),
+  .b(w_451_16b),
+  .c(w_452_16b),
   .clk(clk)
 );
 ADD_16b_pe add_55 (
-  .a(w_448),
-  .b(w_452),
-  .c(w_453),
+  .a(w_448_16b),
+  .b(w_452_16b),
+  .c(w_453_16b),
   .clk(clk)
 );
-assign  w_454  =  r28_w_p2_sum_xa24_0 ;
-assign  w_455  =  w_gray_1_stencil_2_3 ;
-assign  w_456  =  w_455 ;
-assign  w_457  = 1'b0;
+assign  w_454_16b  =  r28_w_p2_sum_xa24_0_16b ;
+assign  w_455_16b  =  w_gray_1_stencil_2_3_8b ;
+assign  w_456_16b  =  w_455_16b ;
+assign  w_457_16b  = 1'b0;
 MULT_16b_pe mult_56 (
-  .a(w_456),
-  .b(w_457),
-  .c(w_458),
+  .a(w_456_16b),
+  .b(w_457_16b),
+  .c(w_458_16b),
   .clk(clk)
 );
 ADD_16b_pe add_57 (
-  .a(w_454),
-  .b(w_458),
-  .c(w_459),
+  .a(w_454_16b),
+  .b(w_458_16b),
+  .c(w_459_16b),
   .clk(clk)
 );
-assign  w_460  =  r29_w_p2_sum_xa24_0 ;
-assign  w_461  =  w_gray_1_stencil_3_3 ;
-assign  w_462  =  w_461 ;
-assign  w_463  = 1'b0;
+assign  w_460_16b  =  r29_w_p2_sum_xa24_0_16b ;
+assign  w_461_16b  =  w_gray_1_stencil_3_3_8b ;
+assign  w_462_16b  =  w_461_16b ;
+assign  w_463_16b  = 1'b0;
 MULT_16b_pe mult_58 (
-  .a(w_463),
-  .b(w_462),
-  .c(w_464),
+  .a(w_463_16b),
+  .b(w_462_16b),
+  .c(w_464_16b),
   .clk(clk)
 );
 ADD_16b_pe add_59 (
-  .a(w_464),
-  .b(w_460),
-  .c(w_465),
+  .a(w_464_16b),
+  .b(w_460_16b),
+  .c(w_465_16b),
   .clk(clk)
 );
-assign  w_466  =  r30_w_p2_sum_xa24_0 ;
-assign  w_467  =  w_gray_1_stencil_4_3 ;
-assign  w_468  =  w_467 ;
-assign  w_469  = 1'b0;
+assign  w_466_16b  =  r30_w_p2_sum_xa24_0_16b ;
+assign  w_467_16b  =  w_gray_1_stencil_4_3_8b ;
+assign  w_468_16b  =  w_467_16b ;
+assign  w_469_16b  = 1'b0;
 MULT_16b_pe mult_60 (
-  .a(w_469),
-  .b(w_468),
-  .c(w_470),
+  .a(w_469_16b),
+  .b(w_468_16b),
+  .c(w_470_16b),
   .clk(clk)
 );
 ADD_16b_pe add_61 (
-  .a(w_466),
-  .b(w_470),
-  .c(w_471),
+  .a(w_466_16b),
+  .b(w_470_16b),
+  .c(w_471_16b),
   .clk(clk)
 );
-assign  w_472  =  r31_w_p2_sum_xa24_0 ;
-assign  w_473  =  w_gray_1_stencil_5_3 ;
-assign  w_474  =  w_473 ;
-assign  w_475  = 1'b0;
+assign  w_472_16b  =  r31_w_p2_sum_xa24_0_16b ;
+assign  w_473_16b  =  w_gray_1_stencil_5_3_8b ;
+assign  w_474_16b  =  w_473_16b ;
+assign  w_475_16b  = 1'b0;
 MULT_16b_pe mult_62 (
-  .a(w_474),
-  .b(w_475),
-  .c(w_476),
+  .a(w_474_16b),
+  .b(w_475_16b),
+  .c(w_476_16b),
   .clk(clk)
 );
 ADD_16b_pe add_63 (
-  .a(w_476),
-  .b(w_472),
-  .c(w_477),
+  .a(w_476_16b),
+  .b(w_472_16b),
+  .c(w_477_16b),
   .clk(clk)
 );
-assign  w_478  =  r32_w_p2_sum_xa24_0 ;
-assign  w_479  =  w_gray_1_stencil_6_3 ;
-assign  w_480  =  w_479 ;
-assign  w_481  = 1'b0;
+assign  w_478_16b  =  r32_w_p2_sum_xa24_0_16b ;
+assign  w_479_16b  =  w_gray_1_stencil_6_3_8b ;
+assign  w_480_16b  =  w_479_16b ;
+assign  w_481_16b  = 1'b0;
 MULT_16b_pe mult_64 (
-  .a(w_481),
-  .b(w_480),
-  .c(w_482),
+  .a(w_481_16b),
+  .b(w_480_16b),
+  .c(w_482_16b),
   .clk(clk)
 );
 ADD_16b_pe add_65 (
-  .a(w_482),
-  .b(w_478),
-  .c(w_483),
+  .a(w_482_16b),
+  .b(w_478_16b),
+  .c(w_483_16b),
   .clk(clk)
 );
-assign  w_484  =  r33_w_p2_sum_xa24_0 ;
-assign  w_485  =  w_gray_1_stencil_7_3 ;
-assign  w_486  =  w_485 ;
-assign  w_487  = 1'b0;
+assign  w_484_16b  =  r33_w_p2_sum_xa24_0_16b ;
+assign  w_485_16b  =  w_gray_1_stencil_7_3_8b ;
+assign  w_486_16b  =  w_485_16b ;
+assign  w_487_16b  = 1'b0;
 MULT_16b_pe mult_66 (
-  .a(w_487),
-  .b(w_486),
-  .c(w_488),
+  .a(w_487_16b),
+  .b(w_486_16b),
+  .c(w_488_16b),
   .clk(clk)
 );
 ADD_16b_pe add_67 (
-  .a(w_484),
-  .b(w_488),
-  .c(w_489),
+  .a(w_484_16b),
+  .b(w_488_16b),
+  .c(w_489_16b),
   .clk(clk)
 );
-assign  w_490  =  r34_w_p2_sum_xa24_0 ;
-assign  w_491  =  w_gray_1_stencil_8_3 ;
-assign  w_492  =  w_491 ;
-assign  w_493  = 1'b0;
+assign  w_490_16b  =  r34_w_p2_sum_xa24_0_16b ;
+assign  w_491_16b  =  w_gray_1_stencil_8_3_8b ;
+assign  w_492_16b  =  w_491_16b ;
+assign  w_493_16b  = 1'b0;
 MULT_16b_pe mult_68 (
-  .a(w_492),
-  .b(w_493),
-  .c(w_494),
+  .a(w_492_16b),
+  .b(w_493_16b),
+  .c(w_494_16b),
   .clk(clk)
 );
 ADD_16b_pe add_69 (
-  .a(w_490),
-  .b(w_494),
-  .c(w_495),
+  .a(w_490_16b),
+  .b(w_494_16b),
+  .c(w_495_16b),
   .clk(clk)
 );
-assign  w_496  =  r35_w_p2_sum_xa24_0 ;
-assign  w_497  =  w_gray_1_stencil_0_4 ;
-assign  w_498  =  w_497 ;
-assign  w_499  = 1'b0;
+assign  w_496_16b  =  r35_w_p2_sum_xa24_0_16b ;
+assign  w_497_16b  =  w_gray_1_stencil_0_4_8b ;
+assign  w_498_16b  =  w_497_16b ;
+assign  w_499_16b  = 1'b0;
 MULT_16b_pe mult_70 (
-  .a(w_498),
-  .b(w_499),
-  .c(w_500),
+  .a(w_498_16b),
+  .b(w_499_16b),
+  .c(w_500_16b),
   .clk(clk)
 );
 ADD_16b_pe add_71 (
-  .a(w_500),
-  .b(w_496),
-  .c(w_501),
+  .a(w_500_16b),
+  .b(w_496_16b),
+  .c(w_501_16b),
   .clk(clk)
 );
-assign  w_502  =  r36_w_p2_sum_xa24_0 ;
-assign  w_503  =  w_gray_1_stencil_1_4 ;
-assign  w_504  =  w_503 ;
-assign  w_505  = 1'b0;
+assign  w_502_16b  =  r36_w_p2_sum_xa24_0_16b ;
+assign  w_503_16b  =  w_gray_1_stencil_1_4_8b ;
+assign  w_504_16b  =  w_503_16b ;
+assign  w_505_16b  = 1'b0;
 MULT_16b_pe mult_72 (
-  .a(w_504),
-  .b(w_505),
-  .c(w_506),
+  .a(w_504_16b),
+  .b(w_505_16b),
+  .c(w_506_16b),
   .clk(clk)
 );
 ADD_16b_pe add_73 (
-  .a(w_506),
-  .b(w_502),
-  .c(w_507),
+  .a(w_506_16b),
+  .b(w_502_16b),
+  .c(w_507_16b),
   .clk(clk)
 );
-assign  w_508  =  r37_w_p2_sum_xa24_0 ;
-assign  w_509  =  w_gray_1_stencil_2_4 ;
-assign  w_510  =  w_509 ;
-assign  w_511  = 1'b0;
+assign  w_508_16b  =  r37_w_p2_sum_xa24_0_16b ;
+assign  w_509_16b  =  w_gray_1_stencil_2_4_8b ;
+assign  w_510_16b  =  w_509_16b ;
+assign  w_511_16b  = 1'b0;
 MULT_16b_pe mult_74 (
-  .a(w_511),
-  .b(w_510),
-  .c(w_512),
+  .a(w_511_16b),
+  .b(w_510_16b),
+  .c(w_512_16b),
   .clk(clk)
 );
 ADD_16b_pe add_75 (
-  .a(w_508),
-  .b(w_512),
-  .c(w_513),
+  .a(w_508_16b),
+  .b(w_512_16b),
+  .c(w_513_16b),
   .clk(clk)
 );
-assign  w_514  =  r38_w_p2_sum_xa24_0 ;
-assign  w_515  =  w_gray_1_stencil_3_4 ;
-assign  w_516  =  w_515 ;
-assign  w_517  = 1'b0;
+assign  w_514_16b  =  r38_w_p2_sum_xa24_0_16b ;
+assign  w_515_16b  =  w_gray_1_stencil_3_4_8b ;
+assign  w_516_16b  =  w_515_16b ;
+assign  w_517_16b  = 1'b0;
 MULT_16b_pe mult_76 (
-  .a(w_517),
-  .b(w_516),
-  .c(w_518),
+  .a(w_517_16b),
+  .b(w_516_16b),
+  .c(w_518_16b),
   .clk(clk)
 );
 ADD_16b_pe add_77 (
-  .a(w_514),
-  .b(w_518),
-  .c(w_519),
+  .a(w_514_16b),
+  .b(w_518_16b),
+  .c(w_519_16b),
   .clk(clk)
 );
-assign  w_520  =  r39_w_p2_sum_xa24_0 ;
-assign  w_521  =  w_gray_1_stencil_4_4 ;
-assign  w_522  =  w_521 ;
-assign  w_523  = 1'b0;
+assign  w_520_16b  =  r39_w_p2_sum_xa24_0_16b ;
+assign  w_521_16b  =  w_gray_1_stencil_4_4_8b ;
+assign  w_522_16b  =  w_521_16b ;
+assign  w_523_16b  = 1'b0;
 MULT_16b_pe mult_78 (
-  .a(w_522),
-  .b(w_523),
-  .c(w_524),
+  .a(w_522_16b),
+  .b(w_523_16b),
+  .c(w_524_16b),
   .clk(clk)
 );
 ADD_16b_pe add_79 (
-  .a(w_524),
-  .b(w_520),
-  .c(w_525),
+  .a(w_524_16b),
+  .b(w_520_16b),
+  .c(w_525_16b),
   .clk(clk)
 );
-assign  w_526  =  r40_w_p2_sum_xa24_0 ;
-assign  w_527  =  w_gray_1_stencil_5_4 ;
-assign  w_528  =  w_527 ;
-assign  w_529  = 1'b0;
+assign  w_526_16b  =  r40_w_p2_sum_xa24_0_16b ;
+assign  w_527_16b  =  w_gray_1_stencil_5_4_8b ;
+assign  w_528_16b  =  w_527_16b ;
+assign  w_529_16b  = 1'b0;
 MULT_16b_pe mult_80 (
-  .a(w_528),
-  .b(w_529),
-  .c(w_530),
+  .a(w_528_16b),
+  .b(w_529_16b),
+  .c(w_530_16b),
   .clk(clk)
 );
 ADD_16b_pe add_81 (
-  .a(w_526),
-  .b(w_530),
-  .c(w_531),
+  .a(w_526_16b),
+  .b(w_530_16b),
+  .c(w_531_16b),
   .clk(clk)
 );
-assign  w_532  =  r41_w_p2_sum_xa24_0 ;
-assign  w_533  =  w_gray_1_stencil_6_4 ;
-assign  w_534  =  w_533 ;
-assign  w_535  = 1'b0;
+assign  w_532_16b  =  r41_w_p2_sum_xa24_0_16b ;
+assign  w_533_16b  =  w_gray_1_stencil_6_4_8b ;
+assign  w_534_16b  =  w_533_16b ;
+assign  w_535_16b  = 1'b0;
 MULT_16b_pe mult_82 (
-  .a(w_535),
-  .b(w_534),
-  .c(w_536),
+  .a(w_535_16b),
+  .b(w_534_16b),
+  .c(w_536_16b),
   .clk(clk)
 );
 ADD_16b_pe add_83 (
-  .a(w_532),
-  .b(w_536),
-  .c(w_537),
+  .a(w_532_16b),
+  .b(w_536_16b),
+  .c(w_537_16b),
   .clk(clk)
 );
-assign  w_538  =  r42_w_p2_sum_xa24_0 ;
-assign  w_539  =  w_gray_1_stencil_7_4 ;
-assign  w_540  =  w_539 ;
-assign  w_541  = 1'b0;
+assign  w_538_16b  =  r42_w_p2_sum_xa24_0_16b ;
+assign  w_539_16b  =  w_gray_1_stencil_7_4_8b ;
+assign  w_540_16b  =  w_539_16b ;
+assign  w_541_16b  = 1'b0;
 MULT_16b_pe mult_84 (
-  .a(w_540),
-  .b(w_541),
-  .c(w_542),
+  .a(w_540_16b),
+  .b(w_541_16b),
+  .c(w_542_16b),
   .clk(clk)
 );
 ADD_16b_pe add_85 (
-  .a(w_542),
-  .b(w_538),
-  .c(w_543),
+  .a(w_542_16b),
+  .b(w_538_16b),
+  .c(w_543_16b),
   .clk(clk)
 );
-assign  w_544  =  r43_w_p2_sum_xa24_0 ;
-assign  w_545  =  w_gray_1_stencil_8_4 ;
-assign  w_546  =  w_545 ;
-assign  w_547  = 1'b0;
+assign  w_544_16b  =  r43_w_p2_sum_xa24_0_16b ;
+assign  w_545_16b  =  w_gray_1_stencil_8_4_8b ;
+assign  w_546_16b  =  w_545_16b ;
+assign  w_547_16b  = 1'b0;
 MULT_16b_pe mult_86 (
-  .a(w_546),
-  .b(w_547),
-  .c(w_548),
+  .a(w_546_16b),
+  .b(w_547_16b),
+  .c(w_548_16b),
   .clk(clk)
 );
 ADD_16b_pe add_87 (
-  .a(w_548),
-  .b(w_544),
-  .c(w_549),
+  .a(w_548_16b),
+  .b(w_544_16b),
+  .c(w_549_16b),
   .clk(clk)
 );
-assign  w_550  =  r44_w_p2_sum_xa24_0 ;
-assign  w_551  =  w_gray_1_stencil_0_5 ;
-assign  w_552  =  w_551 ;
-assign  w_553  = 1'b0;
+assign  w_550_16b  =  r44_w_p2_sum_xa24_0_16b ;
+assign  w_551_16b  =  w_gray_1_stencil_0_5_8b ;
+assign  w_552_16b  =  w_551_16b ;
+assign  w_553_16b  = 1'b0;
 MULT_16b_pe mult_88 (
-  .a(w_553),
-  .b(w_552),
-  .c(w_554),
+  .a(w_553_16b),
+  .b(w_552_16b),
+  .c(w_554_16b),
   .clk(clk)
 );
 ADD_16b_pe add_89 (
-  .a(w_550),
-  .b(w_554),
-  .c(w_555),
+  .a(w_550_16b),
+  .b(w_554_16b),
+  .c(w_555_16b),
   .clk(clk)
 );
-assign  w_556  =  r45_w_p2_sum_xa24_0 ;
-assign  w_557  =  w_gray_1_stencil_1_5 ;
-assign  w_558  =  w_557 ;
-assign  w_559  = 1'b0;
+assign  w_556_16b  =  r45_w_p2_sum_xa24_0_16b ;
+assign  w_557_16b  =  w_gray_1_stencil_1_5_8b ;
+assign  w_558_16b  =  w_557_16b ;
+assign  w_559_16b  = 1'b0;
 MULT_16b_pe mult_90 (
-  .a(w_559),
-  .b(w_558),
-  .c(w_560),
+  .a(w_559_16b),
+  .b(w_558_16b),
+  .c(w_560_16b),
   .clk(clk)
 );
 ADD_16b_pe add_91 (
-  .a(w_560),
-  .b(w_556),
-  .c(w_561),
+  .a(w_560_16b),
+  .b(w_556_16b),
+  .c(w_561_16b),
   .clk(clk)
 );
-assign  w_562  =  r46_w_p2_sum_xa24_0 ;
-assign  w_563  =  w_gray_1_stencil_2_5 ;
-assign  w_564  =  w_563 ;
-assign  w_565  = 1'b0;
+assign  w_562_16b  =  r46_w_p2_sum_xa24_0_16b ;
+assign  w_563_16b  =  w_gray_1_stencil_2_5_8b ;
+assign  w_564_16b  =  w_563_16b ;
+assign  w_565_16b  = 1'b0;
 MULT_16b_pe mult_92 (
-  .a(w_564),
-  .b(w_565),
-  .c(w_566),
+  .a(w_564_16b),
+  .b(w_565_16b),
+  .c(w_566_16b),
   .clk(clk)
 );
 ADD_16b_pe add_93 (
-  .a(w_562),
-  .b(w_566),
-  .c(w_567),
+  .a(w_562_16b),
+  .b(w_566_16b),
+  .c(w_567_16b),
   .clk(clk)
 );
-assign  w_568  =  r47_w_p2_sum_xa24_0 ;
-assign  w_569  =  w_gray_1_stencil_3_5 ;
-assign  w_570  =  w_569 ;
-assign  w_571  = 1'b0;
+assign  w_568_16b  =  r47_w_p2_sum_xa24_0_16b ;
+assign  w_569_16b  =  w_gray_1_stencil_3_5_8b ;
+assign  w_570_16b  =  w_569_16b ;
+assign  w_571_16b  = 1'b0;
 MULT_16b_pe mult_94 (
-  .a(w_571),
-  .b(w_570),
-  .c(w_572),
+  .a(w_571_16b),
+  .b(w_570_16b),
+  .c(w_572_16b),
   .clk(clk)
 );
 ADD_16b_pe add_95 (
-  .a(w_568),
-  .b(w_572),
-  .c(w_573),
+  .a(w_568_16b),
+  .b(w_572_16b),
+  .c(w_573_16b),
   .clk(clk)
 );
-assign  w_574  =  r48_w_p2_sum_xa24_0 ;
-assign  w_575  =  w_gray_1_stencil_4_5 ;
-assign  w_576  =  w_575 ;
-assign  w_577  = 1'b0;
+assign  w_574_16b  =  r48_w_p2_sum_xa24_0_16b ;
+assign  w_575_16b  =  w_gray_1_stencil_4_5_8b ;
+assign  w_576_16b  =  w_575_16b ;
+assign  w_577_16b  = 1'b0;
 MULT_16b_pe mult_96 (
-  .a(w_577),
-  .b(w_576),
-  .c(w_578),
+  .a(w_577_16b),
+  .b(w_576_16b),
+  .c(w_578_16b),
   .clk(clk)
 );
 ADD_16b_pe add_97 (
-  .a(w_574),
-  .b(w_578),
-  .c(w_579),
+  .a(w_574_16b),
+  .b(w_578_16b),
+  .c(w_579_16b),
   .clk(clk)
 );
-assign  w_580  =  r49_w_p2_sum_xa24_0 ;
-assign  w_581  =  w_gray_1_stencil_5_5 ;
-assign  w_582  =  w_581 ;
-assign  w_583  = 1'b0;
+assign  w_580_16b  =  r49_w_p2_sum_xa24_0_16b ;
+assign  w_581_16b  =  w_gray_1_stencil_5_5_8b ;
+assign  w_582_16b  =  w_581_16b ;
+assign  w_583_16b  = 1'b0;
 MULT_16b_pe mult_98 (
-  .a(w_582),
-  .b(w_583),
-  .c(w_584),
+  .a(w_582_16b),
+  .b(w_583_16b),
+  .c(w_584_16b),
   .clk(clk)
 );
 ADD_16b_pe add_99 (
-  .a(w_584),
-  .b(w_580),
-  .c(w_585),
+  .a(w_584_16b),
+  .b(w_580_16b),
+  .c(w_585_16b),
   .clk(clk)
 );
-assign  w_586  =  r50_w_p2_sum_xa24_0 ;
-assign  w_587  =  w_gray_1_stencil_6_5 ;
-assign  w_588  =  w_587 ;
-assign  w_589  = 1'b0;
+assign  w_586_16b  =  r50_w_p2_sum_xa24_0_16b ;
+assign  w_587_16b  =  w_gray_1_stencil_6_5_8b ;
+assign  w_588_16b  =  w_587_16b ;
+assign  w_589_16b  = 1'b0;
 MULT_16b_pe mult_100 (
-  .a(w_588),
-  .b(w_589),
-  .c(w_590),
+  .a(w_588_16b),
+  .b(w_589_16b),
+  .c(w_590_16b),
   .clk(clk)
 );
 ADD_16b_pe add_101 (
-  .a(w_586),
-  .b(w_590),
-  .c(w_591),
+  .a(w_586_16b),
+  .b(w_590_16b),
+  .c(w_591_16b),
   .clk(clk)
 );
-assign  w_592  =  r51_w_p2_sum_xa24_0 ;
-assign  w_593  =  w_gray_1_stencil_7_5 ;
-assign  w_594  =  w_593 ;
-assign  w_595  = 1'b0;
+assign  w_592_16b  =  r51_w_p2_sum_xa24_0_16b ;
+assign  w_593_16b  =  w_gray_1_stencil_7_5_8b ;
+assign  w_594_16b  =  w_593_16b ;
+assign  w_595_16b  = 1'b0;
 MULT_16b_pe mult_102 (
-  .a(w_595),
-  .b(w_594),
-  .c(w_596),
+  .a(w_595_16b),
+  .b(w_594_16b),
+  .c(w_596_16b),
   .clk(clk)
 );
 ADD_16b_pe add_103 (
-  .a(w_596),
-  .b(w_592),
-  .c(w_597),
+  .a(w_596_16b),
+  .b(w_592_16b),
+  .c(w_597_16b),
   .clk(clk)
 );
-assign  w_598  =  r52_w_p2_sum_xa24_0 ;
-assign  w_599  =  w_gray_1_stencil_8_5 ;
-assign  w_600  =  w_599 ;
-assign  w_601  = 1'b0;
+assign  w_598_16b  =  r52_w_p2_sum_xa24_0_16b ;
+assign  w_599_16b  =  w_gray_1_stencil_8_5_8b ;
+assign  w_600_16b  =  w_599_16b ;
+assign  w_601_16b  = 1'b0;
 MULT_16b_pe mult_104 (
-  .a(w_601),
-  .b(w_600),
-  .c(w_602),
+  .a(w_601_16b),
+  .b(w_600_16b),
+  .c(w_602_16b),
   .clk(clk)
 );
 ADD_16b_pe add_105 (
-  .a(w_598),
-  .b(w_602),
-  .c(w_603),
+  .a(w_598_16b),
+  .b(w_602_16b),
+  .c(w_603_16b),
   .clk(clk)
 );
-assign  w_604  =  r53_w_p2_sum_xa24_0 ;
-assign  w_605  =  w_gray_1_stencil_0_6 ;
-assign  w_606  =  w_605 ;
-assign  w_607  = 1'b0;
+assign  w_604_16b  =  r53_w_p2_sum_xa24_0_16b ;
+assign  w_605_16b  =  w_gray_1_stencil_0_6_8b ;
+assign  w_606_16b  =  w_605_16b ;
+assign  w_607_16b  = 1'b0;
 MULT_16b_pe mult_106 (
-  .a(w_607),
-  .b(w_606),
-  .c(w_608),
+  .a(w_607_16b),
+  .b(w_606_16b),
+  .c(w_608_16b),
   .clk(clk)
 );
 ADD_16b_pe add_107 (
-  .a(w_604),
-  .b(w_608),
-  .c(w_609),
+  .a(w_604_16b),
+  .b(w_608_16b),
+  .c(w_609_16b),
   .clk(clk)
 );
-assign  w_610  =  r54_w_p2_sum_xa24_0 ;
-assign  w_611  =  w_gray_1_stencil_1_6 ;
-assign  w_612  =  w_611 ;
-assign  w_613  = 1'b0;
+assign  w_610_16b  =  r54_w_p2_sum_xa24_0_16b ;
+assign  w_611_16b  =  w_gray_1_stencil_1_6_8b ;
+assign  w_612_16b  =  w_611_16b ;
+assign  w_613_16b  = 1'b0;
 MULT_16b_pe mult_108 (
-  .a(w_612),
-  .b(w_613),
-  .c(w_614),
+  .a(w_612_16b),
+  .b(w_613_16b),
+  .c(w_614_16b),
   .clk(clk)
 );
 ADD_16b_pe add_109 (
-  .a(w_614),
-  .b(w_610),
-  .c(w_615),
+  .a(w_614_16b),
+  .b(w_610_16b),
+  .c(w_615_16b),
   .clk(clk)
 );
-assign  w_616  =  r55_w_p2_sum_xa24_0 ;
-assign  w_617  =  w_gray_1_stencil_2_6 ;
-assign  w_618  =  w_617 ;
-assign  w_619  = 1'b0;
+assign  w_616_16b  =  r55_w_p2_sum_xa24_0_16b ;
+assign  w_617_16b  =  w_gray_1_stencil_2_6_8b ;
+assign  w_618_16b  =  w_617_16b ;
+assign  w_619_16b  = 1'b0;
 MULT_16b_pe mult_110 (
-  .a(w_618),
-  .b(w_619),
-  .c(w_620),
+  .a(w_618_16b),
+  .b(w_619_16b),
+  .c(w_620_16b),
   .clk(clk)
 );
 ADD_16b_pe add_111 (
-  .a(w_616),
-  .b(w_620),
-  .c(w_621),
+  .a(w_616_16b),
+  .b(w_620_16b),
+  .c(w_621_16b),
   .clk(clk)
 );
-assign  w_622  =  r56_w_p2_sum_xa24_0 ;
-assign  w_623  =  w_gray_1_stencil_3_6 ;
-assign  w_624  =  w_623 ;
-assign  w_625  = 1'b0;
+assign  w_622_16b  =  r56_w_p2_sum_xa24_0_16b ;
+assign  w_623_16b  =  w_gray_1_stencil_3_6_8b ;
+assign  w_624_16b  =  w_623_16b ;
+assign  w_625_16b  = 1'b0;
 MULT_16b_pe mult_112 (
-  .a(w_625),
-  .b(w_624),
-  .c(w_626),
+  .a(w_625_16b),
+  .b(w_624_16b),
+  .c(w_626_16b),
   .clk(clk)
 );
 ADD_16b_pe add_113 (
-  .a(w_622),
-  .b(w_626),
-  .c(w_627),
+  .a(w_622_16b),
+  .b(w_626_16b),
+  .c(w_627_16b),
   .clk(clk)
 );
-assign  w_628  =  r57_w_p2_sum_xa24_0 ;
-assign  w_629  =  w_gray_1_stencil_4_6 ;
-assign  w_630  =  w_629 ;
-assign  w_631  = 1'b0;
+assign  w_628_16b  =  r57_w_p2_sum_xa24_0_16b ;
+assign  w_629_16b  =  w_gray_1_stencil_4_6_8b ;
+assign  w_630_16b  =  w_629_16b ;
+assign  w_631_16b  = 1'b0;
 MULT_16b_pe mult_114 (
-  .a(w_630),
-  .b(w_631),
-  .c(w_632),
+  .a(w_630_16b),
+  .b(w_631_16b),
+  .c(w_632_16b),
   .clk(clk)
 );
 ADD_16b_pe add_115 (
-  .a(w_628),
-  .b(w_632),
-  .c(w_633),
+  .a(w_628_16b),
+  .b(w_632_16b),
+  .c(w_633_16b),
   .clk(clk)
 );
-assign  w_634  =  r58_w_p2_sum_xa24_0 ;
-assign  w_635  =  w_gray_1_stencil_5_6 ;
-assign  w_636  =  w_635 ;
-assign  w_637  = 1'b0;
+assign  w_634_16b  =  r58_w_p2_sum_xa24_0_16b ;
+assign  w_635_16b  =  w_gray_1_stencil_5_6_8b ;
+assign  w_636_16b  =  w_635_16b ;
+assign  w_637_16b  = 1'b0;
 MULT_16b_pe mult_116 (
-  .a(w_636),
-  .b(w_637),
-  .c(w_638),
+  .a(w_636_16b),
+  .b(w_637_16b),
+  .c(w_638_16b),
   .clk(clk)
 );
 ADD_16b_pe add_117 (
-  .a(w_634),
-  .b(w_638),
-  .c(w_639),
+  .a(w_634_16b),
+  .b(w_638_16b),
+  .c(w_639_16b),
   .clk(clk)
 );
-assign  w_640  =  r59_w_p2_sum_xa24_0 ;
-assign  w_641  =  w_gray_1_stencil_6_6 ;
-assign  w_642  =  w_641 ;
-assign  w_643  = 1'b0;
+assign  w_640_16b  =  r59_w_p2_sum_xa24_0_16b ;
+assign  w_641_16b  =  w_gray_1_stencil_6_6_8b ;
+assign  w_642_16b  =  w_641_16b ;
+assign  w_643_16b  = 1'b0;
 MULT_16b_pe mult_118 (
-  .a(w_643),
-  .b(w_642),
-  .c(w_644),
+  .a(w_643_16b),
+  .b(w_642_16b),
+  .c(w_644_16b),
   .clk(clk)
 );
 ADD_16b_pe add_119 (
-  .a(w_640),
-  .b(w_644),
-  .c(w_645),
+  .a(w_640_16b),
+  .b(w_644_16b),
+  .c(w_645_16b),
   .clk(clk)
 );
-assign  w_646  =  r60_w_p2_sum_xa24_0 ;
-assign  w_647  =  w_gray_1_stencil_7_6 ;
-assign  w_648  =  w_647 ;
-assign  w_649  = 1'b0;
+assign  w_646_16b  =  r60_w_p2_sum_xa24_0_16b ;
+assign  w_647_16b  =  w_gray_1_stencil_7_6_8b ;
+assign  w_648_16b  =  w_647_16b ;
+assign  w_649_16b  = 1'b0;
 MULT_16b_pe mult_120 (
-  .a(w_649),
-  .b(w_648),
-  .c(w_650),
+  .a(w_649_16b),
+  .b(w_648_16b),
+  .c(w_650_16b),
   .clk(clk)
 );
 ADD_16b_pe add_121 (
-  .a(w_650),
-  .b(w_646),
-  .c(w_651),
+  .a(w_650_16b),
+  .b(w_646_16b),
+  .c(w_651_16b),
   .clk(clk)
 );
-assign  w_652  =  r61_w_p2_sum_xa24_0 ;
-assign  w_653  =  w_gray_1_stencil_8_6 ;
-assign  w_654  =  w_653 ;
-assign  w_655  = 1'b0;
+assign  w_652_16b  =  r61_w_p2_sum_xa24_0_16b ;
+assign  w_653_16b  =  w_gray_1_stencil_8_6_8b ;
+assign  w_654_16b  =  w_653_16b ;
+assign  w_655_16b  = 1'b0;
 MULT_16b_pe mult_122 (
-  .a(w_654),
-  .b(w_655),
-  .c(w_656),
+  .a(w_654_16b),
+  .b(w_655_16b),
+  .c(w_656_16b),
   .clk(clk)
 );
 ADD_16b_pe add_123 (
-  .a(w_652),
-  .b(w_656),
-  .c(w_657),
+  .a(w_652_16b),
+  .b(w_656_16b),
+  .c(w_657_16b),
   .clk(clk)
 );
-assign  w_658  =  r62_w_p2_sum_xa24_0 ;
-assign  w_659  =  w_gray_1_stencil_0_7 ;
-assign  w_660  =  w_659 ;
-assign  w_661  = 1'b0;
+assign  w_658_16b  =  r62_w_p2_sum_xa24_0_16b ;
+assign  w_659_16b  =  w_gray_1_stencil_0_7_8b ;
+assign  w_660_16b  =  w_659_16b ;
+assign  w_661_16b  = 1'b0;
 MULT_16b_pe mult_124 (
-  .a(w_661),
-  .b(w_660),
-  .c(w_662),
+  .a(w_661_16b),
+  .b(w_660_16b),
+  .c(w_662_16b),
   .clk(clk)
 );
 ADD_16b_pe add_125 (
-  .a(w_658),
-  .b(w_662),
-  .c(w_663),
+  .a(w_658_16b),
+  .b(w_662_16b),
+  .c(w_663_16b),
   .clk(clk)
 );
-assign  w_664  =  r63_w_p2_sum_xa24_0 ;
-assign  w_665  =  w_gray_1_stencil_1_7 ;
-assign  w_666  =  w_665 ;
-assign  w_667  = 1'b0;
+assign  w_664_16b  =  r63_w_p2_sum_xa24_0_16b ;
+assign  w_665_16b  =  w_gray_1_stencil_1_7_8b ;
+assign  w_666_16b  =  w_665_16b ;
+assign  w_667_16b  = 1'b0;
 MULT_16b_pe mult_126 (
-  .a(w_667),
-  .b(w_666),
-  .c(w_668),
+  .a(w_667_16b),
+  .b(w_666_16b),
+  .c(w_668_16b),
   .clk(clk)
 );
 ADD_16b_pe add_127 (
-  .a(w_664),
-  .b(w_668),
-  .c(w_669),
+  .a(w_664_16b),
+  .b(w_668_16b),
+  .c(w_669_16b),
   .clk(clk)
 );
-assign  w_670  =  r64_w_p2_sum_xa24_0 ;
-assign  w_671  =  w_gray_1_stencil_2_7 ;
-assign  w_672  =  w_671 ;
-assign  w_673  = 1'b0;
+assign  w_670_16b  =  r64_w_p2_sum_xa24_0_16b ;
+assign  w_671_16b  =  w_gray_1_stencil_2_7_8b ;
+assign  w_672_16b  =  w_671_16b ;
+assign  w_673_16b  = 1'b0;
 MULT_16b_pe mult_128 (
-  .a(w_672),
-  .b(w_673),
-  .c(w_674),
+  .a(w_672_16b),
+  .b(w_673_16b),
+  .c(w_674_16b),
   .clk(clk)
 );
 ADD_16b_pe add_129 (
-  .a(w_670),
-  .b(w_674),
-  .c(w_675),
+  .a(w_670_16b),
+  .b(w_674_16b),
+  .c(w_675_16b),
   .clk(clk)
 );
-assign  w_676  =  r65_w_p2_sum_xa24_0 ;
-assign  w_677  =  w_gray_1_stencil_3_7 ;
-assign  w_678  =  w_677 ;
-assign  w_679  = 1'b0;
+assign  w_676_16b  =  r65_w_p2_sum_xa24_0_16b ;
+assign  w_677_16b  =  w_gray_1_stencil_3_7_8b ;
+assign  w_678_16b  =  w_677_16b ;
+assign  w_679_16b  = 1'b0;
 MULT_16b_pe mult_130 (
-  .a(w_678),
-  .b(w_679),
-  .c(w_680),
+  .a(w_678_16b),
+  .b(w_679_16b),
+  .c(w_680_16b),
   .clk(clk)
 );
 ADD_16b_pe add_131 (
-  .a(w_680),
-  .b(w_676),
-  .c(w_681),
+  .a(w_680_16b),
+  .b(w_676_16b),
+  .c(w_681_16b),
   .clk(clk)
 );
-assign  w_682  =  r66_w_p2_sum_xa24_0 ;
-assign  w_683  =  w_gray_1_stencil_4_7 ;
-assign  w_684  =  w_683 ;
-assign  w_685  = 1'b0;
+assign  w_682_16b  =  r66_w_p2_sum_xa24_0_16b ;
+assign  w_683_16b  =  w_gray_1_stencil_4_7_8b ;
+assign  w_684_16b  =  w_683_16b ;
+assign  w_685_16b  = 1'b0;
 MULT_16b_pe mult_132 (
-  .a(w_685),
-  .b(w_684),
-  .c(w_686),
+  .a(w_685_16b),
+  .b(w_684_16b),
+  .c(w_686_16b),
   .clk(clk)
 );
 ADD_16b_pe add_133 (
-  .a(w_686),
-  .b(w_682),
-  .c(w_687),
+  .a(w_686_16b),
+  .b(w_682_16b),
+  .c(w_687_16b),
   .clk(clk)
 );
-assign  w_688  =  r67_w_p2_sum_xa24_0 ;
-assign  w_689  =  w_gray_1_stencil_5_7 ;
-assign  w_690  =  w_689 ;
-assign  w_691  = 1'b0;
+assign  w_688_16b  =  r67_w_p2_sum_xa24_0_16b ;
+assign  w_689_16b  =  w_gray_1_stencil_5_7_8b ;
+assign  w_690_16b  =  w_689_16b ;
+assign  w_691_16b  = 1'b0;
 MULT_16b_pe mult_134 (
-  .a(w_690),
-  .b(w_691),
-  .c(w_692),
+  .a(w_690_16b),
+  .b(w_691_16b),
+  .c(w_692_16b),
   .clk(clk)
 );
 ADD_16b_pe add_135 (
-  .a(w_692),
-  .b(w_688),
-  .c(w_693),
+  .a(w_692_16b),
+  .b(w_688_16b),
+  .c(w_693_16b),
   .clk(clk)
 );
-assign  w_694  =  r68_w_p2_sum_xa24_0 ;
-assign  w_695  =  w_gray_1_stencil_6_7 ;
-assign  w_696  =  w_695 ;
-assign  w_697  = 1'b0;
+assign  w_694_16b  =  r68_w_p2_sum_xa24_0_16b ;
+assign  w_695_16b  =  w_gray_1_stencil_6_7_8b ;
+assign  w_696_16b  =  w_695_16b ;
+assign  w_697_16b  = 1'b0;
 MULT_16b_pe mult_136 (
-  .a(w_696),
-  .b(w_697),
-  .c(w_698),
+  .a(w_696_16b),
+  .b(w_697_16b),
+  .c(w_698_16b),
   .clk(clk)
 );
 ADD_16b_pe add_137 (
-  .a(w_694),
-  .b(w_698),
-  .c(w_699),
+  .a(w_694_16b),
+  .b(w_698_16b),
+  .c(w_699_16b),
   .clk(clk)
 );
-assign  w_700  =  r69_w_p2_sum_xa24_0 ;
-assign  w_701  =  w_gray_1_stencil_7_7 ;
-assign  w_702  =  w_701 ;
-assign  w_703  = 1'b0;
+assign  w_700_16b  =  r69_w_p2_sum_xa24_0_16b ;
+assign  w_701_16b  =  w_gray_1_stencil_7_7_8b ;
+assign  w_702_16b  =  w_701_16b ;
+assign  w_703_16b  = 1'b0;
 MULT_16b_pe mult_138 (
-  .a(w_702),
-  .b(w_703),
-  .c(w_704),
+  .a(w_702_16b),
+  .b(w_703_16b),
+  .c(w_704_16b),
   .clk(clk)
 );
 ADD_16b_pe add_139 (
-  .a(w_704),
-  .b(w_700),
-  .c(w_705),
+  .a(w_704_16b),
+  .b(w_700_16b),
+  .c(w_705_16b),
   .clk(clk)
 );
-assign  w_706  =  r70_w_p2_sum_xa24_0 ;
-assign  w_707  =  w_gray_1_stencil_8_7 ;
-assign  w_708  =  w_707 ;
-assign  w_709  = 1'b0;
+assign  w_706_16b  =  r70_w_p2_sum_xa24_0_16b ;
+assign  w_707_16b  =  w_gray_1_stencil_8_7_8b ;
+assign  w_708_16b  =  w_707_16b ;
+assign  w_709_16b  = 1'b0;
 MULT_16b_pe mult_140 (
-  .a(w_708),
-  .b(w_709),
-  .c(w_710),
+  .a(w_708_16b),
+  .b(w_709_16b),
+  .c(w_710_16b),
   .clk(clk)
 );
 ADD_16b_pe add_141 (
-  .a(w_706),
-  .b(w_710),
-  .c(w_711),
+  .a(w_706_16b),
+  .b(w_710_16b),
+  .c(w_711_16b),
   .clk(clk)
 );
-assign  w_712  =  r71_w_p2_sum_xa24_0 ;
-assign  w_713  =  w_gray_1_stencil_0_8 ;
-assign  w_714  =  w_713 ;
+assign  w_712_16b  =  r71_w_p2_sum_xa24_0_16b ;
+assign  w_713_16b  =  w_gray_1_stencil_0_8_8b ;
+assign  w_714_16b  =  w_713_16b ;
 ADD_16b_pe add_142 (
-  .a(w_712),
-  .b(w_714),
-  .c(w_715),
+  .a(w_712_16b),
+  .b(w_714_16b),
+  .c(w_715_16b),
   .clk(clk)
 );
-assign  w_716  =  r72_w_p2_sum_xa24_0 ;
-assign  w_717  =  w_gray_1_stencil_1_8 ;
-assign  w_718  =  w_717 ;
-assign  w_719  = 1'b0;
+assign  w_716_16b  =  r72_w_p2_sum_xa24_0_16b ;
+assign  w_717_16b  =  w_gray_1_stencil_1_8_8b ;
+assign  w_718_16b  =  w_717_16b ;
+assign  w_719_16b  = 1'b0;
 MULT_16b_pe mult_143 (
-  .a(w_719),
-  .b(w_718),
-  .c(w_720),
+  .a(w_719_16b),
+  .b(w_718_16b),
+  .c(w_720_16b),
   .clk(clk)
 );
 ADD_16b_pe add_144 (
-  .a(w_716),
-  .b(w_720),
-  .c(w_721),
+  .a(w_716_16b),
+  .b(w_720_16b),
+  .c(w_721_16b),
   .clk(clk)
 );
-assign  w_722  =  r73_w_p2_sum_xa24_0 ;
-assign  w_723  =  w_gray_1_stencil_2_8 ;
-assign  w_724  =  w_723 ;
-assign  w_725  = 1'b0;
+assign  w_722_16b  =  r73_w_p2_sum_xa24_0_16b ;
+assign  w_723_16b  =  w_gray_1_stencil_2_8_8b ;
+assign  w_724_16b  =  w_723_16b ;
+assign  w_725_16b  = 1'b0;
 MULT_16b_pe mult_145 (
-  .a(w_724),
-  .b(w_725),
-  .c(w_726),
+  .a(w_724_16b),
+  .b(w_725_16b),
+  .c(w_726_16b),
   .clk(clk)
 );
 ADD_16b_pe add_146 (
-  .a(w_726),
-  .b(w_722),
-  .c(w_727),
+  .a(w_726_16b),
+  .b(w_722_16b),
+  .c(w_727_16b),
   .clk(clk)
 );
-assign  w_728  =  r74_w_p2_sum_xa24_0 ;
-assign  w_729  =  w_gray_1_stencil_3_8 ;
-assign  w_730  =  w_729 ;
-assign  w_731  = 1'b0;
+assign  w_728_16b  =  r74_w_p2_sum_xa24_0_16b ;
+assign  w_729_16b  =  w_gray_1_stencil_3_8_8b ;
+assign  w_730_16b  =  w_729_16b ;
+assign  w_731_16b  = 1'b0;
 MULT_16b_pe mult_147 (
-  .a(w_731),
-  .b(w_730),
-  .c(w_732),
+  .a(w_731_16b),
+  .b(w_730_16b),
+  .c(w_732_16b),
   .clk(clk)
 );
 ADD_16b_pe add_148 (
-  .a(w_728),
-  .b(w_732),
-  .c(w_733),
+  .a(w_728_16b),
+  .b(w_732_16b),
+  .c(w_733_16b),
   .clk(clk)
 );
-assign  w_734  =  r75_w_p2_sum_xa24_0 ;
-assign  w_735  =  w_gray_1_stencil_4_8 ;
-assign  w_736  =  w_735 ;
-assign  w_737  = 1'b0;
+assign  w_734_16b  =  r75_w_p2_sum_xa24_0_16b ;
+assign  w_735_16b  =  w_gray_1_stencil_4_8_8b ;
+assign  w_736_16b  =  w_735_16b ;
+assign  w_737_16b  = 1'b0;
 MULT_16b_pe mult_149 (
-  .a(w_737),
-  .b(w_736),
-  .c(w_738),
+  .a(w_737_16b),
+  .b(w_736_16b),
+  .c(w_738_16b),
   .clk(clk)
 );
 ADD_16b_pe add_150 (
-  .a(w_734),
-  .b(w_738),
-  .c(w_739),
+  .a(w_734_16b),
+  .b(w_738_16b),
+  .c(w_739_16b),
   .clk(clk)
 );
-assign  w_740  =  r76_w_p2_sum_xa24_0 ;
-assign  w_741  =  w_gray_1_stencil_5_8 ;
-assign  w_742  =  w_741 ;
-assign  w_743  = 1'b0;
+assign  w_740_16b  =  r76_w_p2_sum_xa24_0_16b ;
+assign  w_741_16b  =  w_gray_1_stencil_5_8_8b ;
+assign  w_742_16b  =  w_741_16b ;
+assign  w_743_16b  = 1'b0;
 MULT_16b_pe mult_151 (
-  .a(w_742),
-  .b(w_743),
-  .c(w_744),
+  .a(w_742_16b),
+  .b(w_743_16b),
+  .c(w_744_16b),
   .clk(clk)
 );
 ADD_16b_pe add_152 (
-  .a(w_740),
-  .b(w_744),
-  .c(w_745),
+  .a(w_740_16b),
+  .b(w_744_16b),
+  .c(w_745_16b),
   .clk(clk)
 );
-assign  w_746  =  r77_w_p2_sum_xa24_0 ;
-assign  w_747  =  w_gray_1_stencil_6_8 ;
-assign  w_748  =  w_747 ;
-assign  w_749  = 1'b0;
+assign  w_746_16b  =  r77_w_p2_sum_xa24_0_16b ;
+assign  w_747_16b  =  w_gray_1_stencil_6_8_8b ;
+assign  w_748_16b  =  w_747_16b ;
+assign  w_749_16b  = 1'b0;
 MULT_16b_pe mult_153 (
-  .a(w_748),
-  .b(w_749),
-  .c(w_750),
+  .a(w_748_16b),
+  .b(w_749_16b),
+  .c(w_750_16b),
   .clk(clk)
 );
 ADD_16b_pe add_154 (
-  .a(w_746),
-  .b(w_750),
-  .c(w_751),
+  .a(w_746_16b),
+  .b(w_750_16b),
+  .c(w_751_16b),
   .clk(clk)
 );
-assign  w_752  =  r78_w_p2_sum_xa24_0 ;
-assign  w_753  =  w_gray_1_stencil_7_8 ;
-assign  w_754  =  w_753 ;
-assign  w_755  = 1'b0;
+assign  w_752_16b  =  r78_w_p2_sum_xa24_0_16b ;
+assign  w_753_16b  =  w_gray_1_stencil_7_8_8b ;
+assign  w_754_16b  =  w_753_16b ;
+assign  w_755_16b  = 1'b0;
 MULT_16b_pe mult_155 (
-  .a(w_755),
-  .b(w_754),
-  .c(w_756),
+  .a(w_755_16b),
+  .b(w_754_16b),
+  .c(w_756_16b),
   .clk(clk)
 );
 ADD_16b_pe add_156 (
-  .a(w_756),
-  .b(w_752),
-  .c(w_757),
+  .a(w_756_16b),
+  .b(w_752_16b),
+  .c(w_757_16b),
   .clk(clk)
 );
-assign  w_758  =  r79_w_p2_sum_xa24_0 ;
-assign  w_759  =  w_gray_1_stencil_8_8 ;
-assign  w_760  =  w_759 ;
+assign  w_758_16b  =  r79_w_p2_sum_xa24_0_16b ;
+assign  w_759_16b  =  w_gray_1_stencil_8_8_8b ;
+assign  w_760_16b  =  w_759_16b ;
 ADD_16b_pe add_157 (
-  .a(w_760),
-  .b(w_758),
-  .c(w_761),
+  .a(w_760_16b),
+  .b(w_758_16b),
+  .c(w_761_16b),
   .clk(clk)
 );
-assign  w_762  =  w_gray_1_stencil_4_4 ;
-assign  w_763  =  w_762 ;
-assign  w_764  = 1'b0;
+assign  w_762_16b  =  w_gray_1_stencil_4_4_8b ;
+assign  w_763_16b  =  w_762_16b ;
+assign  w_764_16b  = 1'b0;
 MULT_16b_pe mult_158 (
-  .a(w_763),
-  .b(w_764),
-  .c(w_765),
+  .a(w_763_16b),
+  .b(w_764_16b),
+  .c(w_765_16b),
   .clk(clk)
 );
-assign  w_766  =  r80_w_p2_sum_xa24_0 ;
+assign  w_766_16b  =  r80_w_p2_sum_xa24_0_16b ;
 LSHIFT_16b_pe lshift_159 (
-  .a(w_766),
+  .a(w_766_16b),
   .b(1'b0),
-  .c(w_767),
+  .c(w_767_16b),
   .clk(clk)
 );
-assign  w_768  =  w_767 ;
-assign  w_769  =  w_768 ;
+assign  w_768_16b  =  w_767_16b ;
+assign  w_769_16b  =  w_768_16b ;
 SUB_16b_pe sub_160 (
-  .a(w_769),
-  .b(w_765),
-  .c(w_770),
+  .a(w_769_16b),
+  .b(w_765_16b),
+  .c(w_770_16b),
   .clk(clk)
 );
-assign  w_771  = 1'b0;
+assign  w_771_16b  = 1'b0;
 MIN_16b_pe min_161 (
-  .a(w_771),
-  .b(w_770),
-  .c(w_772),
+  .a(w_771_16b),
+  .b(w_770_16b),
+  .c(w_772_16b),
   .clk(clk)
 );
-assign  w_773  =  w_772 ;
-assign  w_774  =  w_773 ;
-assign  w_775  = 1'b0;
+assign  w_773_16b  =  w_772_16b ;
+assign  w_774_16b  =  w_773_16b ;
+assign  w_775_16b  = 1'b0;
 MULT_16b_pe mult_162 (
-  .a(w_775),
-  .b(w_774),
-  .c(w_776),
+  .a(w_775_16b),
+  .b(w_774_16b),
+  .c(w_776_16b),
   .clk(clk)
 );
-assign  w_777  = 1'b0;
+assign  w_777_16b  = 1'b0;
 MAX_16b_pe max_163 (
-  .a(w_762),
-  .b(w_777),
-  .c(w_778),
+  .a(w_762_16b),
+  .b(w_777_16b),
+  .c(w_778_16b),
   .clk(clk)
 );
-assign  w_779  =  w_778 ;
+assign  w_779_16b  =  w_778_16b ;
 DIV_16b_pe div_164 (
-  .a(w_779),
-  .b(w_776),
-  .c(w_780),
+  .a(w_779_16b),
+  .b(w_776_16b),
+  .c(w_780_16b),
   .clk(clk)
 );
 MIN_16b_pe min_165 (
-  .a(w_771),
-  .b(w_780),
-  .c(w_781),
+  .a(w_771_16b),
+  .b(w_780_16b),
+  .c(w_781_16b),
   .clk(clk)
 );
-assign  w_782  =  w_781 ;
-assign  w_p2_sum_xa24_0  = 1'b0;
-assign  w_ratio_1_stencil_0_0  =  w_782 ;
+assign  w_782_16b  =  w_781_16b ;
+assign  w_p2_sum_xa24_0_16b  = 1'b0;
+assign  w_ratio_1_stencil_0_0_8b  =  w_782_16b ;
 
 endmodule
 
@@ -2614,146 +2616,146 @@ endmodule
 
 module kernel__hw_output_1_stencil_stream(
 //Inputs
-  w_p2_in_bounded_stencil_0_0_0,
-  w_p2_in_bounded_stencil_1_0_0,
-  w_p2_in_bounded_stencil_2_0_0,
-  w_ratio_1_stencil_0_0,
+  w_p2_in_bounded_stencil_0_0_0_8b,
+  w_p2_in_bounded_stencil_1_0_0_8b,
+  w_p2_in_bounded_stencil_2_0_0_8b,
+  w_ratio_1_stencil_0_0_8b,
 //Outputs
-  out_w_hw_output_1_stencil_1_0_0,
-  out_w_hw_output_1_stencil_2_0_0,
-  out_w_hw_output_1_stencil_packed,
+  out_w_hw_output_1_stencil_1_0_0_8b,
+  out_w_hw_output_1_stencil_2_0_0_8b,
+  out_w_hw_output_1_stencil_packed_16b,
 
   clk
 );
 
 //Inputs
-input  w_p2_in_bounded_stencil_1_0_0;
-input  w_p2_in_bounded_stencil_0_0_0;
-input  w_ratio_1_stencil_0_0;
-input  w_p2_in_bounded_stencil_2_0_0;
+input  w_p2_in_bounded_stencil_1_0_0_8b;
+input  w_p2_in_bounded_stencil_0_0_0_8b;
+input  w_ratio_1_stencil_0_0_8b;
+input  w_p2_in_bounded_stencil_2_0_0_8b;
 //Outputs
-output  out_w_hw_output_1_stencil_1_0_0;
-output  out_w_hw_output_1_stencil_2_0_0;
-output  out_w_hw_output_1_stencil_packed;
+output  out_w_hw_output_1_stencil_1_0_0_8b;
+output  out_w_hw_output_1_stencil_2_0_0_8b;
+output  out_w_hw_output_1_stencil_packed_16b;
 
 input  clk;
 
 
-wire  w_783;
-wire  w_784;
-wire  w_785;
-wire  w_786;
-wire  w_787;
-wire  w_788;
-wire  w_789;
-wire  w_790;
-wire  w_791;
-wire  w_792;
-wire  w_793;
-wire  w_794;
-wire  w_795;
-wire  w_796;
-wire  w_797;
-wire  w_798;
-wire  w_799;
-wire  w_800;
-wire  w_801;
-wire  w_802;
-wire  w_803;
-wire  w_804;
-wire  w_805;
-wire  w_806;
-wire  w_807;
-wire  w_808;
-wire  w_809;
-wire  w_hw_output_1_stencil_0_0_0;
-wire  w_hw_output_1_stencil_1_0_0;
-wire  w_hw_output_1_stencil_2_0_0;
-wire  w_hw_output_1_stencil_packed;
+wire  w_783_16b;
+wire  w_784_16b;
+wire  w_785_16b;
+wire  w_786_16b;
+wire  w_787_16b;
+wire  w_788_16b;
+wire  w_789_16b;
+wire  w_790_16b;
+wire  w_791_16b;
+wire  w_792_16b;
+wire  w_793_16b;
+wire  w_794_16b;
+wire  w_795_16b;
+wire  w_796_16b;
+wire  w_797_16b;
+wire  w_798_16b;
+wire  w_799_16b;
+wire  w_800_16b;
+wire  w_801_16b;
+wire  w_802_16b;
+wire  w_803_16b;
+wire  w_804_16b;
+wire  w_805_16b;
+wire  w_806_16b;
+wire  w_807_16b;
+wire  w_808_16b;
+wire  w_809_16b;
+wire  w_hw_output_1_stencil_0_0_0_8b;
+wire  w_hw_output_1_stencil_1_0_0_8b;
+wire  w_hw_output_1_stencil_2_0_0_8b;
+wire  w_hw_output_1_stencil_packed_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_hw_output_1_stencil_1_0_0=w_hw_output_1_stencil_1_0_0;
-assign out_w_hw_output_1_stencil_2_0_0=w_hw_output_1_stencil_2_0_0;
-assign out_w_hw_output_1_stencil_packed=w_hw_output_1_stencil_packed;
-assign  w_783  =  w_ratio_1_stencil_0_0 ;
-assign  w_784  =  w_783 ;
-assign  w_785  =  w_p2_in_bounded_stencil_0_0_0 ;
-assign  w_786  =  w_785 ;
+assign out_w_hw_output_1_stencil_1_0_0_8b = w_hw_output_1_stencil_1_0_0_8b;
+assign out_w_hw_output_1_stencil_2_0_0_8b = w_hw_output_1_stencil_2_0_0_8b;
+assign out_w_hw_output_1_stencil_packed_16b = w_hw_output_1_stencil_packed_16b;
+assign  w_783_16b  =  w_ratio_1_stencil_0_0_8b ;
+assign  w_784_16b  =  w_783_16b ;
+assign  w_785_16b  =  w_p2_in_bounded_stencil_0_0_0_8b ;
+assign  w_786_16b  =  w_785_16b ;
 MULT_16b_pe mult_0 (
-  .a(w_784),
-  .b(w_786),
-  .c(w_787),
+  .a(w_784_16b),
+  .b(w_786_16b),
+  .c(w_787_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_1 (
-  .a(w_787),
+  .a(w_787_16b),
   .b(1'b0),
-  .c(w_788),
+  .c(w_788_16b),
   .clk(clk)
 );
-assign  w_789  = 1'b0;
+assign  w_789_16b  = 1'b0;
 MIN_16b_pe min_2 (
-  .a(w_788),
-  .b(w_789),
-  .c(w_790),
+  .a(w_788_16b),
+  .b(w_789_16b),
+  .c(w_790_16b),
   .clk(clk)
 );
-assign  w_791  =  w_790 ;
-assign  w_792  =  w_ratio_1_stencil_0_0 ;
-assign  w_793  =  w_792 ;
-assign  w_794  =  w_p2_in_bounded_stencil_1_0_0 ;
-assign  w_795  =  w_794 ;
+assign  w_791_16b  =  w_790_16b ;
+assign  w_792_16b  =  w_ratio_1_stencil_0_0_8b ;
+assign  w_793_16b  =  w_792_16b ;
+assign  w_794_16b  =  w_p2_in_bounded_stencil_1_0_0_8b ;
+assign  w_795_16b  =  w_794_16b ;
 MULT_16b_pe mult_3 (
-  .a(w_793),
-  .b(w_795),
-  .c(w_796),
+  .a(w_793_16b),
+  .b(w_795_16b),
+  .c(w_796_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_4 (
   .a(1'b0),
-  .b(w_796),
-  .c(w_797),
+  .b(w_796_16b),
+  .c(w_797_16b),
   .clk(clk)
 );
-assign  w_798  = 1'b0;
+assign  w_798_16b  = 1'b0;
 MIN_16b_pe min_5 (
-  .a(w_798),
-  .b(w_797),
-  .c(w_799),
+  .a(w_798_16b),
+  .b(w_797_16b),
+  .c(w_799_16b),
   .clk(clk)
 );
-assign  w_800  =  w_799 ;
-assign  w_801  =  w_ratio_1_stencil_0_0 ;
-assign  w_802  =  w_801 ;
-assign  w_803  =  w_p2_in_bounded_stencil_2_0_0 ;
-assign  w_804  =  w_803 ;
+assign  w_800_16b  =  w_799_16b ;
+assign  w_801_16b  =  w_ratio_1_stencil_0_0_8b ;
+assign  w_802_16b  =  w_801_16b ;
+assign  w_803_16b  =  w_p2_in_bounded_stencil_2_0_0_8b ;
+assign  w_804_16b  =  w_803_16b ;
 MULT_16b_pe mult_6 (
-  .a(w_802),
-  .b(w_804),
-  .c(w_805),
+  .a(w_802_16b),
+  .b(w_804_16b),
+  .c(w_805_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_7 (
   .a(1'b0),
-  .b(w_805),
-  .c(w_806),
+  .b(w_805_16b),
+  .c(w_806_16b),
   .clk(clk)
 );
-assign  w_807  = 1'b0;
+assign  w_807_16b  = 1'b0;
 MIN_16b_pe min_8 (
-  .a(w_807),
-  .b(w_806),
-  .c(w_808),
+  .a(w_807_16b),
+  .b(w_806_16b),
+  .c(w_808_16b),
   .clk(clk)
 );
-assign  w_809  =  w_808 ;
-assign  w_hw_output_1_stencil_0_0_0  =  w_791 ;
-assign  w_hw_output_1_stencil_1_0_0  =  w_800 ;
-assign  w_hw_output_1_stencil_2_0_0  =  w_809 ;
-assign  w_hw_output_1_stencil_packed  =  w_hw_output_1_stencil_0_0_0 ;
+assign  w_809_16b  =  w_808_16b ;
+assign  w_hw_output_1_stencil_0_0_0_8b  =  w_791_16b ;
+assign  w_hw_output_1_stencil_1_0_0_8b  =  w_800_16b ;
+assign  w_hw_output_1_stencil_2_0_0_8b  =  w_809_16b ;
+assign  w_hw_output_1_stencil_packed_16b  =  w_hw_output_1_stencil_0_0_0_8b ;
 
 endmodule
 

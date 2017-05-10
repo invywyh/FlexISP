@@ -6,7 +6,7 @@ import os.path
 import sys
 
 #from parse_hls import parse_declration
-from parse_hls import get_grouped_inputs, get_grouped_outputs, build_kernel_graph, print_kernel_verilog, print_macros_verilog
+from parse_hls import format_signal, get_grouped_inputs, get_grouped_outputs, build_kernel_graph, print_kernel_verilog, print_macros_verilog
 #sys.path.append('/home/tema8/projects/FlexISP/pylib')
 #from pylib.lb_verilog import *
 from lb_verilog import make_lb_verilog_from_config, make_lb_base_verilog, make_shift_reg_base_verilog
@@ -97,11 +97,11 @@ def make_names (prefix, dims) :
 
 #These have unrolled 0 rows LB in hls_target, but worked after hand changes
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/unsharp_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
+DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/"
 
 #This has explicit control sinals to LBs ('if...else'), but worked after hand changes
-DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/"
 
 
 #These examples work:
@@ -546,8 +546,8 @@ def get_lb_config_from_key(lb_key):
 	lb_dims = lb_def[0].split("_")
 	if len(lb_dims) == 3:
 #TODO: LB definition is NOT consistent
-		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
-		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
+		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
+		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
 	elif len(lb_dims) == 2:
 		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
 	elif len(lb_dims) == 1:
@@ -587,14 +587,14 @@ def print_verilog_top(G):
 	print "//Inputs"
 	for i in INPUTS:
 		for s in make_names (i, G.node[i]['dims']):
-			print "  %s,"%s
+			print "  %s,"%format_signal(s, G.node[i])
 		print ""
 
 
 	print "//Outputs"
 	for o in OUPUTS:
 		for s in make_names (o, G.node[o]['dims']):
-			print "  %s,"%s
+			print "  %s,"%format_signal(s, G.node[o])
 		print ""
 
 	print "  clk"
@@ -606,7 +606,7 @@ def print_verilog_top(G):
 		bit_range = get_bit_range(s_type)
 
 		for s in make_names (i, G.node[i]['dims']):
-			print "input   %s %s;"%(bit_range, s)
+			print "input   %s %s;"%(bit_range, format_signal(s, G.node[i]))
 		print ""
 
 	print "//Outputs"
@@ -615,7 +615,7 @@ def print_verilog_top(G):
 		bit_range = get_bit_range(s_type)
 
 		for s in make_names (o, G.node[o]['dims']):
-			print "output  %s %s;"%(bit_range, s)
+			print "output  %s %s;"%(bit_range, format_signal(s, G.node[o]))
 		print ""
 	print "input   clk;\n"
 
@@ -628,7 +628,7 @@ def print_verilog_top(G):
 		bit_range = get_bit_range(s_type)
 
 		for s in make_names (w, G.node[w]['dims']):
-			print "wire  %s %s;"%(bit_range, s)
+			print "wire  %s %s;"%(bit_range, format_signal(s, G.node[w]))
 		print ""
 
 	print "wire   gnd;"
@@ -636,7 +636,6 @@ def print_verilog_top(G):
 
 	print "assign gnd=1'b0;\n"
 	#print "assign   tmp_gnd=gnd;"
-
 
 
 	for n in intern_nodes:
@@ -654,7 +653,7 @@ def print_verilog_top(G):
 			inp_connections = []
 			for p in G.predecessors(n):
 				bit_range = ""
-				inp_connections += make_names(p, G.node[p]['dims'])
+				inp_connections += map(lambda x: format_signal(x, G.node[p]),make_names(p, G.node[p]['dims']))
 				#for s in make_names (p, G.node[p]['dims']):
 				#	#print "wire  %s %s;"%(bit_range, s)
 				#	print "		.%s(%s),"%(s, s)
@@ -666,7 +665,7 @@ def print_verilog_top(G):
 				sign = "gnd"
 				if i < len(inp_connections):
 					sign = inp_connections[i]
-				print "    .%s(%s),"%(port, sign)
+				print "    .%s(%s),"%(format_signal(port, k_G.node[port]), sign)
 			print ""
 
 			#Outputs
@@ -677,10 +676,11 @@ def print_verilog_top(G):
 				sign = ""
 				if i < len(out_sign):
 					sign = out_sign[i]
-				print "    .%s(%s),"%(port, sign)
+				print "    .%s(%s),"%(port, format_signal(sign, G.node[n]))
 
 			print ""
 			print "    .clk(clk)"
+
 
 		elif (G.node[n]['obj'] == "lb"):
 			#print G.node[n]['obj'], " KERN_", n," ("
@@ -694,7 +694,10 @@ def print_verilog_top(G):
 				bit_range = ""
 				for s in make_names (p, G.node[p]['dims']):
 					#print "wire  %s %s;"%(bit_range, s)
-					print "    .in%d(%s),"%(inp_cnt, s)
+					#If LB has less that 3 dimmentions, it will have a single input
+					if len(G.node[n]['dims']) < 3 and inp_cnt > 0:
+						sys.stdout.write('//')
+					print "    .in%d(%s),"%(inp_cnt, format_signal(s,G.node[p]))
 					inp_cnt = inp_cnt + 1
 				print ""
 
@@ -706,7 +709,7 @@ def print_verilog_top(G):
 				coma = ","
 				if (s == len(out_ports)-1):
 					coma = "" 
-				print "    .out%d(%s)%s"%(s, out_ports[s], coma)
+				print "    .out%d(%s)%s"%(s, format_signal(out_ports[s], G.node[n]), coma)
 
 		print ");\n"
 
@@ -747,6 +750,7 @@ def print_lb_marcos(G):
 #draw_app_dag(G)
 
 delete_mv(G)
+print "// Source: ", file_name, "\n"
 print_verilog_top(G)
 draw_app_dag(G)
 

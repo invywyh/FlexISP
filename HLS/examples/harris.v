@@ -1,154 +1,156 @@
+// Source:  /home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/hls_target.cpp 
+
 module top(
 //Inputs
-  w_grad_y_1_stencil_stream_to_grad_xy_1_0_0,
-  w_grad_y_1_stencil_stream_to_grad_xy_1_1_0,
+  w_grad_y_1_stencil_stream_to_grad_xy_1_0_0_16b,
+  w_grad_y_1_stencil_stream_to_grad_xy_1_1_0_16b,
 
-  w_padded_1_stencil_stream_to_grad_x_1_0_0,
-  w_padded_1_stencil_stream_to_grad_x_1_0_1,
-  w_padded_1_stencil_stream_to_grad_x_1_0_2,
-  w_padded_1_stencil_stream_to_grad_x_1_1_0,
-  w_padded_1_stencil_stream_to_grad_x_1_1_1,
-  w_padded_1_stencil_stream_to_grad_x_1_1_2,
-  w_padded_1_stencil_stream_to_grad_x_1_2_0,
-  w_padded_1_stencil_stream_to_grad_x_1_2_1,
-  w_padded_1_stencil_stream_to_grad_x_1_2_2,
-  w_padded_1_stencil_stream_to_grad_x_1_3_0,
-  w_padded_1_stencil_stream_to_grad_x_1_3_1,
-  w_padded_1_stencil_stream_to_grad_x_1_3_2,
+  w_padded_1_stencil_stream_to_grad_x_1_0_0_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_0_1_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_0_2_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_1_0_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_1_1_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_1_2_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_2_0_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_2_1_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_2_2_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_3_0_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_3_1_8b,
+  w_padded_1_stencil_stream_to_grad_x_1_3_2_8b,
 
-  w_grad_x_1_stencil_stream_to_grad_xx_1_0_0,
-  w_grad_x_1_stencil_stream_to_grad_xx_1_1_0,
+  w_grad_x_1_stencil_stream_to_grad_xx_1_0_0_16b,
+  w_grad_x_1_stencil_stream_to_grad_xx_1_1_0_16b,
 
-  w_padded_1_stencil_update_stream_0_0,
-  w_padded_1_stencil_update_stream_1_0,
+  w_padded_1_stencil_update_stream_0_0_8b,
+  w_padded_1_stencil_update_stream_1_0_8b,
 
 //Outputs
-  w_hw_output_1_stencil_stream_0_0,
-  w_hw_output_1_stencil_stream_1_0,
+  w_hw_output_1_stencil_stream_0_0_8b,
+  w_hw_output_1_stencil_stream_1_0_8b,
 
   clk
 );
 
 //Inputs
-input    w_grad_y_1_stencil_stream_to_grad_xy_1_0_0;
-input    w_grad_y_1_stencil_stream_to_grad_xy_1_1_0;
+input    w_grad_y_1_stencil_stream_to_grad_xy_1_0_0_16b;
+input    w_grad_y_1_stencil_stream_to_grad_xy_1_1_0_16b;
 
-input    w_padded_1_stencil_stream_to_grad_x_1_0_0;
-input    w_padded_1_stencil_stream_to_grad_x_1_0_1;
-input    w_padded_1_stencil_stream_to_grad_x_1_0_2;
-input    w_padded_1_stencil_stream_to_grad_x_1_1_0;
-input    w_padded_1_stencil_stream_to_grad_x_1_1_1;
-input    w_padded_1_stencil_stream_to_grad_x_1_1_2;
-input    w_padded_1_stencil_stream_to_grad_x_1_2_0;
-input    w_padded_1_stencil_stream_to_grad_x_1_2_1;
-input    w_padded_1_stencil_stream_to_grad_x_1_2_2;
-input    w_padded_1_stencil_stream_to_grad_x_1_3_0;
-input    w_padded_1_stencil_stream_to_grad_x_1_3_1;
-input    w_padded_1_stencil_stream_to_grad_x_1_3_2;
+input    w_padded_1_stencil_stream_to_grad_x_1_0_0_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_0_1_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_0_2_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_1_0_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_1_1_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_1_2_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_2_0_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_2_1_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_2_2_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_3_0_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_3_1_8b;
+input    w_padded_1_stencil_stream_to_grad_x_1_3_2_8b;
 
-input    w_grad_x_1_stencil_stream_to_grad_xx_1_0_0;
-input    w_grad_x_1_stencil_stream_to_grad_xx_1_1_0;
+input    w_grad_x_1_stencil_stream_to_grad_xx_1_0_0_16b;
+input    w_grad_x_1_stencil_stream_to_grad_xx_1_1_0_16b;
 
-input    w_padded_1_stencil_update_stream_0_0;
-input    w_padded_1_stencil_update_stream_1_0;
+input    w_padded_1_stencil_update_stream_0_0_8b;
+input    w_padded_1_stencil_update_stream_1_0_8b;
 
 //Outputs
-output   w_hw_output_1_stencil_stream_0_0;
-output   w_hw_output_1_stencil_stream_1_0;
+output   w_hw_output_1_stencil_stream_0_0_8b;
+output   w_hw_output_1_stencil_stream_1_0_8b;
 
 input   clk;
 
-wire   w_grad_yy_1_stencil_stream_0_0;
-wire   w_grad_yy_1_stencil_stream_0_1;
-wire   w_grad_yy_1_stencil_stream_0_2;
-wire   w_grad_yy_1_stencil_stream_1_0;
-wire   w_grad_yy_1_stencil_stream_1_1;
-wire   w_grad_yy_1_stencil_stream_1_2;
-wire   w_grad_yy_1_stencil_stream_2_0;
-wire   w_grad_yy_1_stencil_stream_2_1;
-wire   w_grad_yy_1_stencil_stream_2_2;
-wire   w_grad_yy_1_stencil_stream_3_0;
-wire   w_grad_yy_1_stencil_stream_3_1;
-wire   w_grad_yy_1_stencil_stream_3_2;
+wire   w_grad_yy_1_stencil_stream_0_0_16b;
+wire   w_grad_yy_1_stencil_stream_0_1_16b;
+wire   w_grad_yy_1_stencil_stream_0_2_16b;
+wire   w_grad_yy_1_stencil_stream_1_0_16b;
+wire   w_grad_yy_1_stencil_stream_1_1_16b;
+wire   w_grad_yy_1_stencil_stream_1_2_16b;
+wire   w_grad_yy_1_stencil_stream_2_0_16b;
+wire   w_grad_yy_1_stencil_stream_2_1_16b;
+wire   w_grad_yy_1_stencil_stream_2_2_16b;
+wire   w_grad_yy_1_stencil_stream_3_0_16b;
+wire   w_grad_yy_1_stencil_stream_3_1_16b;
+wire   w_grad_yy_1_stencil_stream_3_2_16b;
 
-wire   w_padded_1_stencil_stream_0_0;
-wire   w_padded_1_stencil_stream_0_1;
-wire   w_padded_1_stencil_stream_0_2;
-wire   w_padded_1_stencil_stream_1_0;
-wire   w_padded_1_stencil_stream_1_1;
-wire   w_padded_1_stencil_stream_1_2;
-wire   w_padded_1_stencil_stream_2_0;
-wire   w_padded_1_stencil_stream_2_1;
-wire   w_padded_1_stencil_stream_2_2;
-wire   w_padded_1_stencil_stream_3_0;
-wire   w_padded_1_stencil_stream_3_1;
-wire   w_padded_1_stencil_stream_3_2;
+wire   w_padded_1_stencil_stream_0_0_8b;
+wire   w_padded_1_stencil_stream_0_1_8b;
+wire   w_padded_1_stencil_stream_0_2_8b;
+wire   w_padded_1_stencil_stream_1_0_8b;
+wire   w_padded_1_stencil_stream_1_1_8b;
+wire   w_padded_1_stencil_stream_1_2_8b;
+wire   w_padded_1_stencil_stream_2_0_8b;
+wire   w_padded_1_stencil_stream_2_1_8b;
+wire   w_padded_1_stencil_stream_2_2_8b;
+wire   w_padded_1_stencil_stream_3_0_8b;
+wire   w_padded_1_stencil_stream_3_1_8b;
+wire   w_padded_1_stencil_stream_3_2_8b;
 
-wire   w_grad_xy_1_stencil_stream_0_0;
-wire   w_grad_xy_1_stencil_stream_0_1;
-wire   w_grad_xy_1_stencil_stream_0_2;
-wire   w_grad_xy_1_stencil_stream_1_0;
-wire   w_grad_xy_1_stencil_stream_1_1;
-wire   w_grad_xy_1_stencil_stream_1_2;
-wire   w_grad_xy_1_stencil_stream_2_0;
-wire   w_grad_xy_1_stencil_stream_2_1;
-wire   w_grad_xy_1_stencil_stream_2_2;
-wire   w_grad_xy_1_stencil_stream_3_0;
-wire   w_grad_xy_1_stencil_stream_3_1;
-wire   w_grad_xy_1_stencil_stream_3_2;
+wire   w_grad_xy_1_stencil_stream_0_0_16b;
+wire   w_grad_xy_1_stencil_stream_0_1_16b;
+wire   w_grad_xy_1_stencil_stream_0_2_16b;
+wire   w_grad_xy_1_stencil_stream_1_0_16b;
+wire   w_grad_xy_1_stencil_stream_1_1_16b;
+wire   w_grad_xy_1_stencil_stream_1_2_16b;
+wire   w_grad_xy_1_stencil_stream_2_0_16b;
+wire   w_grad_xy_1_stencil_stream_2_1_16b;
+wire   w_grad_xy_1_stencil_stream_2_2_16b;
+wire   w_grad_xy_1_stencil_stream_3_0_16b;
+wire   w_grad_xy_1_stencil_stream_3_1_16b;
+wire   w_grad_xy_1_stencil_stream_3_2_16b;
 
-wire   w_p2_cim_stencil_stream_0_0;
-wire   w_p2_cim_stencil_stream_0_1;
-wire   w_p2_cim_stencil_stream_0_2;
-wire   w_p2_cim_stencil_stream_1_0;
-wire   w_p2_cim_stencil_stream_1_1;
-wire   w_p2_cim_stencil_stream_1_2;
-wire   w_p2_cim_stencil_stream_2_0;
-wire   w_p2_cim_stencil_stream_2_1;
-wire   w_p2_cim_stencil_stream_2_2;
-wire   w_p2_cim_stencil_stream_3_0;
-wire   w_p2_cim_stencil_stream_3_1;
-wire   w_p2_cim_stencil_stream_3_2;
+wire   w_p2_cim_stencil_stream_0_0_16b;
+wire   w_p2_cim_stencil_stream_0_1_16b;
+wire   w_p2_cim_stencil_stream_0_2_16b;
+wire   w_p2_cim_stencil_stream_1_0_16b;
+wire   w_p2_cim_stencil_stream_1_1_16b;
+wire   w_p2_cim_stencil_stream_1_2_16b;
+wire   w_p2_cim_stencil_stream_2_0_16b;
+wire   w_p2_cim_stencil_stream_2_1_16b;
+wire   w_p2_cim_stencil_stream_2_2_16b;
+wire   w_p2_cim_stencil_stream_3_0_16b;
+wire   w_p2_cim_stencil_stream_3_1_16b;
+wire   w_p2_cim_stencil_stream_3_2_16b;
 
-wire   w_grad_y_1_stencil_stream_0_0;
-wire   w_grad_y_1_stencil_stream_1_0;
+wire   w_grad_y_1_stencil_stream_0_0_16b;
+wire   w_grad_y_1_stencil_stream_1_0_16b;
 
-wire   w_grad_xx_1_stencil_update_stream_0_0;
-wire   w_grad_xx_1_stencil_update_stream_1_0;
+wire   w_grad_xx_1_stencil_update_stream_0_0_16b;
+wire   w_grad_xx_1_stencil_update_stream_1_0_16b;
 
-wire   w_grad_yy_1_stencil_update_stream_0_0;
-wire   w_grad_yy_1_stencil_update_stream_1_0;
+wire   w_grad_yy_1_stencil_update_stream_0_0_16b;
+wire   w_grad_yy_1_stencil_update_stream_1_0_16b;
 
-wire   w_grad_xy_1_stencil_update_stream_0_0;
-wire   w_grad_xy_1_stencil_update_stream_1_0;
+wire   w_grad_xy_1_stencil_update_stream_0_0_16b;
+wire   w_grad_xy_1_stencil_update_stream_1_0_16b;
 
-wire   w_p2_cim_stencil_update_stream_0_0;
-wire   w_p2_cim_stencil_update_stream_1_0;
+wire   w_p2_cim_stencil_update_stream_0_0_16b;
+wire   w_p2_cim_stencil_update_stream_1_0_16b;
 
-wire   w_grad_gy_1_stencil_stream_0_0;
-wire   w_grad_gy_1_stencil_stream_1_0;
+wire   w_grad_gy_1_stencil_stream_0_0_16b;
+wire   w_grad_gy_1_stencil_stream_1_0_16b;
 
-wire   w_grad_xx_1_stencil_stream_0_0;
-wire   w_grad_xx_1_stencil_stream_0_1;
-wire   w_grad_xx_1_stencil_stream_0_2;
-wire   w_grad_xx_1_stencil_stream_1_0;
-wire   w_grad_xx_1_stencil_stream_1_1;
-wire   w_grad_xx_1_stencil_stream_1_2;
-wire   w_grad_xx_1_stencil_stream_2_0;
-wire   w_grad_xx_1_stencil_stream_2_1;
-wire   w_grad_xx_1_stencil_stream_2_2;
-wire   w_grad_xx_1_stencil_stream_3_0;
-wire   w_grad_xx_1_stencil_stream_3_1;
-wire   w_grad_xx_1_stencil_stream_3_2;
+wire   w_grad_xx_1_stencil_stream_0_0_16b;
+wire   w_grad_xx_1_stencil_stream_0_1_16b;
+wire   w_grad_xx_1_stencil_stream_0_2_16b;
+wire   w_grad_xx_1_stencil_stream_1_0_16b;
+wire   w_grad_xx_1_stencil_stream_1_1_16b;
+wire   w_grad_xx_1_stencil_stream_1_2_16b;
+wire   w_grad_xx_1_stencil_stream_2_0_16b;
+wire   w_grad_xx_1_stencil_stream_2_1_16b;
+wire   w_grad_xx_1_stencil_stream_2_2_16b;
+wire   w_grad_xx_1_stencil_stream_3_0_16b;
+wire   w_grad_xx_1_stencil_stream_3_1_16b;
+wire   w_grad_xx_1_stencil_stream_3_2_16b;
 
-wire   w_grad_x_1_stencil_stream_0_0;
-wire   w_grad_x_1_stencil_stream_1_0;
+wire   w_grad_x_1_stencil_stream_0_0_16b;
+wire   w_grad_x_1_stencil_stream_1_0_16b;
 
-wire   w_grad_gx_1_stencil_stream_0_0;
-wire   w_grad_gx_1_stencil_stream_1_0;
+wire   w_grad_gx_1_stencil_stream_0_0_16b;
+wire   w_grad_gx_1_stencil_stream_1_0_16b;
 
-wire   w_grad_gxy_1_stencil_stream_0_0;
-wire   w_grad_gxy_1_stencil_stream_1_0;
+wire   w_grad_gxy_1_stencil_stream_0_0_16b;
+wire   w_grad_gxy_1_stencil_stream_1_0_16b;
 
 wire   gnd;
 assign gnd=1'b0;
@@ -156,158 +158,161 @@ assign gnd=1'b0;
 LB_3_4_1_32bit_False LB__grad_yy_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_grad_yy_1_stencil_update_stream_0_0),
+    .in0(w_grad_yy_1_stencil_update_stream_0_0_16b),
+//    .in1(w_grad_yy_1_stencil_update_stream_1_0_16b),
 
-    .out0(w_grad_yy_1_stencil_stream_0_0),
-    .out1(w_grad_yy_1_stencil_stream_0_1),
-    .out2(w_grad_yy_1_stencil_stream_0_2),
-    .out3(w_grad_yy_1_stencil_stream_1_0),
-    .out4(w_grad_yy_1_stencil_stream_1_1),
-    .out5(w_grad_yy_1_stencil_stream_1_2),
-    .out6(w_grad_yy_1_stencil_stream_2_0),
-    .out7(w_grad_yy_1_stencil_stream_2_1),
-    .out8(w_grad_yy_1_stencil_stream_2_2),
-    .out9(w_grad_yy_1_stencil_stream_3_0),
-    .out10(w_grad_yy_1_stencil_stream_3_1),
-    .out11(w_grad_yy_1_stencil_stream_3_2)
+    .out0(w_grad_yy_1_stencil_stream_0_0_16b),
+    .out1(w_grad_yy_1_stencil_stream_0_1_16b),
+    .out2(w_grad_yy_1_stencil_stream_0_2_16b),
+    .out3(w_grad_yy_1_stencil_stream_1_0_16b),
+    .out4(w_grad_yy_1_stencil_stream_1_1_16b),
+    .out5(w_grad_yy_1_stencil_stream_1_2_16b),
+    .out6(w_grad_yy_1_stencil_stream_2_0_16b),
+    .out7(w_grad_yy_1_stencil_stream_2_1_16b),
+    .out8(w_grad_yy_1_stencil_stream_2_2_16b),
+    .out9(w_grad_yy_1_stencil_stream_3_0_16b),
+    .out10(w_grad_yy_1_stencil_stream_3_1_16b),
+    .out11(w_grad_yy_1_stencil_stream_3_2_16b)
 );
 
 LB_3_4_1_8bit_False LB__padded_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_padded_1_stencil_update_stream_0_0),
+    .in0(w_padded_1_stencil_update_stream_0_0_8b),
+//    .in1(w_padded_1_stencil_update_stream_1_0_8b),
 
-    .out0(w_padded_1_stencil_stream_0_0),
-    .out1(w_padded_1_stencil_stream_0_1),
-    .out2(w_padded_1_stencil_stream_0_2),
-    .out3(w_padded_1_stencil_stream_1_0),
-    .out4(w_padded_1_stencil_stream_1_1),
-    .out5(w_padded_1_stencil_stream_1_2),
-    .out6(w_padded_1_stencil_stream_2_0),
-    .out7(w_padded_1_stencil_stream_2_1),
-    .out8(w_padded_1_stencil_stream_2_2),
-    .out9(w_padded_1_stencil_stream_3_0),
-    .out10(w_padded_1_stencil_stream_3_1),
-    .out11(w_padded_1_stencil_stream_3_2)
+    .out0(w_padded_1_stencil_stream_0_0_8b),
+    .out1(w_padded_1_stencil_stream_0_1_8b),
+    .out2(w_padded_1_stencil_stream_0_2_8b),
+    .out3(w_padded_1_stencil_stream_1_0_8b),
+    .out4(w_padded_1_stencil_stream_1_1_8b),
+    .out5(w_padded_1_stencil_stream_1_2_8b),
+    .out6(w_padded_1_stencil_stream_2_0_8b),
+    .out7(w_padded_1_stencil_stream_2_1_8b),
+    .out8(w_padded_1_stencil_stream_2_2_8b),
+    .out9(w_padded_1_stencil_stream_3_0_8b),
+    .out10(w_padded_1_stencil_stream_3_1_8b),
+    .out11(w_padded_1_stencil_stream_3_2_8b)
 );
 
 LB_3_4_1_32bit_False LB__grad_xy_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_grad_xy_1_stencil_update_stream_1_0),
+    .in0(w_grad_xy_1_stencil_update_stream_0_0_16b),
+//    .in1(w_grad_xy_1_stencil_update_stream_1_0_16b),
 
-    .out0(w_grad_xy_1_stencil_stream_0_0),
-    .out1(w_grad_xy_1_stencil_stream_0_1),
-    .out2(w_grad_xy_1_stencil_stream_0_2),
-    .out3(w_grad_xy_1_stencil_stream_1_0),
-    .out4(w_grad_xy_1_stencil_stream_1_1),
-    .out5(w_grad_xy_1_stencil_stream_1_2),
-    .out6(w_grad_xy_1_stencil_stream_2_0),
-    .out7(w_grad_xy_1_stencil_stream_2_1),
-    .out8(w_grad_xy_1_stencil_stream_2_2),
-    .out9(w_grad_xy_1_stencil_stream_3_0),
-    .out10(w_grad_xy_1_stencil_stream_3_1),
-    .out11(w_grad_xy_1_stencil_stream_3_2)
+    .out0(w_grad_xy_1_stencil_stream_0_0_16b),
+    .out1(w_grad_xy_1_stencil_stream_0_1_16b),
+    .out2(w_grad_xy_1_stencil_stream_0_2_16b),
+    .out3(w_grad_xy_1_stencil_stream_1_0_16b),
+    .out4(w_grad_xy_1_stencil_stream_1_1_16b),
+    .out5(w_grad_xy_1_stencil_stream_1_2_16b),
+    .out6(w_grad_xy_1_stencil_stream_2_0_16b),
+    .out7(w_grad_xy_1_stencil_stream_2_1_16b),
+    .out8(w_grad_xy_1_stencil_stream_2_2_16b),
+    .out9(w_grad_xy_1_stencil_stream_3_0_16b),
+    .out10(w_grad_xy_1_stencil_stream_3_1_16b),
+    .out11(w_grad_xy_1_stencil_stream_3_2_16b)
 );
 
 LB_3_4_1_16bit_False LB__p2_cim_stencil_stream (
     .clk(clk),
 
-    .in0(w_p2_cim_stencil_update_stream_0_0),
-    //.in1(w_p2_cim_stencil_update_stream_1_0),
+    .in0(w_p2_cim_stencil_update_stream_0_0_16b),
+//    .in1(w_p2_cim_stencil_update_stream_1_0_16b),
 
-    .out0(w_p2_cim_stencil_stream_0_0),
-    .out1(w_p2_cim_stencil_stream_0_1),
-    .out2(w_p2_cim_stencil_stream_0_2),
-    .out3(w_p2_cim_stencil_stream_1_0),
-    .out4(w_p2_cim_stencil_stream_1_1),
-    .out5(w_p2_cim_stencil_stream_1_2),
-    .out6(w_p2_cim_stencil_stream_2_0),
-    .out7(w_p2_cim_stencil_stream_2_1),
-    .out8(w_p2_cim_stencil_stream_2_2),
-    .out9(w_p2_cim_stencil_stream_3_0),
-    .out10(w_p2_cim_stencil_stream_3_1),
-    .out11(w_p2_cim_stencil_stream_3_2)
+    .out0(w_p2_cim_stencil_stream_0_0_16b),
+    .out1(w_p2_cim_stencil_stream_0_1_16b),
+    .out2(w_p2_cim_stencil_stream_0_2_16b),
+    .out3(w_p2_cim_stencil_stream_1_0_16b),
+    .out4(w_p2_cim_stencil_stream_1_1_16b),
+    .out5(w_p2_cim_stencil_stream_1_2_16b),
+    .out6(w_p2_cim_stencil_stream_2_0_16b),
+    .out7(w_p2_cim_stencil_stream_2_1_16b),
+    .out8(w_p2_cim_stencil_stream_2_2_16b),
+    .out9(w_p2_cim_stencil_stream_3_0_16b),
+    .out10(w_p2_cim_stencil_stream_3_1_16b),
+    .out11(w_p2_cim_stencil_stream_3_2_16b)
 );
 
 kernel__grad_y_1_stencil_stream KERN__grad_y_1_stencil_stream (
-    .w_padded_1_stencil_0_0(w_padded_1_stencil_stream_0_0),
-    .w_padded_1_stencil_0_2(w_padded_1_stencil_stream_0_1),
-    .w_padded_1_stencil_1_0(w_padded_1_stencil_stream_0_2),
-    .w_padded_1_stencil_1_2(w_padded_1_stencil_stream_1_0),
-    .w_padded_1_stencil_2_0(w_padded_1_stencil_stream_1_1),
-    .w_padded_1_stencil_2_2(w_padded_1_stencil_stream_1_2),
-    .w_padded_1_stencil_3_0(w_padded_1_stencil_stream_2_0),
-    .w_padded_1_stencil_3_2(w_padded_1_stencil_stream_2_1),
+    .w_padded_1_stencil_0_0_8b(w_padded_1_stencil_stream_0_0_8b),
+    .w_padded_1_stencil_0_2_8b(w_padded_1_stencil_stream_0_1_8b),
+    .w_padded_1_stencil_1_0_8b(w_padded_1_stencil_stream_0_2_8b),
+    .w_padded_1_stencil_1_2_8b(w_padded_1_stencil_stream_1_0_8b),
+    .w_padded_1_stencil_2_0_8b(w_padded_1_stencil_stream_1_1_8b),
+    .w_padded_1_stencil_2_2_8b(w_padded_1_stencil_stream_1_2_8b),
+    .w_padded_1_stencil_3_0_8b(w_padded_1_stencil_stream_2_0_8b),
+    .w_padded_1_stencil_3_2_8b(w_padded_1_stencil_stream_2_1_8b),
 
-    .out_w_grad_y_1_stencil_0_0(w_grad_y_1_stencil_stream_0_0),
-    .out_w_grad_y_1_stencil_1_0(w_grad_y_1_stencil_stream_1_0),
+    .out_w_grad_y_1_stencil_0_0_16b(w_grad_y_1_stencil_stream_0_0_16b),
+    .out_w_grad_y_1_stencil_1_0_16b(w_grad_y_1_stencil_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__grad_xx_1_stencil_update_stream KERN__grad_xx_1_stencil_update_stream (
-    .w_grad_x_1_stencil_0_0(w_grad_x_1_stencil_stream_to_grad_xx_1_0_0),
-    .w_grad_x_1_stencil_1_0(w_grad_x_1_stencil_stream_to_grad_xx_1_1_0),
+    .w_grad_x_1_stencil_0_0_16b(w_grad_x_1_stencil_stream_to_grad_xx_1_0_0_16b),
+    .w_grad_x_1_stencil_1_0_16b(w_grad_x_1_stencil_stream_to_grad_xx_1_1_0_16b),
 
-    .out_w_grad_xx_1_stencil_0_0(w_grad_xx_1_stencil_update_stream_0_0),
-    .out_w_grad_xx_1_stencil_1_0(w_grad_xx_1_stencil_update_stream_1_0),
+    .out_w_grad_xx_1_stencil_0_0_16b(w_grad_xx_1_stencil_update_stream_0_0_16b),
+    .out_w_grad_xx_1_stencil_1_0_16b(w_grad_xx_1_stencil_update_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__grad_yy_1_stencil_update_stream KERN__grad_yy_1_stencil_update_stream (
-    .w_grad_y_1_stencil_0_0(w_grad_y_1_stencil_stream_0_0),
-    .w_grad_y_1_stencil_1_0(w_grad_y_1_stencil_stream_1_0),
+    .w_grad_y_1_stencil_0_0_16b(w_grad_y_1_stencil_stream_0_0_16b),
+    .w_grad_y_1_stencil_1_0_16b(w_grad_y_1_stencil_stream_1_0_16b),
 
-    .out_w_grad_yy_1_stencil_0_0(w_grad_yy_1_stencil_update_stream_0_0),
-    .out_w_grad_yy_1_stencil_1_0(w_grad_yy_1_stencil_update_stream_1_0),
+    .out_w_grad_yy_1_stencil_0_0_16b(w_grad_yy_1_stencil_update_stream_0_0_16b),
+    .out_w_grad_yy_1_stencil_1_0_16b(w_grad_yy_1_stencil_update_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__grad_xy_1_stencil_update_stream KERN__grad_xy_1_stencil_update_stream (
-    .w_grad_x_1_stencil_0_0(w_grad_y_1_stencil_stream_to_grad_xy_1_0_0),
-    .w_grad_x_1_stencil_1_0(w_grad_y_1_stencil_stream_to_grad_xy_1_1_0),
-    .w_grad_y_1_stencil_0_0(w_grad_x_1_stencil_stream_0_0),
-    .w_grad_y_1_stencil_1_0(w_grad_x_1_stencil_stream_1_0),
+    .w_grad_x_1_stencil_0_0_16b(w_grad_y_1_stencil_stream_to_grad_xy_1_0_0_16b),
+    .w_grad_x_1_stencil_1_0_16b(w_grad_y_1_stencil_stream_to_grad_xy_1_1_0_16b),
+    .w_grad_y_1_stencil_0_0_16b(w_grad_x_1_stencil_stream_0_0_16b),
+    .w_grad_y_1_stencil_1_0_16b(w_grad_x_1_stencil_stream_1_0_16b),
 
-    .out_w_grad_xy_1_stencil_0_0(w_grad_xy_1_stencil_update_stream_0_0),
-    .out_w_grad_xy_1_stencil_1_0(w_grad_xy_1_stencil_update_stream_1_0),
+    .out_w_grad_xy_1_stencil_0_0_16b(w_grad_xy_1_stencil_update_stream_0_0_16b),
+    .out_w_grad_xy_1_stencil_1_0_16b(w_grad_xy_1_stencil_update_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__p2_cim_stencil_update_stream KERN__p2_cim_stencil_update_stream (
-    .w_grad_gx_1_stencil_0_0(w_grad_gy_1_stencil_stream_0_0),
-    .w_grad_gx_1_stencil_1_0(w_grad_gy_1_stencil_stream_1_0),
-    .w_grad_gxy_1_stencil_0_0(w_grad_gx_1_stencil_stream_0_0),
-    .w_grad_gxy_1_stencil_1_0(w_grad_gx_1_stencil_stream_1_0),
-    .w_grad_gy_1_stencil_0_0(w_grad_gxy_1_stencil_stream_0_0),
-    .w_grad_gy_1_stencil_1_0(w_grad_gxy_1_stencil_stream_1_0),
+    .w_grad_gx_1_stencil_0_0_16b(w_grad_gy_1_stencil_stream_0_0_16b),
+    .w_grad_gx_1_stencil_1_0_16b(w_grad_gy_1_stencil_stream_1_0_16b),
+    .w_grad_gxy_1_stencil_0_0_16b(w_grad_gx_1_stencil_stream_0_0_16b),
+    .w_grad_gxy_1_stencil_1_0_16b(w_grad_gx_1_stencil_stream_1_0_16b),
+    .w_grad_gy_1_stencil_0_0_16b(w_grad_gxy_1_stencil_stream_0_0_16b),
+    .w_grad_gy_1_stencil_1_0_16b(w_grad_gxy_1_stencil_stream_1_0_16b),
 
-    .out_w_p2_cim_stencil_0_0(w_p2_cim_stencil_update_stream_0_0),
-    .out_w_p2_cim_stencil_1_0(w_p2_cim_stencil_update_stream_1_0),
+    .out_w_p2_cim_stencil_0_0_16b(w_p2_cim_stencil_update_stream_0_0_16b),
+    .out_w_p2_cim_stencil_1_0_16b(w_p2_cim_stencil_update_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__grad_gy_1_stencil_stream KERN__grad_gy_1_stencil_stream (
-    .w_grad_yy_1_stencil_0_0(w_grad_yy_1_stencil_stream_0_0),
-    .w_grad_yy_1_stencil_0_1(w_grad_yy_1_stencil_stream_0_1),
-    .w_grad_yy_1_stencil_0_2(w_grad_yy_1_stencil_stream_0_2),
-    .w_grad_yy_1_stencil_1_0(w_grad_yy_1_stencil_stream_1_0),
-    .w_grad_yy_1_stencil_1_1(w_grad_yy_1_stencil_stream_1_1),
-    .w_grad_yy_1_stencil_1_2(w_grad_yy_1_stencil_stream_1_2),
-    .w_grad_yy_1_stencil_2_0(w_grad_yy_1_stencil_stream_2_0),
-    .w_grad_yy_1_stencil_2_1(w_grad_yy_1_stencil_stream_2_1),
-    .w_grad_yy_1_stencil_2_2(w_grad_yy_1_stencil_stream_2_2),
-    .w_grad_yy_1_stencil_3_0(w_grad_yy_1_stencil_stream_3_0),
-    .w_grad_yy_1_stencil_3_1(w_grad_yy_1_stencil_stream_3_1),
-    .w_grad_yy_1_stencil_3_2(w_grad_yy_1_stencil_stream_3_2),
+    .w_grad_yy_1_stencil_0_0_16b(w_grad_yy_1_stencil_stream_0_0_16b),
+    .w_grad_yy_1_stencil_0_1_16b(w_grad_yy_1_stencil_stream_0_1_16b),
+    .w_grad_yy_1_stencil_0_2_16b(w_grad_yy_1_stencil_stream_0_2_16b),
+    .w_grad_yy_1_stencil_1_0_16b(w_grad_yy_1_stencil_stream_1_0_16b),
+    .w_grad_yy_1_stencil_1_1_16b(w_grad_yy_1_stencil_stream_1_1_16b),
+    .w_grad_yy_1_stencil_1_2_16b(w_grad_yy_1_stencil_stream_1_2_16b),
+    .w_grad_yy_1_stencil_2_0_16b(w_grad_yy_1_stencil_stream_2_0_16b),
+    .w_grad_yy_1_stencil_2_1_16b(w_grad_yy_1_stencil_stream_2_1_16b),
+    .w_grad_yy_1_stencil_2_2_16b(w_grad_yy_1_stencil_stream_2_2_16b),
+    .w_grad_yy_1_stencil_3_0_16b(w_grad_yy_1_stencil_stream_3_0_16b),
+    .w_grad_yy_1_stencil_3_1_16b(w_grad_yy_1_stencil_stream_3_1_16b),
+    .w_grad_yy_1_stencil_3_2_16b(w_grad_yy_1_stencil_stream_3_2_16b),
 
-    .out_w_grad_gy_1_stencil_0_0(w_grad_gy_1_stencil_stream_0_0),
-    .out_w_grad_gy_1_stencil_1_0(w_grad_gy_1_stencil_stream_1_0),
+    .out_w_grad_gy_1_stencil_0_0_16b(w_grad_gy_1_stencil_stream_0_0_16b),
+    .out_w_grad_gy_1_stencil_1_0_16b(w_grad_gy_1_stencil_stream_1_0_16b),
 
     .clk(clk)
 );
@@ -315,98 +320,99 @@ kernel__grad_gy_1_stencil_stream KERN__grad_gy_1_stencil_stream (
 LB_3_4_1_32bit_False LB__grad_xx_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_grad_xx_1_stencil_update_stream_0_0),
+    .in0(w_grad_xx_1_stencil_update_stream_0_0_16b),
+//    .in1(w_grad_xx_1_stencil_update_stream_1_0_16b),
 
-    .out0(w_grad_xx_1_stencil_stream_0_0),
-    .out1(w_grad_xx_1_stencil_stream_0_1),
-    .out2(w_grad_xx_1_stencil_stream_0_2),
-    .out3(w_grad_xx_1_stencil_stream_1_0),
-    .out4(w_grad_xx_1_stencil_stream_1_1),
-    .out5(w_grad_xx_1_stencil_stream_1_2),
-    .out6(w_grad_xx_1_stencil_stream_2_0),
-    .out7(w_grad_xx_1_stencil_stream_2_1),
-    .out8(w_grad_xx_1_stencil_stream_2_2),
-    .out9(w_grad_xx_1_stencil_stream_3_0),
-    .out10(w_grad_xx_1_stencil_stream_3_1),
-    .out11(w_grad_xx_1_stencil_stream_3_2)
+    .out0(w_grad_xx_1_stencil_stream_0_0_16b),
+    .out1(w_grad_xx_1_stencil_stream_0_1_16b),
+    .out2(w_grad_xx_1_stencil_stream_0_2_16b),
+    .out3(w_grad_xx_1_stencil_stream_1_0_16b),
+    .out4(w_grad_xx_1_stencil_stream_1_1_16b),
+    .out5(w_grad_xx_1_stencil_stream_1_2_16b),
+    .out6(w_grad_xx_1_stencil_stream_2_0_16b),
+    .out7(w_grad_xx_1_stencil_stream_2_1_16b),
+    .out8(w_grad_xx_1_stencil_stream_2_2_16b),
+    .out9(w_grad_xx_1_stencil_stream_3_0_16b),
+    .out10(w_grad_xx_1_stencil_stream_3_1_16b),
+    .out11(w_grad_xx_1_stencil_stream_3_2_16b)
 );
 
 kernel__grad_gxy_1_stencil_stream KERN__grad_gxy_1_stencil_stream (
-    .w_grad_xy_1_stencil_0_0(w_grad_xy_1_stencil_stream_0_0),
-    .w_grad_xy_1_stencil_0_1(w_grad_xy_1_stencil_stream_0_1),
-    .w_grad_xy_1_stencil_0_2(w_grad_xy_1_stencil_stream_0_2),
-    .w_grad_xy_1_stencil_1_0(w_grad_xy_1_stencil_stream_1_0),
-    .w_grad_xy_1_stencil_1_1(w_grad_xy_1_stencil_stream_1_1),
-    .w_grad_xy_1_stencil_1_2(w_grad_xy_1_stencil_stream_1_2),
-    .w_grad_xy_1_stencil_2_0(w_grad_xy_1_stencil_stream_2_0),
-    .w_grad_xy_1_stencil_2_1(w_grad_xy_1_stencil_stream_2_1),
-    .w_grad_xy_1_stencil_2_2(w_grad_xy_1_stencil_stream_2_2),
-    .w_grad_xy_1_stencil_3_0(w_grad_xy_1_stencil_stream_3_0),
-    .w_grad_xy_1_stencil_3_1(w_grad_xy_1_stencil_stream_3_1),
-    .w_grad_xy_1_stencil_3_2(w_grad_xy_1_stencil_stream_3_2),
+    .w_grad_xy_1_stencil_0_0_16b(w_grad_xy_1_stencil_stream_0_0_16b),
+    .w_grad_xy_1_stencil_0_1_16b(w_grad_xy_1_stencil_stream_0_1_16b),
+    .w_grad_xy_1_stencil_0_2_16b(w_grad_xy_1_stencil_stream_0_2_16b),
+    .w_grad_xy_1_stencil_1_0_16b(w_grad_xy_1_stencil_stream_1_0_16b),
+    .w_grad_xy_1_stencil_1_1_16b(w_grad_xy_1_stencil_stream_1_1_16b),
+    .w_grad_xy_1_stencil_1_2_16b(w_grad_xy_1_stencil_stream_1_2_16b),
+    .w_grad_xy_1_stencil_2_0_16b(w_grad_xy_1_stencil_stream_2_0_16b),
+    .w_grad_xy_1_stencil_2_1_16b(w_grad_xy_1_stencil_stream_2_1_16b),
+    .w_grad_xy_1_stencil_2_2_16b(w_grad_xy_1_stencil_stream_2_2_16b),
+    .w_grad_xy_1_stencil_3_0_16b(w_grad_xy_1_stencil_stream_3_0_16b),
+    .w_grad_xy_1_stencil_3_1_16b(w_grad_xy_1_stencil_stream_3_1_16b),
+    .w_grad_xy_1_stencil_3_2_16b(w_grad_xy_1_stencil_stream_3_2_16b),
 
-    .out_w_grad_gxy_1_stencil_0_0(w_grad_gxy_1_stencil_stream_0_0),
-    .out_w_grad_gxy_1_stencil_1_0(w_grad_gxy_1_stencil_stream_1_0),
+    .out_w_grad_gxy_1_stencil_0_0_16b(w_grad_gxy_1_stencil_stream_0_0_16b),
+    .out_w_grad_gxy_1_stencil_1_0_16b(w_grad_gxy_1_stencil_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__hw_output_1_stencil_stream KERN__hw_output_1_stencil_stream (
-    .w_p2_cim_stencil_0_0(w_p2_cim_stencil_stream_0_0),
-    .w_p2_cim_stencil_0_1(w_p2_cim_stencil_stream_0_1),
-    .w_p2_cim_stencil_0_2(w_p2_cim_stencil_stream_0_2),
-    .w_p2_cim_stencil_1_0(w_p2_cim_stencil_stream_1_0),
-    .w_p2_cim_stencil_1_1(w_p2_cim_stencil_stream_1_1),
-    .w_p2_cim_stencil_1_2(w_p2_cim_stencil_stream_1_2),
-    .w_p2_cim_stencil_2_0(w_p2_cim_stencil_stream_2_0),
-    .w_p2_cim_stencil_2_1(w_p2_cim_stencil_stream_2_1),
-    .w_p2_cim_stencil_2_2(w_p2_cim_stencil_stream_2_2),
-    .w_p2_cim_stencil_3_0(w_p2_cim_stencil_stream_3_0),
-    .w_p2_cim_stencil_3_1(w_p2_cim_stencil_stream_3_1),
-    .w_p2_cim_stencil_3_2(w_p2_cim_stencil_stream_3_2),
+    .w_p2_cim_stencil_0_0_16b(w_p2_cim_stencil_stream_0_0_16b),
+    .w_p2_cim_stencil_0_1_16b(w_p2_cim_stencil_stream_0_1_16b),
+    .w_p2_cim_stencil_0_2_16b(w_p2_cim_stencil_stream_0_2_16b),
+    .w_p2_cim_stencil_1_0_16b(w_p2_cim_stencil_stream_1_0_16b),
+    .w_p2_cim_stencil_1_1_16b(w_p2_cim_stencil_stream_1_1_16b),
+    .w_p2_cim_stencil_1_2_16b(w_p2_cim_stencil_stream_1_2_16b),
+    .w_p2_cim_stencil_2_0_16b(w_p2_cim_stencil_stream_2_0_16b),
+    .w_p2_cim_stencil_2_1_16b(w_p2_cim_stencil_stream_2_1_16b),
+    .w_p2_cim_stencil_2_2_16b(w_p2_cim_stencil_stream_2_2_16b),
+    .w_p2_cim_stencil_3_0_16b(w_p2_cim_stencil_stream_3_0_16b),
+    .w_p2_cim_stencil_3_1_16b(w_p2_cim_stencil_stream_3_1_16b),
+    .w_p2_cim_stencil_3_2_16b(w_p2_cim_stencil_stream_3_2_16b),
 
-    .out_w_hw_output_1_stencil_1_0(w_hw_output_1_stencil_stream_0_0),
-    .out_w_hw_output_1_stencil_packed(w_hw_output_1_stencil_stream_1_0),
+    .out_w_hw_output_1_stencil_1_0_8b(w_hw_output_1_stencil_stream_0_0_8b),
+    .out_w_hw_output_1_stencil_packed_16b(w_hw_output_1_stencil_stream_1_0_8b),
 
     .clk(clk)
 );
 
 kernel__grad_gx_1_stencil_stream KERN__grad_gx_1_stencil_stream (
-    .w_grad_xx_1_stencil_0_0(w_grad_xx_1_stencil_stream_0_0),
-    .w_grad_xx_1_stencil_0_1(w_grad_xx_1_stencil_stream_0_1),
-    .w_grad_xx_1_stencil_0_2(w_grad_xx_1_stencil_stream_0_2),
-    .w_grad_xx_1_stencil_1_0(w_grad_xx_1_stencil_stream_1_0),
-    .w_grad_xx_1_stencil_1_1(w_grad_xx_1_stencil_stream_1_1),
-    .w_grad_xx_1_stencil_1_2(w_grad_xx_1_stencil_stream_1_2),
-    .w_grad_xx_1_stencil_2_0(w_grad_xx_1_stencil_stream_2_0),
-    .w_grad_xx_1_stencil_2_1(w_grad_xx_1_stencil_stream_2_1),
-    .w_grad_xx_1_stencil_2_2(w_grad_xx_1_stencil_stream_2_2),
-    .w_grad_xx_1_stencil_3_0(w_grad_xx_1_stencil_stream_3_0),
-    .w_grad_xx_1_stencil_3_1(w_grad_xx_1_stencil_stream_3_1),
-    .w_grad_xx_1_stencil_3_2(w_grad_xx_1_stencil_stream_3_2),
+    .w_grad_xx_1_stencil_0_0_16b(w_grad_xx_1_stencil_stream_0_0_16b),
+    .w_grad_xx_1_stencil_0_1_16b(w_grad_xx_1_stencil_stream_0_1_16b),
+    .w_grad_xx_1_stencil_0_2_16b(w_grad_xx_1_stencil_stream_0_2_16b),
+    .w_grad_xx_1_stencil_1_0_16b(w_grad_xx_1_stencil_stream_1_0_16b),
+    .w_grad_xx_1_stencil_1_1_16b(w_grad_xx_1_stencil_stream_1_1_16b),
+    .w_grad_xx_1_stencil_1_2_16b(w_grad_xx_1_stencil_stream_1_2_16b),
+    .w_grad_xx_1_stencil_2_0_16b(w_grad_xx_1_stencil_stream_2_0_16b),
+    .w_grad_xx_1_stencil_2_1_16b(w_grad_xx_1_stencil_stream_2_1_16b),
+    .w_grad_xx_1_stencil_2_2_16b(w_grad_xx_1_stencil_stream_2_2_16b),
+    .w_grad_xx_1_stencil_3_0_16b(w_grad_xx_1_stencil_stream_3_0_16b),
+    .w_grad_xx_1_stencil_3_1_16b(w_grad_xx_1_stencil_stream_3_1_16b),
+    .w_grad_xx_1_stencil_3_2_16b(w_grad_xx_1_stencil_stream_3_2_16b),
 
-    .out_w_grad_gx_1_stencil_0_0(w_grad_gx_1_stencil_stream_0_0),
-    .out_w_grad_gx_1_stencil_1_0(w_grad_gx_1_stencil_stream_1_0),
+    .out_w_grad_gx_1_stencil_0_0_16b(w_grad_gx_1_stencil_stream_0_0_16b),
+    .out_w_grad_gx_1_stencil_1_0_16b(w_grad_gx_1_stencil_stream_1_0_16b),
 
     .clk(clk)
 );
 
 kernel__grad_x_1_stencil_stream KERN__grad_x_1_stencil_stream (
-    .w_padded_1_stencil_0_0(w_padded_1_stencil_stream_to_grad_x_1_0_0),
-    .w_padded_1_stencil_0_1(w_padded_1_stencil_stream_to_grad_x_1_0_1),
-    .w_padded_1_stencil_0_2(w_padded_1_stencil_stream_to_grad_x_1_0_2),
-    .w_padded_1_stencil_1_0(w_padded_1_stencil_stream_to_grad_x_1_1_0),
-    .w_padded_1_stencil_1_1(w_padded_1_stencil_stream_to_grad_x_1_1_1),
-    .w_padded_1_stencil_1_2(w_padded_1_stencil_stream_to_grad_x_1_1_2),
-    .w_padded_1_stencil_2_0(w_padded_1_stencil_stream_to_grad_x_1_2_0),
-    .w_padded_1_stencil_2_1(w_padded_1_stencil_stream_to_grad_x_1_2_1),
-    .w_padded_1_stencil_2_2(w_padded_1_stencil_stream_to_grad_x_1_2_2),
-    .w_padded_1_stencil_3_0(w_padded_1_stencil_stream_to_grad_x_1_3_0),
-    .w_padded_1_stencil_3_1(w_padded_1_stencil_stream_to_grad_x_1_3_1),
-    .w_padded_1_stencil_3_2(w_padded_1_stencil_stream_to_grad_x_1_3_2),
+    .w_padded_1_stencil_0_0_8b(w_padded_1_stencil_stream_to_grad_x_1_0_0_8b),
+    .w_padded_1_stencil_0_1_8b(w_padded_1_stencil_stream_to_grad_x_1_0_1_8b),
+    .w_padded_1_stencil_0_2_8b(w_padded_1_stencil_stream_to_grad_x_1_0_2_8b),
+    .w_padded_1_stencil_1_0_8b(w_padded_1_stencil_stream_to_grad_x_1_1_0_8b),
+    .w_padded_1_stencil_1_1_8b(w_padded_1_stencil_stream_to_grad_x_1_1_1_8b),
+    .w_padded_1_stencil_1_2_8b(w_padded_1_stencil_stream_to_grad_x_1_1_2_8b),
+    .w_padded_1_stencil_2_0_8b(w_padded_1_stencil_stream_to_grad_x_1_2_0_8b),
+    .w_padded_1_stencil_2_1_8b(w_padded_1_stencil_stream_to_grad_x_1_2_1_8b),
+    .w_padded_1_stencil_2_2_8b(w_padded_1_stencil_stream_to_grad_x_1_2_2_8b),
+    .w_padded_1_stencil_3_0_8b(w_padded_1_stencil_stream_to_grad_x_1_3_0_8b),
+    .w_padded_1_stencil_3_1_8b(w_padded_1_stencil_stream_to_grad_x_1_3_1_8b),
+    .w_padded_1_stencil_3_2_8b(w_padded_1_stencil_stream_to_grad_x_1_3_2_8b),
 
-    .out_w_grad_x_1_stencil_0_0(w_grad_x_1_stencil_stream_0_0),
-    .out_w_grad_x_1_stencil_1_0(w_grad_x_1_stencil_stream_1_0),
+    .out_w_grad_x_1_stencil_0_0_16b(w_grad_x_1_stencil_stream_0_0_16b),
+    .out_w_grad_x_1_stencil_1_0_16b(w_grad_x_1_stencil_stream_1_0_16b),
 
     .clk(clk)
 );
@@ -417,58 +423,58 @@ endmodule
 
 module kernel__grad_xx_1_stencil_update_stream(
 //Inputs
-  w_grad_x_1_stencil_0_0,
-  w_grad_x_1_stencil_1_0,
+  w_grad_x_1_stencil_0_0_16b,
+  w_grad_x_1_stencil_1_0_16b,
 //Outputs
-  out_w_grad_xx_1_stencil_0_0,
-  out_w_grad_xx_1_stencil_1_0,
+  out_w_grad_xx_1_stencil_0_0_16b,
+  out_w_grad_xx_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_x_1_stencil_0_0;
-input  w_grad_x_1_stencil_1_0;
+input  w_grad_x_1_stencil_0_0_16b;
+input  w_grad_x_1_stencil_1_0_16b;
 //Outputs
-output  out_w_grad_xx_1_stencil_1_0;
-output  out_w_grad_xx_1_stencil_0_0;
+output  out_w_grad_xx_1_stencil_1_0_16b;
+output  out_w_grad_xx_1_stencil_0_0_16b;
 
 input  clk;
 
 
-wire  w_266;
-wire  w_267;
-wire  w_268;
-wire  w_269;
-wire  w_270;
-wire  w_271;
-wire  w_grad_xx_1_stencil_0_0;
-wire  w_grad_xx_1_stencil_1_0;
+wire  w_266_16b;
+wire  w_267_16b;
+wire  w_268_16b;
+wire  w_269_16b;
+wire  w_270_16b;
+wire  w_271_16b;
+wire  w_grad_xx_1_stencil_0_0_16b;
+wire  w_grad_xx_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_xx_1_stencil_1_0=w_grad_xx_1_stencil_1_0;
-assign out_w_grad_xx_1_stencil_0_0=w_grad_xx_1_stencil_0_0;
-assign  w_266  =  w_grad_x_1_stencil_0_0 ;
-assign  w_267  =  w_266 ;
+assign out_w_grad_xx_1_stencil_1_0_16b = w_grad_xx_1_stencil_1_0_16b;
+assign out_w_grad_xx_1_stencil_0_0_16b = w_grad_xx_1_stencil_0_0_16b;
+assign  w_266_16b  =  w_grad_x_1_stencil_0_0_16b ;
+assign  w_267_16b  =  w_266_16b ;
 MULT_16b_pe mult_0 (
-  .a(w_267),
+  .a(w_267_16b),
   .b(1'b0),
-  .c(w_268),
+  .c(w_268_16b),
   .clk(clk)
 );
-assign  w_269  =  w_grad_x_1_stencil_1_0 ;
-assign  w_270  =  w_269 ;
+assign  w_269_16b  =  w_grad_x_1_stencil_1_0_16b ;
+assign  w_270_16b  =  w_269_16b ;
 MULT_16b_pe mult_1 (
-  .a(w_270),
+  .a(w_270_16b),
   .b(1'b0),
-  .c(w_271),
+  .c(w_271_16b),
   .clk(clk)
 );
-assign  w_grad_xx_1_stencil_0_0  =  w_268 ;
-assign  w_grad_xx_1_stencil_1_0  =  w_271 ;
+assign  w_grad_xx_1_stencil_0_0_16b  =  w_268_16b ;
+assign  w_grad_xx_1_stencil_1_0_16b  =  w_271_16b ;
 
 endmodule
 
@@ -480,510 +486,510 @@ endmodule
 
 module kernel__p2_cim_stencil_update_stream(
 //Inputs
-  w_grad_gx_1_stencil_0_0,
-  w_grad_gx_1_stencil_1_0,
-  w_grad_gxy_1_stencil_0_0,
-  w_grad_gxy_1_stencil_1_0,
-  w_grad_gy_1_stencil_0_0,
-  w_grad_gy_1_stencil_1_0,
+  w_grad_gx_1_stencil_0_0_16b,
+  w_grad_gx_1_stencil_1_0_16b,
+  w_grad_gxy_1_stencil_0_0_16b,
+  w_grad_gxy_1_stencil_1_0_16b,
+  w_grad_gy_1_stencil_0_0_16b,
+  w_grad_gy_1_stencil_1_0_16b,
 //Outputs
-  out_w_p2_cim_stencil_0_0,
-  out_w_p2_cim_stencil_1_0,
+  out_w_p2_cim_stencil_0_0_16b,
+  out_w_p2_cim_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_gy_1_stencil_0_0;
-input  w_grad_gx_1_stencil_1_0;
-input  w_grad_gy_1_stencil_1_0;
-input  w_grad_gxy_1_stencil_1_0;
-input  w_grad_gx_1_stencil_0_0;
-input  w_grad_gxy_1_stencil_0_0;
+input  w_grad_gy_1_stencil_0_0_16b;
+input  w_grad_gx_1_stencil_1_0_16b;
+input  w_grad_gy_1_stencil_1_0_16b;
+input  w_grad_gxy_1_stencil_1_0_16b;
+input  w_grad_gx_1_stencil_0_0_16b;
+input  w_grad_gxy_1_stencil_0_0_16b;
 //Outputs
-output  out_w_p2_cim_stencil_1_0;
-output  out_w_p2_cim_stencil_0_0;
+output  out_w_p2_cim_stencil_1_0_16b;
+output  out_w_p2_cim_stencil_0_0_16b;
 
 input  clk;
 
 
-wire  w_490;
-wire  w_491;
-wire  w_492;
-wire  w_493;
-wire  w_494;
-wire  w_495;
-wire  w_496;
-wire  w_497;
-wire  w_498;
-wire  w_499;
-wire  w_500;
-wire  w_501;
-wire  w_502;
-wire  w_503;
-wire  w_504;
-wire  w_505;
-wire  w_506;
-wire  w_507;
-wire  w_508;
-wire  w_509;
-wire  w_510;
-wire  w_511;
-wire  w_512;
-wire  w_513;
-wire  w_514;
-wire  w_515;
-wire  w_516;
-wire  w_517;
-wire  w_518;
-wire  w_519;
-wire  w_520;
-wire  w_521;
-wire  w_522;
-wire  w_523;
-wire  w_524;
-wire  w_525;
-wire  w_526;
-wire  w_527;
-wire  w_528;
-wire  w_529;
-wire  w_530;
-wire  w_531;
-wire  w_532;
-wire  w_533;
-wire  w_534;
-wire  w_535;
-wire  w_536;
-wire  w_537;
-wire  w_538;
-wire  w_539;
-wire  w_540;
-wire  w_541;
-wire  w_542;
-wire  w_543;
-wire  w_544;
-wire  w_545;
-wire  w_546;
-wire  w_547;
-wire  w_548;
-wire  w_549;
-wire  w_550;
-wire  w_551;
-wire  w_552;
-wire  w_553;
-wire  w_554;
-wire  w_555;
-wire  w_556;
-wire  w_557;
-wire  w_558;
-wire  w_559;
-wire  w_560;
-wire  w_561;
-wire  w_562;
-wire  w_563;
-wire  w_564;
-wire  w_565;
-wire  w_566;
-wire  w_567;
-wire  w_p2_cim_stencil_0_0;
-wire  w_p2_cim_stencil_1_0;
+wire  w_490_16b;
+wire  w_491_16b;
+wire  w_492_16b;
+wire  w_493_16b;
+wire  w_494_16b;
+wire  w_495_16b;
+wire  w_496_16b;
+wire  w_497_16b;
+wire  w_498_16b;
+wire  w_499_16b;
+wire  w_500_16b;
+wire  w_501_16b;
+wire  w_502_16b;
+wire  w_503_16b;
+wire  w_504_16b;
+wire  w_505_16b;
+wire  w_506_16b;
+wire  w_507_16b;
+wire  w_508_16b;
+wire  w_509_16b;
+wire  w_510_16b;
+wire  w_511_16b;
+wire  w_512_16b;
+wire  w_513_16b;
+wire  w_514_16b;
+wire  w_515_16b;
+wire  w_516_16b;
+wire  w_517_16b;
+wire  w_518_16b;
+wire  w_519_16b;
+wire  w_520_16b;
+wire  w_521_16b;
+wire  w_522_16b;
+wire  w_523_16b;
+wire  w_524_16b;
+wire  w_525_16b;
+wire  w_526_16b;
+wire  w_527_16b;
+wire  w_528_16b;
+wire  w_529_16b;
+wire  w_530_16b;
+wire  w_531_16b;
+wire  w_532_16b;
+wire  w_533_16b;
+wire  w_534_16b;
+wire  w_535_16b;
+wire  w_536_16b;
+wire  w_537_16b;
+wire  w_538_16b;
+wire  w_539_16b;
+wire  w_540_16b;
+wire  w_541_16b;
+wire  w_542_16b;
+wire  w_543_16b;
+wire  w_544_16b;
+wire  w_545_16b;
+wire  w_546_16b;
+wire  w_547_16b;
+wire  w_548_16b;
+wire  w_549_16b;
+wire  w_550_16b;
+wire  w_551_16b;
+wire  w_552_16b;
+wire  w_553_16b;
+wire  w_554_16b;
+wire  w_555_16b;
+wire  w_556_16b;
+wire  w_557_16b;
+wire  w_558_16b;
+wire  w_559_16b;
+wire  w_560_16b;
+wire  w_561_16b;
+wire  w_562_16b;
+wire  w_563_16b;
+wire  w_564_16b;
+wire  w_565_16b;
+wire  w_566_16b;
+wire  w_567_16b;
+wire  w_p2_cim_stencil_0_0_16b;
+wire  w_p2_cim_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_p2_cim_stencil_1_0=w_p2_cim_stencil_1_0;
-assign out_w_p2_cim_stencil_0_0=w_p2_cim_stencil_0_0;
-assign  w_490  =  w_grad_gx_1_stencil_0_0 ;
-assign  w_491  =  w_grad_gy_1_stencil_0_0 ;
-assign  w_492  =  w_grad_gxy_1_stencil_0_0 ;
+assign out_w_p2_cim_stencil_1_0_16b = w_p2_cim_stencil_1_0_16b;
+assign out_w_p2_cim_stencil_0_0_16b = w_p2_cim_stencil_0_0_16b;
+assign  w_490_16b  =  w_grad_gx_1_stencil_0_0_16b ;
+assign  w_491_16b  =  w_grad_gy_1_stencil_0_0_16b ;
+assign  w_492_16b  =  w_grad_gxy_1_stencil_0_0_16b ;
 DIV_16b_pe div_0 (
-  .a(w_490),
+  .a(w_490_16b),
   .b(1'b0),
-  .c(w_493),
+  .c(w_493_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_1 (
   .a(1'b0),
-  .b(w_493),
-  .c(w_494),
+  .b(w_493_16b),
+  .c(w_494_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_2 (
-  .a(w_490),
-  .b(w_494),
-  .c(w_495),
+  .a(w_490_16b),
+  .b(w_494_16b),
+  .c(w_495_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_3 (
   .a(1'b0),
-  .b(w_495),
-  .c(w_496),
+  .b(w_495_16b),
+  .c(w_496_16b),
   .clk(clk)
 );
-assign  w_497  = 1'b0;
+assign  w_497_16b  = 1'b0;
 AND_16b_pe and_4 (
-  .a(w_496),
-  .b(w_497),
-  .c(w_498),
+  .a(w_496_16b),
+  .b(w_497_16b),
+  .c(w_498_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_5 (
-  .a(w_498),
-  .b(w_493),
-  .c(w_499),
+  .a(w_498_16b),
+  .b(w_493_16b),
+  .c(w_499_16b),
   .clk(clk)
 );
-assign  w_500  = 1'b0;
+assign  w_500_16b  = 1'b0;
 AND_16b_pe and_6 (
-  .a(w_500),
-  .b(w_496),
-  .c(w_501),
+  .a(w_500_16b),
+  .b(w_496_16b),
+  .c(w_501_16b),
   .clk(clk)
 );
 ADD_16b_pe add_7 (
-  .a(w_499),
-  .b(w_501),
-  .c(w_502),
+  .a(w_499_16b),
+  .b(w_501_16b),
+  .c(w_502_16b),
   .clk(clk)
 );
-assign  w_503  =  w_502 ;
+assign  w_503_16b  =  w_502_16b ;
 DIV_16b_pe div_8 (
-  .a(w_491),
+  .a(w_491_16b),
   .b(1'b0),
-  .c(w_504),
+  .c(w_504_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_9 (
-  .a(w_504),
+  .a(w_504_16b),
   .b(1'b0),
-  .c(w_505),
+  .c(w_505_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_10 (
-  .a(w_491),
-  .b(w_505),
-  .c(w_506),
+  .a(w_491_16b),
+  .b(w_505_16b),
+  .c(w_506_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_11 (
-  .a(w_506),
+  .a(w_506_16b),
   .b(1'b0),
-  .c(w_507),
+  .c(w_507_16b),
   .clk(clk)
 );
 AND_16b_pe and_12 (
-  .a(w_507),
-  .b(w_497),
-  .c(w_508),
+  .a(w_507_16b),
+  .b(w_497_16b),
+  .c(w_508_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_13 (
-  .a(w_504),
-  .b(w_508),
-  .c(w_509),
+  .a(w_504_16b),
+  .b(w_508_16b),
+  .c(w_509_16b),
   .clk(clk)
 );
 AND_16b_pe and_14 (
-  .a(w_507),
-  .b(w_500),
-  .c(w_510),
+  .a(w_507_16b),
+  .b(w_500_16b),
+  .c(w_510_16b),
   .clk(clk)
 );
 ADD_16b_pe add_15 (
-  .a(w_510),
-  .b(w_509),
-  .c(w_511),
+  .a(w_510_16b),
+  .b(w_509_16b),
+  .c(w_511_16b),
   .clk(clk)
 );
-assign  w_512  =  w_511 ;
+assign  w_512_16b  =  w_511_16b ;
 ADD_16b_pe add_16 (
-  .a(w_503),
-  .b(w_512),
-  .c(w_513),
+  .a(w_503_16b),
+  .b(w_512_16b),
+  .c(w_513_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_17 (
-  .a(w_503),
-  .b(w_512),
-  .c(w_514),
+  .a(w_503_16b),
+  .b(w_512_16b),
+  .c(w_514_16b),
   .clk(clk)
 );
 DIV_16b_pe div_18 (
-  .a(w_492),
+  .a(w_492_16b),
   .b(1'b0),
-  .c(w_515),
+  .c(w_515_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_19 (
-  .a(w_515),
+  .a(w_515_16b),
   .b(1'b0),
-  .c(w_516),
+  .c(w_516_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_20 (
-  .a(w_492),
-  .b(w_516),
-  .c(w_517),
+  .a(w_492_16b),
+  .b(w_516_16b),
+  .c(w_517_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_21 (
-  .a(w_517),
+  .a(w_517_16b),
   .b(1'b0),
-  .c(w_518),
+  .c(w_518_16b),
   .clk(clk)
 );
 AND_16b_pe and_22 (
-  .a(w_518),
-  .b(w_497),
-  .c(w_519),
+  .a(w_518_16b),
+  .b(w_497_16b),
+  .c(w_519_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_23 (
-  .a(w_515),
-  .b(w_519),
-  .c(w_520),
+  .a(w_515_16b),
+  .b(w_519_16b),
+  .c(w_520_16b),
   .clk(clk)
 );
 AND_16b_pe and_24 (
-  .a(w_518),
-  .b(w_500),
-  .c(w_521),
+  .a(w_518_16b),
+  .b(w_500_16b),
+  .c(w_521_16b),
   .clk(clk)
 );
 ADD_16b_pe add_25 (
-  .a(w_520),
-  .b(w_521),
-  .c(w_522),
+  .a(w_520_16b),
+  .b(w_521_16b),
+  .c(w_522_16b),
   .clk(clk)
 );
-assign  w_523  =  w_522 ;
+assign  w_523_16b  =  w_522_16b ;
 MULT_16b_pe mult_26 (
-  .a(w_523),
+  .a(w_523_16b),
   .b(1'b0),
-  .c(w_524),
+  .c(w_524_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_27 (
-  .a(w_524),
-  .b(w_514),
-  .c(w_525),
+  .a(w_524_16b),
+  .b(w_514_16b),
+  .c(w_525_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_28 (
   .a(1'b0),
-  .b(w_513),
-  .c(w_526),
+  .b(w_513_16b),
+  .c(w_526_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_29 (
-  .a(w_526),
-  .b(w_513),
-  .c(w_527),
+  .a(w_526_16b),
+  .b(w_513_16b),
+  .c(w_527_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_30 (
-  .a(w_525),
-  .b(w_527),
-  .c(w_528),
+  .a(w_525_16b),
+  .b(w_527_16b),
+  .c(w_528_16b),
   .clk(clk)
 );
-assign  w_529  =  w_grad_gx_1_stencil_1_0 ;
-assign  w_530  =  w_grad_gy_1_stencil_1_0 ;
-assign  w_531  =  w_grad_gxy_1_stencil_1_0 ;
+assign  w_529_16b  =  w_grad_gx_1_stencil_1_0_16b ;
+assign  w_530_16b  =  w_grad_gy_1_stencil_1_0_16b ;
+assign  w_531_16b  =  w_grad_gxy_1_stencil_1_0_16b ;
 DIV_16b_pe div_31 (
   .a(1'b0),
-  .b(w_529),
-  .c(w_532),
+  .b(w_529_16b),
+  .c(w_532_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_32 (
-  .a(w_532),
+  .a(w_532_16b),
   .b(1'b0),
-  .c(w_533),
+  .c(w_533_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_33 (
-  .a(w_533),
-  .b(w_529),
-  .c(w_534),
+  .a(w_533_16b),
+  .b(w_529_16b),
+  .c(w_534_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_34 (
   .a(1'b0),
-  .b(w_534),
-  .c(w_535),
+  .b(w_534_16b),
+  .c(w_535_16b),
   .clk(clk)
 );
-assign  w_536  = 1'b0;
+assign  w_536_16b  = 1'b0;
 AND_16b_pe and_35 (
-  .a(w_536),
-  .b(w_535),
-  .c(w_537),
+  .a(w_536_16b),
+  .b(w_535_16b),
+  .c(w_537_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_36 (
-  .a(w_532),
-  .b(w_537),
-  .c(w_538),
+  .a(w_532_16b),
+  .b(w_537_16b),
+  .c(w_538_16b),
   .clk(clk)
 );
-assign  w_539  = 1'b0;
+assign  w_539_16b  = 1'b0;
 AND_16b_pe and_37 (
-  .a(w_539),
-  .b(w_535),
-  .c(w_540),
+  .a(w_539_16b),
+  .b(w_535_16b),
+  .c(w_540_16b),
   .clk(clk)
 );
 ADD_16b_pe add_38 (
-  .a(w_540),
-  .b(w_538),
-  .c(w_541),
+  .a(w_540_16b),
+  .b(w_538_16b),
+  .c(w_541_16b),
   .clk(clk)
 );
-assign  w_542  =  w_541 ;
+assign  w_542_16b  =  w_541_16b ;
 DIV_16b_pe div_39 (
   .a(1'b0),
-  .b(w_530),
-  .c(w_543),
+  .b(w_530_16b),
+  .c(w_543_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_40 (
-  .a(w_543),
+  .a(w_543_16b),
   .b(1'b0),
-  .c(w_544),
+  .c(w_544_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_41 (
-  .a(w_530),
-  .b(w_544),
-  .c(w_545),
+  .a(w_530_16b),
+  .b(w_544_16b),
+  .c(w_545_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_42 (
   .a(1'b0),
-  .b(w_545),
-  .c(w_546),
+  .b(w_545_16b),
+  .c(w_546_16b),
   .clk(clk)
 );
 AND_16b_pe and_43 (
-  .a(w_546),
-  .b(w_536),
-  .c(w_547),
+  .a(w_546_16b),
+  .b(w_536_16b),
+  .c(w_547_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_44 (
-  .a(w_543),
-  .b(w_547),
-  .c(w_548),
+  .a(w_543_16b),
+  .b(w_547_16b),
+  .c(w_548_16b),
   .clk(clk)
 );
 AND_16b_pe and_45 (
-  .a(w_539),
-  .b(w_546),
-  .c(w_549),
+  .a(w_539_16b),
+  .b(w_546_16b),
+  .c(w_549_16b),
   .clk(clk)
 );
 ADD_16b_pe add_46 (
-  .a(w_548),
-  .b(w_549),
-  .c(w_550),
+  .a(w_548_16b),
+  .b(w_549_16b),
+  .c(w_550_16b),
   .clk(clk)
 );
-assign  w_551  =  w_550 ;
+assign  w_551_16b  =  w_550_16b ;
 ADD_16b_pe add_47 (
-  .a(w_542),
-  .b(w_551),
-  .c(w_552),
+  .a(w_542_16b),
+  .b(w_551_16b),
+  .c(w_552_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_48 (
-  .a(w_542),
-  .b(w_551),
-  .c(w_553),
+  .a(w_542_16b),
+  .b(w_551_16b),
+  .c(w_553_16b),
   .clk(clk)
 );
 DIV_16b_pe div_49 (
-  .a(w_531),
+  .a(w_531_16b),
   .b(1'b0),
-  .c(w_554),
+  .c(w_554_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_50 (
   .a(1'b0),
-  .b(w_554),
-  .c(w_555),
+  .b(w_554_16b),
+  .c(w_555_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_51 (
-  .a(w_531),
-  .b(w_555),
-  .c(w_556),
+  .a(w_531_16b),
+  .b(w_555_16b),
+  .c(w_556_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_52 (
   .a(1'b0),
-  .b(w_556),
-  .c(w_557),
+  .b(w_556_16b),
+  .c(w_557_16b),
   .clk(clk)
 );
 AND_16b_pe and_53 (
-  .a(w_536),
-  .b(w_557),
-  .c(w_558),
+  .a(w_536_16b),
+  .b(w_557_16b),
+  .c(w_558_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_54 (
-  .a(w_558),
-  .b(w_554),
-  .c(w_559),
+  .a(w_558_16b),
+  .b(w_554_16b),
+  .c(w_559_16b),
   .clk(clk)
 );
 AND_16b_pe and_55 (
-  .a(w_539),
-  .b(w_557),
-  .c(w_560),
+  .a(w_539_16b),
+  .b(w_557_16b),
+  .c(w_560_16b),
   .clk(clk)
 );
 ADD_16b_pe add_56 (
-  .a(w_559),
-  .b(w_560),
-  .c(w_561),
+  .a(w_559_16b),
+  .b(w_560_16b),
+  .c(w_561_16b),
   .clk(clk)
 );
-assign  w_562  =  w_561 ;
+assign  w_562_16b  =  w_561_16b ;
 MULT_16b_pe mult_57 (
-  .a(w_562),
+  .a(w_562_16b),
   .b(1'b0),
-  .c(w_563),
+  .c(w_563_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_58 (
-  .a(w_553),
-  .b(w_563),
-  .c(w_564),
+  .a(w_553_16b),
+  .b(w_563_16b),
+  .c(w_564_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_59 (
   .a(1'b0),
-  .b(w_552),
-  .c(w_565),
+  .b(w_552_16b),
+  .c(w_565_16b),
   .clk(clk)
 );
 MULT_16b_pe mult_60 (
-  .a(w_552),
-  .b(w_565),
-  .c(w_566),
+  .a(w_552_16b),
+  .b(w_565_16b),
+  .c(w_566_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_61 (
-  .a(w_564),
-  .b(w_566),
-  .c(w_567),
+  .a(w_564_16b),
+  .b(w_566_16b),
+  .c(w_567_16b),
   .clk(clk)
 );
-assign  w_p2_cim_stencil_0_0  =  w_528 ;
-assign  w_p2_cim_stencil_1_0  =  w_567 ;
+assign  w_p2_cim_stencil_0_0_16b  =  w_528_16b ;
+assign  w_p2_cim_stencil_1_0_16b  =  w_567_16b ;
 
 endmodule
 
@@ -995,206 +1001,206 @@ endmodule
 
 module kernel__grad_x_1_stencil_stream(
 //Inputs
-  w_padded_1_stencil_0_0,
-  w_padded_1_stencil_0_1,
-  w_padded_1_stencil_0_2,
-  w_padded_1_stencil_1_0,
-  w_padded_1_stencil_1_1,
-  w_padded_1_stencil_1_2,
-  w_padded_1_stencil_2_0,
-  w_padded_1_stencil_2_1,
-  w_padded_1_stencil_2_2,
-  w_padded_1_stencil_3_0,
-  w_padded_1_stencil_3_1,
-  w_padded_1_stencil_3_2,
+  w_padded_1_stencil_0_0_8b,
+  w_padded_1_stencil_0_1_8b,
+  w_padded_1_stencil_0_2_8b,
+  w_padded_1_stencil_1_0_8b,
+  w_padded_1_stencil_1_1_8b,
+  w_padded_1_stencil_1_2_8b,
+  w_padded_1_stencil_2_0_8b,
+  w_padded_1_stencil_2_1_8b,
+  w_padded_1_stencil_2_2_8b,
+  w_padded_1_stencil_3_0_8b,
+  w_padded_1_stencil_3_1_8b,
+  w_padded_1_stencil_3_2_8b,
 //Outputs
-  out_w_grad_x_1_stencil_0_0,
-  out_w_grad_x_1_stencil_1_0,
+  out_w_grad_x_1_stencil_0_0_16b,
+  out_w_grad_x_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_padded_1_stencil_3_0;
-input  w_padded_1_stencil_3_1;
-input  w_padded_1_stencil_3_2;
-input  w_padded_1_stencil_2_1;
-input  w_padded_1_stencil_2_0;
-input  w_padded_1_stencil_2_2;
-input  w_padded_1_stencil_1_2;
-input  w_padded_1_stencil_1_0;
-input  w_padded_1_stencil_1_1;
-input  w_padded_1_stencil_0_2;
-input  w_padded_1_stencil_0_1;
-input  w_padded_1_stencil_0_0;
+input  w_padded_1_stencil_3_0_8b;
+input  w_padded_1_stencil_3_1_8b;
+input  w_padded_1_stencil_3_2_8b;
+input  w_padded_1_stencil_2_1_8b;
+input  w_padded_1_stencil_2_0_8b;
+input  w_padded_1_stencil_2_2_8b;
+input  w_padded_1_stencil_1_2_8b;
+input  w_padded_1_stencil_1_0_8b;
+input  w_padded_1_stencil_1_1_8b;
+input  w_padded_1_stencil_0_2_8b;
+input  w_padded_1_stencil_0_1_8b;
+input  w_padded_1_stencil_0_0_8b;
 //Outputs
-output  out_w_grad_x_1_stencil_0_0;
-output  out_w_grad_x_1_stencil_1_0;
+output  out_w_grad_x_1_stencil_0_0_16b;
+output  out_w_grad_x_1_stencil_1_0_16b;
 
 input  clk;
 
 
-wire  w_226;
-wire  w_227;
-wire  w_228;
-wire  w_229;
-wire  w_230;
-wire  w_231;
-wire  w_232;
-wire  w_233;
-wire  w_234;
-wire  w_235;
-wire  w_236;
-wire  w_237;
-wire  w_238;
-wire  w_239;
-wire  w_240;
-wire  w_241;
-wire  w_242;
-wire  w_243;
-wire  w_244;
-wire  w_245;
-wire  w_246;
-wire  w_247;
-wire  w_248;
-wire  w_249;
-wire  w_250;
-wire  w_251;
-wire  w_252;
-wire  w_253;
-wire  w_254;
-wire  w_255;
-wire  w_256;
-wire  w_257;
-wire  w_258;
-wire  w_259;
-wire  w_260;
-wire  w_261;
-wire  w_262;
-wire  w_263;
-wire  w_264;
-wire  w_265;
-wire  w_grad_x_1_stencil_0_0;
-wire  w_grad_x_1_stencil_1_0;
+wire  w_226_16b;
+wire  w_227_16b;
+wire  w_228_16b;
+wire  w_229_16b;
+wire  w_230_16b;
+wire  w_231_16b;
+wire  w_232_16b;
+wire  w_233_16b;
+wire  w_234_16b;
+wire  w_235_16b;
+wire  w_236_16b;
+wire  w_237_16b;
+wire  w_238_16b;
+wire  w_239_16b;
+wire  w_240_16b;
+wire  w_241_16b;
+wire  w_242_16b;
+wire  w_243_16b;
+wire  w_244_16b;
+wire  w_245_16b;
+wire  w_246_16b;
+wire  w_247_16b;
+wire  w_248_16b;
+wire  w_249_16b;
+wire  w_250_16b;
+wire  w_251_16b;
+wire  w_252_16b;
+wire  w_253_16b;
+wire  w_254_16b;
+wire  w_255_16b;
+wire  w_256_16b;
+wire  w_257_16b;
+wire  w_258_16b;
+wire  w_259_16b;
+wire  w_260_16b;
+wire  w_261_16b;
+wire  w_262_16b;
+wire  w_263_16b;
+wire  w_264_16b;
+wire  w_265_16b;
+wire  w_grad_x_1_stencil_0_0_16b;
+wire  w_grad_x_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_x_1_stencil_0_0=w_grad_x_1_stencil_0_0;
-assign out_w_grad_x_1_stencil_1_0=w_grad_x_1_stencil_1_0;
-assign  w_226  =  w_padded_1_stencil_2_0 ;
-assign  w_227  =  w_226 ;
-assign  w_228  =  w_padded_1_stencil_0_0 ;
-assign  w_229  =  w_228 ;
+assign out_w_grad_x_1_stencil_0_0_16b = w_grad_x_1_stencil_0_0_16b;
+assign out_w_grad_x_1_stencil_1_0_16b = w_grad_x_1_stencil_1_0_16b;
+assign  w_226_16b  =  w_padded_1_stencil_2_0_8b ;
+assign  w_227_16b  =  w_226_16b ;
+assign  w_228_16b  =  w_padded_1_stencil_0_0_8b ;
+assign  w_229_16b  =  w_228_16b ;
 SUB_16b_pe sub_0 (
-  .a(w_227),
-  .b(w_229),
-  .c(w_230),
+  .a(w_227_16b),
+  .b(w_229_16b),
+  .c(w_230_16b),
   .clk(clk)
 );
-assign  w_231  =  w_padded_1_stencil_0_1 ;
-assign  w_232  =  w_231 ;
-assign  w_233  = 1'b0;
+assign  w_231_16b  =  w_padded_1_stencil_0_1_8b ;
+assign  w_232_16b  =  w_231_16b ;
+assign  w_233_16b  = 1'b0;
 MULT_16b_pe mult_1 (
-  .a(w_232),
-  .b(w_233),
-  .c(w_234),
+  .a(w_232_16b),
+  .b(w_233_16b),
+  .c(w_234_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_2 (
-  .a(w_230),
-  .b(w_234),
-  .c(w_235),
+  .a(w_230_16b),
+  .b(w_234_16b),
+  .c(w_235_16b),
   .clk(clk)
 );
-assign  w_236  =  w_padded_1_stencil_2_1 ;
-assign  w_237  =  w_236 ;
+assign  w_236_16b  =  w_padded_1_stencil_2_1_8b ;
+assign  w_237_16b  =  w_236_16b ;
 MULT_16b_pe mult_3 (
-  .a(w_233),
-  .b(w_237),
-  .c(w_238),
+  .a(w_233_16b),
+  .b(w_237_16b),
+  .c(w_238_16b),
   .clk(clk)
 );
 ADD_16b_pe add_4 (
-  .a(w_238),
-  .b(w_235),
-  .c(w_239),
+  .a(w_238_16b),
+  .b(w_235_16b),
+  .c(w_239_16b),
   .clk(clk)
 );
-assign  w_240  =  w_padded_1_stencil_0_2 ;
-assign  w_241  =  w_240 ;
+assign  w_240_16b  =  w_padded_1_stencil_0_2_8b ;
+assign  w_241_16b  =  w_240_16b ;
 SUB_16b_pe sub_5 (
-  .a(w_239),
-  .b(w_241),
-  .c(w_242),
+  .a(w_239_16b),
+  .b(w_241_16b),
+  .c(w_242_16b),
   .clk(clk)
 );
-assign  w_243  =  w_padded_1_stencil_2_2 ;
-assign  w_244  =  w_243 ;
+assign  w_243_16b  =  w_padded_1_stencil_2_2_8b ;
+assign  w_244_16b  =  w_243_16b ;
 ADD_16b_pe add_6 (
-  .a(w_244),
-  .b(w_242),
-  .c(w_245),
+  .a(w_244_16b),
+  .b(w_242_16b),
+  .c(w_245_16b),
   .clk(clk)
 );
-assign  w_246  =  w_padded_1_stencil_3_0 ;
-assign  w_247  =  w_246 ;
-assign  w_248  =  w_padded_1_stencil_1_0 ;
-assign  w_249  =  w_248 ;
+assign  w_246_16b  =  w_padded_1_stencil_3_0_8b ;
+assign  w_247_16b  =  w_246_16b ;
+assign  w_248_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_249_16b  =  w_248_16b ;
 SUB_16b_pe sub_7 (
-  .a(w_247),
-  .b(w_249),
-  .c(w_250),
+  .a(w_247_16b),
+  .b(w_249_16b),
+  .c(w_250_16b),
   .clk(clk)
 );
-assign  w_251  =  w_padded_1_stencil_1_1 ;
-assign  w_252  =  w_251 ;
-assign  w_253  = 1'b0;
+assign  w_251_16b  =  w_padded_1_stencil_1_1_8b ;
+assign  w_252_16b  =  w_251_16b ;
+assign  w_253_16b  = 1'b0;
 MULT_16b_pe mult_8 (
-  .a(w_252),
-  .b(w_253),
-  .c(w_254),
+  .a(w_252_16b),
+  .b(w_253_16b),
+  .c(w_254_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_9 (
-  .a(w_254),
-  .b(w_250),
-  .c(w_255),
+  .a(w_254_16b),
+  .b(w_250_16b),
+  .c(w_255_16b),
   .clk(clk)
 );
-assign  w_256  =  w_padded_1_stencil_3_1 ;
-assign  w_257  =  w_256 ;
+assign  w_256_16b  =  w_padded_1_stencil_3_1_8b ;
+assign  w_257_16b  =  w_256_16b ;
 MULT_16b_pe mult_10 (
-  .a(w_257),
-  .b(w_253),
-  .c(w_258),
+  .a(w_257_16b),
+  .b(w_253_16b),
+  .c(w_258_16b),
   .clk(clk)
 );
 ADD_16b_pe add_11 (
-  .a(w_255),
-  .b(w_258),
-  .c(w_259),
+  .a(w_255_16b),
+  .b(w_258_16b),
+  .c(w_259_16b),
   .clk(clk)
 );
-assign  w_260  =  w_padded_1_stencil_1_2 ;
-assign  w_261  =  w_260 ;
+assign  w_260_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_261_16b  =  w_260_16b ;
 SUB_16b_pe sub_12 (
-  .a(w_261),
-  .b(w_259),
-  .c(w_262),
+  .a(w_261_16b),
+  .b(w_259_16b),
+  .c(w_262_16b),
   .clk(clk)
 );
-assign  w_263  =  w_padded_1_stencil_3_2 ;
-assign  w_264  =  w_263 ;
+assign  w_263_16b  =  w_padded_1_stencil_3_2_8b ;
+assign  w_264_16b  =  w_263_16b ;
 ADD_16b_pe add_13 (
-  .a(w_262),
-  .b(w_264),
-  .c(w_265),
+  .a(w_262_16b),
+  .b(w_264_16b),
+  .c(w_265_16b),
   .clk(clk)
 );
-assign  w_grad_x_1_stencil_0_0  =  w_245 ;
-assign  w_grad_x_1_stencil_1_0  =  w_265 ;
+assign  w_grad_x_1_stencil_0_0_16b  =  w_245_16b ;
+assign  w_grad_x_1_stencil_1_0_16b  =  w_265_16b ;
 
 endmodule
 
@@ -1206,290 +1212,290 @@ endmodule
 
 module kernel__grad_gx_1_stencil_stream(
 //Inputs
-  w_grad_xx_1_stencil_0_0,
-  w_grad_xx_1_stencil_0_1,
-  w_grad_xx_1_stencil_0_2,
-  w_grad_xx_1_stencil_1_0,
-  w_grad_xx_1_stencil_1_1,
-  w_grad_xx_1_stencil_1_2,
-  w_grad_xx_1_stencil_2_0,
-  w_grad_xx_1_stencil_2_1,
-  w_grad_xx_1_stencil_2_2,
-  w_grad_xx_1_stencil_3_0,
-  w_grad_xx_1_stencil_3_1,
-  w_grad_xx_1_stencil_3_2,
+  w_grad_xx_1_stencil_0_0_16b,
+  w_grad_xx_1_stencil_0_1_16b,
+  w_grad_xx_1_stencil_0_2_16b,
+  w_grad_xx_1_stencil_1_0_16b,
+  w_grad_xx_1_stencil_1_1_16b,
+  w_grad_xx_1_stencil_1_2_16b,
+  w_grad_xx_1_stencil_2_0_16b,
+  w_grad_xx_1_stencil_2_1_16b,
+  w_grad_xx_1_stencil_2_2_16b,
+  w_grad_xx_1_stencil_3_0_16b,
+  w_grad_xx_1_stencil_3_1_16b,
+  w_grad_xx_1_stencil_3_2_16b,
 //Outputs
-  out_w_grad_gx_1_stencil_0_0,
-  out_w_grad_gx_1_stencil_1_0,
+  out_w_grad_gx_1_stencil_0_0_16b,
+  out_w_grad_gx_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_xx_1_stencil_2_1;
-input  w_grad_xx_1_stencil_2_0;
-input  w_grad_xx_1_stencil_2_2;
-input  w_grad_xx_1_stencil_3_0;
-input  w_grad_xx_1_stencil_3_1;
-input  w_grad_xx_1_stencil_3_2;
-input  w_grad_xx_1_stencil_0_2;
-input  w_grad_xx_1_stencil_0_1;
-input  w_grad_xx_1_stencil_0_0;
-input  w_grad_xx_1_stencil_1_2;
-input  w_grad_xx_1_stencil_1_0;
-input  w_grad_xx_1_stencil_1_1;
+input  w_grad_xx_1_stencil_2_1_16b;
+input  w_grad_xx_1_stencil_2_0_16b;
+input  w_grad_xx_1_stencil_2_2_16b;
+input  w_grad_xx_1_stencil_3_0_16b;
+input  w_grad_xx_1_stencil_3_1_16b;
+input  w_grad_xx_1_stencil_3_2_16b;
+input  w_grad_xx_1_stencil_0_2_16b;
+input  w_grad_xx_1_stencil_0_1_16b;
+input  w_grad_xx_1_stencil_0_0_16b;
+input  w_grad_xx_1_stencil_1_2_16b;
+input  w_grad_xx_1_stencil_1_0_16b;
+input  w_grad_xx_1_stencil_1_1_16b;
 //Outputs
-output  out_w_grad_gx_1_stencil_0_0;
-output  out_w_grad_gx_1_stencil_1_0;
+output  out_w_grad_gx_1_stencil_0_0_16b;
+output  out_w_grad_gx_1_stencil_1_0_16b;
 
 input  clk;
 
 
-wire  r0_w_grad_gx_1_stencil_0_0;
-wire  r0_w_grad_gx_1_stencil_1_0;
-wire  r1_w_grad_gx_1_stencil_0_0;
-wire  r1_w_grad_gx_1_stencil_1_0;
-wire  r2_w_grad_gx_1_stencil_0_0;
-wire  r2_w_grad_gx_1_stencil_1_0;
-wire  r3_w_grad_gx_1_stencil_0_0;
-wire  r3_w_grad_gx_1_stencil_1_0;
-wire  r4_w_grad_gx_1_stencil_0_0;
-wire  r4_w_grad_gx_1_stencil_1_0;
-wire  r5_w_grad_gx_1_stencil_0_0;
-wire  r5_w_grad_gx_1_stencil_1_0;
-wire  r6_w_grad_gx_1_stencil_0_0;
-wire  r6_w_grad_gx_1_stencil_1_0;
-wire  r7_w_grad_gx_1_stencil_0_0;
-wire  r7_w_grad_gx_1_stencil_1_0;
-wire  r8_w_grad_gx_1_stencil_0_0;
-wire  r8_w_grad_gx_1_stencil_1_0;
-wire  w_272;
-wire  w_273;
-wire  w_274;
-wire  w_275;
-wire  w_276;
-wire  w_277;
-wire  w_278;
-wire  w_279;
-wire  w_280;
-wire  w_281;
-wire  w_282;
-wire  w_283;
-wire  w_284;
-wire  w_285;
-wire  w_286;
-wire  w_287;
-wire  w_288;
-wire  w_289;
-wire  w_290;
-wire  w_291;
-wire  w_292;
-wire  w_293;
-wire  w_294;
-wire  w_295;
-wire  w_296;
-wire  w_297;
-wire  w_298;
-wire  w_299;
-wire  w_300;
-wire  w_301;
-wire  w_302;
-wire  w_303;
-wire  w_304;
-wire  w_305;
-wire  w_306;
-wire  w_307;
-wire  w_308;
-wire  w_309;
-wire  w_310;
-wire  w_311;
-wire  w_312;
-wire  w_313;
-wire  w_314;
-wire  w_315;
-wire  w_316;
-wire  w_317;
-wire  w_318;
-wire  w_319;
-wire  w_320;
-wire  w_321;
-wire  w_322;
-wire  w_323;
-wire  w_324;
-wire  w_325;
-wire  w_grad_gx_1_stencil_0_0;
-wire  w_grad_gx_1_stencil_1_0;
+wire  r0_w_grad_gx_1_stencil_0_0_16b;
+wire  r0_w_grad_gx_1_stencil_1_0_16b;
+wire  r1_w_grad_gx_1_stencil_0_0_16b;
+wire  r1_w_grad_gx_1_stencil_1_0_16b;
+wire  r2_w_grad_gx_1_stencil_0_0_16b;
+wire  r2_w_grad_gx_1_stencil_1_0_16b;
+wire  r3_w_grad_gx_1_stencil_0_0_16b;
+wire  r3_w_grad_gx_1_stencil_1_0_16b;
+wire  r4_w_grad_gx_1_stencil_0_0_16b;
+wire  r4_w_grad_gx_1_stencil_1_0_16b;
+wire  r5_w_grad_gx_1_stencil_0_0_16b;
+wire  r5_w_grad_gx_1_stencil_1_0_16b;
+wire  r6_w_grad_gx_1_stencil_0_0_16b;
+wire  r6_w_grad_gx_1_stencil_1_0_16b;
+wire  r7_w_grad_gx_1_stencil_0_0_16b;
+wire  r7_w_grad_gx_1_stencil_1_0_16b;
+wire  r8_w_grad_gx_1_stencil_0_0_16b;
+wire  r8_w_grad_gx_1_stencil_1_0_16b;
+wire  w_272_16b;
+wire  w_273_16b;
+wire  w_274_16b;
+wire  w_275_16b;
+wire  w_276_16b;
+wire  w_277_16b;
+wire  w_278_16b;
+wire  w_279_16b;
+wire  w_280_16b;
+wire  w_281_16b;
+wire  w_282_16b;
+wire  w_283_16b;
+wire  w_284_16b;
+wire  w_285_16b;
+wire  w_286_16b;
+wire  w_287_16b;
+wire  w_288_16b;
+wire  w_289_16b;
+wire  w_290_16b;
+wire  w_291_16b;
+wire  w_292_16b;
+wire  w_293_16b;
+wire  w_294_16b;
+wire  w_295_16b;
+wire  w_296_16b;
+wire  w_297_16b;
+wire  w_298_16b;
+wire  w_299_16b;
+wire  w_300_16b;
+wire  w_301_16b;
+wire  w_302_16b;
+wire  w_303_16b;
+wire  w_304_16b;
+wire  w_305_16b;
+wire  w_306_16b;
+wire  w_307_16b;
+wire  w_308_16b;
+wire  w_309_16b;
+wire  w_310_16b;
+wire  w_311_16b;
+wire  w_312_16b;
+wire  w_313_16b;
+wire  w_314_16b;
+wire  w_315_16b;
+wire  w_316_16b;
+wire  w_317_16b;
+wire  w_318_16b;
+wire  w_319_16b;
+wire  w_320_16b;
+wire  w_321_16b;
+wire  w_322_16b;
+wire  w_323_16b;
+wire  w_324_16b;
+wire  w_325_16b;
+wire  w_grad_gx_1_stencil_0_0_16b;
+wire  w_grad_gx_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_gx_1_stencil_0_0=r8_w_grad_gx_1_stencil_0_0;
-assign out_w_grad_gx_1_stencil_1_0=r8_w_grad_gx_1_stencil_1_0;
-assign  r0_w_grad_gx_1_stencil_0_0  =  w_274 ;
-assign  r0_w_grad_gx_1_stencil_1_0  =  w_301 ;
-assign  r1_w_grad_gx_1_stencil_0_0  =  w_277 ;
-assign  r1_w_grad_gx_1_stencil_1_0  =  w_304 ;
-assign  r2_w_grad_gx_1_stencil_0_0  =  w_280 ;
-assign  r2_w_grad_gx_1_stencil_1_0  =  w_307 ;
-assign  r3_w_grad_gx_1_stencil_0_0  =  w_283 ;
-assign  r3_w_grad_gx_1_stencil_1_0  =  w_310 ;
-assign  r4_w_grad_gx_1_stencil_0_0  =  w_286 ;
-assign  r4_w_grad_gx_1_stencil_1_0  =  w_313 ;
-assign  r5_w_grad_gx_1_stencil_0_0  =  w_289 ;
-assign  r5_w_grad_gx_1_stencil_1_0  =  w_316 ;
-assign  r6_w_grad_gx_1_stencil_0_0  =  w_292 ;
-assign  r6_w_grad_gx_1_stencil_1_0  =  w_319 ;
-assign  r7_w_grad_gx_1_stencil_0_0  =  w_295 ;
-assign  r7_w_grad_gx_1_stencil_1_0  =  w_322 ;
-assign  r8_w_grad_gx_1_stencil_0_0  =  w_298 ;
-assign  r8_w_grad_gx_1_stencil_1_0  =  w_325 ;
-assign  w_272  = 1'b0;
-assign  w_273  =  w_grad_xx_1_stencil_0_0 ;
+assign out_w_grad_gx_1_stencil_0_0_16b = r8_w_grad_gx_1_stencil_0_0_16b;
+assign out_w_grad_gx_1_stencil_1_0_16b = r8_w_grad_gx_1_stencil_1_0_16b;
+assign  r0_w_grad_gx_1_stencil_0_0_16b  =  w_274_16b ;
+assign  r0_w_grad_gx_1_stencil_1_0_16b  =  w_301_16b ;
+assign  r1_w_grad_gx_1_stencil_0_0_16b  =  w_277_16b ;
+assign  r1_w_grad_gx_1_stencil_1_0_16b  =  w_304_16b ;
+assign  r2_w_grad_gx_1_stencil_0_0_16b  =  w_280_16b ;
+assign  r2_w_grad_gx_1_stencil_1_0_16b  =  w_307_16b ;
+assign  r3_w_grad_gx_1_stencil_0_0_16b  =  w_283_16b ;
+assign  r3_w_grad_gx_1_stencil_1_0_16b  =  w_310_16b ;
+assign  r4_w_grad_gx_1_stencil_0_0_16b  =  w_286_16b ;
+assign  r4_w_grad_gx_1_stencil_1_0_16b  =  w_313_16b ;
+assign  r5_w_grad_gx_1_stencil_0_0_16b  =  w_289_16b ;
+assign  r5_w_grad_gx_1_stencil_1_0_16b  =  w_316_16b ;
+assign  r6_w_grad_gx_1_stencil_0_0_16b  =  w_292_16b ;
+assign  r6_w_grad_gx_1_stencil_1_0_16b  =  w_319_16b ;
+assign  r7_w_grad_gx_1_stencil_0_0_16b  =  w_295_16b ;
+assign  r7_w_grad_gx_1_stencil_1_0_16b  =  w_322_16b ;
+assign  r8_w_grad_gx_1_stencil_0_0_16b  =  w_298_16b ;
+assign  r8_w_grad_gx_1_stencil_1_0_16b  =  w_325_16b ;
+assign  w_272_16b  = 1'b0;
+assign  w_273_16b  =  w_grad_xx_1_stencil_0_0_16b ;
 ADD_16b_pe add_0 (
-  .a(w_272),
-  .b(w_273),
-  .c(w_274),
+  .a(w_272_16b),
+  .b(w_273_16b),
+  .c(w_274_16b),
   .clk(clk)
 );
-assign  w_275  =  r0_w_grad_gx_1_stencil_0_0 ;
-assign  w_276  =  w_grad_xx_1_stencil_1_0 ;
+assign  w_275_16b  =  r0_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_276_16b  =  w_grad_xx_1_stencil_1_0_16b ;
 ADD_16b_pe add_1 (
-  .a(w_275),
-  .b(w_276),
-  .c(w_277),
+  .a(w_275_16b),
+  .b(w_276_16b),
+  .c(w_277_16b),
   .clk(clk)
 );
-assign  w_278  =  r1_w_grad_gx_1_stencil_0_0 ;
-assign  w_279  =  w_grad_xx_1_stencil_2_0 ;
+assign  w_278_16b  =  r1_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_279_16b  =  w_grad_xx_1_stencil_2_0_16b ;
 ADD_16b_pe add_2 (
-  .a(w_278),
-  .b(w_279),
-  .c(w_280),
+  .a(w_278_16b),
+  .b(w_279_16b),
+  .c(w_280_16b),
   .clk(clk)
 );
-assign  w_281  =  r2_w_grad_gx_1_stencil_0_0 ;
-assign  w_282  =  w_grad_xx_1_stencil_0_1 ;
+assign  w_281_16b  =  r2_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_282_16b  =  w_grad_xx_1_stencil_0_1_16b ;
 ADD_16b_pe add_3 (
-  .a(w_281),
-  .b(w_282),
-  .c(w_283),
+  .a(w_281_16b),
+  .b(w_282_16b),
+  .c(w_283_16b),
   .clk(clk)
 );
-assign  w_284  =  r3_w_grad_gx_1_stencil_0_0 ;
-assign  w_285  =  w_grad_xx_1_stencil_1_1 ;
+assign  w_284_16b  =  r3_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_285_16b  =  w_grad_xx_1_stencil_1_1_16b ;
 ADD_16b_pe add_4 (
-  .a(w_285),
-  .b(w_284),
-  .c(w_286),
+  .a(w_285_16b),
+  .b(w_284_16b),
+  .c(w_286_16b),
   .clk(clk)
 );
-assign  w_287  =  r4_w_grad_gx_1_stencil_0_0 ;
-assign  w_288  =  w_grad_xx_1_stencil_2_1 ;
+assign  w_287_16b  =  r4_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_288_16b  =  w_grad_xx_1_stencil_2_1_16b ;
 ADD_16b_pe add_5 (
-  .a(w_288),
-  .b(w_287),
-  .c(w_289),
+  .a(w_288_16b),
+  .b(w_287_16b),
+  .c(w_289_16b),
   .clk(clk)
 );
-assign  w_290  =  r5_w_grad_gx_1_stencil_0_0 ;
-assign  w_291  =  w_grad_xx_1_stencil_0_2 ;
+assign  w_290_16b  =  r5_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_291_16b  =  w_grad_xx_1_stencil_0_2_16b ;
 ADD_16b_pe add_6 (
-  .a(w_290),
-  .b(w_291),
-  .c(w_292),
+  .a(w_290_16b),
+  .b(w_291_16b),
+  .c(w_292_16b),
   .clk(clk)
 );
-assign  w_293  =  r6_w_grad_gx_1_stencil_0_0 ;
-assign  w_294  =  w_grad_xx_1_stencil_1_2 ;
+assign  w_293_16b  =  r6_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_294_16b  =  w_grad_xx_1_stencil_1_2_16b ;
 ADD_16b_pe add_7 (
-  .a(w_293),
-  .b(w_294),
-  .c(w_295),
+  .a(w_293_16b),
+  .b(w_294_16b),
+  .c(w_295_16b),
   .clk(clk)
 );
-assign  w_296  =  r7_w_grad_gx_1_stencil_0_0 ;
-assign  w_297  =  w_grad_xx_1_stencil_2_2 ;
+assign  w_296_16b  =  r7_w_grad_gx_1_stencil_0_0_16b ;
+assign  w_297_16b  =  w_grad_xx_1_stencil_2_2_16b ;
 ADD_16b_pe add_8 (
-  .a(w_296),
-  .b(w_297),
-  .c(w_298),
+  .a(w_296_16b),
+  .b(w_297_16b),
+  .c(w_298_16b),
   .clk(clk)
 );
-assign  w_299  = 1'b0;
-assign  w_300  =  w_grad_xx_1_stencil_1_0 ;
+assign  w_299_16b  = 1'b0;
+assign  w_300_16b  =  w_grad_xx_1_stencil_1_0_16b ;
 ADD_16b_pe add_9 (
-  .a(w_300),
-  .b(w_299),
-  .c(w_301),
+  .a(w_300_16b),
+  .b(w_299_16b),
+  .c(w_301_16b),
   .clk(clk)
 );
-assign  w_302  =  r0_w_grad_gx_1_stencil_1_0 ;
-assign  w_303  =  w_grad_xx_1_stencil_2_0 ;
+assign  w_302_16b  =  r0_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_303_16b  =  w_grad_xx_1_stencil_2_0_16b ;
 ADD_16b_pe add_10 (
-  .a(w_302),
-  .b(w_303),
-  .c(w_304),
+  .a(w_302_16b),
+  .b(w_303_16b),
+  .c(w_304_16b),
   .clk(clk)
 );
-assign  w_305  =  r1_w_grad_gx_1_stencil_1_0 ;
-assign  w_306  =  w_grad_xx_1_stencil_3_0 ;
+assign  w_305_16b  =  r1_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_306_16b  =  w_grad_xx_1_stencil_3_0_16b ;
 ADD_16b_pe add_11 (
-  .a(w_305),
-  .b(w_306),
-  .c(w_307),
+  .a(w_305_16b),
+  .b(w_306_16b),
+  .c(w_307_16b),
   .clk(clk)
 );
-assign  w_308  =  r2_w_grad_gx_1_stencil_1_0 ;
-assign  w_309  =  w_grad_xx_1_stencil_1_1 ;
+assign  w_308_16b  =  r2_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_309_16b  =  w_grad_xx_1_stencil_1_1_16b ;
 ADD_16b_pe add_12 (
-  .a(w_308),
-  .b(w_309),
-  .c(w_310),
+  .a(w_308_16b),
+  .b(w_309_16b),
+  .c(w_310_16b),
   .clk(clk)
 );
-assign  w_311  =  r3_w_grad_gx_1_stencil_1_0 ;
-assign  w_312  =  w_grad_xx_1_stencil_2_1 ;
+assign  w_311_16b  =  r3_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_312_16b  =  w_grad_xx_1_stencil_2_1_16b ;
 ADD_16b_pe add_13 (
-  .a(w_312),
-  .b(w_311),
-  .c(w_313),
+  .a(w_312_16b),
+  .b(w_311_16b),
+  .c(w_313_16b),
   .clk(clk)
 );
-assign  w_314  =  r4_w_grad_gx_1_stencil_1_0 ;
-assign  w_315  =  w_grad_xx_1_stencil_3_1 ;
+assign  w_314_16b  =  r4_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_315_16b  =  w_grad_xx_1_stencil_3_1_16b ;
 ADD_16b_pe add_14 (
-  .a(w_315),
-  .b(w_314),
-  .c(w_316),
+  .a(w_315_16b),
+  .b(w_314_16b),
+  .c(w_316_16b),
   .clk(clk)
 );
-assign  w_317  =  r5_w_grad_gx_1_stencil_1_0 ;
-assign  w_318  =  w_grad_xx_1_stencil_1_2 ;
+assign  w_317_16b  =  r5_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_318_16b  =  w_grad_xx_1_stencil_1_2_16b ;
 ADD_16b_pe add_15 (
-  .a(w_317),
-  .b(w_318),
-  .c(w_319),
+  .a(w_317_16b),
+  .b(w_318_16b),
+  .c(w_319_16b),
   .clk(clk)
 );
-assign  w_320  =  r6_w_grad_gx_1_stencil_1_0 ;
-assign  w_321  =  w_grad_xx_1_stencil_2_2 ;
+assign  w_320_16b  =  r6_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_321_16b  =  w_grad_xx_1_stencil_2_2_16b ;
 ADD_16b_pe add_16 (
-  .a(w_320),
-  .b(w_321),
-  .c(w_322),
+  .a(w_320_16b),
+  .b(w_321_16b),
+  .c(w_322_16b),
   .clk(clk)
 );
-assign  w_323  =  r7_w_grad_gx_1_stencil_1_0 ;
-assign  w_324  =  w_grad_xx_1_stencil_3_2 ;
+assign  w_323_16b  =  r7_w_grad_gx_1_stencil_1_0_16b ;
+assign  w_324_16b  =  w_grad_xx_1_stencil_3_2_16b ;
 ADD_16b_pe add_17 (
-  .a(w_323),
-  .b(w_324),
-  .c(w_325),
+  .a(w_323_16b),
+  .b(w_324_16b),
+  .c(w_325_16b),
   .clk(clk)
 );
-assign  w_grad_gx_1_stencil_0_0  = 1'b0;
-assign  w_grad_gx_1_stencil_1_0  = 1'b0;
+assign  w_grad_gx_1_stencil_0_0_16b  = 1'b0;
+assign  w_grad_gx_1_stencil_1_0_16b  = 1'b0;
 
 endmodule
 
@@ -1501,290 +1507,290 @@ endmodule
 
 module kernel__grad_gy_1_stencil_stream(
 //Inputs
-  w_grad_yy_1_stencil_0_0,
-  w_grad_yy_1_stencil_0_1,
-  w_grad_yy_1_stencil_0_2,
-  w_grad_yy_1_stencil_1_0,
-  w_grad_yy_1_stencil_1_1,
-  w_grad_yy_1_stencil_1_2,
-  w_grad_yy_1_stencil_2_0,
-  w_grad_yy_1_stencil_2_1,
-  w_grad_yy_1_stencil_2_2,
-  w_grad_yy_1_stencil_3_0,
-  w_grad_yy_1_stencil_3_1,
-  w_grad_yy_1_stencil_3_2,
+  w_grad_yy_1_stencil_0_0_16b,
+  w_grad_yy_1_stencil_0_1_16b,
+  w_grad_yy_1_stencil_0_2_16b,
+  w_grad_yy_1_stencil_1_0_16b,
+  w_grad_yy_1_stencil_1_1_16b,
+  w_grad_yy_1_stencil_1_2_16b,
+  w_grad_yy_1_stencil_2_0_16b,
+  w_grad_yy_1_stencil_2_1_16b,
+  w_grad_yy_1_stencil_2_2_16b,
+  w_grad_yy_1_stencil_3_0_16b,
+  w_grad_yy_1_stencil_3_1_16b,
+  w_grad_yy_1_stencil_3_2_16b,
 //Outputs
-  out_w_grad_gy_1_stencil_0_0,
-  out_w_grad_gy_1_stencil_1_0,
+  out_w_grad_gy_1_stencil_0_0_16b,
+  out_w_grad_gy_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_yy_1_stencil_0_1;
-input  w_grad_yy_1_stencil_0_0;
-input  w_grad_yy_1_stencil_0_2;
-input  w_grad_yy_1_stencil_3_2;
-input  w_grad_yy_1_stencil_3_0;
-input  w_grad_yy_1_stencil_3_1;
-input  w_grad_yy_1_stencil_1_0;
-input  w_grad_yy_1_stencil_1_1;
-input  w_grad_yy_1_stencil_1_2;
-input  w_grad_yy_1_stencil_2_2;
-input  w_grad_yy_1_stencil_2_1;
-input  w_grad_yy_1_stencil_2_0;
+input  w_grad_yy_1_stencil_0_1_16b;
+input  w_grad_yy_1_stencil_0_0_16b;
+input  w_grad_yy_1_stencil_0_2_16b;
+input  w_grad_yy_1_stencil_3_2_16b;
+input  w_grad_yy_1_stencil_3_0_16b;
+input  w_grad_yy_1_stencil_3_1_16b;
+input  w_grad_yy_1_stencil_1_0_16b;
+input  w_grad_yy_1_stencil_1_1_16b;
+input  w_grad_yy_1_stencil_1_2_16b;
+input  w_grad_yy_1_stencil_2_2_16b;
+input  w_grad_yy_1_stencil_2_1_16b;
+input  w_grad_yy_1_stencil_2_0_16b;
 //Outputs
-output  out_w_grad_gy_1_stencil_1_0;
-output  out_w_grad_gy_1_stencil_0_0;
+output  out_w_grad_gy_1_stencil_1_0_16b;
+output  out_w_grad_gy_1_stencil_0_0_16b;
 
 input  clk;
 
 
-wire  r0_w_grad_gy_1_stencil_0_0;
-wire  r0_w_grad_gy_1_stencil_1_0;
-wire  r1_w_grad_gy_1_stencil_0_0;
-wire  r1_w_grad_gy_1_stencil_1_0;
-wire  r2_w_grad_gy_1_stencil_0_0;
-wire  r2_w_grad_gy_1_stencil_1_0;
-wire  r3_w_grad_gy_1_stencil_0_0;
-wire  r3_w_grad_gy_1_stencil_1_0;
-wire  r4_w_grad_gy_1_stencil_0_0;
-wire  r4_w_grad_gy_1_stencil_1_0;
-wire  r5_w_grad_gy_1_stencil_0_0;
-wire  r5_w_grad_gy_1_stencil_1_0;
-wire  r6_w_grad_gy_1_stencil_0_0;
-wire  r6_w_grad_gy_1_stencil_1_0;
-wire  r7_w_grad_gy_1_stencil_0_0;
-wire  r7_w_grad_gy_1_stencil_1_0;
-wire  r8_w_grad_gy_1_stencil_0_0;
-wire  r8_w_grad_gy_1_stencil_1_0;
-wire  w_436;
-wire  w_437;
-wire  w_438;
-wire  w_439;
-wire  w_440;
-wire  w_441;
-wire  w_442;
-wire  w_443;
-wire  w_444;
-wire  w_445;
-wire  w_446;
-wire  w_447;
-wire  w_448;
-wire  w_449;
-wire  w_450;
-wire  w_451;
-wire  w_452;
-wire  w_453;
-wire  w_454;
-wire  w_455;
-wire  w_456;
-wire  w_457;
-wire  w_458;
-wire  w_459;
-wire  w_460;
-wire  w_461;
-wire  w_462;
-wire  w_463;
-wire  w_464;
-wire  w_465;
-wire  w_466;
-wire  w_467;
-wire  w_468;
-wire  w_469;
-wire  w_470;
-wire  w_471;
-wire  w_472;
-wire  w_473;
-wire  w_474;
-wire  w_475;
-wire  w_476;
-wire  w_477;
-wire  w_478;
-wire  w_479;
-wire  w_480;
-wire  w_481;
-wire  w_482;
-wire  w_483;
-wire  w_484;
-wire  w_485;
-wire  w_486;
-wire  w_487;
-wire  w_488;
-wire  w_489;
-wire  w_grad_gy_1_stencil_0_0;
-wire  w_grad_gy_1_stencil_1_0;
+wire  r0_w_grad_gy_1_stencil_0_0_16b;
+wire  r0_w_grad_gy_1_stencil_1_0_16b;
+wire  r1_w_grad_gy_1_stencil_0_0_16b;
+wire  r1_w_grad_gy_1_stencil_1_0_16b;
+wire  r2_w_grad_gy_1_stencil_0_0_16b;
+wire  r2_w_grad_gy_1_stencil_1_0_16b;
+wire  r3_w_grad_gy_1_stencil_0_0_16b;
+wire  r3_w_grad_gy_1_stencil_1_0_16b;
+wire  r4_w_grad_gy_1_stencil_0_0_16b;
+wire  r4_w_grad_gy_1_stencil_1_0_16b;
+wire  r5_w_grad_gy_1_stencil_0_0_16b;
+wire  r5_w_grad_gy_1_stencil_1_0_16b;
+wire  r6_w_grad_gy_1_stencil_0_0_16b;
+wire  r6_w_grad_gy_1_stencil_1_0_16b;
+wire  r7_w_grad_gy_1_stencil_0_0_16b;
+wire  r7_w_grad_gy_1_stencil_1_0_16b;
+wire  r8_w_grad_gy_1_stencil_0_0_16b;
+wire  r8_w_grad_gy_1_stencil_1_0_16b;
+wire  w_436_16b;
+wire  w_437_16b;
+wire  w_438_16b;
+wire  w_439_16b;
+wire  w_440_16b;
+wire  w_441_16b;
+wire  w_442_16b;
+wire  w_443_16b;
+wire  w_444_16b;
+wire  w_445_16b;
+wire  w_446_16b;
+wire  w_447_16b;
+wire  w_448_16b;
+wire  w_449_16b;
+wire  w_450_16b;
+wire  w_451_16b;
+wire  w_452_16b;
+wire  w_453_16b;
+wire  w_454_16b;
+wire  w_455_16b;
+wire  w_456_16b;
+wire  w_457_16b;
+wire  w_458_16b;
+wire  w_459_16b;
+wire  w_460_16b;
+wire  w_461_16b;
+wire  w_462_16b;
+wire  w_463_16b;
+wire  w_464_16b;
+wire  w_465_16b;
+wire  w_466_16b;
+wire  w_467_16b;
+wire  w_468_16b;
+wire  w_469_16b;
+wire  w_470_16b;
+wire  w_471_16b;
+wire  w_472_16b;
+wire  w_473_16b;
+wire  w_474_16b;
+wire  w_475_16b;
+wire  w_476_16b;
+wire  w_477_16b;
+wire  w_478_16b;
+wire  w_479_16b;
+wire  w_480_16b;
+wire  w_481_16b;
+wire  w_482_16b;
+wire  w_483_16b;
+wire  w_484_16b;
+wire  w_485_16b;
+wire  w_486_16b;
+wire  w_487_16b;
+wire  w_488_16b;
+wire  w_489_16b;
+wire  w_grad_gy_1_stencil_0_0_16b;
+wire  w_grad_gy_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_gy_1_stencil_1_0=r8_w_grad_gy_1_stencil_1_0;
-assign out_w_grad_gy_1_stencil_0_0=r8_w_grad_gy_1_stencil_0_0;
-assign  r0_w_grad_gy_1_stencil_0_0  =  w_438 ;
-assign  r0_w_grad_gy_1_stencil_1_0  =  w_465 ;
-assign  r1_w_grad_gy_1_stencil_0_0  =  w_441 ;
-assign  r1_w_grad_gy_1_stencil_1_0  =  w_468 ;
-assign  r2_w_grad_gy_1_stencil_0_0  =  w_444 ;
-assign  r2_w_grad_gy_1_stencil_1_0  =  w_471 ;
-assign  r3_w_grad_gy_1_stencil_0_0  =  w_447 ;
-assign  r3_w_grad_gy_1_stencil_1_0  =  w_474 ;
-assign  r4_w_grad_gy_1_stencil_0_0  =  w_450 ;
-assign  r4_w_grad_gy_1_stencil_1_0  =  w_477 ;
-assign  r5_w_grad_gy_1_stencil_0_0  =  w_453 ;
-assign  r5_w_grad_gy_1_stencil_1_0  =  w_480 ;
-assign  r6_w_grad_gy_1_stencil_0_0  =  w_456 ;
-assign  r6_w_grad_gy_1_stencil_1_0  =  w_483 ;
-assign  r7_w_grad_gy_1_stencil_0_0  =  w_459 ;
-assign  r7_w_grad_gy_1_stencil_1_0  =  w_486 ;
-assign  r8_w_grad_gy_1_stencil_0_0  =  w_462 ;
-assign  r8_w_grad_gy_1_stencil_1_0  =  w_489 ;
-assign  w_436  = 1'b0;
-assign  w_437  =  w_grad_yy_1_stencil_0_0 ;
+assign out_w_grad_gy_1_stencil_1_0_16b = r8_w_grad_gy_1_stencil_1_0_16b;
+assign out_w_grad_gy_1_stencil_0_0_16b = r8_w_grad_gy_1_stencil_0_0_16b;
+assign  r0_w_grad_gy_1_stencil_0_0_16b  =  w_438_16b ;
+assign  r0_w_grad_gy_1_stencil_1_0_16b  =  w_465_16b ;
+assign  r1_w_grad_gy_1_stencil_0_0_16b  =  w_441_16b ;
+assign  r1_w_grad_gy_1_stencil_1_0_16b  =  w_468_16b ;
+assign  r2_w_grad_gy_1_stencil_0_0_16b  =  w_444_16b ;
+assign  r2_w_grad_gy_1_stencil_1_0_16b  =  w_471_16b ;
+assign  r3_w_grad_gy_1_stencil_0_0_16b  =  w_447_16b ;
+assign  r3_w_grad_gy_1_stencil_1_0_16b  =  w_474_16b ;
+assign  r4_w_grad_gy_1_stencil_0_0_16b  =  w_450_16b ;
+assign  r4_w_grad_gy_1_stencil_1_0_16b  =  w_477_16b ;
+assign  r5_w_grad_gy_1_stencil_0_0_16b  =  w_453_16b ;
+assign  r5_w_grad_gy_1_stencil_1_0_16b  =  w_480_16b ;
+assign  r6_w_grad_gy_1_stencil_0_0_16b  =  w_456_16b ;
+assign  r6_w_grad_gy_1_stencil_1_0_16b  =  w_483_16b ;
+assign  r7_w_grad_gy_1_stencil_0_0_16b  =  w_459_16b ;
+assign  r7_w_grad_gy_1_stencil_1_0_16b  =  w_486_16b ;
+assign  r8_w_grad_gy_1_stencil_0_0_16b  =  w_462_16b ;
+assign  r8_w_grad_gy_1_stencil_1_0_16b  =  w_489_16b ;
+assign  w_436_16b  = 1'b0;
+assign  w_437_16b  =  w_grad_yy_1_stencil_0_0_16b ;
 ADD_16b_pe add_0 (
-  .a(w_436),
-  .b(w_437),
-  .c(w_438),
+  .a(w_436_16b),
+  .b(w_437_16b),
+  .c(w_438_16b),
   .clk(clk)
 );
-assign  w_439  =  r0_w_grad_gy_1_stencil_0_0 ;
-assign  w_440  =  w_grad_yy_1_stencil_1_0 ;
+assign  w_439_16b  =  r0_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_440_16b  =  w_grad_yy_1_stencil_1_0_16b ;
 ADD_16b_pe add_1 (
-  .a(w_439),
-  .b(w_440),
-  .c(w_441),
+  .a(w_439_16b),
+  .b(w_440_16b),
+  .c(w_441_16b),
   .clk(clk)
 );
-assign  w_442  =  r1_w_grad_gy_1_stencil_0_0 ;
-assign  w_443  =  w_grad_yy_1_stencil_2_0 ;
+assign  w_442_16b  =  r1_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_443_16b  =  w_grad_yy_1_stencil_2_0_16b ;
 ADD_16b_pe add_2 (
-  .a(w_443),
-  .b(w_442),
-  .c(w_444),
+  .a(w_443_16b),
+  .b(w_442_16b),
+  .c(w_444_16b),
   .clk(clk)
 );
-assign  w_445  =  r2_w_grad_gy_1_stencil_0_0 ;
-assign  w_446  =  w_grad_yy_1_stencil_0_1 ;
+assign  w_445_16b  =  r2_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_446_16b  =  w_grad_yy_1_stencil_0_1_16b ;
 ADD_16b_pe add_3 (
-  .a(w_446),
-  .b(w_445),
-  .c(w_447),
+  .a(w_446_16b),
+  .b(w_445_16b),
+  .c(w_447_16b),
   .clk(clk)
 );
-assign  w_448  =  r3_w_grad_gy_1_stencil_0_0 ;
-assign  w_449  =  w_grad_yy_1_stencil_1_1 ;
+assign  w_448_16b  =  r3_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_449_16b  =  w_grad_yy_1_stencil_1_1_16b ;
 ADD_16b_pe add_4 (
-  .a(w_449),
-  .b(w_448),
-  .c(w_450),
+  .a(w_449_16b),
+  .b(w_448_16b),
+  .c(w_450_16b),
   .clk(clk)
 );
-assign  w_451  =  r4_w_grad_gy_1_stencil_0_0 ;
-assign  w_452  =  w_grad_yy_1_stencil_2_1 ;
+assign  w_451_16b  =  r4_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_452_16b  =  w_grad_yy_1_stencil_2_1_16b ;
 ADD_16b_pe add_5 (
-  .a(w_451),
-  .b(w_452),
-  .c(w_453),
+  .a(w_451_16b),
+  .b(w_452_16b),
+  .c(w_453_16b),
   .clk(clk)
 );
-assign  w_454  =  r5_w_grad_gy_1_stencil_0_0 ;
-assign  w_455  =  w_grad_yy_1_stencil_0_2 ;
+assign  w_454_16b  =  r5_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_455_16b  =  w_grad_yy_1_stencil_0_2_16b ;
 ADD_16b_pe add_6 (
-  .a(w_454),
-  .b(w_455),
-  .c(w_456),
+  .a(w_454_16b),
+  .b(w_455_16b),
+  .c(w_456_16b),
   .clk(clk)
 );
-assign  w_457  =  r6_w_grad_gy_1_stencil_0_0 ;
-assign  w_458  =  w_grad_yy_1_stencil_1_2 ;
+assign  w_457_16b  =  r6_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_458_16b  =  w_grad_yy_1_stencil_1_2_16b ;
 ADD_16b_pe add_7 (
-  .a(w_457),
-  .b(w_458),
-  .c(w_459),
+  .a(w_457_16b),
+  .b(w_458_16b),
+  .c(w_459_16b),
   .clk(clk)
 );
-assign  w_460  =  r7_w_grad_gy_1_stencil_0_0 ;
-assign  w_461  =  w_grad_yy_1_stencil_2_2 ;
+assign  w_460_16b  =  r7_w_grad_gy_1_stencil_0_0_16b ;
+assign  w_461_16b  =  w_grad_yy_1_stencil_2_2_16b ;
 ADD_16b_pe add_8 (
-  .a(w_461),
-  .b(w_460),
-  .c(w_462),
+  .a(w_461_16b),
+  .b(w_460_16b),
+  .c(w_462_16b),
   .clk(clk)
 );
-assign  w_463  = 1'b0;
-assign  w_464  =  w_grad_yy_1_stencil_1_0 ;
+assign  w_463_16b  = 1'b0;
+assign  w_464_16b  =  w_grad_yy_1_stencil_1_0_16b ;
 ADD_16b_pe add_9 (
-  .a(w_464),
-  .b(w_463),
-  .c(w_465),
+  .a(w_464_16b),
+  .b(w_463_16b),
+  .c(w_465_16b),
   .clk(clk)
 );
-assign  w_466  =  r0_w_grad_gy_1_stencil_1_0 ;
-assign  w_467  =  w_grad_yy_1_stencil_2_0 ;
+assign  w_466_16b  =  r0_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_467_16b  =  w_grad_yy_1_stencil_2_0_16b ;
 ADD_16b_pe add_10 (
-  .a(w_467),
-  .b(w_466),
-  .c(w_468),
+  .a(w_467_16b),
+  .b(w_466_16b),
+  .c(w_468_16b),
   .clk(clk)
 );
-assign  w_469  =  r1_w_grad_gy_1_stencil_1_0 ;
-assign  w_470  =  w_grad_yy_1_stencil_3_0 ;
+assign  w_469_16b  =  r1_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_470_16b  =  w_grad_yy_1_stencil_3_0_16b ;
 ADD_16b_pe add_11 (
-  .a(w_469),
-  .b(w_470),
-  .c(w_471),
+  .a(w_469_16b),
+  .b(w_470_16b),
+  .c(w_471_16b),
   .clk(clk)
 );
-assign  w_472  =  r2_w_grad_gy_1_stencil_1_0 ;
-assign  w_473  =  w_grad_yy_1_stencil_1_1 ;
+assign  w_472_16b  =  r2_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_473_16b  =  w_grad_yy_1_stencil_1_1_16b ;
 ADD_16b_pe add_12 (
-  .a(w_472),
-  .b(w_473),
-  .c(w_474),
+  .a(w_472_16b),
+  .b(w_473_16b),
+  .c(w_474_16b),
   .clk(clk)
 );
-assign  w_475  =  r3_w_grad_gy_1_stencil_1_0 ;
-assign  w_476  =  w_grad_yy_1_stencil_2_1 ;
+assign  w_475_16b  =  r3_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_476_16b  =  w_grad_yy_1_stencil_2_1_16b ;
 ADD_16b_pe add_13 (
-  .a(w_476),
-  .b(w_475),
-  .c(w_477),
+  .a(w_476_16b),
+  .b(w_475_16b),
+  .c(w_477_16b),
   .clk(clk)
 );
-assign  w_478  =  r4_w_grad_gy_1_stencil_1_0 ;
-assign  w_479  =  w_grad_yy_1_stencil_3_1 ;
+assign  w_478_16b  =  r4_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_479_16b  =  w_grad_yy_1_stencil_3_1_16b ;
 ADD_16b_pe add_14 (
-  .a(w_478),
-  .b(w_479),
-  .c(w_480),
+  .a(w_478_16b),
+  .b(w_479_16b),
+  .c(w_480_16b),
   .clk(clk)
 );
-assign  w_481  =  r5_w_grad_gy_1_stencil_1_0 ;
-assign  w_482  =  w_grad_yy_1_stencil_1_2 ;
+assign  w_481_16b  =  r5_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_482_16b  =  w_grad_yy_1_stencil_1_2_16b ;
 ADD_16b_pe add_15 (
-  .a(w_482),
-  .b(w_481),
-  .c(w_483),
+  .a(w_482_16b),
+  .b(w_481_16b),
+  .c(w_483_16b),
   .clk(clk)
 );
-assign  w_484  =  r6_w_grad_gy_1_stencil_1_0 ;
-assign  w_485  =  w_grad_yy_1_stencil_2_2 ;
+assign  w_484_16b  =  r6_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_485_16b  =  w_grad_yy_1_stencil_2_2_16b ;
 ADD_16b_pe add_16 (
-  .a(w_485),
-  .b(w_484),
-  .c(w_486),
+  .a(w_485_16b),
+  .b(w_484_16b),
+  .c(w_486_16b),
   .clk(clk)
 );
-assign  w_487  =  r7_w_grad_gy_1_stencil_1_0 ;
-assign  w_488  =  w_grad_yy_1_stencil_3_2 ;
+assign  w_487_16b  =  r7_w_grad_gy_1_stencil_1_0_16b ;
+assign  w_488_16b  =  w_grad_yy_1_stencil_3_2_16b ;
 ADD_16b_pe add_17 (
-  .a(w_487),
-  .b(w_488),
-  .c(w_489),
+  .a(w_487_16b),
+  .b(w_488_16b),
+  .c(w_489_16b),
   .clk(clk)
 );
-assign  w_grad_gy_1_stencil_0_0  = 1'b0;
-assign  w_grad_gy_1_stencil_1_0  = 1'b0;
+assign  w_grad_gy_1_stencil_0_0_16b  = 1'b0;
+assign  w_grad_gy_1_stencil_1_0_16b  = 1'b0;
 
 endmodule
 
@@ -1796,58 +1802,58 @@ endmodule
 
 module kernel__grad_yy_1_stencil_update_stream(
 //Inputs
-  w_grad_y_1_stencil_0_0,
-  w_grad_y_1_stencil_1_0,
+  w_grad_y_1_stencil_0_0_16b,
+  w_grad_y_1_stencil_1_0_16b,
 //Outputs
-  out_w_grad_yy_1_stencil_0_0,
-  out_w_grad_yy_1_stencil_1_0,
+  out_w_grad_yy_1_stencil_0_0_16b,
+  out_w_grad_yy_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_y_1_stencil_1_0;
-input  w_grad_y_1_stencil_0_0;
+input  w_grad_y_1_stencil_1_0_16b;
+input  w_grad_y_1_stencil_0_0_16b;
 //Outputs
-output  out_w_grad_yy_1_stencil_1_0;
-output  out_w_grad_yy_1_stencil_0_0;
+output  out_w_grad_yy_1_stencil_1_0_16b;
+output  out_w_grad_yy_1_stencil_0_0_16b;
 
 input  clk;
 
 
-wire  w_430;
-wire  w_431;
-wire  w_432;
-wire  w_433;
-wire  w_434;
-wire  w_435;
-wire  w_grad_yy_1_stencil_0_0;
-wire  w_grad_yy_1_stencil_1_0;
+wire  w_430_16b;
+wire  w_431_16b;
+wire  w_432_16b;
+wire  w_433_16b;
+wire  w_434_16b;
+wire  w_435_16b;
+wire  w_grad_yy_1_stencil_0_0_16b;
+wire  w_grad_yy_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_yy_1_stencil_1_0=w_grad_yy_1_stencil_1_0;
-assign out_w_grad_yy_1_stencil_0_0=w_grad_yy_1_stencil_0_0;
-assign  w_430  =  w_grad_y_1_stencil_0_0 ;
-assign  w_431  =  w_430 ;
+assign out_w_grad_yy_1_stencil_1_0_16b = w_grad_yy_1_stencil_1_0_16b;
+assign out_w_grad_yy_1_stencil_0_0_16b = w_grad_yy_1_stencil_0_0_16b;
+assign  w_430_16b  =  w_grad_y_1_stencil_0_0_16b ;
+assign  w_431_16b  =  w_430_16b ;
 MULT_16b_pe mult_0 (
-  .a(w_431),
+  .a(w_431_16b),
   .b(1'b0),
-  .c(w_432),
+  .c(w_432_16b),
   .clk(clk)
 );
-assign  w_433  =  w_grad_y_1_stencil_1_0 ;
-assign  w_434  =  w_433 ;
+assign  w_433_16b  =  w_grad_y_1_stencil_1_0_16b ;
+assign  w_434_16b  =  w_433_16b ;
 MULT_16b_pe mult_1 (
-  .a(w_434),
+  .a(w_434_16b),
   .b(1'b0),
-  .c(w_435),
+  .c(w_435_16b),
   .clk(clk)
 );
-assign  w_grad_yy_1_stencil_0_0  =  w_432 ;
-assign  w_grad_yy_1_stencil_1_0  =  w_435 ;
+assign  w_grad_yy_1_stencil_0_0_16b  =  w_432_16b ;
+assign  w_grad_yy_1_stencil_1_0_16b  =  w_435_16b ;
 
 endmodule
 
@@ -1859,258 +1865,258 @@ endmodule
 
 module kernel__hw_output_1_stencil_stream(
 //Inputs
-  w_p2_cim_stencil_0_0,
-  w_p2_cim_stencil_0_1,
-  w_p2_cim_stencil_0_2,
-  w_p2_cim_stencil_1_0,
-  w_p2_cim_stencil_1_1,
-  w_p2_cim_stencil_1_2,
-  w_p2_cim_stencil_2_0,
-  w_p2_cim_stencil_2_1,
-  w_p2_cim_stencil_2_2,
-  w_p2_cim_stencil_3_0,
-  w_p2_cim_stencil_3_1,
-  w_p2_cim_stencil_3_2,
+  w_p2_cim_stencil_0_0_16b,
+  w_p2_cim_stencil_0_1_16b,
+  w_p2_cim_stencil_0_2_16b,
+  w_p2_cim_stencil_1_0_16b,
+  w_p2_cim_stencil_1_1_16b,
+  w_p2_cim_stencil_1_2_16b,
+  w_p2_cim_stencil_2_0_16b,
+  w_p2_cim_stencil_2_1_16b,
+  w_p2_cim_stencil_2_2_16b,
+  w_p2_cim_stencil_3_0_16b,
+  w_p2_cim_stencil_3_1_16b,
+  w_p2_cim_stencil_3_2_16b,
 //Outputs
-  out_w_hw_output_1_stencil_1_0,
-  out_w_hw_output_1_stencil_packed,
+  out_w_hw_output_1_stencil_1_0_8b,
+  out_w_hw_output_1_stencil_packed_16b,
 
   clk
 );
 
 //Inputs
-input  w_p2_cim_stencil_2_2;
-input  w_p2_cim_stencil_2_1;
-input  w_p2_cim_stencil_2_0;
-input  w_p2_cim_stencil_1_0;
-input  w_p2_cim_stencil_1_1;
-input  w_p2_cim_stencil_1_2;
-input  w_p2_cim_stencil_0_1;
-input  w_p2_cim_stencil_0_0;
-input  w_p2_cim_stencil_0_2;
-input  w_p2_cim_stencil_3_2;
-input  w_p2_cim_stencil_3_0;
-input  w_p2_cim_stencil_3_1;
+input  w_p2_cim_stencil_2_2_16b;
+input  w_p2_cim_stencil_2_1_16b;
+input  w_p2_cim_stencil_2_0_16b;
+input  w_p2_cim_stencil_1_0_16b;
+input  w_p2_cim_stencil_1_1_16b;
+input  w_p2_cim_stencil_1_2_16b;
+input  w_p2_cim_stencil_0_1_16b;
+input  w_p2_cim_stencil_0_0_16b;
+input  w_p2_cim_stencil_0_2_16b;
+input  w_p2_cim_stencil_3_2_16b;
+input  w_p2_cim_stencil_3_0_16b;
+input  w_p2_cim_stencil_3_1_16b;
 //Outputs
-output  out_w_hw_output_1_stencil_packed;
-output  out_w_hw_output_1_stencil_1_0;
+output  out_w_hw_output_1_stencil_packed_16b;
+output  out_w_hw_output_1_stencil_1_0_8b;
 
 input  clk;
 
 
-wire  w_568;
-wire  w_569;
-wire  w_570;
-wire  w_571;
-wire  w_572;
-wire  w_573;
-wire  w_574;
-wire  w_575;
-wire  w_576;
-wire  w_577;
-wire  w_578;
-wire  w_579;
-wire  w_580;
-wire  w_581;
-wire  w_582;
-wire  w_583;
-wire  w_584;
-wire  w_585;
-wire  w_586;
-wire  w_587;
-wire  w_588;
-wire  w_589;
-wire  w_590;
-wire  w_591;
-wire  w_592;
-wire  w_593;
-wire  w_594;
-wire  w_595;
-wire  w_596;
-wire  w_597;
-wire  w_598;
-wire  w_599;
-wire  w_600;
-wire  w_601;
-wire  w_602;
-wire  w_603;
-wire  w_604;
-wire  w_605;
-wire  w_606;
-wire  w_607;
-wire  w_608;
-wire  w_609;
-wire  w_610;
-wire  w_611;
-wire  w_hw_output_1_stencil_0_0;
-wire  w_hw_output_1_stencil_1_0;
-wire  w_hw_output_1_stencil_packed;
+wire  w_568_16b;
+wire  w_569_16b;
+wire  w_570_16b;
+wire  w_571_16b;
+wire  w_572_16b;
+wire  w_573_16b;
+wire  w_574_16b;
+wire  w_575_16b;
+wire  w_576_16b;
+wire  w_577_16b;
+wire  w_578_16b;
+wire  w_579_16b;
+wire  w_580_16b;
+wire  w_581_16b;
+wire  w_582_16b;
+wire  w_583_16b;
+wire  w_584_16b;
+wire  w_585_16b;
+wire  w_586_16b;
+wire  w_587_16b;
+wire  w_588_16b;
+wire  w_589_16b;
+wire  w_590_16b;
+wire  w_591_16b;
+wire  w_592_16b;
+wire  w_593_16b;
+wire  w_594_16b;
+wire  w_595_16b;
+wire  w_596_16b;
+wire  w_597_16b;
+wire  w_598_16b;
+wire  w_599_16b;
+wire  w_600_16b;
+wire  w_601_16b;
+wire  w_602_16b;
+wire  w_603_16b;
+wire  w_604_16b;
+wire  w_605_16b;
+wire  w_606_16b;
+wire  w_607_16b;
+wire  w_608_16b;
+wire  w_609_16b;
+wire  w_610_16b;
+wire  w_611_16b;
+wire  w_hw_output_1_stencil_0_0_8b;
+wire  w_hw_output_1_stencil_1_0_8b;
+wire  w_hw_output_1_stencil_packed_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_hw_output_1_stencil_packed=w_hw_output_1_stencil_packed;
-assign out_w_hw_output_1_stencil_1_0=w_hw_output_1_stencil_1_0;
-assign  w_568  =  w_p2_cim_stencil_1_1 ;
-assign  w_569  = 1'b0;
-assign  w_570  = 1'b0;
-assign  w_571  =  w_p2_cim_stencil_0_0 ;
-assign  w_572  =  w_p2_cim_stencil_1_0 ;
+assign out_w_hw_output_1_stencil_packed_16b = w_hw_output_1_stencil_packed_16b;
+assign out_w_hw_output_1_stencil_1_0_8b = w_hw_output_1_stencil_1_0_8b;
+assign  w_568_16b  =  w_p2_cim_stencil_1_1_16b ;
+assign  w_569_16b  = 1'b0;
+assign  w_570_16b  = 1'b0;
+assign  w_571_16b  =  w_p2_cim_stencil_0_0_16b ;
+assign  w_572_16b  =  w_p2_cim_stencil_1_0_16b ;
 MAX_16b_pe max_0 (
-  .a(w_572),
-  .b(w_571),
-  .c(w_573),
+  .a(w_572_16b),
+  .b(w_571_16b),
+  .c(w_573_16b),
   .clk(clk)
 );
-assign  w_574  =  w_p2_cim_stencil_2_0 ;
+assign  w_574_16b  =  w_p2_cim_stencil_2_0_16b ;
 MAX_16b_pe max_1 (
-  .a(w_574),
-  .b(w_573),
-  .c(w_575),
+  .a(w_574_16b),
+  .b(w_573_16b),
+  .c(w_575_16b),
   .clk(clk)
 );
-assign  w_576  =  w_p2_cim_stencil_0_1 ;
+assign  w_576_16b  =  w_p2_cim_stencil_0_1_16b ;
 MAX_16b_pe max_2 (
-  .a(w_576),
-  .b(w_575),
-  .c(w_577),
+  .a(w_576_16b),
+  .b(w_575_16b),
+  .c(w_577_16b),
   .clk(clk)
 );
-assign  w_578  =  w_p2_cim_stencil_2_1 ;
+assign  w_578_16b  =  w_p2_cim_stencil_2_1_16b ;
 MAX_16b_pe max_3 (
-  .a(w_577),
-  .b(w_578),
-  .c(w_579),
+  .a(w_577_16b),
+  .b(w_578_16b),
+  .c(w_579_16b),
   .clk(clk)
 );
-assign  w_580  =  w_p2_cim_stencil_0_2 ;
+assign  w_580_16b  =  w_p2_cim_stencil_0_2_16b ;
 MAX_16b_pe max_4 (
-  .a(w_580),
-  .b(w_579),
-  .c(w_581),
+  .a(w_580_16b),
+  .b(w_579_16b),
+  .c(w_581_16b),
   .clk(clk)
 );
-assign  w_582  =  w_p2_cim_stencil_1_2 ;
+assign  w_582_16b  =  w_p2_cim_stencil_1_2_16b ;
 MAX_16b_pe max_5 (
-  .a(w_582),
-  .b(w_581),
-  .c(w_583),
+  .a(w_582_16b),
+  .b(w_581_16b),
+  .c(w_583_16b),
   .clk(clk)
 );
-assign  w_584  =  w_p2_cim_stencil_2_2 ;
+assign  w_584_16b  =  w_p2_cim_stencil_2_2_16b ;
 MAX_16b_pe max_6 (
-  .a(w_584),
-  .b(w_583),
-  .c(w_585),
+  .a(w_584_16b),
+  .b(w_583_16b),
+  .c(w_585_16b),
   .clk(clk)
 );
 LT_16b_pe lt_7 (
-  .a(w_568),
-  .b(w_585),
-  .c(w_586),
+  .a(w_568_16b),
+  .b(w_585_16b),
+  .c(w_586_16b),
   .clk(clk)
 );
 LTE_16b_pe lte_8 (
   .a(1'b0),
-  .b(w_568),
-  .c(w_587),
+  .b(w_568_16b),
+  .c(w_587_16b),
   .clk(clk)
 );
 AND_16b_pe and_9 (
-  .a(w_586),
-  .b(w_587),
-  .c(w_588),
+  .a(w_586_16b),
+  .b(w_587_16b),
+  .c(w_588_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_10 (
-  .a(w_569),
-  .b(w_588),
-  .s(w_570),
-  .c(w_589),
+  .a(w_569_16b),
+  .b(w_588_16b),
+  .s(w_570_16b),
+  .c(w_589_16b),
   .clk(clk)
 );
-assign  w_590  =  w_p2_cim_stencil_2_1 ;
-assign  w_591  = 1'b0;
-assign  w_592  = 1'b0;
-assign  w_593  =  w_p2_cim_stencil_1_0 ;
-assign  w_594  =  w_p2_cim_stencil_2_0 ;
+assign  w_590_16b  =  w_p2_cim_stencil_2_1_16b ;
+assign  w_591_16b  = 1'b0;
+assign  w_592_16b  = 1'b0;
+assign  w_593_16b  =  w_p2_cim_stencil_1_0_16b ;
+assign  w_594_16b  =  w_p2_cim_stencil_2_0_16b ;
 MAX_16b_pe max_11 (
-  .a(w_594),
-  .b(w_593),
-  .c(w_595),
+  .a(w_594_16b),
+  .b(w_593_16b),
+  .c(w_595_16b),
   .clk(clk)
 );
-assign  w_596  =  w_p2_cim_stencil_3_0 ;
+assign  w_596_16b  =  w_p2_cim_stencil_3_0_16b ;
 MAX_16b_pe max_12 (
-  .a(w_595),
-  .b(w_596),
-  .c(w_597),
+  .a(w_595_16b),
+  .b(w_596_16b),
+  .c(w_597_16b),
   .clk(clk)
 );
-assign  w_598  =  w_p2_cim_stencil_1_1 ;
+assign  w_598_16b  =  w_p2_cim_stencil_1_1_16b ;
 MAX_16b_pe max_13 (
-  .a(w_597),
-  .b(w_598),
-  .c(w_599),
+  .a(w_597_16b),
+  .b(w_598_16b),
+  .c(w_599_16b),
   .clk(clk)
 );
-assign  w_600  =  w_p2_cim_stencil_3_1 ;
+assign  w_600_16b  =  w_p2_cim_stencil_3_1_16b ;
 MAX_16b_pe max_14 (
-  .a(w_599),
-  .b(w_600),
-  .c(w_601),
+  .a(w_599_16b),
+  .b(w_600_16b),
+  .c(w_601_16b),
   .clk(clk)
 );
-assign  w_602  =  w_p2_cim_stencil_1_2 ;
+assign  w_602_16b  =  w_p2_cim_stencil_1_2_16b ;
 MAX_16b_pe max_15 (
-  .a(w_601),
-  .b(w_602),
-  .c(w_603),
+  .a(w_601_16b),
+  .b(w_602_16b),
+  .c(w_603_16b),
   .clk(clk)
 );
-assign  w_604  =  w_p2_cim_stencil_2_2 ;
+assign  w_604_16b  =  w_p2_cim_stencil_2_2_16b ;
 MAX_16b_pe max_16 (
-  .a(w_604),
-  .b(w_603),
-  .c(w_605),
+  .a(w_604_16b),
+  .b(w_603_16b),
+  .c(w_605_16b),
   .clk(clk)
 );
-assign  w_606  =  w_p2_cim_stencil_3_2 ;
+assign  w_606_16b  =  w_p2_cim_stencil_3_2_16b ;
 MAX_16b_pe max_17 (
-  .a(w_605),
-  .b(w_606),
-  .c(w_607),
+  .a(w_605_16b),
+  .b(w_606_16b),
+  .c(w_607_16b),
   .clk(clk)
 );
 LT_16b_pe lt_18 (
-  .a(w_607),
-  .b(w_590),
-  .c(w_608),
+  .a(w_607_16b),
+  .b(w_590_16b),
+  .c(w_608_16b),
   .clk(clk)
 );
 LTE_16b_pe lte_19 (
   .a(1'b0),
-  .b(w_590),
-  .c(w_609),
+  .b(w_590_16b),
+  .c(w_609_16b),
   .clk(clk)
 );
 AND_16b_pe and_20 (
-  .a(w_609),
-  .b(w_608),
-  .c(w_610),
+  .a(w_609_16b),
+  .b(w_608_16b),
+  .c(w_610_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_21 (
-  .a(w_591),
-  .b(w_610),
-  .s(w_592),
-  .c(w_611),
+  .a(w_591_16b),
+  .b(w_610_16b),
+  .s(w_592_16b),
+  .c(w_611_16b),
   .clk(clk)
 );
-assign  w_hw_output_1_stencil_0_0  =  w_589 ;
-assign  w_hw_output_1_stencil_1_0  =  w_611 ;
-assign  w_hw_output_1_stencil_packed  =  w_hw_output_1_stencil_0_0 ;
+assign  w_hw_output_1_stencil_0_0_8b  =  w_589_16b ;
+assign  w_hw_output_1_stencil_1_0_8b  =  w_611_16b ;
+assign  w_hw_output_1_stencil_packed_16b  =  w_hw_output_1_stencil_0_0_8b ;
 
 endmodule
 
@@ -2122,290 +2128,290 @@ endmodule
 
 module kernel__grad_gxy_1_stencil_stream(
 //Inputs
-  w_grad_xy_1_stencil_0_0,
-  w_grad_xy_1_stencil_0_1,
-  w_grad_xy_1_stencil_0_2,
-  w_grad_xy_1_stencil_1_0,
-  w_grad_xy_1_stencil_1_1,
-  w_grad_xy_1_stencil_1_2,
-  w_grad_xy_1_stencil_2_0,
-  w_grad_xy_1_stencil_2_1,
-  w_grad_xy_1_stencil_2_2,
-  w_grad_xy_1_stencil_3_0,
-  w_grad_xy_1_stencil_3_1,
-  w_grad_xy_1_stencil_3_2,
+  w_grad_xy_1_stencil_0_0_16b,
+  w_grad_xy_1_stencil_0_1_16b,
+  w_grad_xy_1_stencil_0_2_16b,
+  w_grad_xy_1_stencil_1_0_16b,
+  w_grad_xy_1_stencil_1_1_16b,
+  w_grad_xy_1_stencil_1_2_16b,
+  w_grad_xy_1_stencil_2_0_16b,
+  w_grad_xy_1_stencil_2_1_16b,
+  w_grad_xy_1_stencil_2_2_16b,
+  w_grad_xy_1_stencil_3_0_16b,
+  w_grad_xy_1_stencil_3_1_16b,
+  w_grad_xy_1_stencil_3_2_16b,
 //Outputs
-  out_w_grad_gxy_1_stencil_0_0,
-  out_w_grad_gxy_1_stencil_1_0,
+  out_w_grad_gxy_1_stencil_0_0_16b,
+  out_w_grad_gxy_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_xy_1_stencil_1_2;
-input  w_grad_xy_1_stencil_1_1;
-input  w_grad_xy_1_stencil_1_0;
-input  w_grad_xy_1_stencil_0_2;
-input  w_grad_xy_1_stencil_0_0;
-input  w_grad_xy_1_stencil_0_1;
-input  w_grad_xy_1_stencil_3_1;
-input  w_grad_xy_1_stencil_3_0;
-input  w_grad_xy_1_stencil_3_2;
-input  w_grad_xy_1_stencil_2_0;
-input  w_grad_xy_1_stencil_2_1;
-input  w_grad_xy_1_stencil_2_2;
+input  w_grad_xy_1_stencil_1_2_16b;
+input  w_grad_xy_1_stencil_1_1_16b;
+input  w_grad_xy_1_stencil_1_0_16b;
+input  w_grad_xy_1_stencil_0_2_16b;
+input  w_grad_xy_1_stencil_0_0_16b;
+input  w_grad_xy_1_stencil_0_1_16b;
+input  w_grad_xy_1_stencil_3_1_16b;
+input  w_grad_xy_1_stencil_3_0_16b;
+input  w_grad_xy_1_stencil_3_2_16b;
+input  w_grad_xy_1_stencil_2_0_16b;
+input  w_grad_xy_1_stencil_2_1_16b;
+input  w_grad_xy_1_stencil_2_2_16b;
 //Outputs
-output  out_w_grad_gxy_1_stencil_0_0;
-output  out_w_grad_gxy_1_stencil_1_0;
+output  out_w_grad_gxy_1_stencil_0_0_16b;
+output  out_w_grad_gxy_1_stencil_1_0_16b;
 
 input  clk;
 
 
-wire  r0_w_grad_gxy_1_stencil_0_0;
-wire  r0_w_grad_gxy_1_stencil_1_0;
-wire  r1_w_grad_gxy_1_stencil_0_0;
-wire  r1_w_grad_gxy_1_stencil_1_0;
-wire  r2_w_grad_gxy_1_stencil_0_0;
-wire  r2_w_grad_gxy_1_stencil_1_0;
-wire  r3_w_grad_gxy_1_stencil_0_0;
-wire  r3_w_grad_gxy_1_stencil_1_0;
-wire  r4_w_grad_gxy_1_stencil_0_0;
-wire  r4_w_grad_gxy_1_stencil_1_0;
-wire  r5_w_grad_gxy_1_stencil_0_0;
-wire  r5_w_grad_gxy_1_stencil_1_0;
-wire  r6_w_grad_gxy_1_stencil_0_0;
-wire  r6_w_grad_gxy_1_stencil_1_0;
-wire  r7_w_grad_gxy_1_stencil_0_0;
-wire  r7_w_grad_gxy_1_stencil_1_0;
-wire  r8_w_grad_gxy_1_stencil_0_0;
-wire  r8_w_grad_gxy_1_stencil_1_0;
-wire  w_376;
-wire  w_377;
-wire  w_378;
-wire  w_379;
-wire  w_380;
-wire  w_381;
-wire  w_382;
-wire  w_383;
-wire  w_384;
-wire  w_385;
-wire  w_386;
-wire  w_387;
-wire  w_388;
-wire  w_389;
-wire  w_390;
-wire  w_391;
-wire  w_392;
-wire  w_393;
-wire  w_394;
-wire  w_395;
-wire  w_396;
-wire  w_397;
-wire  w_398;
-wire  w_399;
-wire  w_400;
-wire  w_401;
-wire  w_402;
-wire  w_403;
-wire  w_404;
-wire  w_405;
-wire  w_406;
-wire  w_407;
-wire  w_408;
-wire  w_409;
-wire  w_410;
-wire  w_411;
-wire  w_412;
-wire  w_413;
-wire  w_414;
-wire  w_415;
-wire  w_416;
-wire  w_417;
-wire  w_418;
-wire  w_419;
-wire  w_420;
-wire  w_421;
-wire  w_422;
-wire  w_423;
-wire  w_424;
-wire  w_425;
-wire  w_426;
-wire  w_427;
-wire  w_428;
-wire  w_429;
-wire  w_grad_gxy_1_stencil_0_0;
-wire  w_grad_gxy_1_stencil_1_0;
+wire  r0_w_grad_gxy_1_stencil_0_0_16b;
+wire  r0_w_grad_gxy_1_stencil_1_0_16b;
+wire  r1_w_grad_gxy_1_stencil_0_0_16b;
+wire  r1_w_grad_gxy_1_stencil_1_0_16b;
+wire  r2_w_grad_gxy_1_stencil_0_0_16b;
+wire  r2_w_grad_gxy_1_stencil_1_0_16b;
+wire  r3_w_grad_gxy_1_stencil_0_0_16b;
+wire  r3_w_grad_gxy_1_stencil_1_0_16b;
+wire  r4_w_grad_gxy_1_stencil_0_0_16b;
+wire  r4_w_grad_gxy_1_stencil_1_0_16b;
+wire  r5_w_grad_gxy_1_stencil_0_0_16b;
+wire  r5_w_grad_gxy_1_stencil_1_0_16b;
+wire  r6_w_grad_gxy_1_stencil_0_0_16b;
+wire  r6_w_grad_gxy_1_stencil_1_0_16b;
+wire  r7_w_grad_gxy_1_stencil_0_0_16b;
+wire  r7_w_grad_gxy_1_stencil_1_0_16b;
+wire  r8_w_grad_gxy_1_stencil_0_0_16b;
+wire  r8_w_grad_gxy_1_stencil_1_0_16b;
+wire  w_376_16b;
+wire  w_377_16b;
+wire  w_378_16b;
+wire  w_379_16b;
+wire  w_380_16b;
+wire  w_381_16b;
+wire  w_382_16b;
+wire  w_383_16b;
+wire  w_384_16b;
+wire  w_385_16b;
+wire  w_386_16b;
+wire  w_387_16b;
+wire  w_388_16b;
+wire  w_389_16b;
+wire  w_390_16b;
+wire  w_391_16b;
+wire  w_392_16b;
+wire  w_393_16b;
+wire  w_394_16b;
+wire  w_395_16b;
+wire  w_396_16b;
+wire  w_397_16b;
+wire  w_398_16b;
+wire  w_399_16b;
+wire  w_400_16b;
+wire  w_401_16b;
+wire  w_402_16b;
+wire  w_403_16b;
+wire  w_404_16b;
+wire  w_405_16b;
+wire  w_406_16b;
+wire  w_407_16b;
+wire  w_408_16b;
+wire  w_409_16b;
+wire  w_410_16b;
+wire  w_411_16b;
+wire  w_412_16b;
+wire  w_413_16b;
+wire  w_414_16b;
+wire  w_415_16b;
+wire  w_416_16b;
+wire  w_417_16b;
+wire  w_418_16b;
+wire  w_419_16b;
+wire  w_420_16b;
+wire  w_421_16b;
+wire  w_422_16b;
+wire  w_423_16b;
+wire  w_424_16b;
+wire  w_425_16b;
+wire  w_426_16b;
+wire  w_427_16b;
+wire  w_428_16b;
+wire  w_429_16b;
+wire  w_grad_gxy_1_stencil_0_0_16b;
+wire  w_grad_gxy_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_gxy_1_stencil_0_0=r8_w_grad_gxy_1_stencil_0_0;
-assign out_w_grad_gxy_1_stencil_1_0=r8_w_grad_gxy_1_stencil_1_0;
-assign  r0_w_grad_gxy_1_stencil_0_0  =  w_378 ;
-assign  r0_w_grad_gxy_1_stencil_1_0  =  w_405 ;
-assign  r1_w_grad_gxy_1_stencil_0_0  =  w_381 ;
-assign  r1_w_grad_gxy_1_stencil_1_0  =  w_408 ;
-assign  r2_w_grad_gxy_1_stencil_0_0  =  w_384 ;
-assign  r2_w_grad_gxy_1_stencil_1_0  =  w_411 ;
-assign  r3_w_grad_gxy_1_stencil_0_0  =  w_387 ;
-assign  r3_w_grad_gxy_1_stencil_1_0  =  w_414 ;
-assign  r4_w_grad_gxy_1_stencil_0_0  =  w_390 ;
-assign  r4_w_grad_gxy_1_stencil_1_0  =  w_417 ;
-assign  r5_w_grad_gxy_1_stencil_0_0  =  w_393 ;
-assign  r5_w_grad_gxy_1_stencil_1_0  =  w_420 ;
-assign  r6_w_grad_gxy_1_stencil_0_0  =  w_396 ;
-assign  r6_w_grad_gxy_1_stencil_1_0  =  w_423 ;
-assign  r7_w_grad_gxy_1_stencil_0_0  =  w_399 ;
-assign  r7_w_grad_gxy_1_stencil_1_0  =  w_426 ;
-assign  r8_w_grad_gxy_1_stencil_0_0  =  w_402 ;
-assign  r8_w_grad_gxy_1_stencil_1_0  =  w_429 ;
-assign  w_376  = 1'b0;
-assign  w_377  =  w_grad_xy_1_stencil_0_0 ;
+assign out_w_grad_gxy_1_stencil_0_0_16b = r8_w_grad_gxy_1_stencil_0_0_16b;
+assign out_w_grad_gxy_1_stencil_1_0_16b = r8_w_grad_gxy_1_stencil_1_0_16b;
+assign  r0_w_grad_gxy_1_stencil_0_0_16b  =  w_378_16b ;
+assign  r0_w_grad_gxy_1_stencil_1_0_16b  =  w_405_16b ;
+assign  r1_w_grad_gxy_1_stencil_0_0_16b  =  w_381_16b ;
+assign  r1_w_grad_gxy_1_stencil_1_0_16b  =  w_408_16b ;
+assign  r2_w_grad_gxy_1_stencil_0_0_16b  =  w_384_16b ;
+assign  r2_w_grad_gxy_1_stencil_1_0_16b  =  w_411_16b ;
+assign  r3_w_grad_gxy_1_stencil_0_0_16b  =  w_387_16b ;
+assign  r3_w_grad_gxy_1_stencil_1_0_16b  =  w_414_16b ;
+assign  r4_w_grad_gxy_1_stencil_0_0_16b  =  w_390_16b ;
+assign  r4_w_grad_gxy_1_stencil_1_0_16b  =  w_417_16b ;
+assign  r5_w_grad_gxy_1_stencil_0_0_16b  =  w_393_16b ;
+assign  r5_w_grad_gxy_1_stencil_1_0_16b  =  w_420_16b ;
+assign  r6_w_grad_gxy_1_stencil_0_0_16b  =  w_396_16b ;
+assign  r6_w_grad_gxy_1_stencil_1_0_16b  =  w_423_16b ;
+assign  r7_w_grad_gxy_1_stencil_0_0_16b  =  w_399_16b ;
+assign  r7_w_grad_gxy_1_stencil_1_0_16b  =  w_426_16b ;
+assign  r8_w_grad_gxy_1_stencil_0_0_16b  =  w_402_16b ;
+assign  r8_w_grad_gxy_1_stencil_1_0_16b  =  w_429_16b ;
+assign  w_376_16b  = 1'b0;
+assign  w_377_16b  =  w_grad_xy_1_stencil_0_0_16b ;
 ADD_16b_pe add_0 (
-  .a(w_377),
-  .b(w_376),
-  .c(w_378),
+  .a(w_377_16b),
+  .b(w_376_16b),
+  .c(w_378_16b),
   .clk(clk)
 );
-assign  w_379  =  r0_w_grad_gxy_1_stencil_0_0 ;
-assign  w_380  =  w_grad_xy_1_stencil_1_0 ;
+assign  w_379_16b  =  r0_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_380_16b  =  w_grad_xy_1_stencil_1_0_16b ;
 ADD_16b_pe add_1 (
-  .a(w_380),
-  .b(w_379),
-  .c(w_381),
+  .a(w_380_16b),
+  .b(w_379_16b),
+  .c(w_381_16b),
   .clk(clk)
 );
-assign  w_382  =  r1_w_grad_gxy_1_stencil_0_0 ;
-assign  w_383  =  w_grad_xy_1_stencil_2_0 ;
+assign  w_382_16b  =  r1_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_383_16b  =  w_grad_xy_1_stencil_2_0_16b ;
 ADD_16b_pe add_2 (
-  .a(w_382),
-  .b(w_383),
-  .c(w_384),
+  .a(w_382_16b),
+  .b(w_383_16b),
+  .c(w_384_16b),
   .clk(clk)
 );
-assign  w_385  =  r2_w_grad_gxy_1_stencil_0_0 ;
-assign  w_386  =  w_grad_xy_1_stencil_0_1 ;
+assign  w_385_16b  =  r2_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_386_16b  =  w_grad_xy_1_stencil_0_1_16b ;
 ADD_16b_pe add_3 (
-  .a(w_385),
-  .b(w_386),
-  .c(w_387),
+  .a(w_385_16b),
+  .b(w_386_16b),
+  .c(w_387_16b),
   .clk(clk)
 );
-assign  w_388  =  r3_w_grad_gxy_1_stencil_0_0 ;
-assign  w_389  =  w_grad_xy_1_stencil_1_1 ;
+assign  w_388_16b  =  r3_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_389_16b  =  w_grad_xy_1_stencil_1_1_16b ;
 ADD_16b_pe add_4 (
-  .a(w_388),
-  .b(w_389),
-  .c(w_390),
+  .a(w_388_16b),
+  .b(w_389_16b),
+  .c(w_390_16b),
   .clk(clk)
 );
-assign  w_391  =  r4_w_grad_gxy_1_stencil_0_0 ;
-assign  w_392  =  w_grad_xy_1_stencil_2_1 ;
+assign  w_391_16b  =  r4_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_392_16b  =  w_grad_xy_1_stencil_2_1_16b ;
 ADD_16b_pe add_5 (
-  .a(w_392),
-  .b(w_391),
-  .c(w_393),
+  .a(w_392_16b),
+  .b(w_391_16b),
+  .c(w_393_16b),
   .clk(clk)
 );
-assign  w_394  =  r5_w_grad_gxy_1_stencil_0_0 ;
-assign  w_395  =  w_grad_xy_1_stencil_0_2 ;
+assign  w_394_16b  =  r5_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_395_16b  =  w_grad_xy_1_stencil_0_2_16b ;
 ADD_16b_pe add_6 (
-  .a(w_395),
-  .b(w_394),
-  .c(w_396),
+  .a(w_395_16b),
+  .b(w_394_16b),
+  .c(w_396_16b),
   .clk(clk)
 );
-assign  w_397  =  r6_w_grad_gxy_1_stencil_0_0 ;
-assign  w_398  =  w_grad_xy_1_stencil_1_2 ;
+assign  w_397_16b  =  r6_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_398_16b  =  w_grad_xy_1_stencil_1_2_16b ;
 ADD_16b_pe add_7 (
-  .a(w_397),
-  .b(w_398),
-  .c(w_399),
+  .a(w_397_16b),
+  .b(w_398_16b),
+  .c(w_399_16b),
   .clk(clk)
 );
-assign  w_400  =  r7_w_grad_gxy_1_stencil_0_0 ;
-assign  w_401  =  w_grad_xy_1_stencil_2_2 ;
+assign  w_400_16b  =  r7_w_grad_gxy_1_stencil_0_0_16b ;
+assign  w_401_16b  =  w_grad_xy_1_stencil_2_2_16b ;
 ADD_16b_pe add_8 (
-  .a(w_401),
-  .b(w_400),
-  .c(w_402),
+  .a(w_401_16b),
+  .b(w_400_16b),
+  .c(w_402_16b),
   .clk(clk)
 );
-assign  w_403  = 1'b0;
-assign  w_404  =  w_grad_xy_1_stencil_1_0 ;
+assign  w_403_16b  = 1'b0;
+assign  w_404_16b  =  w_grad_xy_1_stencil_1_0_16b ;
 ADD_16b_pe add_9 (
-  .a(w_404),
-  .b(w_403),
-  .c(w_405),
+  .a(w_404_16b),
+  .b(w_403_16b),
+  .c(w_405_16b),
   .clk(clk)
 );
-assign  w_406  =  r0_w_grad_gxy_1_stencil_1_0 ;
-assign  w_407  =  w_grad_xy_1_stencil_2_0 ;
+assign  w_406_16b  =  r0_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_407_16b  =  w_grad_xy_1_stencil_2_0_16b ;
 ADD_16b_pe add_10 (
-  .a(w_407),
-  .b(w_406),
-  .c(w_408),
+  .a(w_407_16b),
+  .b(w_406_16b),
+  .c(w_408_16b),
   .clk(clk)
 );
-assign  w_409  =  r1_w_grad_gxy_1_stencil_1_0 ;
-assign  w_410  =  w_grad_xy_1_stencil_3_0 ;
+assign  w_409_16b  =  r1_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_410_16b  =  w_grad_xy_1_stencil_3_0_16b ;
 ADD_16b_pe add_11 (
-  .a(w_410),
-  .b(w_409),
-  .c(w_411),
+  .a(w_410_16b),
+  .b(w_409_16b),
+  .c(w_411_16b),
   .clk(clk)
 );
-assign  w_412  =  r2_w_grad_gxy_1_stencil_1_0 ;
-assign  w_413  =  w_grad_xy_1_stencil_1_1 ;
+assign  w_412_16b  =  r2_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_413_16b  =  w_grad_xy_1_stencil_1_1_16b ;
 ADD_16b_pe add_12 (
-  .a(w_412),
-  .b(w_413),
-  .c(w_414),
+  .a(w_412_16b),
+  .b(w_413_16b),
+  .c(w_414_16b),
   .clk(clk)
 );
-assign  w_415  =  r3_w_grad_gxy_1_stencil_1_0 ;
-assign  w_416  =  w_grad_xy_1_stencil_2_1 ;
+assign  w_415_16b  =  r3_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_416_16b  =  w_grad_xy_1_stencil_2_1_16b ;
 ADD_16b_pe add_13 (
-  .a(w_415),
-  .b(w_416),
-  .c(w_417),
+  .a(w_415_16b),
+  .b(w_416_16b),
+  .c(w_417_16b),
   .clk(clk)
 );
-assign  w_418  =  r4_w_grad_gxy_1_stencil_1_0 ;
-assign  w_419  =  w_grad_xy_1_stencil_3_1 ;
+assign  w_418_16b  =  r4_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_419_16b  =  w_grad_xy_1_stencil_3_1_16b ;
 ADD_16b_pe add_14 (
-  .a(w_418),
-  .b(w_419),
-  .c(w_420),
+  .a(w_418_16b),
+  .b(w_419_16b),
+  .c(w_420_16b),
   .clk(clk)
 );
-assign  w_421  =  r5_w_grad_gxy_1_stencil_1_0 ;
-assign  w_422  =  w_grad_xy_1_stencil_1_2 ;
+assign  w_421_16b  =  r5_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_422_16b  =  w_grad_xy_1_stencil_1_2_16b ;
 ADD_16b_pe add_15 (
-  .a(w_421),
-  .b(w_422),
-  .c(w_423),
+  .a(w_421_16b),
+  .b(w_422_16b),
+  .c(w_423_16b),
   .clk(clk)
 );
-assign  w_424  =  r6_w_grad_gxy_1_stencil_1_0 ;
-assign  w_425  =  w_grad_xy_1_stencil_2_2 ;
+assign  w_424_16b  =  r6_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_425_16b  =  w_grad_xy_1_stencil_2_2_16b ;
 ADD_16b_pe add_16 (
-  .a(w_425),
-  .b(w_424),
-  .c(w_426),
+  .a(w_425_16b),
+  .b(w_424_16b),
+  .c(w_426_16b),
   .clk(clk)
 );
-assign  w_427  =  r7_w_grad_gxy_1_stencil_1_0 ;
-assign  w_428  =  w_grad_xy_1_stencil_3_2 ;
+assign  w_427_16b  =  r7_w_grad_gxy_1_stencil_1_0_16b ;
+assign  w_428_16b  =  w_grad_xy_1_stencil_3_2_16b ;
 ADD_16b_pe add_17 (
-  .a(w_428),
-  .b(w_427),
-  .c(w_429),
+  .a(w_428_16b),
+  .b(w_427_16b),
+  .c(w_429_16b),
   .clk(clk)
 );
-assign  w_grad_gxy_1_stencil_0_0  = 1'b0;
-assign  w_grad_gxy_1_stencil_1_0  = 1'b0;
+assign  w_grad_gxy_1_stencil_0_0_16b  = 1'b0;
+assign  w_grad_gxy_1_stencil_1_0_16b  = 1'b0;
 
 endmodule
 
@@ -2417,198 +2423,198 @@ endmodule
 
 module kernel__grad_y_1_stencil_stream(
 //Inputs
-  w_padded_1_stencil_0_0,
-  w_padded_1_stencil_0_2,
-  w_padded_1_stencil_1_0,
-  w_padded_1_stencil_1_2,
-  w_padded_1_stencil_2_0,
-  w_padded_1_stencil_2_2,
-  w_padded_1_stencil_3_0,
-  w_padded_1_stencil_3_2,
+  w_padded_1_stencil_0_0_8b,
+  w_padded_1_stencil_0_2_8b,
+  w_padded_1_stencil_1_0_8b,
+  w_padded_1_stencil_1_2_8b,
+  w_padded_1_stencil_2_0_8b,
+  w_padded_1_stencil_2_2_8b,
+  w_padded_1_stencil_3_0_8b,
+  w_padded_1_stencil_3_2_8b,
 //Outputs
-  out_w_grad_y_1_stencil_0_0,
-  out_w_grad_y_1_stencil_1_0,
+  out_w_grad_y_1_stencil_0_0_16b,
+  out_w_grad_y_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_padded_1_stencil_3_0;
-input  w_padded_1_stencil_3_2;
-input  w_padded_1_stencil_2_0;
-input  w_padded_1_stencil_2_2;
-input  w_padded_1_stencil_1_2;
-input  w_padded_1_stencil_1_0;
-input  w_padded_1_stencil_0_2;
-input  w_padded_1_stencil_0_0;
+input  w_padded_1_stencil_3_0_8b;
+input  w_padded_1_stencil_3_2_8b;
+input  w_padded_1_stencil_2_0_8b;
+input  w_padded_1_stencil_2_2_8b;
+input  w_padded_1_stencil_1_2_8b;
+input  w_padded_1_stencil_1_0_8b;
+input  w_padded_1_stencil_0_2_8b;
+input  w_padded_1_stencil_0_0_8b;
 //Outputs
-output  out_w_grad_y_1_stencil_1_0;
-output  out_w_grad_y_1_stencil_0_0;
+output  out_w_grad_y_1_stencil_1_0_16b;
+output  out_w_grad_y_1_stencil_0_0_16b;
 
 input  clk;
 
 
-wire  w_326;
-wire  w_327;
-wire  w_328;
-wire  w_329;
-wire  w_330;
-wire  w_331;
-wire  w_332;
-wire  w_333;
-wire  w_334;
-wire  w_335;
-wire  w_336;
-wire  w_337;
-wire  w_338;
-wire  w_339;
-wire  w_340;
-wire  w_341;
-wire  w_342;
-wire  w_343;
-wire  w_344;
-wire  w_345;
-wire  w_346;
-wire  w_347;
-wire  w_348;
-wire  w_349;
-wire  w_350;
-wire  w_351;
-wire  w_352;
-wire  w_353;
-wire  w_354;
-wire  w_355;
-wire  w_356;
-wire  w_357;
-wire  w_358;
-wire  w_359;
-wire  w_360;
-wire  w_361;
-wire  w_362;
-wire  w_363;
-wire  w_364;
-wire  w_365;
-wire  w_grad_y_1_stencil_0_0;
-wire  w_grad_y_1_stencil_1_0;
+wire  w_326_16b;
+wire  w_327_16b;
+wire  w_328_16b;
+wire  w_329_16b;
+wire  w_330_16b;
+wire  w_331_16b;
+wire  w_332_16b;
+wire  w_333_16b;
+wire  w_334_16b;
+wire  w_335_16b;
+wire  w_336_16b;
+wire  w_337_16b;
+wire  w_338_16b;
+wire  w_339_16b;
+wire  w_340_16b;
+wire  w_341_16b;
+wire  w_342_16b;
+wire  w_343_16b;
+wire  w_344_16b;
+wire  w_345_16b;
+wire  w_346_16b;
+wire  w_347_16b;
+wire  w_348_16b;
+wire  w_349_16b;
+wire  w_350_16b;
+wire  w_351_16b;
+wire  w_352_16b;
+wire  w_353_16b;
+wire  w_354_16b;
+wire  w_355_16b;
+wire  w_356_16b;
+wire  w_357_16b;
+wire  w_358_16b;
+wire  w_359_16b;
+wire  w_360_16b;
+wire  w_361_16b;
+wire  w_362_16b;
+wire  w_363_16b;
+wire  w_364_16b;
+wire  w_365_16b;
+wire  w_grad_y_1_stencil_0_0_16b;
+wire  w_grad_y_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_y_1_stencil_1_0=w_grad_y_1_stencil_1_0;
-assign out_w_grad_y_1_stencil_0_0=w_grad_y_1_stencil_0_0;
-assign  w_326  =  w_padded_1_stencil_0_2 ;
-assign  w_327  =  w_326 ;
-assign  w_328  =  w_padded_1_stencil_0_0 ;
-assign  w_329  =  w_328 ;
+assign out_w_grad_y_1_stencil_1_0_16b = w_grad_y_1_stencil_1_0_16b;
+assign out_w_grad_y_1_stencil_0_0_16b = w_grad_y_1_stencil_0_0_16b;
+assign  w_326_16b  =  w_padded_1_stencil_0_2_8b ;
+assign  w_327_16b  =  w_326_16b ;
+assign  w_328_16b  =  w_padded_1_stencil_0_0_8b ;
+assign  w_329_16b  =  w_328_16b ;
 SUB_16b_pe sub_0 (
-  .a(w_329),
-  .b(w_327),
-  .c(w_330),
+  .a(w_329_16b),
+  .b(w_327_16b),
+  .c(w_330_16b),
   .clk(clk)
 );
-assign  w_331  =  w_padded_1_stencil_1_2 ;
-assign  w_332  =  w_331 ;
-assign  w_333  = 1'b0;
+assign  w_331_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_332_16b  =  w_331_16b ;
+assign  w_333_16b  = 1'b0;
 MULT_16b_pe mult_1 (
-  .a(w_333),
-  .b(w_332),
-  .c(w_334),
+  .a(w_333_16b),
+  .b(w_332_16b),
+  .c(w_334_16b),
   .clk(clk)
 );
 ADD_16b_pe add_2 (
-  .a(w_330),
-  .b(w_334),
-  .c(w_335),
+  .a(w_330_16b),
+  .b(w_334_16b),
+  .c(w_335_16b),
   .clk(clk)
 );
-assign  w_336  =  w_padded_1_stencil_1_0 ;
-assign  w_337  =  w_336 ;
+assign  w_336_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_337_16b  =  w_336_16b ;
 MULT_16b_pe mult_3 (
-  .a(w_333),
-  .b(w_337),
-  .c(w_338),
+  .a(w_333_16b),
+  .b(w_337_16b),
+  .c(w_338_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_4 (
-  .a(w_338),
-  .b(w_335),
-  .c(w_339),
+  .a(w_338_16b),
+  .b(w_335_16b),
+  .c(w_339_16b),
   .clk(clk)
 );
-assign  w_340  =  w_padded_1_stencil_2_2 ;
-assign  w_341  =  w_340 ;
+assign  w_340_16b  =  w_padded_1_stencil_2_2_8b ;
+assign  w_341_16b  =  w_340_16b ;
 ADD_16b_pe add_5 (
-  .a(w_339),
-  .b(w_341),
-  .c(w_342),
+  .a(w_339_16b),
+  .b(w_341_16b),
+  .c(w_342_16b),
   .clk(clk)
 );
-assign  w_343  =  w_padded_1_stencil_2_0 ;
-assign  w_344  =  w_343 ;
+assign  w_343_16b  =  w_padded_1_stencil_2_0_8b ;
+assign  w_344_16b  =  w_343_16b ;
 SUB_16b_pe sub_6 (
-  .a(w_344),
-  .b(w_342),
-  .c(w_345),
+  .a(w_344_16b),
+  .b(w_342_16b),
+  .c(w_345_16b),
   .clk(clk)
 );
-assign  w_346  =  w_padded_1_stencil_1_2 ;
-assign  w_347  =  w_346 ;
-assign  w_348  =  w_padded_1_stencil_1_0 ;
-assign  w_349  =  w_348 ;
+assign  w_346_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_347_16b  =  w_346_16b ;
+assign  w_348_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_349_16b  =  w_348_16b ;
 SUB_16b_pe sub_7 (
-  .a(w_347),
-  .b(w_349),
-  .c(w_350),
+  .a(w_347_16b),
+  .b(w_349_16b),
+  .c(w_350_16b),
   .clk(clk)
 );
-assign  w_351  =  w_padded_1_stencil_2_2 ;
-assign  w_352  =  w_351 ;
-assign  w_353  = 1'b0;
+assign  w_351_16b  =  w_padded_1_stencil_2_2_8b ;
+assign  w_352_16b  =  w_351_16b ;
+assign  w_353_16b  = 1'b0;
 MULT_16b_pe mult_8 (
-  .a(w_353),
-  .b(w_352),
-  .c(w_354),
+  .a(w_353_16b),
+  .b(w_352_16b),
+  .c(w_354_16b),
   .clk(clk)
 );
 ADD_16b_pe add_9 (
-  .a(w_350),
-  .b(w_354),
-  .c(w_355),
+  .a(w_350_16b),
+  .b(w_354_16b),
+  .c(w_355_16b),
   .clk(clk)
 );
-assign  w_356  =  w_padded_1_stencil_2_0 ;
-assign  w_357  =  w_356 ;
+assign  w_356_16b  =  w_padded_1_stencil_2_0_8b ;
+assign  w_357_16b  =  w_356_16b ;
 MULT_16b_pe mult_10 (
-  .a(w_353),
-  .b(w_357),
-  .c(w_358),
+  .a(w_353_16b),
+  .b(w_357_16b),
+  .c(w_358_16b),
   .clk(clk)
 );
 SUB_16b_pe sub_11 (
-  .a(w_358),
-  .b(w_355),
-  .c(w_359),
+  .a(w_358_16b),
+  .b(w_355_16b),
+  .c(w_359_16b),
   .clk(clk)
 );
-assign  w_360  =  w_padded_1_stencil_3_2 ;
-assign  w_361  =  w_360 ;
+assign  w_360_16b  =  w_padded_1_stencil_3_2_8b ;
+assign  w_361_16b  =  w_360_16b ;
 ADD_16b_pe add_12 (
-  .a(w_359),
-  .b(w_361),
-  .c(w_362),
+  .a(w_359_16b),
+  .b(w_361_16b),
+  .c(w_362_16b),
   .clk(clk)
 );
-assign  w_363  =  w_padded_1_stencil_3_0 ;
-assign  w_364  =  w_363 ;
+assign  w_363_16b  =  w_padded_1_stencil_3_0_8b ;
+assign  w_364_16b  =  w_363_16b ;
 SUB_16b_pe sub_13 (
-  .a(w_364),
-  .b(w_362),
-  .c(w_365),
+  .a(w_364_16b),
+  .b(w_362_16b),
+  .c(w_365_16b),
   .clk(clk)
 );
-assign  w_grad_y_1_stencil_0_0  =  w_345 ;
-assign  w_grad_y_1_stencil_1_0  =  w_365 ;
+assign  w_grad_y_1_stencil_0_0_16b  =  w_345_16b ;
+assign  w_grad_y_1_stencil_1_0_16b  =  w_365_16b ;
 
 endmodule
 
@@ -2620,70 +2626,70 @@ endmodule
 
 module kernel__grad_xy_1_stencil_update_stream(
 //Inputs
-  w_grad_x_1_stencil_0_0,
-  w_grad_x_1_stencil_1_0,
-  w_grad_y_1_stencil_0_0,
-  w_grad_y_1_stencil_1_0,
+  w_grad_x_1_stencil_0_0_16b,
+  w_grad_x_1_stencil_1_0_16b,
+  w_grad_y_1_stencil_0_0_16b,
+  w_grad_y_1_stencil_1_0_16b,
 //Outputs
-  out_w_grad_xy_1_stencil_0_0,
-  out_w_grad_xy_1_stencil_1_0,
+  out_w_grad_xy_1_stencil_0_0_16b,
+  out_w_grad_xy_1_stencil_1_0_16b,
 
   clk
 );
 
 //Inputs
-input  w_grad_x_1_stencil_0_0;
-input  w_grad_y_1_stencil_1_0;
-input  w_grad_x_1_stencil_1_0;
-input  w_grad_y_1_stencil_0_0;
+input  w_grad_x_1_stencil_0_0_16b;
+input  w_grad_y_1_stencil_1_0_16b;
+input  w_grad_x_1_stencil_1_0_16b;
+input  w_grad_y_1_stencil_0_0_16b;
 //Outputs
-output  out_w_grad_xy_1_stencil_0_0;
-output  out_w_grad_xy_1_stencil_1_0;
+output  out_w_grad_xy_1_stencil_0_0_16b;
+output  out_w_grad_xy_1_stencil_1_0_16b;
 
 input  clk;
 
 
-wire  w_366;
-wire  w_367;
-wire  w_368;
-wire  w_369;
-wire  w_370;
-wire  w_371;
-wire  w_372;
-wire  w_373;
-wire  w_374;
-wire  w_375;
-wire  w_grad_xy_1_stencil_0_0;
-wire  w_grad_xy_1_stencil_1_0;
+wire  w_366_16b;
+wire  w_367_16b;
+wire  w_368_16b;
+wire  w_369_16b;
+wire  w_370_16b;
+wire  w_371_16b;
+wire  w_372_16b;
+wire  w_373_16b;
+wire  w_374_16b;
+wire  w_375_16b;
+wire  w_grad_xy_1_stencil_0_0_16b;
+wire  w_grad_xy_1_stencil_1_0_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_grad_xy_1_stencil_0_0=w_grad_xy_1_stencil_0_0;
-assign out_w_grad_xy_1_stencil_1_0=w_grad_xy_1_stencil_1_0;
-assign  w_366  =  w_grad_x_1_stencil_0_0 ;
-assign  w_367  =  w_366 ;
-assign  w_368  =  w_grad_y_1_stencil_0_0 ;
-assign  w_369  =  w_368 ;
+assign out_w_grad_xy_1_stencil_0_0_16b = w_grad_xy_1_stencil_0_0_16b;
+assign out_w_grad_xy_1_stencil_1_0_16b = w_grad_xy_1_stencil_1_0_16b;
+assign  w_366_16b  =  w_grad_x_1_stencil_0_0_16b ;
+assign  w_367_16b  =  w_366_16b ;
+assign  w_368_16b  =  w_grad_y_1_stencil_0_0_16b ;
+assign  w_369_16b  =  w_368_16b ;
 MULT_16b_pe mult_0 (
-  .a(w_367),
-  .b(w_369),
-  .c(w_370),
+  .a(w_367_16b),
+  .b(w_369_16b),
+  .c(w_370_16b),
   .clk(clk)
 );
-assign  w_371  =  w_grad_x_1_stencil_1_0 ;
-assign  w_372  =  w_371 ;
-assign  w_373  =  w_grad_y_1_stencil_1_0 ;
-assign  w_374  =  w_373 ;
+assign  w_371_16b  =  w_grad_x_1_stencil_1_0_16b ;
+assign  w_372_16b  =  w_371_16b ;
+assign  w_373_16b  =  w_grad_y_1_stencil_1_0_16b ;
+assign  w_374_16b  =  w_373_16b ;
 MULT_16b_pe mult_1 (
-  .a(w_374),
-  .b(w_372),
-  .c(w_375),
+  .a(w_374_16b),
+  .b(w_372_16b),
+  .c(w_375_16b),
   .clk(clk)
 );
-assign  w_grad_xy_1_stencil_0_0  =  w_370 ;
-assign  w_grad_xy_1_stencil_1_0  =  w_375 ;
+assign  w_grad_xy_1_stencil_0_0_16b  =  w_370_16b ;
+assign  w_grad_xy_1_stencil_1_0_16b  =  w_375_16b ;
 
 endmodule
 

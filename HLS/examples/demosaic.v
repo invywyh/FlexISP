@@ -1,76 +1,78 @@
+// Source:  /home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/hls_target.cpp 
+
 module top(
 //Inputs
-  w_padded_1_stencil_update_stream_0_0,
+  w_padded_1_stencil_update_stream_0_0_8b,
 
 //Outputs
-  w_hw_output_1_stencil_stream_0_0_0,
-  w_hw_output_1_stencil_stream_1_0_0,
-  w_hw_output_1_stencil_stream_2_0_0,
+  w_hw_output_1_stencil_stream_0_0_0_8b,
+  w_hw_output_1_stencil_stream_1_0_0_8b,
+  w_hw_output_1_stencil_stream_2_0_0_8b,
 
   clk
 );
 
 //Inputs
-input    w_padded_1_stencil_update_stream_0_0;
+input    w_padded_1_stencil_update_stream_0_0_8b;
 
 //Outputs
-output   w_hw_output_1_stencil_stream_0_0_0;
-output   w_hw_output_1_stencil_stream_1_0_0;
-output   w_hw_output_1_stencil_stream_2_0_0;
+output   w_hw_output_1_stencil_stream_0_0_0_8b;
+output   w_hw_output_1_stencil_stream_1_0_0_8b;
+output   w_hw_output_1_stencil_stream_2_0_0_8b;
 
 input   clk;
 
-wire   w_lowpass_x_1_stencil_stream_0_0_0;
-wire   w_lowpass_x_1_stencil_stream_1_0_0;
-wire   w_lowpass_x_1_stencil_stream_2_0_0;
+wire   w_lowpass_x_1_stencil_stream_0_0_0_8b;
+wire   w_lowpass_x_1_stencil_stream_1_0_0_8b;
+wire   w_lowpass_x_1_stencil_stream_2_0_0_8b;
 
-wire   w_padded_1_stencil_stream_0_0;
-wire   w_padded_1_stencil_stream_0_1;
-wire   w_padded_1_stencil_stream_0_2;
-wire   w_padded_1_stencil_stream_1_0;
-wire   w_padded_1_stencil_stream_1_1;
-wire   w_padded_1_stencil_stream_1_2;
-wire   w_padded_1_stencil_stream_2_0;
-wire   w_padded_1_stencil_stream_2_1;
-wire   w_padded_1_stencil_stream_2_2;
+wire   w_padded_1_stencil_stream_0_0_8b;
+wire   w_padded_1_stencil_stream_0_1_8b;
+wire   w_padded_1_stencil_stream_0_2_8b;
+wire   w_padded_1_stencil_stream_1_0_8b;
+wire   w_padded_1_stencil_stream_1_1_8b;
+wire   w_padded_1_stencil_stream_1_2_8b;
+wire   w_padded_1_stencil_stream_2_0_8b;
+wire   w_padded_1_stencil_stream_2_1_8b;
+wire   w_padded_1_stencil_stream_2_2_8b;
 
-wire   w_demosaic_1_stencil_stream_0_0_0;
-wire   w_demosaic_1_stencil_stream_0_0_1;
-wire   w_demosaic_1_stencil_stream_0_1_0;
-wire   w_demosaic_1_stencil_stream_0_1_1;
-wire   w_demosaic_1_stencil_stream_1_0_0;
-wire   w_demosaic_1_stencil_stream_1_0_1;
-wire   w_demosaic_1_stencil_stream_1_1_0;
-wire   w_demosaic_1_stencil_stream_1_1_1;
-wire   w_demosaic_1_stencil_stream_2_0_0;
-wire   w_demosaic_1_stencil_stream_2_0_1;
-wire   w_demosaic_1_stencil_stream_2_1_0;
-wire   w_demosaic_1_stencil_stream_2_1_1;
+wire   w_demosaic_1_stencil_stream_0_0_0_8b;
+wire   w_demosaic_1_stencil_stream_0_0_1_8b;
+wire   w_demosaic_1_stencil_stream_0_1_0_8b;
+wire   w_demosaic_1_stencil_stream_0_1_1_8b;
+wire   w_demosaic_1_stencil_stream_1_0_0_8b;
+wire   w_demosaic_1_stencil_stream_1_0_1_8b;
+wire   w_demosaic_1_stencil_stream_1_1_0_8b;
+wire   w_demosaic_1_stencil_stream_1_1_1_8b;
+wire   w_demosaic_1_stencil_stream_2_0_0_8b;
+wire   w_demosaic_1_stencil_stream_2_0_1_8b;
+wire   w_demosaic_1_stencil_stream_2_1_0_8b;
+wire   w_demosaic_1_stencil_stream_2_1_1_8b;
 
-wire   w_demosaic_1_stencil_update_stream_0_0_0;
-wire   w_demosaic_1_stencil_update_stream_1_0_0;
-wire   w_demosaic_1_stencil_update_stream_2_0_0;
+wire   w_demosaic_1_stencil_update_stream_0_0_0_8b;
+wire   w_demosaic_1_stencil_update_stream_1_0_0_8b;
+wire   w_demosaic_1_stencil_update_stream_2_0_0_8b;
 
 wire   gnd;
 assign gnd=1'b0;
 
 kernel__lowpass_x_1_stencil_stream KERN__lowpass_x_1_stencil_stream (
-    .w_demosaic_1_stencil_0_0_0(w_demosaic_1_stencil_stream_0_0_0),
-    .w_demosaic_1_stencil_0_0_1(w_demosaic_1_stencil_stream_0_0_1),
-    .w_demosaic_1_stencil_0_1_0(w_demosaic_1_stencil_stream_0_1_0),
-    .w_demosaic_1_stencil_0_1_1(w_demosaic_1_stencil_stream_0_1_1),
-    .w_demosaic_1_stencil_1_0_0(w_demosaic_1_stencil_stream_1_0_0),
-    .w_demosaic_1_stencil_1_0_1(w_demosaic_1_stencil_stream_1_0_1),
-    .w_demosaic_1_stencil_1_1_0(w_demosaic_1_stencil_stream_1_1_0),
-    .w_demosaic_1_stencil_1_1_1(w_demosaic_1_stencil_stream_1_1_1),
-    .w_demosaic_1_stencil_2_0_0(w_demosaic_1_stencil_stream_2_0_0),
-    .w_demosaic_1_stencil_2_0_1(w_demosaic_1_stencil_stream_2_0_1),
-    .w_demosaic_1_stencil_2_1_0(w_demosaic_1_stencil_stream_2_1_0),
-    .w_demosaic_1_stencil_2_1_1(w_demosaic_1_stencil_stream_2_1_1),
+    .w_demosaic_1_stencil_0_0_0_8b(w_demosaic_1_stencil_stream_0_0_0_8b),
+    .w_demosaic_1_stencil_0_0_1_8b(w_demosaic_1_stencil_stream_0_0_1_8b),
+    .w_demosaic_1_stencil_0_1_0_8b(w_demosaic_1_stencil_stream_0_1_0_8b),
+    .w_demosaic_1_stencil_0_1_1_8b(w_demosaic_1_stencil_stream_0_1_1_8b),
+    .w_demosaic_1_stencil_1_0_0_8b(w_demosaic_1_stencil_stream_1_0_0_8b),
+    .w_demosaic_1_stencil_1_0_1_8b(w_demosaic_1_stencil_stream_1_0_1_8b),
+    .w_demosaic_1_stencil_1_1_0_8b(w_demosaic_1_stencil_stream_1_1_0_8b),
+    .w_demosaic_1_stencil_1_1_1_8b(w_demosaic_1_stencil_stream_1_1_1_8b),
+    .w_demosaic_1_stencil_2_0_0_8b(w_demosaic_1_stencil_stream_2_0_0_8b),
+    .w_demosaic_1_stencil_2_0_1_8b(w_demosaic_1_stencil_stream_2_0_1_8b),
+    .w_demosaic_1_stencil_2_1_0_8b(w_demosaic_1_stencil_stream_2_1_0_8b),
+    .w_demosaic_1_stencil_2_1_1_8b(w_demosaic_1_stencil_stream_2_1_1_8b),
 
-    .out_w_lowpass_x_1_stencil_0_0_0(w_lowpass_x_1_stencil_stream_0_0_0),
-    .out_w_lowpass_x_1_stencil_1_0_0(w_lowpass_x_1_stencil_stream_1_0_0),
-    .out_w_lowpass_x_1_stencil_2_0_0(w_lowpass_x_1_stencil_stream_2_0_0),
+    .out_w_lowpass_x_1_stencil_0_0_0_8b(w_lowpass_x_1_stencil_stream_0_0_0_8b),
+    .out_w_lowpass_x_1_stencil_1_0_0_8b(w_lowpass_x_1_stencil_stream_1_0_0_8b),
+    .out_w_lowpass_x_1_stencil_2_0_0_8b(w_lowpass_x_1_stencil_stream_2_0_0_8b),
 
     .clk(clk)
 );
@@ -78,882 +80,900 @@ kernel__lowpass_x_1_stencil_stream KERN__lowpass_x_1_stencil_stream (
 LB_3_3_1_8bit_False LB__padded_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_padded_1_stencil_update_stream_0_0),
+    .in0(w_padded_1_stencil_update_stream_0_0_8b),
 
-    .out0(w_padded_1_stencil_stream_0_0),
-    .out1(w_padded_1_stencil_stream_0_1),
-    .out2(w_padded_1_stencil_stream_0_2),
-    .out3(w_padded_1_stencil_stream_1_0),
-    .out4(w_padded_1_stencil_stream_1_1),
-    .out5(w_padded_1_stencil_stream_1_2),
-    .out6(w_padded_1_stencil_stream_2_0),
-    .out7(w_padded_1_stencil_stream_2_1),
-    .out8(w_padded_1_stencil_stream_2_2)
+    .out0(w_padded_1_stencil_stream_0_0_8b),
+    .out1(w_padded_1_stencil_stream_0_1_8b),
+    .out2(w_padded_1_stencil_stream_0_2_8b),
+    .out3(w_padded_1_stencil_stream_1_0_8b),
+    .out4(w_padded_1_stencil_stream_1_1_8b),
+    .out5(w_padded_1_stencil_stream_1_2_8b),
+    .out6(w_padded_1_stencil_stream_2_0_8b),
+    .out7(w_padded_1_stencil_stream_2_1_8b),
+    .out8(w_padded_1_stencil_stream_2_2_8b)
 );
 
 LB_2_2_3_8bit_False LB__demosaic_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_demosaic_1_stencil_update_stream_0_0_0),
-    .in1(w_demosaic_1_stencil_update_stream_1_0_0),
-    .in2(w_demosaic_1_stencil_update_stream_2_0_0),
+    .in0(w_demosaic_1_stencil_update_stream_0_0_0_8b),
+    .in1(w_demosaic_1_stencil_update_stream_1_0_0_8b),
+    .in2(w_demosaic_1_stencil_update_stream_2_0_0_8b),
 
-    .out0(w_demosaic_1_stencil_stream_0_0_0),
-    .out1(w_demosaic_1_stencil_stream_0_0_1),
-    .out2(w_demosaic_1_stencil_stream_0_1_0),
-    .out3(w_demosaic_1_stencil_stream_0_1_1),
-    .out4(w_demosaic_1_stencil_stream_1_0_0),
-    .out5(w_demosaic_1_stencil_stream_1_0_1),
-    .out6(w_demosaic_1_stencil_stream_1_1_0),
-    .out7(w_demosaic_1_stencil_stream_1_1_1),
-    .out8(w_demosaic_1_stencil_stream_2_0_0),
-    .out9(w_demosaic_1_stencil_stream_2_0_1),
-    .out10(w_demosaic_1_stencil_stream_2_1_0),
-    .out11(w_demosaic_1_stencil_stream_2_1_1)
+    .out0(w_demosaic_1_stencil_stream_0_0_0_8b),
+    .out1(w_demosaic_1_stencil_stream_0_0_1_8b),
+    .out2(w_demosaic_1_stencil_stream_0_1_0_8b),
+    .out3(w_demosaic_1_stencil_stream_0_1_1_8b),
+    .out4(w_demosaic_1_stencil_stream_1_0_0_8b),
+    .out5(w_demosaic_1_stencil_stream_1_0_1_8b),
+    .out6(w_demosaic_1_stencil_stream_1_1_0_8b),
+    .out7(w_demosaic_1_stencil_stream_1_1_1_8b),
+    .out8(w_demosaic_1_stencil_stream_2_0_0_8b),
+    .out9(w_demosaic_1_stencil_stream_2_0_1_8b),
+    .out10(w_demosaic_1_stencil_stream_2_1_0_8b),
+    .out11(w_demosaic_1_stencil_stream_2_1_1_8b)
 );
 
 kernel__demosaic_1_stencil_update_stream KERN__demosaic_1_stencil_update_stream (
-    .w_padded_1_stencil_0_0(w_padded_1_stencil_stream_0_0),
-    .w_padded_1_stencil_0_1(w_padded_1_stencil_stream_0_1),
-    .w_padded_1_stencil_0_2(w_padded_1_stencil_stream_0_2),
-    .w_padded_1_stencil_1_0(w_padded_1_stencil_stream_1_0),
-    .w_padded_1_stencil_1_1(w_padded_1_stencil_stream_1_1),
-    .w_padded_1_stencil_1_2(w_padded_1_stencil_stream_1_2),
-    .w_padded_1_stencil_2_0(w_padded_1_stencil_stream_2_0),
-    .w_padded_1_stencil_2_1(w_padded_1_stencil_stream_2_1),
-    .w_padded_1_stencil_2_2(w_padded_1_stencil_stream_2_2),
-    .w_demosaic_1_x___scan_dim_0(gnd),
-    .w_demosaic_1_y___scan_dim_1(gnd),
+    .w_padded_1_stencil_0_0_8b(w_padded_1_stencil_stream_0_0_8b),
+    .w_padded_1_stencil_0_1_8b(w_padded_1_stencil_stream_0_1_8b),
+    .w_padded_1_stencil_0_2_8b(w_padded_1_stencil_stream_0_2_8b),
+    .w_padded_1_stencil_1_0_8b(w_padded_1_stencil_stream_1_0_8b),
+    .w_padded_1_stencil_1_1_8b(w_padded_1_stencil_stream_1_1_8b),
+    .w_padded_1_stencil_1_2_8b(w_padded_1_stencil_stream_1_2_8b),
+    .w_padded_1_stencil_2_0_8b(w_padded_1_stencil_stream_2_0_8b),
+    .w_padded_1_stencil_2_1_8b(w_padded_1_stencil_stream_2_1_8b),
+    .w_padded_1_stencil_2_2_8b(w_padded_1_stencil_stream_2_2_8b),
+    .w_demosaic_1_x___scan_dim_0_16b(gnd),
+    .w_demosaic_1_y___scan_dim_1_16b(gnd),
 
-    .out_w_demosaic_1_stencil_0_0_0(w_demosaic_1_stencil_update_stream_0_0_0),
-    .out_w_demosaic_1_stencil_1_0_0(w_demosaic_1_stencil_update_stream_1_0_0),
-    .out_w_demosaic_1_stencil_2_0_0(w_demosaic_1_stencil_update_stream_2_0_0),
+    .out_w_demosaic_1_stencil_0_0_0_8b(w_demosaic_1_stencil_update_stream_0_0_0_8b),
+    .out_w_demosaic_1_stencil_1_0_0_8b(w_demosaic_1_stencil_update_stream_1_0_0_8b),
+    .out_w_demosaic_1_stencil_2_0_0_8b(w_demosaic_1_stencil_update_stream_2_0_0_8b),
 
     .clk(clk)
 );
 
 kernel__hw_output_1_stencil_stream KERN__hw_output_1_stencil_stream (
-    .w_lowpass_x_1_stencil_0_0_0(w_lowpass_x_1_stencil_stream_0_0_0),
-    .w_lowpass_x_1_stencil_1_0_0(w_lowpass_x_1_stencil_stream_1_0_0),
-    .w_lowpass_x_1_stencil_2_0_0(w_lowpass_x_1_stencil_stream_2_0_0),
+    .w_lowpass_x_1_stencil_0_0_0_8b(w_lowpass_x_1_stencil_stream_0_0_0_8b),
+    .w_lowpass_x_1_stencil_1_0_0_8b(w_lowpass_x_1_stencil_stream_1_0_0_8b),
+    .w_lowpass_x_1_stencil_2_0_0_8b(w_lowpass_x_1_stencil_stream_2_0_0_8b),
 
-    .out_w_hw_output_1_stencil_1_0_0(w_hw_output_1_stencil_stream_0_0_0),
-    .out_w_hw_output_1_stencil_2_0_0(w_hw_output_1_stencil_stream_1_0_0),
-    .out_w_hw_output_1_stencil_packed(w_hw_output_1_stencil_stream_2_0_0),
+    .out_w_hw_output_1_stencil_1_0_0_8b(w_hw_output_1_stencil_stream_0_0_0_8b),
+    .out_w_hw_output_1_stencil_2_0_0_8b(w_hw_output_1_stencil_stream_1_0_0_8b),
+    .out_w_hw_output_1_stencil_packed_16b(w_hw_output_1_stencil_stream_2_0_0_8b),
 
     .clk(clk)
 );
 
 endmodule
+
+
+
 module kernel__lowpass_x_1_stencil_stream(
 //Inputs
-  w_demosaic_1_stencil_0_0_0,
-  w_demosaic_1_stencil_0_0_1,
-  w_demosaic_1_stencil_0_1_0,
-  w_demosaic_1_stencil_0_1_1,
-  w_demosaic_1_stencil_1_0_0,
-  w_demosaic_1_stencil_1_0_1,
-  w_demosaic_1_stencil_1_1_0,
-  w_demosaic_1_stencil_1_1_1,
-  w_demosaic_1_stencil_2_0_0,
-  w_demosaic_1_stencil_2_0_1,
-  w_demosaic_1_stencil_2_1_0,
-  w_demosaic_1_stencil_2_1_1,
+  w_demosaic_1_stencil_0_0_0_8b,
+  w_demosaic_1_stencil_0_0_1_8b,
+  w_demosaic_1_stencil_0_1_0_8b,
+  w_demosaic_1_stencil_0_1_1_8b,
+  w_demosaic_1_stencil_1_0_0_8b,
+  w_demosaic_1_stencil_1_0_1_8b,
+  w_demosaic_1_stencil_1_1_0_8b,
+  w_demosaic_1_stencil_1_1_1_8b,
+  w_demosaic_1_stencil_2_0_0_8b,
+  w_demosaic_1_stencil_2_0_1_8b,
+  w_demosaic_1_stencil_2_1_0_8b,
+  w_demosaic_1_stencil_2_1_1_8b,
 //Outputs
-  out_w_lowpass_x_1_stencil_0_0_0,
-  out_w_lowpass_x_1_stencil_1_0_0,
-  out_w_lowpass_x_1_stencil_2_0_0,
+  out_w_lowpass_x_1_stencil_0_0_0_8b,
+  out_w_lowpass_x_1_stencil_1_0_0_8b,
+  out_w_lowpass_x_1_stencil_2_0_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_demosaic_1_stencil_0_1_0;
-input  w_demosaic_1_stencil_1_1_0;
-input  w_demosaic_1_stencil_2_1_0;
-input  w_demosaic_1_stencil_2_1_1;
-input  w_demosaic_1_stencil_1_0_0;
-input  w_demosaic_1_stencil_1_0_1;
-input  w_demosaic_1_stencil_1_1_1;
-input  w_demosaic_1_stencil_2_0_0;
-input  w_demosaic_1_stencil_0_0_1;
-input  w_demosaic_1_stencil_0_0_0;
-input  w_demosaic_1_stencil_2_0_1;
-input  w_demosaic_1_stencil_0_1_1;
+input  w_demosaic_1_stencil_0_1_0_8b;
+input  w_demosaic_1_stencil_1_1_0_8b;
+input  w_demosaic_1_stencil_2_1_0_8b;
+input  w_demosaic_1_stencil_2_1_1_8b;
+input  w_demosaic_1_stencil_1_0_0_8b;
+input  w_demosaic_1_stencil_1_0_1_8b;
+input  w_demosaic_1_stencil_1_1_1_8b;
+input  w_demosaic_1_stencil_2_0_0_8b;
+input  w_demosaic_1_stencil_0_0_1_8b;
+input  w_demosaic_1_stencil_0_0_0_8b;
+input  w_demosaic_1_stencil_2_0_1_8b;
+input  w_demosaic_1_stencil_0_1_1_8b;
 //Outputs
-output  out_w_lowpass_x_1_stencil_1_0_0;
-output  out_w_lowpass_x_1_stencil_0_0_0;
-output  out_w_lowpass_x_1_stencil_2_0_0;
+output  out_w_lowpass_x_1_stencil_1_0_0_8b;
+output  out_w_lowpass_x_1_stencil_0_0_0_8b;
+output  out_w_lowpass_x_1_stencil_2_0_0_8b;
 
 input  clk;
 
 
-wire  w_225;
-wire  w_226;
-wire  w_227;
-wire  w_228;
-wire  w_229;
-wire  w_230;
-wire  w_231;
-wire  w_232;
-wire  w_233;
-wire  w_234;
-wire  w_235;
-wire  w_236;
-wire  w_237;
-wire  w_238;
-wire  w_239;
-wire  w_240;
-wire  w_241;
-wire  w_242;
-wire  w_243;
-wire  w_244;
-wire  w_245;
-wire  w_246;
-wire  w_247;
-wire  w_248;
-wire  w_249;
-wire  w_250;
-wire  w_251;
-wire  w_252;
-wire  w_253;
-wire  w_254;
-wire  w_255;
-wire  w_256;
-wire  w_257;
-wire  w_258;
-wire  w_259;
-wire  w_260;
-wire  w_261;
-wire  w_262;
-wire  w_263;
-wire  w_264;
-wire  w_265;
-wire  w_266;
-wire  w_267;
-wire  w_268;
-wire  w_269;
-wire  w_270;
-wire  w_271;
-wire  w_272;
-wire  w_273;
-wire  w_274;
-wire  w_275;
-wire  w_276;
-wire  w_277;
-wire  w_278;
-wire  w_279;
-wire  w_280;
-wire  w_281;
-wire  w_lowpass_x_1_stencil_0_0_0;
-wire  w_lowpass_x_1_stencil_1_0_0;
-wire  w_lowpass_x_1_stencil_2_0_0;
+wire  w_225_16b;
+wire  w_226_16b;
+wire  w_227_16b;
+wire  w_228_16b;
+wire  w_229_16b;
+wire  w_230_16b;
+wire  w_231_16b;
+wire  w_232_16b;
+wire  w_233_16b;
+wire  w_234_16b;
+wire  w_235_16b;
+wire  w_236_16b;
+wire  w_237_16b;
+wire  w_238_16b;
+wire  w_239_16b;
+wire  w_240_16b;
+wire  w_241_16b;
+wire  w_242_16b;
+wire  w_243_16b;
+wire  w_244_16b;
+wire  w_245_16b;
+wire  w_246_16b;
+wire  w_247_16b;
+wire  w_248_16b;
+wire  w_249_16b;
+wire  w_250_16b;
+wire  w_251_16b;
+wire  w_252_16b;
+wire  w_253_16b;
+wire  w_254_16b;
+wire  w_255_16b;
+wire  w_256_16b;
+wire  w_257_16b;
+wire  w_258_16b;
+wire  w_259_16b;
+wire  w_260_16b;
+wire  w_261_16b;
+wire  w_262_16b;
+wire  w_263_16b;
+wire  w_264_16b;
+wire  w_265_16b;
+wire  w_266_16b;
+wire  w_267_16b;
+wire  w_268_16b;
+wire  w_269_16b;
+wire  w_270_16b;
+wire  w_271_16b;
+wire  w_272_16b;
+wire  w_273_16b;
+wire  w_274_16b;
+wire  w_275_16b;
+wire  w_276_16b;
+wire  w_277_16b;
+wire  w_278_16b;
+wire  w_279_16b;
+wire  w_280_16b;
+wire  w_281_16b;
+wire  w_lowpass_x_1_stencil_0_0_0_8b;
+wire  w_lowpass_x_1_stencil_1_0_0_8b;
+wire  w_lowpass_x_1_stencil_2_0_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_lowpass_x_1_stencil_1_0_0=w_lowpass_x_1_stencil_1_0_0;
-assign out_w_lowpass_x_1_stencil_0_0_0=w_lowpass_x_1_stencil_0_0_0;
-assign out_w_lowpass_x_1_stencil_2_0_0=w_lowpass_x_1_stencil_2_0_0;
-assign  w_225  =  w_demosaic_1_stencil_0_0_0 ;
-assign  w_226  =  w_225 ;
-assign  w_227  =  w_demosaic_1_stencil_0_1_0 ;
-assign  w_228  =  w_227 ;
+assign out_w_lowpass_x_1_stencil_1_0_0_8b = w_lowpass_x_1_stencil_1_0_0_8b;
+assign out_w_lowpass_x_1_stencil_0_0_0_8b = w_lowpass_x_1_stencil_0_0_0_8b;
+assign out_w_lowpass_x_1_stencil_2_0_0_8b = w_lowpass_x_1_stencil_2_0_0_8b;
+assign  w_225_16b  =  w_demosaic_1_stencil_0_0_0_8b ;
+assign  w_226_16b  =  w_225_16b ;
+assign  w_227_16b  =  w_demosaic_1_stencil_0_1_0_8b ;
+assign  w_228_16b  =  w_227_16b ;
 ADD_16b_pe add_0 (
-  .a(w_226),
-  .b(w_228),
-  .c(w_229),
+  .a(w_226_16b),
+  .b(w_228_16b),
+  .c(w_229_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_1 (
   .a(1'b0),
-  .b(w_229),
-  .c(w_230),
+  .b(w_229_16b),
+  .c(w_230_16b),
   .clk(clk)
 );
-assign  w_231  =  w_230 ;
-assign  w_232  =  w_231 ;
-assign  w_233  =  w_demosaic_1_stencil_0_0_1 ;
-assign  w_234  =  w_233 ;
-assign  w_235  =  w_demosaic_1_stencil_0_1_1 ;
-assign  w_236  =  w_235 ;
+assign  w_231_16b  =  w_230_16b ;
+assign  w_232_16b  =  w_231_16b ;
+assign  w_233_16b  =  w_demosaic_1_stencil_0_0_1_8b ;
+assign  w_234_16b  =  w_233_16b ;
+assign  w_235_16b  =  w_demosaic_1_stencil_0_1_1_8b ;
+assign  w_236_16b  =  w_235_16b ;
 ADD_16b_pe add_2 (
-  .a(w_234),
-  .b(w_236),
-  .c(w_237),
+  .a(w_234_16b),
+  .b(w_236_16b),
+  .c(w_237_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_3 (
   .a(1'b0),
-  .b(w_237),
-  .c(w_238),
+  .b(w_237_16b),
+  .c(w_238_16b),
   .clk(clk)
 );
-assign  w_239  =  w_238 ;
-assign  w_240  =  w_239 ;
+assign  w_239_16b  =  w_238_16b ;
+assign  w_240_16b  =  w_239_16b ;
 ADD_16b_pe add_4 (
-  .a(w_232),
-  .b(w_240),
-  .c(w_241),
+  .a(w_232_16b),
+  .b(w_240_16b),
+  .c(w_241_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_5 (
   .a(1'b0),
-  .b(w_241),
-  .c(w_242),
+  .b(w_241_16b),
+  .c(w_242_16b),
   .clk(clk)
 );
-assign  w_243  =  w_242 ;
-assign  w_244  =  w_demosaic_1_stencil_1_0_0 ;
-assign  w_245  =  w_244 ;
-assign  w_246  =  w_demosaic_1_stencil_1_1_0 ;
-assign  w_247  =  w_246 ;
+assign  w_243_16b  =  w_242_16b ;
+assign  w_244_16b  =  w_demosaic_1_stencil_1_0_0_8b ;
+assign  w_245_16b  =  w_244_16b ;
+assign  w_246_16b  =  w_demosaic_1_stencil_1_1_0_8b ;
+assign  w_247_16b  =  w_246_16b ;
 ADD_16b_pe add_6 (
-  .a(w_245),
-  .b(w_247),
-  .c(w_248),
+  .a(w_245_16b),
+  .b(w_247_16b),
+  .c(w_248_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_7 (
   .a(1'b0),
-  .b(w_248),
-  .c(w_249),
+  .b(w_248_16b),
+  .c(w_249_16b),
   .clk(clk)
 );
-assign  w_250  =  w_249 ;
-assign  w_251  =  w_250 ;
-assign  w_252  =  w_demosaic_1_stencil_1_0_1 ;
-assign  w_253  =  w_252 ;
-assign  w_254  =  w_demosaic_1_stencil_1_1_1 ;
-assign  w_255  =  w_254 ;
+assign  w_250_16b  =  w_249_16b ;
+assign  w_251_16b  =  w_250_16b ;
+assign  w_252_16b  =  w_demosaic_1_stencil_1_0_1_8b ;
+assign  w_253_16b  =  w_252_16b ;
+assign  w_254_16b  =  w_demosaic_1_stencil_1_1_1_8b ;
+assign  w_255_16b  =  w_254_16b ;
 ADD_16b_pe add_8 (
-  .a(w_255),
-  .b(w_253),
-  .c(w_256),
+  .a(w_255_16b),
+  .b(w_253_16b),
+  .c(w_256_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_9 (
-  .a(w_256),
+  .a(w_256_16b),
   .b(1'b0),
-  .c(w_257),
+  .c(w_257_16b),
   .clk(clk)
 );
-assign  w_258  =  w_257 ;
-assign  w_259  =  w_258 ;
+assign  w_258_16b  =  w_257_16b ;
+assign  w_259_16b  =  w_258_16b ;
 ADD_16b_pe add_10 (
-  .a(w_259),
-  .b(w_251),
-  .c(w_260),
+  .a(w_259_16b),
+  .b(w_251_16b),
+  .c(w_260_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_11 (
   .a(1'b0),
-  .b(w_260),
-  .c(w_261),
+  .b(w_260_16b),
+  .c(w_261_16b),
   .clk(clk)
 );
-assign  w_262  =  w_261 ;
-assign  w_263  =  w_demosaic_1_stencil_2_0_0 ;
-assign  w_264  =  w_263 ;
-assign  w_265  =  w_demosaic_1_stencil_2_1_0 ;
-assign  w_266  =  w_265 ;
+assign  w_262_16b  =  w_261_16b ;
+assign  w_263_16b  =  w_demosaic_1_stencil_2_0_0_8b ;
+assign  w_264_16b  =  w_263_16b ;
+assign  w_265_16b  =  w_demosaic_1_stencil_2_1_0_8b ;
+assign  w_266_16b  =  w_265_16b ;
 ADD_16b_pe add_12 (
-  .a(w_266),
-  .b(w_264),
-  .c(w_267),
+  .a(w_266_16b),
+  .b(w_264_16b),
+  .c(w_267_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_13 (
   .a(1'b0),
-  .b(w_267),
-  .c(w_268),
+  .b(w_267_16b),
+  .c(w_268_16b),
   .clk(clk)
 );
-assign  w_269  =  w_268 ;
-assign  w_270  =  w_269 ;
-assign  w_271  =  w_demosaic_1_stencil_2_0_1 ;
-assign  w_272  =  w_271 ;
-assign  w_273  =  w_demosaic_1_stencil_2_1_1 ;
-assign  w_274  =  w_273 ;
+assign  w_269_16b  =  w_268_16b ;
+assign  w_270_16b  =  w_269_16b ;
+assign  w_271_16b  =  w_demosaic_1_stencil_2_0_1_8b ;
+assign  w_272_16b  =  w_271_16b ;
+assign  w_273_16b  =  w_demosaic_1_stencil_2_1_1_8b ;
+assign  w_274_16b  =  w_273_16b ;
 ADD_16b_pe add_14 (
-  .a(w_274),
-  .b(w_272),
-  .c(w_275),
+  .a(w_274_16b),
+  .b(w_272_16b),
+  .c(w_275_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_15 (
   .a(1'b0),
-  .b(w_275),
-  .c(w_276),
+  .b(w_275_16b),
+  .c(w_276_16b),
   .clk(clk)
 );
-assign  w_277  =  w_276 ;
-assign  w_278  =  w_277 ;
+assign  w_277_16b  =  w_276_16b ;
+assign  w_278_16b  =  w_277_16b ;
 ADD_16b_pe add_16 (
-  .a(w_278),
-  .b(w_270),
-  .c(w_279),
+  .a(w_278_16b),
+  .b(w_270_16b),
+  .c(w_279_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_17 (
   .a(1'b0),
-  .b(w_279),
-  .c(w_280),
+  .b(w_279_16b),
+  .c(w_280_16b),
   .clk(clk)
 );
-assign  w_281  =  w_280 ;
-assign  w_lowpass_x_1_stencil_0_0_0  =  w_243 ;
-assign  w_lowpass_x_1_stencil_1_0_0  =  w_262 ;
-assign  w_lowpass_x_1_stencil_2_0_0  =  w_281 ;
+assign  w_281_16b  =  w_280_16b ;
+assign  w_lowpass_x_1_stencil_0_0_0_8b  =  w_243_16b ;
+assign  w_lowpass_x_1_stencil_1_0_0_8b  =  w_262_16b ;
+assign  w_lowpass_x_1_stencil_2_0_0_8b  =  w_281_16b ;
 
 endmodule
 
+
+
+
+
+
+
 module kernel__demosaic_1_stencil_update_stream(
 //Inputs
-  w_padded_1_stencil_0_0,
-  w_padded_1_stencil_0_1,
-  w_padded_1_stencil_0_2,
-  w_padded_1_stencil_1_0,
-  w_padded_1_stencil_1_1,
-  w_padded_1_stencil_1_2,
-  w_padded_1_stencil_2_0,
-  w_padded_1_stencil_2_1,
-  w_padded_1_stencil_2_2,
-  w_demosaic_1_x___scan_dim_0,
-  w_demosaic_1_y___scan_dim_1,
+  w_padded_1_stencil_0_0_8b,
+  w_padded_1_stencil_0_1_8b,
+  w_padded_1_stencil_0_2_8b,
+  w_padded_1_stencil_1_0_8b,
+  w_padded_1_stencil_1_1_8b,
+  w_padded_1_stencil_1_2_8b,
+  w_padded_1_stencil_2_0_8b,
+  w_padded_1_stencil_2_1_8b,
+  w_padded_1_stencil_2_2_8b,
+  w_demosaic_1_x___scan_dim_0_16b,
+  w_demosaic_1_y___scan_dim_1_16b,
 //Outputs
-  out_w_demosaic_1_stencil_0_0_0,
-  out_w_demosaic_1_stencil_1_0_0,
-  out_w_demosaic_1_stencil_2_0_0,
+  out_w_demosaic_1_stencil_0_0_0_8b,
+  out_w_demosaic_1_stencil_1_0_0_8b,
+  out_w_demosaic_1_stencil_2_0_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_demosaic_1_x___scan_dim_0;
-input  w_demosaic_1_y___scan_dim_1;
-input  w_padded_1_stencil_2_1;
-input  w_padded_1_stencil_2_0;
-input  w_padded_1_stencil_2_2;
-input  w_padded_1_stencil_1_2;
-input  w_padded_1_stencil_1_0;
-input  w_padded_1_stencil_1_1;
-input  w_padded_1_stencil_0_2;
-input  w_padded_1_stencil_0_1;
-input  w_padded_1_stencil_0_0;
+input  w_demosaic_1_x___scan_dim_0_16b;
+input  w_demosaic_1_y___scan_dim_1_16b;
+input  w_padded_1_stencil_2_1_8b;
+input  w_padded_1_stencil_2_0_8b;
+input  w_padded_1_stencil_2_2_8b;
+input  w_padded_1_stencil_1_2_8b;
+input  w_padded_1_stencil_1_0_8b;
+input  w_padded_1_stencil_1_1_8b;
+input  w_padded_1_stencil_0_2_8b;
+input  w_padded_1_stencil_0_1_8b;
+input  w_padded_1_stencil_0_0_8b;
 //Outputs
-output  out_w_demosaic_1_stencil_1_0_0;
-output  out_w_demosaic_1_stencil_0_0_0;
-output  out_w_demosaic_1_stencil_2_0_0;
+output  out_w_demosaic_1_stencil_1_0_0_8b;
+output  out_w_demosaic_1_stencil_0_0_0_8b;
+output  out_w_demosaic_1_stencil_2_0_0_8b;
 
 input  clk;
 
 
-wire  w_128;
-wire  w_129;
-wire  w_130;
-wire  w_131;
-wire  w_132;
-wire  w_133;
-wire  w_134;
-wire  w_135;
-wire  w_136;
-wire  w_137;
-wire  w_138;
-wire  w_139;
-wire  w_140;
-wire  w_141;
-wire  w_142;
-wire  w_143;
-wire  w_144;
-wire  w_145;
-wire  w_146;
-wire  w_147;
-wire  w_148;
-wire  w_149;
-wire  w_150;
-wire  w_151;
-wire  w_152;
-wire  w_153;
-wire  w_154;
-wire  w_155;
-wire  w_156;
-wire  w_157;
-wire  w_158;
-wire  w_159;
-wire  w_160;
-wire  w_161;
-wire  w_162;
-wire  w_163;
-wire  w_164;
-wire  w_165;
-wire  w_166;
-wire  w_167;
-wire  w_168;
-wire  w_169;
-wire  w_170;
-wire  w_171;
-wire  w_172;
-wire  w_173;
-wire  w_174;
-wire  w_175;
-wire  w_176;
-wire  w_177;
-wire  w_178;
-wire  w_179;
-wire  w_180;
-wire  w_181;
-wire  w_182;
-wire  w_183;
-wire  w_184;
-wire  w_185;
-wire  w_186;
-wire  w_187;
-wire  w_188;
-wire  w_189;
-wire  w_190;
-wire  w_191;
-wire  w_192;
-wire  w_193;
-wire  w_194;
-wire  w_195;
-wire  w_196;
-wire  w_197;
-wire  w_198;
-wire  w_199;
-wire  w_200;
-wire  w_201;
-wire  w_202;
-wire  w_203;
-wire  w_204;
-wire  w_205;
-wire  w_206;
-wire  w_207;
-wire  w_208;
-wire  w_209;
-wire  w_210;
-wire  w_211;
-wire  w_212;
-wire  w_213;
-wire  w_214;
-wire  w_215;
-wire  w_216;
-wire  w_217;
-wire  w_218;
-wire  w_219;
-wire  w_220;
-wire  w_221;
-wire  w_222;
-wire  w_223;
-wire  w_224;
-wire  w_demosaic_1_stencil_0_0_0;
-wire  w_demosaic_1_stencil_1_0_0;
-wire  w_demosaic_1_stencil_2_0_0;
+wire  w_128_16b;
+wire  w_129_16b;
+wire  w_130_16b;
+wire  w_131_16b;
+wire  w_132_16b;
+wire  w_133_16b;
+wire  w_134_16b;
+wire  w_135_16b;
+wire  w_136_16b;
+wire  w_137_16b;
+wire  w_138_16b;
+wire  w_139_16b;
+wire  w_140_16b;
+wire  w_141_16b;
+wire  w_142_16b;
+wire  w_143_16b;
+wire  w_144_16b;
+wire  w_145_16b;
+wire  w_146_16b;
+wire  w_147_16b;
+wire  w_148_16b;
+wire  w_149_16b;
+wire  w_150_16b;
+wire  w_151_16b;
+wire  w_152_16b;
+wire  w_153_16b;
+wire  w_154_16b;
+wire  w_155_16b;
+wire  w_156_16b;
+wire  w_157_16b;
+wire  w_158_16b;
+wire  w_159_16b;
+wire  w_160_16b;
+wire  w_161_16b;
+wire  w_162_16b;
+wire  w_163_16b;
+wire  w_164_16b;
+wire  w_165_16b;
+wire  w_166_16b;
+wire  w_167_16b;
+wire  w_168_16b;
+wire  w_169_16b;
+wire  w_170_16b;
+wire  w_171_16b;
+wire  w_172_16b;
+wire  w_173_16b;
+wire  w_174_16b;
+wire  w_175_16b;
+wire  w_176_16b;
+wire  w_177_16b;
+wire  w_178_16b;
+wire  w_179_16b;
+wire  w_180_16b;
+wire  w_181_16b;
+wire  w_182_16b;
+wire  w_183_16b;
+wire  w_184_16b;
+wire  w_185_16b;
+wire  w_186_16b;
+wire  w_187_16b;
+wire  w_188_16b;
+wire  w_189_16b;
+wire  w_190_16b;
+wire  w_191_16b;
+wire  w_192_16b;
+wire  w_193_16b;
+wire  w_194_16b;
+wire  w_195_16b;
+wire  w_196_16b;
+wire  w_197_16b;
+wire  w_198_16b;
+wire  w_199_16b;
+wire  w_200_16b;
+wire  w_201_16b;
+wire  w_202_16b;
+wire  w_203_16b;
+wire  w_204_16b;
+wire  w_205_16b;
+wire  w_206_16b;
+wire  w_207_16b;
+wire  w_208_16b;
+wire  w_209_16b;
+wire  w_210_16b;
+wire  w_211_16b;
+wire  w_212_16b;
+wire  w_213_16b;
+wire  w_214_16b;
+wire  w_215_16b;
+wire  w_216_16b;
+wire  w_217_16b;
+wire  w_218_16b;
+wire  w_219_16b;
+wire  w_220_16b;
+wire  w_221_16b;
+wire  w_222_16b;
+wire  w_223_16b;
+wire  w_224_16b;
+wire  w_demosaic_1_stencil_0_0_0_8b;
+wire  w_demosaic_1_stencil_1_0_0_8b;
+wire  w_demosaic_1_stencil_2_0_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_demosaic_1_stencil_1_0_0=w_demosaic_1_stencil_1_0_0;
-assign out_w_demosaic_1_stencil_0_0_0=w_demosaic_1_stencil_0_0_0;
-assign out_w_demosaic_1_stencil_2_0_0=w_demosaic_1_stencil_2_0_0;
+assign out_w_demosaic_1_stencil_1_0_0_8b = w_demosaic_1_stencil_1_0_0_8b;
+assign out_w_demosaic_1_stencil_0_0_0_8b = w_demosaic_1_stencil_0_0_0_8b;
+assign out_w_demosaic_1_stencil_2_0_0_8b = w_demosaic_1_stencil_2_0_0_8b;
 ADD_16b_pe add_0 (
-  .a(w_demosaic_1_x___scan_dim_0),
+  .a(w_demosaic_1_x___scan_dim_0_16b),
   .b(1'b0),
-  .c(w_128),
+  .c(w_128_16b),
   .clk(clk)
 );
 AND_16b_pe and_1 (
-  .a(w_128),
+  .a(w_128_16b),
   .b(1'b0),
-  .c(w_129),
+  .c(w_129_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_2 (
-  .a(w_129),
+  .a(w_129_16b),
   .b(1'b0),
-  .c(w_130),
+  .c(w_130_16b),
   .clk(clk)
 );
-assign  w_131  =  w_padded_1_stencil_1_1 ;
-assign  w_132  =  w_padded_1_stencil_0_1 ;
-assign  w_133  =  w_132 ;
-assign  w_134  =  w_padded_1_stencil_2_1 ;
-assign  w_135  =  w_134 ;
+assign  w_131_16b  =  w_padded_1_stencil_1_1_8b ;
+assign  w_132_16b  =  w_padded_1_stencil_0_1_8b ;
+assign  w_133_16b  =  w_132_16b ;
+assign  w_134_16b  =  w_padded_1_stencil_2_1_8b ;
+assign  w_135_16b  =  w_134_16b ;
 ADD_16b_pe add_3 (
-  .a(w_135),
-  .b(w_133),
-  .c(w_136),
+  .a(w_135_16b),
+  .b(w_133_16b),
+  .c(w_136_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_4 (
   .a(1'b0),
-  .b(w_136),
-  .c(w_137),
+  .b(w_136_16b),
+  .c(w_137_16b),
   .clk(clk)
 );
-assign  w_138  =  w_137 ;
+assign  w_138_16b  =  w_137_16b ;
 MUX_16b_pe mux_5 (
-  .a(w_138),
-  .b(w_131),
-  .s(w_130),
-  .c(w_139),
+  .a(w_138_16b),
+  .b(w_131_16b),
+  .s(w_130_16b),
+  .c(w_139_16b),
   .clk(clk)
 );
-assign  w_140  =  w_padded_1_stencil_1_0 ;
-assign  w_141  =  w_140 ;
-assign  w_142  =  w_padded_1_stencil_1_2 ;
-assign  w_143  =  w_142 ;
+assign  w_140_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_141_16b  =  w_140_16b ;
+assign  w_142_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_143_16b  =  w_142_16b ;
 ADD_16b_pe add_6 (
-  .a(w_143),
-  .b(w_141),
-  .c(w_144),
+  .a(w_143_16b),
+  .b(w_141_16b),
+  .c(w_144_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_7 (
   .a(1'b0),
-  .b(w_144),
-  .c(w_145),
+  .b(w_144_16b),
+  .c(w_145_16b),
   .clk(clk)
 );
-assign  w_146  =  w_145 ;
-assign  w_147  =  w_padded_1_stencil_0_0 ;
-assign  w_148  =  w_147 ;
-assign  w_149  =  w_padded_1_stencil_2_0 ;
-assign  w_150  =  w_149 ;
+assign  w_146_16b  =  w_145_16b ;
+assign  w_147_16b  =  w_padded_1_stencil_0_0_8b ;
+assign  w_148_16b  =  w_147_16b ;
+assign  w_149_16b  =  w_padded_1_stencil_2_0_8b ;
+assign  w_150_16b  =  w_149_16b ;
 ADD_16b_pe add_8 (
-  .a(w_150),
-  .b(w_148),
-  .c(w_151),
+  .a(w_150_16b),
+  .b(w_148_16b),
+  .c(w_151_16b),
   .clk(clk)
 );
-assign  w_152  =  w_padded_1_stencil_0_2 ;
-assign  w_153  =  w_152 ;
+assign  w_152_16b  =  w_padded_1_stencil_0_2_8b ;
+assign  w_153_16b  =  w_152_16b ;
 ADD_16b_pe add_9 (
-  .a(w_151),
-  .b(w_153),
-  .c(w_154),
+  .a(w_151_16b),
+  .b(w_153_16b),
+  .c(w_154_16b),
   .clk(clk)
 );
-assign  w_155  =  w_padded_1_stencil_2_2 ;
-assign  w_156  =  w_155 ;
+assign  w_155_16b  =  w_padded_1_stencil_2_2_8b ;
+assign  w_156_16b  =  w_155_16b ;
 ADD_16b_pe add_10 (
-  .a(w_154),
-  .b(w_156),
-  .c(w_157),
+  .a(w_154_16b),
+  .b(w_156_16b),
+  .c(w_157_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_11 (
-  .a(w_157),
+  .a(w_157_16b),
   .b(1'b0),
-  .c(w_158),
+  .c(w_158_16b),
   .clk(clk)
 );
-assign  w_159  =  w_158 ;
+assign  w_159_16b  =  w_158_16b ;
 MUX_16b_pe mux_12 (
-  .a(w_146),
-  .b(w_159),
-  .s(w_130),
-  .c(w_160),
+  .a(w_146_16b),
+  .b(w_159_16b),
+  .s(w_130_16b),
+  .c(w_160_16b),
   .clk(clk)
 );
 ADD_16b_pe add_13 (
   .a(1'b0),
-  .b(w_demosaic_1_y___scan_dim_1),
-  .c(w_161),
+  .b(w_demosaic_1_y___scan_dim_1_16b),
+  .c(w_161_16b),
   .clk(clk)
 );
 AND_16b_pe and_14 (
   .a(1'b0),
-  .b(w_161),
-  .c(w_162),
+  .b(w_161_16b),
+  .c(w_162_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_15 (
   .a(1'b0),
-  .b(w_162),
-  .c(w_163),
+  .b(w_162_16b),
+  .c(w_163_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_16 (
-  .a(w_160),
-  .b(w_139),
-  .s(w_163),
-  .c(w_164),
+  .a(w_160_16b),
+  .b(w_139_16b),
+  .s(w_163_16b),
+  .c(w_164_16b),
   .clk(clk)
 );
 ADD_16b_pe add_17 (
-  .a(w_demosaic_1_x___scan_dim_0),
+  .a(w_demosaic_1_x___scan_dim_0_16b),
   .b(1'b0),
-  .c(w_165),
+  .c(w_165_16b),
   .clk(clk)
 );
 AND_16b_pe and_18 (
   .a(1'b0),
-  .b(w_165),
-  .c(w_166),
+  .b(w_165_16b),
+  .c(w_166_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_19 (
   .a(1'b0),
-  .b(w_166),
-  .c(w_167),
+  .b(w_166_16b),
+  .c(w_167_16b),
   .clk(clk)
 );
-assign  w_168  =  w_padded_1_stencil_1_1 ;
-assign  w_169  =  w_padded_1_stencil_0_1 ;
-assign  w_170  =  w_169 ;
-assign  w_171  =  w_padded_1_stencil_2_1 ;
-assign  w_172  =  w_171 ;
+assign  w_168_16b  =  w_padded_1_stencil_1_1_8b ;
+assign  w_169_16b  =  w_padded_1_stencil_0_1_8b ;
+assign  w_170_16b  =  w_169_16b ;
+assign  w_171_16b  =  w_padded_1_stencil_2_1_8b ;
+assign  w_172_16b  =  w_171_16b ;
 ADD_16b_pe add_20 (
-  .a(w_172),
-  .b(w_170),
-  .c(w_173),
+  .a(w_172_16b),
+  .b(w_170_16b),
+  .c(w_173_16b),
   .clk(clk)
 );
-assign  w_174  =  w_padded_1_stencil_1_0 ;
-assign  w_175  =  w_174 ;
+assign  w_174_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_175_16b  =  w_174_16b ;
 ADD_16b_pe add_21 (
-  .a(w_173),
-  .b(w_175),
-  .c(w_176),
+  .a(w_173_16b),
+  .b(w_175_16b),
+  .c(w_176_16b),
   .clk(clk)
 );
-assign  w_177  =  w_padded_1_stencil_1_2 ;
-assign  w_178  =  w_177 ;
+assign  w_177_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_178_16b  =  w_177_16b ;
 ADD_16b_pe add_22 (
-  .a(w_178),
-  .b(w_176),
-  .c(w_179),
+  .a(w_178_16b),
+  .b(w_176_16b),
+  .c(w_179_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_23 (
-  .a(w_179),
+  .a(w_179_16b),
   .b(1'b0),
-  .c(w_180),
+  .c(w_180_16b),
   .clk(clk)
 );
-assign  w_181  =  w_180 ;
+assign  w_181_16b  =  w_180_16b ;
 MUX_16b_pe mux_24 (
-  .a(w_167),
-  .b(w_168),
-  .s(w_181),
-  .c(w_182),
+  .a(w_167_16b),
+  .b(w_168_16b),
+  .s(w_181_16b),
+  .c(w_182_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_25 (
-  .a(w_167),
-  .b(w_168),
-  .s(w_181),
-  .c(w_183),
+  .a(w_167_16b),
+  .b(w_168_16b),
+  .s(w_181_16b),
+  .c(w_183_16b),
   .clk(clk)
 );
 ADD_16b_pe add_26 (
   .a(1'b0),
-  .b(w_demosaic_1_y___scan_dim_1),
-  .c(w_184),
+  .b(w_demosaic_1_y___scan_dim_1_16b),
+  .c(w_184_16b),
   .clk(clk)
 );
 AND_16b_pe and_27 (
   .a(1'b0),
-  .b(w_184),
-  .c(w_185),
+  .b(w_184_16b),
+  .c(w_185_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_28 (
   .a(1'b0),
-  .b(w_185),
-  .c(w_186),
+  .b(w_185_16b),
+  .c(w_186_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_29 (
-  .a(w_182),
-  .b(w_183),
-  .s(w_186),
-  .c(w_187),
+  .a(w_182_16b),
+  .b(w_183_16b),
+  .s(w_186_16b),
+  .c(w_187_16b),
   .clk(clk)
 );
 ADD_16b_pe add_30 (
-  .a(w_demosaic_1_x___scan_dim_0),
+  .a(w_demosaic_1_x___scan_dim_0_16b),
   .b(1'b0),
-  .c(w_188),
+  .c(w_188_16b),
   .clk(clk)
 );
 AND_16b_pe and_31 (
   .a(1'b0),
-  .b(w_188),
-  .c(w_189),
+  .b(w_188_16b),
+  .c(w_189_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_32 (
   .a(1'b0),
-  .b(w_189),
-  .c(w_190),
+  .b(w_189_16b),
+  .c(w_190_16b),
   .clk(clk)
 );
-assign  w_191  =  w_padded_1_stencil_0_0 ;
-assign  w_192  =  w_191 ;
-assign  w_193  =  w_padded_1_stencil_2_0 ;
-assign  w_194  =  w_193 ;
+assign  w_191_16b  =  w_padded_1_stencil_0_0_8b ;
+assign  w_192_16b  =  w_191_16b ;
+assign  w_193_16b  =  w_padded_1_stencil_2_0_8b ;
+assign  w_194_16b  =  w_193_16b ;
 ADD_16b_pe add_33 (
-  .a(w_192),
-  .b(w_194),
-  .c(w_195),
+  .a(w_192_16b),
+  .b(w_194_16b),
+  .c(w_195_16b),
   .clk(clk)
 );
-assign  w_196  =  w_padded_1_stencil_0_2 ;
-assign  w_197  =  w_196 ;
+assign  w_196_16b  =  w_padded_1_stencil_0_2_8b ;
+assign  w_197_16b  =  w_196_16b ;
 ADD_16b_pe add_34 (
-  .a(w_195),
-  .b(w_197),
-  .c(w_198),
+  .a(w_195_16b),
+  .b(w_197_16b),
+  .c(w_198_16b),
   .clk(clk)
 );
-assign  w_199  =  w_padded_1_stencil_2_2 ;
-assign  w_200  =  w_199 ;
+assign  w_199_16b  =  w_padded_1_stencil_2_2_8b ;
+assign  w_200_16b  =  w_199_16b ;
 ADD_16b_pe add_35 (
-  .a(w_198),
-  .b(w_200),
-  .c(w_201),
+  .a(w_198_16b),
+  .b(w_200_16b),
+  .c(w_201_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_36 (
-  .a(w_201),
+  .a(w_201_16b),
   .b(1'b0),
-  .c(w_202),
+  .c(w_202_16b),
   .clk(clk)
 );
-assign  w_203  =  w_202 ;
-assign  w_204  =  w_padded_1_stencil_1_0 ;
-assign  w_205  =  w_204 ;
-assign  w_206  =  w_padded_1_stencil_1_2 ;
-assign  w_207  =  w_206 ;
+assign  w_203_16b  =  w_202_16b ;
+assign  w_204_16b  =  w_padded_1_stencil_1_0_8b ;
+assign  w_205_16b  =  w_204_16b ;
+assign  w_206_16b  =  w_padded_1_stencil_1_2_8b ;
+assign  w_207_16b  =  w_206_16b ;
 ADD_16b_pe add_37 (
-  .a(w_205),
-  .b(w_207),
-  .c(w_208),
+  .a(w_205_16b),
+  .b(w_207_16b),
+  .c(w_208_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_38 (
   .a(1'b0),
-  .b(w_208),
-  .c(w_209),
+  .b(w_208_16b),
+  .c(w_209_16b),
   .clk(clk)
 );
-assign  w_210  =  w_209 ;
+assign  w_210_16b  =  w_209_16b ;
 MUX_16b_pe mux_39 (
-  .a(w_190),
-  .b(w_203),
-  .s(w_210),
-  .c(w_211),
+  .a(w_190_16b),
+  .b(w_203_16b),
+  .s(w_210_16b),
+  .c(w_211_16b),
   .clk(clk)
 );
-assign  w_212  =  w_padded_1_stencil_0_1 ;
-assign  w_213  =  w_212 ;
-assign  w_214  =  w_padded_1_stencil_2_1 ;
-assign  w_215  =  w_214 ;
+assign  w_212_16b  =  w_padded_1_stencil_0_1_8b ;
+assign  w_213_16b  =  w_212_16b ;
+assign  w_214_16b  =  w_padded_1_stencil_2_1_8b ;
+assign  w_215_16b  =  w_214_16b ;
 ADD_16b_pe add_40 (
-  .a(w_213),
-  .b(w_215),
-  .c(w_216),
+  .a(w_213_16b),
+  .b(w_215_16b),
+  .c(w_216_16b),
   .clk(clk)
 );
 LSHIFT_16b_pe lshift_41 (
   .a(1'b0),
-  .b(w_216),
-  .c(w_217),
+  .b(w_216_16b),
+  .c(w_217_16b),
   .clk(clk)
 );
-assign  w_218  =  w_217 ;
-assign  w_219  =  w_padded_1_stencil_1_1 ;
+assign  w_218_16b  =  w_217_16b ;
+assign  w_219_16b  =  w_padded_1_stencil_1_1_8b ;
 MUX_16b_pe mux_42 (
-  .a(w_190),
-  .b(w_218),
-  .s(w_219),
-  .c(w_220),
+  .a(w_190_16b),
+  .b(w_218_16b),
+  .s(w_219_16b),
+  .c(w_220_16b),
   .clk(clk)
 );
 ADD_16b_pe add_43 (
   .a(1'b0),
-  .b(w_demosaic_1_y___scan_dim_1),
-  .c(w_221),
+  .b(w_demosaic_1_y___scan_dim_1_16b),
+  .c(w_221_16b),
   .clk(clk)
 );
 AND_16b_pe and_44 (
   .a(1'b0),
-  .b(w_221),
-  .c(w_222),
+  .b(w_221_16b),
+  .c(w_222_16b),
   .clk(clk)
 );
 EQ_16b_pe eq_45 (
   .a(1'b0),
-  .b(w_222),
-  .c(w_223),
+  .b(w_222_16b),
+  .c(w_223_16b),
   .clk(clk)
 );
 MUX_16b_pe mux_46 (
-  .a(w_211),
-  .b(w_223),
-  .s(w_220),
-  .c(w_224),
+  .a(w_211_16b),
+  .b(w_223_16b),
+  .s(w_220_16b),
+  .c(w_224_16b),
   .clk(clk)
 );
-assign  w_demosaic_1_stencil_0_0_0  =  w_164 ;
-assign  w_demosaic_1_stencil_1_0_0  =  w_187 ;
-assign  w_demosaic_1_stencil_2_0_0  =  w_224 ;
+assign  w_demosaic_1_stencil_0_0_0_8b  =  w_164_16b ;
+assign  w_demosaic_1_stencil_1_0_0_8b  =  w_187_16b ;
+assign  w_demosaic_1_stencil_2_0_0_8b  =  w_224_16b ;
 
 endmodule
 
+
+
+
+
+
+
 module kernel__hw_output_1_stencil_stream(
 //Inputs
-  w_lowpass_x_1_stencil_0_0_0,
-  w_lowpass_x_1_stencil_1_0_0,
-  w_lowpass_x_1_stencil_2_0_0,
+  w_lowpass_x_1_stencil_0_0_0_8b,
+  w_lowpass_x_1_stencil_1_0_0_8b,
+  w_lowpass_x_1_stencil_2_0_0_8b,
 //Outputs
-  out_w_hw_output_1_stencil_1_0_0,
-  out_w_hw_output_1_stencil_2_0_0,
-  out_w_hw_output_1_stencil_packed,
+  out_w_hw_output_1_stencil_1_0_0_8b,
+  out_w_hw_output_1_stencil_2_0_0_8b,
+  out_w_hw_output_1_stencil_packed_16b,
 
   clk
 );
 
 //Inputs
-input  w_lowpass_x_1_stencil_1_0_0;
-input  w_lowpass_x_1_stencil_0_0_0;
-input  w_lowpass_x_1_stencil_2_0_0;
+input  w_lowpass_x_1_stencil_1_0_0_8b;
+input  w_lowpass_x_1_stencil_0_0_0_8b;
+input  w_lowpass_x_1_stencil_2_0_0_8b;
 //Outputs
-output  out_w_hw_output_1_stencil_1_0_0;
-output  out_w_hw_output_1_stencil_2_0_0;
-output  out_w_hw_output_1_stencil_packed;
+output  out_w_hw_output_1_stencil_1_0_0_8b;
+output  out_w_hw_output_1_stencil_2_0_0_8b;
+output  out_w_hw_output_1_stencil_packed_16b;
 
 input  clk;
 
 
-wire  w_282;
-wire  w_283;
-wire  w_284;
-wire  w_hw_output_1_stencil_0_0_0;
-wire  w_hw_output_1_stencil_1_0_0;
-wire  w_hw_output_1_stencil_2_0_0;
-wire  w_hw_output_1_stencil_packed;
+wire  w_282_16b;
+wire  w_283_16b;
+wire  w_284_16b;
+wire  w_hw_output_1_stencil_0_0_0_8b;
+wire  w_hw_output_1_stencil_1_0_0_8b;
+wire  w_hw_output_1_stencil_2_0_0_8b;
+wire  w_hw_output_1_stencil_packed_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_hw_output_1_stencil_1_0_0=w_hw_output_1_stencil_1_0_0;
-assign out_w_hw_output_1_stencil_2_0_0=w_hw_output_1_stencil_2_0_0;
-assign out_w_hw_output_1_stencil_packed=w_hw_output_1_stencil_packed;
-assign  w_282  =  w_lowpass_x_1_stencil_0_0_0 ;
-assign  w_283  =  w_lowpass_x_1_stencil_1_0_0 ;
-assign  w_284  =  w_lowpass_x_1_stencil_2_0_0 ;
-assign  w_hw_output_1_stencil_0_0_0  =  w_282 ;
-assign  w_hw_output_1_stencil_1_0_0  =  w_283 ;
-assign  w_hw_output_1_stencil_2_0_0  =  w_284 ;
-assign  w_hw_output_1_stencil_packed  =  w_hw_output_1_stencil_0_0_0 ;
+assign out_w_hw_output_1_stencil_1_0_0_8b = w_hw_output_1_stencil_1_0_0_8b;
+assign out_w_hw_output_1_stencil_2_0_0_8b = w_hw_output_1_stencil_2_0_0_8b;
+assign out_w_hw_output_1_stencil_packed_16b = w_hw_output_1_stencil_packed_16b;
+assign  w_282_16b  =  w_lowpass_x_1_stencil_0_0_0_8b ;
+assign  w_283_16b  =  w_lowpass_x_1_stencil_1_0_0_8b ;
+assign  w_284_16b  =  w_lowpass_x_1_stencil_2_0_0_8b ;
+assign  w_hw_output_1_stencil_0_0_0_8b  =  w_282_16b ;
+assign  w_hw_output_1_stencil_1_0_0_8b  =  w_283_16b ;
+assign  w_hw_output_1_stencil_2_0_0_8b  =  w_284_16b ;
+assign  w_hw_output_1_stencil_packed_16b  =  w_hw_output_1_stencil_0_0_0_8b ;
 
 endmodule
+
+
+
 
 
 
@@ -1382,3 +1402,4 @@ module ShiftReg_base_2_8bit (
     end
 
 endmodule
+

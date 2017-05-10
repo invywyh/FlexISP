@@ -1,38 +1,40 @@
+// Source:  /home/tema8/projects/Halide-HLS/apps/hls_examples/fanout_hls/hls_target.cpp 
+
 module top(
 //Inputs
-  w_repeat_edge_1_stencil_update_stream_0,
+  w_repeat_edge_1_stencil_update_stream_0_8b,
 
 //Outputs
-  w_hw_output_1_stencil_stream_0,
+  w_hw_output_1_stencil_stream_0_8b,
 
   clk
 );
 
 //Inputs
-input    w_repeat_edge_1_stencil_update_stream_0;
+input    w_repeat_edge_1_stencil_update_stream_0_8b;
 
 //Outputs
-output   w_hw_output_1_stencil_stream_0;
+output   w_hw_output_1_stencil_stream_0_8b;
 
 input   clk;
 
-wire   w_C_1_stencil_stream_0;
+wire   w_C_1_stencil_stream_0_8b;
 
-wire   w_B_1_stencil_update_stream_0;
+wire   w_B_1_stencil_update_stream_0_8b;
 
-wire   w_B_1_stencil_stream_0;
-wire   w_B_1_stencil_stream_1;
+wire   w_B_1_stencil_stream_0_8b;
+wire   w_B_1_stencil_stream_1_8b;
 
-wire   w_repeat_edge_1_stencil_stream_0;
-wire   w_repeat_edge_1_stencil_stream_1;
+wire   w_repeat_edge_1_stencil_stream_0_8b;
+wire   w_repeat_edge_1_stencil_stream_1_8b;
 
 wire   gnd;
 assign gnd=1'b0;
 
 kernel__C_1_stencil_stream KERN__C_1_stencil_stream (
-    .w_repeat_edge_1_stencil_1(w_repeat_edge_1_stencil_stream_0),
+    .w_repeat_edge_1_stencil_1_8b(w_repeat_edge_1_stencil_stream_0_8b),
 
-    .out_w_C_1_stencil_0(w_C_1_stencil_stream_0),
+    .out_w_C_1_stencil_0_8b(w_C_1_stencil_stream_0_8b),
 
     .clk(clk)
 );
@@ -40,17 +42,17 @@ kernel__C_1_stencil_stream KERN__C_1_stencil_stream (
 LB_1_2_1_8bit_False LB__repeat_edge_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_repeat_edge_1_stencil_update_stream_0),
+    .in0(w_repeat_edge_1_stencil_update_stream_0_8b),
 
-    .out0(w_repeat_edge_1_stencil_stream_0),
-    .out1(w_repeat_edge_1_stencil_stream_1)
+    .out0(w_repeat_edge_1_stencil_stream_0_8b),
+    .out1(w_repeat_edge_1_stencil_stream_1_8b)
 );
 
 kernel__B_1_stencil_update_stream KERN__B_1_stencil_update_stream (
-    .w_repeat_edge_1_stencil_0(w_repeat_edge_1_stencil_stream_0),
-    .w_repeat_edge_1_stencil_1(w_repeat_edge_1_stencil_stream_1),
+    .w_repeat_edge_1_stencil_0_8b(w_repeat_edge_1_stencil_stream_0_8b),
+    .w_repeat_edge_1_stencil_1_8b(w_repeat_edge_1_stencil_stream_1_8b),
 
-    .out_w_B_1_stencil_0(w_B_1_stencil_update_stream_0),
+    .out_w_B_1_stencil_0_8b(w_B_1_stencil_update_stream_0_8b),
 
     .clk(clk)
 );
@@ -58,20 +60,20 @@ kernel__B_1_stencil_update_stream KERN__B_1_stencil_update_stream (
 LB_1_2_1_8bit_False LB__B_1_stencil_stream (
     .clk(clk),
 
-    .in0(w_B_1_stencil_update_stream_0),
+    .in0(w_B_1_stencil_update_stream_0_8b),
 
-    .out0(w_B_1_stencil_stream_0),
-    .out1(w_B_1_stencil_stream_1)
+    .out0(w_B_1_stencil_stream_0_8b),
+    .out1(w_B_1_stencil_stream_1_8b)
 );
 
 kernel__hw_output_1_stencil_stream KERN__hw_output_1_stencil_stream (
-    .w_B_1_stencil_0(w_C_1_stencil_stream_0),
-    .w_B_1_stencil_1(w_B_1_stencil_stream_0),
-    .w_C_1_stencil_0(w_B_1_stencil_stream_1),
-    .w_repeat_edge_1_stencil_0(w_repeat_edge_1_stencil_stream_0),
-    .w_repeat_edge_1_stencil_1(w_repeat_edge_1_stencil_stream_1),
+    .w_B_1_stencil_0_8b(w_C_1_stencil_stream_0_8b),
+    .w_B_1_stencil_1_8b(w_B_1_stencil_stream_0_8b),
+    .w_C_1_stencil_0_8b(w_B_1_stencil_stream_1_8b),
+    .w_repeat_edge_1_stencil_0_8b(w_repeat_edge_1_stencil_stream_0_8b),
+    .w_repeat_edge_1_stencil_1_8b(w_repeat_edge_1_stencil_stream_1_8b),
 
-    .out_w_hw_output_1_stencil_stream(w_hw_output_1_stencil_stream_0),
+    .out_w_hw_output_1_stencil_stream_16b(w_hw_output_1_stencil_stream_0_8b),
 
     .clk(clk)
 );
@@ -82,31 +84,31 @@ endmodule
 
 module kernel__C_1_stencil_stream(
 //Inputs
-  w_repeat_edge_1_stencil_1,
+  w_repeat_edge_1_stencil_1_8b,
 //Outputs
-  out_w_C_1_stencil_0,
+  out_w_C_1_stencil_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_repeat_edge_1_stencil_1;
+input  w_repeat_edge_1_stencil_1_8b;
 //Outputs
-output  out_w_C_1_stencil_0;
+output  out_w_C_1_stencil_0_8b;
 
 input  clk;
 
 
-wire  w_112;
-wire  w_C_1_stencil_0;
+wire  w_112_16b;
+wire  w_C_1_stencil_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_C_1_stencil_0=w_C_1_stencil_0;
-assign  w_112  =  w_repeat_edge_1_stencil_1 ;
-assign  w_C_1_stencil_0  =  w_112 ;
+assign out_w_C_1_stencil_0_8b = w_C_1_stencil_0_8b;
+assign  w_112_16b  =  w_repeat_edge_1_stencil_1_8b ;
+assign  w_C_1_stencil_0_8b  =  w_112_16b ;
 
 endmodule
 
@@ -118,77 +120,77 @@ endmodule
 
 module kernel__hw_output_1_stencil_stream(
 //Inputs
-  w_B_1_stencil_0,
-  w_B_1_stencil_1,
-  w_C_1_stencil_0,
-  w_repeat_edge_1_stencil_0,
-  w_repeat_edge_1_stencil_1,
+  w_B_1_stencil_0_8b,
+  w_B_1_stencil_1_8b,
+  w_C_1_stencil_0_8b,
+  w_repeat_edge_1_stencil_0_8b,
+  w_repeat_edge_1_stencil_1_8b,
 //Outputs
-  out_w_hw_output_1_stencil_stream,
+  out_w_hw_output_1_stencil_stream_16b,
 
   clk
 );
 
 //Inputs
-input  w_repeat_edge_1_stencil_0;
-input  w_repeat_edge_1_stencil_1;
-input  w_B_1_stencil_1;
-input  w_B_1_stencil_0;
-input  w_C_1_stencil_0;
+input  w_repeat_edge_1_stencil_0_8b;
+input  w_repeat_edge_1_stencil_1_8b;
+input  w_B_1_stencil_1_8b;
+input  w_B_1_stencil_0_8b;
+input  w_C_1_stencil_0_8b;
 //Outputs
-output  out_w_hw_output_1_stencil_stream;
+output  out_w_hw_output_1_stencil_stream_16b;
 
 input  clk;
 
 
-wire  w_113;
-wire  w_114;
-wire  w_115;
-wire  w_116;
-wire  w_117;
-wire  w_118;
-wire  w_119;
-wire  w_120;
-wire  w_121;
-wire  w_hw_output_1_stencil_0;
-wire  w_hw_output_1_stencil_stream;
+wire  w_113_16b;
+wire  w_114_16b;
+wire  w_115_16b;
+wire  w_116_16b;
+wire  w_117_16b;
+wire  w_118_16b;
+wire  w_119_16b;
+wire  w_120_16b;
+wire  w_121_16b;
+wire  w_hw_output_1_stencil_0_8b;
+wire  w_hw_output_1_stencil_stream_16b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_hw_output_1_stencil_stream=w_hw_output_1_stencil_stream;
-assign  w_113  =  w_repeat_edge_1_stencil_0 ;
-assign  w_114  =  w_repeat_edge_1_stencil_1 ;
+assign out_w_hw_output_1_stencil_stream_16b = w_hw_output_1_stencil_stream_16b;
+assign  w_113_16b  =  w_repeat_edge_1_stencil_0_8b ;
+assign  w_114_16b  =  w_repeat_edge_1_stencil_1_8b ;
 ADD_16b_pe add_0 (
-  .a(w_113),
-  .b(w_114),
-  .c(w_115),
+  .a(w_113_16b),
+  .b(w_114_16b),
+  .c(w_115_16b),
   .clk(clk)
 );
-assign  w_116  =  w_B_1_stencil_0 ;
+assign  w_116_16b  =  w_B_1_stencil_0_8b ;
 ADD_16b_pe add_1 (
-  .a(w_115),
-  .b(w_116),
-  .c(w_117),
+  .a(w_115_16b),
+  .b(w_116_16b),
+  .c(w_117_16b),
   .clk(clk)
 );
-assign  w_118  =  w_B_1_stencil_1 ;
+assign  w_118_16b  =  w_B_1_stencil_1_8b ;
 ADD_16b_pe add_2 (
-  .a(w_118),
-  .b(w_117),
-  .c(w_119),
+  .a(w_118_16b),
+  .b(w_117_16b),
+  .c(w_119_16b),
   .clk(clk)
 );
-assign  w_120  =  w_C_1_stencil_0 ;
+assign  w_120_16b  =  w_C_1_stencil_0_8b ;
 ADD_16b_pe add_3 (
-  .a(w_119),
-  .b(w_120),
-  .c(w_121),
+  .a(w_119_16b),
+  .b(w_120_16b),
+  .c(w_121_16b),
   .clk(clk)
 );
-assign  w_hw_output_1_stencil_0  =  w_121 ;
-assign  w_hw_output_1_stencil_stream  =  w_hw_output_1_stencil_0 ;
+assign  w_hw_output_1_stencil_0_8b  =  w_121_16b ;
+assign  w_hw_output_1_stencil_stream_16b  =  w_hw_output_1_stencil_0_8b ;
 
 endmodule
 
@@ -200,42 +202,42 @@ endmodule
 
 module kernel__B_1_stencil_update_stream(
 //Inputs
-  w_repeat_edge_1_stencil_0,
-  w_repeat_edge_1_stencil_1,
+  w_repeat_edge_1_stencil_0_8b,
+  w_repeat_edge_1_stencil_1_8b,
 //Outputs
-  out_w_B_1_stencil_0,
+  out_w_B_1_stencil_0_8b,
 
   clk
 );
 
 //Inputs
-input  w_repeat_edge_1_stencil_0;
-input  w_repeat_edge_1_stencil_1;
+input  w_repeat_edge_1_stencil_0_8b;
+input  w_repeat_edge_1_stencil_1_8b;
 //Outputs
-output  out_w_B_1_stencil_0;
+output  out_w_B_1_stencil_0_8b;
 
 input  clk;
 
 
-wire  w_109;
-wire  w_110;
-wire  w_111;
-wire  w_B_1_stencil_0;
+wire  w_109_16b;
+wire  w_110_16b;
+wire  w_111_16b;
+wire  w_B_1_stencil_0_8b;
 wire   tmp_clk;
 
 assign tmp_clk = clk;
 
 //Assign results
-assign out_w_B_1_stencil_0=w_B_1_stencil_0;
-assign  w_109  =  w_repeat_edge_1_stencil_0 ;
-assign  w_110  =  w_repeat_edge_1_stencil_1 ;
+assign out_w_B_1_stencil_0_8b = w_B_1_stencil_0_8b;
+assign  w_109_16b  =  w_repeat_edge_1_stencil_0_8b ;
+assign  w_110_16b  =  w_repeat_edge_1_stencil_1_8b ;
 ADD_16b_pe add_0 (
-  .a(w_110),
-  .b(w_109),
-  .c(w_111),
+  .a(w_110_16b),
+  .b(w_109_16b),
+  .c(w_111_16b),
   .clk(clk)
 );
-assign  w_B_1_stencil_0  =  w_111 ;
+assign  w_B_1_stencil_0_8b  =  w_111_16b ;
 
 endmodule
 
