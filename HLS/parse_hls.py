@@ -192,6 +192,7 @@ def find_triple_op_math(G, line):
 
         G.node[target]['op'] = "mux"
         G.node[target]['op_raw'] = "?"
+        G.node[target]['type'] = decl
 
         ##return "Found: "+str(instr)
         #return decl+"%s = %s ? %s : %s"%(target, op1, op2, op3)
@@ -208,7 +209,7 @@ def find_dual_op_math(G, line):
 
     matchObj = re.match( r'(.+)=(.+) (.{1,2}) (.+);$', line, re.M|re.I)
 
-    op_dic = {'-': "sub", '+': "add", '*': "mult", '/': "div", '^': "xor", '|': "or", '&': "and", '&&': "and", ">>" : "lshift", "<<" : "rshift", ">" : "gt", "<" : "lt", ">=" : "gte", "<=" : "lte", "==" : "eq", "!=" : "ne"}
+    op_dic = {'-': "sub", '+': "add", '*': "mult", '/': "div", '^': "xor", '|': "or", '&': "and", '&&': "and", "~" : "inv" ,">>" : "lshift", "<<" : "rshift", ">" : "gt", "<" : "lt", ">=" : "gte", "<=" : "lte", "==" : "eq", "!=" : "ne"}
 
     if matchObj and matchObj.group(3) in op_dic.keys():
         target = matchObj.group(1)
@@ -263,6 +264,7 @@ def find_dual_op_math(G, line):
 
         G.node[target]['op'] = op_dic[instr]
         G.node[target]['op_raw'] = instr
+        G.node[target]['type'] = decl
 
         ##return "Found: "+str(instr)
         #return decl+"%s %s %s %s"%(op_dic[instr], target, op1, op2)
@@ -308,12 +310,13 @@ Detects a singal declaration. Example: uint8_t _543
     dims   = []
 
     #matchObj = re.match( r'(uint[0-9]+_t )(.+)', line, re.M|re.I)
-    matchObj = re.match( r'([a-z0-9_]+? )&?(.+)', line, re.M|re.I)
+    matchObj = re.match( r'([a-z0-9_]+?) &?(.+)', line, re.M|re.I)
     matchTmplObj = re.match( r'.+<(.+?)>[ >]* &?([a-zA-Z0-9_]+);?$', line, re.M|re.I)
 
     if matchObj:
         signal = matchObj.group(2)
-        s_type   = matchObj.group(1) + " " + signal + "\n"
+        #s_type   = matchObj.group(1) + " " + signal + "\n"
+        s_type   = matchObj.group(1)
         #print signal, " - ", s_type
     elif matchTmplObj:
         signal = matchTmplObj.group(2)
@@ -444,6 +447,7 @@ def find_func(G, line):
             #print "$->", target, " (", source,")"
             G.node[target]['func'] = fname
             G.node[target]['op']   = fname
+            G.node[target]['type'] = decl
             is_const = True
             node_val = ""
             for a in args:
@@ -502,7 +506,6 @@ def find_assign(G, line):
             #print target , " / ", source, " / ",arg_ind
             return find_declare(G,target, arg_ind)
 
-
         (decl, target, dims) = parse_declration(target)
         target = convert_to_array(target)
         target = rename(G, target)
@@ -559,6 +562,7 @@ def find_assign(G, line):
 #            return ""
 
         G.add_node(target)
+        G.node[target]['type'] = decl
         #print "#->", target, " (", source,")"
         if oper == "~":
             G.node[target]['op']   = "inv"

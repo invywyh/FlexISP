@@ -362,7 +362,12 @@ def assign_lvl(kernels, routes, sources, sinks, nX, nY):
                     inp_lvls     = map(lambda x: routes[x].lvl, valid_inputs)
                     arr_times    = map(lambda x: routes[x].t_arr + get_delay (routes[x].op_type, routes[x].tails[s].rank, routes[x].tails[s].dist) , valid_inputs)
                     
-                    if min(inp_lvls) > -1:
+                    if inp_lvls == [] : #Empty input list means everything is from I/O pads
+                        routes[kernels[k_name].sources[s][0]].lvl = 0
+                        routes[kernels[k_name].sources[s][0]].t_arr = 0
+                        routes[kernels[k_name].sources[s][0]].tig = True
+                        unussigned_cnt = unussigned_cnt - 1
+                    elif min(inp_lvls) > -1:
                         routes[kernels[k_name].sources[s][0]].lvl = max(inp_lvls) + 1
                         routes[kernels[k_name].sources[s][0]].t_arr = max(arr_times)
                         unussigned_cnt = unussigned_cnt - 1
@@ -563,7 +568,7 @@ def parse_file(f, color_base = 0):
     end_points = map(lambda x: len(routes[x].tails) , routes)
     print " Fanout :", float(sum(end_points))/float(len(routes))
     print min(end_points), "->",max(end_points)
-    quit(0)
+    #quit(0)
         
     assign_lvl(kernels, routes, sources, sinks, nX, nY)
     max_lvl = max( map(lambda x: routes[x].lvl , routes) )
@@ -780,6 +785,7 @@ if __name__ == "__main__":
     #sourceFile = 'isp_0302_1bit_lut.route'
     #sourceFile = 'fast_0302_1bit_lut.route'
     sourceFile = 'stereo_xxl_1124_1bit_lut.route'
+    sourceFile = '/home/tema8/vtr_7_0/vtr_flow/tasks/tmp/tmp_harris_anotated_full/harris_anotated.route'
 
     
     if len(sys.argv) < 2:

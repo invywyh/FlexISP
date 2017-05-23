@@ -97,7 +97,7 @@ def make_names (prefix, dims) :
 
 #These have unrolled 0 rows LB in hls_target, but worked after hand changes
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/unsharp_hls/"
-DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/harris_hls/"
 
 #This has explicit control sinals to LBs ('if...else'), but worked after hand changes
@@ -107,7 +107,7 @@ DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_harris_hls/"
 #These examples work:
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/gaussian_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/"
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
+DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
 TOP_NAME = "hls_target.cpp"
 
 
@@ -528,6 +528,20 @@ def get_bit_range(s_type):
 
 	return bit_range
 
+def parse_lb_dims(lb_dims):
+	(height, width, channels) = (-1,-1,-1)
+	if len(lb_dims) == 3:
+#TODO: LB definition is NOT consistent
+		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
+		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
+	elif len(lb_dims) == 2:
+		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
+	elif len(lb_dims) == 1:
+		(height, width, channels) = (1, int(lb_dims[0]), 1)
+	else:
+		print "ERROR: Unsupported LB dims - ", lb_dims
+	return (height, width, channels)
+
 
 
 def get_lb_config_from_key(lb_key):
@@ -543,17 +557,7 @@ def get_lb_config_from_key(lb_key):
 	elif lb_def[1] == "uint32_t" or lb_def[1] == "int32_t":
 		sig_width = 32
 
-	lb_dims = lb_def[0].split("_")
-	if len(lb_dims) == 3:
-#TODO: LB definition is NOT consistent
-		#(height, width, channels) = (int(lb_dims[1]), int(lb_dims[2]), int(lb_dims[0]))
-		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), int(lb_dims[2]))
-	elif len(lb_dims) == 2:
-		(height, width, channels) = (int(lb_dims[1]), int(lb_dims[0]), 1)
-	elif len(lb_dims) == 1:
-		(height, width, channels) = (1, int(lb_dims[0]), 1)
-	else:
-		print "ERROR: Unsupported LB definition - ", lb_key
+	(height, width, channels) = parse_lb_dims(lb_def[0].split("_"))
 
 	config = (height, width, channels, sig_width, lb_get_pos)
 	return config
@@ -647,6 +651,7 @@ def print_verilog_top(G):
 		if G.node[n]['obj'] == "kernel":
 			print "kernel_%s KERN_%s ("%(n, n )
 			k_G = build_kernel_graph(G.node[n]['code'])
+			G.node[n]['graph'] = k_G
 			kern_inputs = get_grouped_inputs(k_G)
 			#print kern_inputs
 
@@ -744,6 +749,85 @@ def print_lb_marcos(G):
 		sr_cfg = make_shift_reg_base_verilog(shift_reg_base[sr], IGNORE_WIDTH)
 
 
+
+
+def get_width_stat(G, type_keys = None):
+	ops      = filter(lambda x: 'op'   in  G.node[x].keys() and G.node[x]['op'] !="mv", G.nodes())
+	ops_type = filter(lambda x: 'type' in  G.node[x].keys(), ops)
+	#if type_keys is None:
+	#	type_keys = set( map(lambda x: G.node[x]["type"] , ops_type)  )
+
+	ops_map = {}
+
+	ops_map['1b']  = ["bool"]
+	ops_map['8b']  = ["uint8_t", "int8_t"]
+	ops_map['16b'] = ["uint16_t", "int16_t"]
+	ops_map['32b'] = ["uint32_t", "int32_t", "float", "int", "uint"]
+
+	all_ops = []
+	[ all_ops.extend(o_l) for o_l in ops_map.values()] 
+
+
+	res = {}
+	#for k in type_keys:
+	for k in ops_map.keys():
+		res[k] = len(filter(lambda x: G.node[x]['type'] in ops_map[k], ops_type))
+
+	res["other"] = len(filter(lambda x: G.node[x]['type'] not in all_ops, ops_type))
+	if res["other"] > 0:
+		other = filter(lambda x: G.node[x]['type'] not in all_ops, ops_type)
+		print map(lambda x: G.node[x]['type'],other)
+
+	return res
+
+def get_op_stat(G, ops_keys = ["logic", "alu", "shift", "cmp", "div", "mult", "mux"]):
+	ops      = filter(lambda x: 'op'   in  G.node[x].keys() and G.node[x]['op'] !="mv", G.nodes())
+	ops_type = filter(lambda x: 'type' in  G.node[x].keys(), ops)
+
+	ops_map = {}
+
+	logic_ops        = ["and", "or", "xor", "inv"]
+
+	ops_map['shift'] = ["lshift", "rshift"]
+	ops_map['cmp']   = ["gt", "gte", "lt", "lte", "eq", "ne"]
+	ops_map['div']   = ["div"]
+	ops_map['mux']   = ["mux"]
+	ops_map['mult']  = ["mult"]
+
+	all_ops = []
+	[ all_ops.extend(o_l) for o_l in ops_map.values()] 
+
+
+
+	ops_logic = filter(lambda x: G.node[x]['type'] == "bool" and G.node[x]["op"] in logic_ops, ops_type)
+	ops_data  = filter(lambda x: x not in ops_logic, ops_type)
+	ops_other  = filter(lambda x: G.node[x]["op"] not in all_ops, ops_data)
+
+
+
+	#if ops_keys is None:
+	#	ops_keys = set( map(lambda x: G.node[x]["op"] , ops_data)  )
+
+	res = {}
+	#for k in ops_keys:
+	#	res[k] = len(filter(lambda x: G.node[x]['op'] == k , ops_data))
+	if (len(ops_logic) > 0) or (ops_keys is not None and "logic" in ops_keys):
+		res["logic"] = len(ops_logic)
+	if (len(ops_other) > 0) or (ops_keys is not None and "alu" in ops_keys):
+		res["alu"] = len(ops_other)
+	for k in ops_map:
+		cnt = len(filter(lambda x: G.node[x]["op"] in ops_map[k], ops_data))
+		if (cnt > 0) or (ops_keys is not None and k in ops_keys):
+			res[k] = cnt
+
+	return res
+
+
+
+
+
+
+
 #quit()
 
 
@@ -752,7 +836,7 @@ def print_lb_marcos(G):
 delete_mv(G)
 print "// Source: ", file_name, "\n"
 print_verilog_top(G)
-draw_app_dag(G)
+#draw_app_dag(G)
 
 #print_kernel_verilog(G.node["_demosaic_1_stencil_update_stream"]['code'])
 
@@ -783,7 +867,58 @@ print "\n\n"
 print_lb_marcos(G)
 
 #print unique_ops
+#--------------------------------------
 
+lb_capacity = 0
+lb_access   = 0
+sr_access   = 0
+
+total_op_stat = {}
+total_width_stat = {}
+
+for n in G.nodes():
+	node_attr = G.node[n]
+	if check_key(node_attr, 'obj', "kernel") and 1:
+#		k_G = G.node[n]['graph']
+#
+#		ops      = filter(lambda x: 'op' in  k_G.node[x].keys() and k_G.node[x]['op'] !="mv", k_G.nodes())
+#		ops_type = filter(lambda x: 'type' in  k_G.node[x].keys(), ops)
+#
+#		print n, " : ", len(ops), "ops", " / ", len(ops_type)
+#		print set( map(lambda x: k_G.node[x]["type"] , ops_type)  )
+		#print n
+		kernel_width_stat = get_width_stat(G.node[n]['graph'])
+		#print "	", kernel_width_stat
+		kernel_op_stat = get_op_stat(G.node[n]['graph'])
+		#print " ", kernel_op_stat
+
+		for k in kernel_op_stat.keys():
+			if k in total_op_stat.keys():
+				total_op_stat[k] += kernel_op_stat[k]
+			else:
+				total_op_stat[k] = kernel_op_stat[k]
+
+
+		for kk in kernel_width_stat.keys():
+			if kk in total_width_stat.keys():
+				total_width_stat[kk] += kernel_width_stat[kk]
+			else:
+				total_width_stat[kk] = kernel_width_stat[kk]
+
+
+	elif check_key(node_attr, 'obj', "lb"):
+		(height, width, channels) = parse_lb_dims(node_attr["dims"])
+		lb_access   += channels*height
+		sr_access   += channels*height*width
+		lb_capacity += channels*(height-1)
+		#print height, ",", width, ",", channels #["dims"] , "/", node_attr["type"]
+print "\n\n/*"
+print "lb_access=%d, sr_access=%d, lb_capacity=%d"%(lb_access,sr_access,lb_capacity)
+print total_op_stat
+print total_width_stat
+print "*/"
+
+#--------------------------------------
 quit()
 
 
