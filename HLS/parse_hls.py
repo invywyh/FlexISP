@@ -181,10 +181,13 @@ def find_triple_op_math(G, line):
         #Propagate constant
         if op1 not in G.nodes():
             print "ERROR: ", op1, " is used before being defined!"
+            quit()
         elif op2 not in G.nodes():
             print "ERROR: ", op2, " is used before being defined!"
+            quit()
         elif op3 not in G.nodes():
             print "ERROR: ", op3, " is used before being defined!"
+            quit()
         elif check_key(G.node[op1], "is_const", True) and check_key(G.node[op2], "is_const", True) and check_key(G.node[op3], "is_const", True) :
             G.node[target]['is_const'] = True
             G.node[target]['value'] = "(" + str(G.node[op1]['value']) + " ? " + str(G.node[op2]['value'])  + " : " + str(G.node[op3]['value']) + ")"
@@ -255,8 +258,10 @@ def find_dual_op_math(G, line):
         #Propagate constant
         if op1 not in G.nodes():
             print "ERROR: ", op1, " is used before being defined!"
+            quit()
         elif op2 not in G.nodes():
             print "ERROR: ", op2, " is used before being defined!"
+            quit()
         elif check_key(G.node[op1], "is_const", True) and check_key(G.node[op2], "is_const", True) :
             G.node[target]['is_const'] = True
             G.node[target]['value'] = "(" + str(G.node[op1]['value']) + instr + str(G.node[op2]['value']) + ")"
@@ -335,7 +340,7 @@ def check_immediate(line):
         return None
 
 def check_func(line):
-    VALID_FUNC = ["min", "max"]
+    VALID_FUNC = ["min", "max", "abs"]
 
     matchFuncObj = re.match( r'(.+)\((.*)\)', line.strip(), re.M|re.I)
 
@@ -424,7 +429,7 @@ def find_func(G, line):
     SOURCES = G.graph['SOURCES']
 
     #matchObj = re.match( r'(.+?) = (\(.+?\))?(.+);$', line, re.M|re.I)
-    matchObj = re.match( r'(.+?) = (\([a-zA-Z0-9_]+?\))?\(?((min|max)\(.+?\))\)?;$', line, re.M|re.I)
+    matchObj = re.match( r'(.+?) = (\([a-zA-Z0-9_]+?\))?\(?((min|max|abs)\(.+?\))\)?;$', line, re.M|re.I)
 
     if matchObj:
         target = matchObj.group(1)
@@ -464,6 +469,7 @@ def find_func(G, line):
 
                     if source not in G.nodes():
                         print "ERROR: ", source, " is used before being defined!"
+                        quit()
 
                     SOURCES.add(source)
                     G.add_edge(source, target)
@@ -591,6 +597,7 @@ def find_assign(G, line):
         #Propagate constant
         if source not in G.nodes():
             print "ERROR: ", source, " is used before being defined!"
+            quit()
         elif check_key(G.node[source], "is_const", True):
             G.node[target]['is_const'] = True
             G.node[target]['value'] = G.node[source]['value']
@@ -907,6 +914,24 @@ endmodule
 
     """
 
+    macros['abs'] = """
+module ABS_16b_pe(a,b,c,clk);
+  input  a;
+  input  b;
+  output  c;
+  input clk;
+    mux2o ALU_0(
+        .clk(clk),
+        .a16b( a ),
+        .b16b( b ),
+        .s1b( 1'b0 ),
+        .out16b(c)
+    );
+
+endmodule
+
+    """
+
     macros['min'] = """
 module MIN_16b_pe(a,b,c,clk);
   input  a;
@@ -1106,7 +1131,7 @@ endmodule
 
 
 
-def build_kernel_graph(all_lines):
+def build_kernel_graph(all_lines, trim = False):
     G = nx.DiGraph()
     G.graph['SINKS']   = set()
     G.graph['SOURCES'] = set()
@@ -1140,7 +1165,8 @@ def build_kernel_graph(all_lines):
     #print "\n---------------------------------------------\n"
     #print "OUPUTS : ", OUPUTS
 
-    #trim_dag(G)
+    if trim:
+        trim_dag(G)
 
     ##Need try/except
     #nx.find_cycle(G)

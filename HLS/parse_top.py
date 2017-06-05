@@ -88,7 +88,7 @@ def make_names (prefix, dims) :
 
 
 #These don't work because kernels use indexing with a variable:
-#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/stereo_hls/"
+DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/stereo_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/simpleCNN_hls/"
 
 #These don't work due to unrolled 0 rows LB in hls_target and  kernels use indexing with a variable
@@ -107,7 +107,7 @@ def make_names (prefix, dims) :
 #These examples work:
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/gaussian_hls/"
 #DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/demosaic_hls/"
-DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
+#DIR = "/home/tema8/projects/Halide-HLS/apps/hls_examples/conv_hls/"
 TOP_NAME = "hls_target.cpp"
 
 
@@ -801,7 +801,8 @@ def get_op_stat(G, ops_keys = ["logic", "alu", "shift", "cmp", "div", "mult", "m
 
 	ops_logic = filter(lambda x: G.node[x]['type'] == "bool" and G.node[x]["op"] in logic_ops, ops_type)
 	ops_data  = filter(lambda x: x not in ops_logic, ops_type)
-	ops_other  = filter(lambda x: G.node[x]["op"] not in all_ops, ops_data)
+	ops_other = filter(lambda x: G.node[x]["op"] not in all_ops, ops_data)
+	ops_mult32 = filter(lambda x: (G.node[x]['type'] == "uint32_t" or G.node[x]['type'] == "int32_t"  or G.node[x]['type'] == "float") and G.node[x]["op"]=="mult", ops_type)
 
 
 
@@ -820,11 +821,88 @@ def get_op_stat(G, ops_keys = ["logic", "alu", "shift", "cmp", "div", "mult", "m
 		if (cnt > 0) or (ops_keys is not None and k in ops_keys):
 			res[k] = cnt
 
+	if (len(ops_mult32) > 0) or (ops_keys is not None and "mult32" in ops_keys):
+		res["mult32"] = len(ops_mult32)
+		res["mult"]   = res["mult"] - res["mult32"]
+
 	return res
 
 
+def dict_inc(d, k, v):
+	"""
+	Add value 'v' to key 'k' in a dictionary
+	"""
+	if k in d.keys():
+		d[k]+=v
+	else:
+		d[k]=v
+
+def dic_combine(d0, d1):
+	for k in d1.keys():
+		dict_inc(d0, k, d1[k])
 
 
+def filter_real_ops(G, nodes):
+	return filter(lambda x: 'op' in  G.node[x].keys() and G.node[x]['op'] !="mv", nodes)
+
+
+def count_child(G):
+	res = {}
+
+	for node in filter_real_ops(G, G.nodes()):
+		node_attr = G.node[node]
+		children  = filter_real_ops(G, G.successors(node))
+		dict_inc(res, len(children), 1)
+
+	#if check_key(node_attr, 'obj', "mv"):
+	return res
+
+def count_parent(G):
+	res = {}
+
+	for node in filter_real_ops(G, G.nodes()):
+		node_attr = G.node[node]
+		children  = filter_real_ops(G, G.predecessors(node))
+		dict_inc(res, len(children), 1)
+
+	#if check_key(node_attr, 'obj', "mv"):
+	return res
+
+def check_same_op(G, nodes, op="mult"):
+	cnt_op = len(filter(lambda x: G.node[x]['op'] == op, nodes))
+	return cnt_op == len(nodes)
+
+
+
+def trim_mv(G):
+    """
+Removes MV nodes and constants
+    """
+    for node in G.nodes():
+        node_attr = G.node[node]
+        children  = G.successors(node)
+
+        if check_key(node_attr, 'op', "mv") or check_key(node_attr, 'is_const', True) :
+            parents  = G.predecessors(node)
+            
+            for p in parents:
+                for c in children:
+                    G.add_edge(p, c)
+            #print G.predecessors(node), " -> ", node, " -> ", G.successors(node)
+            G.remove_node(node)
+
+    return
+
+
+def find_conv(G):
+	trim_mv(G)
+	ops  = filter_real_ops(G, G.nodes())
+	adds = filter(lambda x: G.node[x]['op'] =="add", ops)
+
+	print map(lambda x: G.node[x]['op'] ,G.predecessors(adds[0]))
+	#conv = filter(lambda x: G.node[x]['op'] =="add", ops)
+
+	return len(adds)
 
 
 
@@ -873,6 +951,7 @@ lb_capacity = 0
 lb_access   = 0
 sr_access   = 0
 
+total_child_cnt = {}
 total_op_stat = {}
 total_width_stat = {}
 
@@ -892,18 +971,29 @@ for n in G.nodes():
 		kernel_op_stat = get_op_stat(G.node[n]['graph'])
 		#print " ", kernel_op_stat
 
-		for k in kernel_op_stat.keys():
-			if k in total_op_stat.keys():
-				total_op_stat[k] += kernel_op_stat[k]
-			else:
-				total_op_stat[k] = kernel_op_stat[k]
+		#print "Children: ", count_child(G.node[n]['graph'])
+		#print "Parents : ", count_parent(G.node[n]['graph'])
+
+		#print "Find conv:", find_conv(G.node[n]['graph'])
+
+		dic_combine(total_child_cnt, count_child(G.node[n]['graph']))
+
+		dic_combine(total_op_stat, kernel_op_stat)
+
+		#for k in kernel_op_stat.keys():
+		#	if k in total_op_stat.keys():
+		#		total_op_stat[k] += kernel_op_stat[k]
+		#	else:
+		#		total_op_stat[k] = kernel_op_stat[k]
+
+		dic_combine(total_width_stat, kernel_width_stat)
 
 
-		for kk in kernel_width_stat.keys():
-			if kk in total_width_stat.keys():
-				total_width_stat[kk] += kernel_width_stat[kk]
-			else:
-				total_width_stat[kk] = kernel_width_stat[kk]
+		#for kk in kernel_width_stat.keys():
+		#	if kk in total_width_stat.keys():
+		#		total_width_stat[kk] += kernel_width_stat[kk]
+		#	else:
+		#		total_width_stat[kk] = kernel_width_stat[kk]
 
 
 	elif check_key(node_attr, 'obj', "lb"):
@@ -914,8 +1004,11 @@ for n in G.nodes():
 		#print height, ",", width, ",", channels #["dims"] , "/", node_attr["type"]
 print "\n\n/*"
 print "lb_access=%d, sr_access=%d, lb_capacity=%d"%(lb_access,sr_access,lb_capacity)
-print total_op_stat
-print total_width_stat
+print "Op stat      : ", total_op_stat
+print "Op width stat: ", total_width_stat
+print "Fanout stat  : ", total_child_cnt
+print "Single child : %d%%"%((total_child_cnt[1])*100/sum(total_child_cnt.values()))
+print sum(total_op_stat.values()) , "/", sum(total_child_cnt.values())
 print "*/"
 
 #--------------------------------------
